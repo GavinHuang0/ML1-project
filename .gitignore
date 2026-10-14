@@ -7,17 +7,8 @@ venv/
 !.env.example
 .DS_Store
 Thumbs.db
-# Legacy output and local model directories.
-/results/
-/models/
-# Keep experiment protocols, summaries, and interpretations in Git.
-# Full generations are local artifacts; copy selected logs through register_results.
-/experiments/*/pilot/raw/*
-!/experiments/*/pilot/raw/.gitkeep
-/experiments/*/results/raw/*
-!/experiments/*/results/raw/.gitkeep
-/experiments/*/*/summaries/runs.json.lock
-/experiments/*/*/summaries/.runs-*.json
+results/
+models/
 *.gguf
 *.safetensors
 *.bin

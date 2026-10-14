@@ -1,6 +1,7 @@
 """Exact benchmark checks and full pilot output tests using simulated inference."""
 
 import argparse
+import hashlib
 from contextlib import redirect_stdout, redirect_stderr
 import io
 import json
@@ -117,10 +118,27 @@ class PilotTests(unittest.TestCase):
             self.assertEqual([r["type"] for r in rows], ["metadata", "question", "question", "complete"])
             self.assertEqual(rows[-1]["questions_completed"], 2)
             self.assertEqual(rows[0]["model_metadata"]["digest"], "fixture")
+            self.assertEqual(rows[0]["experiment_id"], "communication_pilot")
+            self.assertEqual(rows[0]["protocol_sha256"],
+                             hashlib.sha256(experiment.PROTOCOL_PATH.read_bytes()).hexdigest())
             original = output.read_bytes()
             with patch("run_experiment.OllamaClient", SimulatedClient), redirect_stderr(io.StringIO()):
                 self.assertEqual(experiment.main(args), 1)
             self.assertEqual(output.read_bytes(), original)
+
+    def test_default_output_is_scoped_to_experiment_stage(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args = ["--model", "test:local", "--questions", "2", "--stage", "results"]
+            with patch("run_experiment.EXPERIMENT_DIR", root), \
+                    patch("run_experiment.OllamaClient", SimulatedClient), redirect_stdout(io.StringIO()):
+                self.assertEqual(experiment.main(args), 0)
+            paths = list((root / "results" / "raw").glob("*.jsonl"))
+            self.assertEqual(len(paths), 1)
+            self.assertFalse((root / "pilot").exists())
+            rows = [json.loads(line) for line in paths[0].read_text().splitlines()]
+            self.assertEqual(rows[0]["settings"]["stage"], "results")
+            self.assertEqual(rows[-1], {"type": "complete", "questions_completed": 2})
 
     def test_failed_inference_does_not_mark_partial_run_complete(self):
         class FailingClient(SimulatedClient):

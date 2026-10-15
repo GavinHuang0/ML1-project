@@ -7,7 +7,17 @@ venv/
 !.env.example
 .DS_Store
 Thumbs.db
-results/
+# New runs stay local; these reviewed pilot artifacts are versioned.
+/results/*
+!/results/README.md
+!/results/experiment1-qwen-seed42.jsonl
+!/results/experiment1-qwen-seed42.summary.json
+!/results/experiment1-qwen-seed42.failure.json
+!/results/experiment1-qwen-seed42-max512.jsonl
+!/results/experiment1-qwen-seed42-max512.summary.json
+!/results/experiment1-qwen-seed42-max512.comparison.json
+!/results/experiment1-qwen-seed42-max512.run.json
+!/results/experiment1-qwen-seed42-max512.run.log
 models/
 *.gguf
 *.safetensors

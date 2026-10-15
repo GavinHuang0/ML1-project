@@ -78,7 +78,7 @@ The `source_dedup` intervention changes both the repeated-table presentation and
 
 ## Run Experiment 1 locally, step by step
 
-Each teammate installs the model on their own computer. GitHub stores the code; model weights and experiment outputs remain local. No Codespaces, hosted inference account, API key, Python package installation, or virtual environment is required for this standard-library starter.
+Each teammate installs the model on their own computer. GitHub stores the code and selected reviewed pilot results; model weights and new experiment outputs remain local. No Codespaces, hosted inference account, API key, Python package installation, or virtual environment is required for this standard-library starter.
 
 ### 1. Install the prerequisites and start Ollama
 
@@ -198,6 +198,8 @@ To run the offline tests, use `python3 -m unittest discover -s tests -v` on macO
 
 ## Teammate workflow
 
-Clone this repository, install Ollama, and run the setup commands on each computer. Commit code and reviewed documentation through normal Git branches and pull requests. Keep model weights and generated results out of Git; share chosen experiment artifacts separately when the team needs to review them. Pin the model and experiment settings before comparing runs across machines.
+Clone this repository, install Ollama, and run the setup commands on each computer. Commit code and reviewed documentation through normal Git branches and pull requests. Keep model weights out of Git. New outputs are ignored by default; selected small run artifacts may be reviewed and explicitly versioned, as listed in the [results index](results/README.md). Pin the model and experiment settings before comparing runs across machines.
 
-No results are claimed yet. The first milestone is a reproducible pilot that establishes which local models can follow the task format and whether the paired comparisons reveal useful correction and corruption patterns.
+Two four-question Qwen pilots are complete. The [256 token pilot report](PILOT_RESULTS.md) records shared arithmetic errors and 12 truncated responses. The [512 token comparison](PILOT_512_RESULTS.md) records all 60 responses completing as valid JSON, while every method still misses both urn questions and scores 2/4 overall. These diagnostic runs do not establish a benefit from communication.
+
+The [next experiment plan](NEXT_STEPS.md) describes the suggested calculation-checking improvement and the evaluation changes needed before scaling.

@@ -1,0 +1,83 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-15T00:33:54.821286+00:00",
+  "cwd": "/Users/gavinhuang/Desktop/ML1-Project",
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "-u",
+    "run_experiment.py",
+    "--model",
+    "qwen2.5:3b",
+    "--questions",
+    "4",
+    "--agents",
+    "3",
+    "--seed",
+    "42",
+    "--temperature",
+    "0.7",
+    "--max-tokens",
+    "512",
+    "--timeout",
+    "300",
+    "--output",
+    "results/experiment1-qwen-seed42-max512.jsonl"
+  ],
+  "git_revision": "8d87e38dc75331a237e5472cfeb99d3383384244",
+  "inference_source_matches_git_revision": true,
+  "source_sha256": {
+    "run_experiment.py": "df5709a4c7979d56fb240b25620d25e7cb6f89cee9dc416849bf018e312af08d",
+    "benchmark.py": "0a3d862757b4e5702a38562afe2dda1c31f807a6dff55357e354d0f0b34f4e60",
+    "local_llm.py": "958b823089c37e38e69c8d666d6b1bb765d5ec2dfc6783a511e1daec52fe72d3"
+  },
+  "python_version": "3.13.1",
+  "platform": "macOS-14.6-arm64-arm-64bit-Mach-O",
+  "output": "results/experiment1-qwen-seed42-max512.jsonl",
+  "log": "results/experiment1-qwen-seed42-max512.run.log",
+  "previous_run": {
+    "path": "results/experiment1-qwen-seed42.jsonl",
+    "sha256": "5f34df5b85c2fb8513e420d0536bd6015040012444104eec025647350ed30548"
+  },
+  "purpose": "Test whether raising only max_tokens from 256 to 512 reduces truncation on the same pilot tasks.",
+  "previous_run_failure_analysis": {
+    "execution": "Completed all 4 questions and 60 calls; this was not an execution failure.",
+    "format_failure": "12/60 responses hit the 256-token limit with unfinished JSON; source_dedup lost 5/6 sensor outputs.",
+    "interpretation_failure": "All measured G/H changes reflected invalid/valid transitions rather than changes between valid correct and valid wrong answers.",
+    "mathematical_failure": "All 30 urn responses were valid but wrong; sensor decision correctness often hid wrong posterior calculations.",
+    "evaluation_limits": "Four questions and two sensor cases both with state 0 cannot rank methods; compute budgets differ.",
+    "expected_scope": "512 tokens tests output completeness. It does not itself fix reasoning, sample size, state balance, or budget matching."
+  },
+  "planned_control": {
+    "only_intentional_generation_setting_change": {
+      "max_tokens": [
+        256,
+        512
+      ]
+    },
+    "model": "qwen2.5:3b",
+    "questions": 4,
+    "agents": 3,
+    "seed": 42,
+    "temperature": 0.7,
+    "timeout": 300,
+    "context_tokens": 4096,
+    "keep_alive": 0
+  },
+  "process_id": 20650,
+  "exit_code": 0,
+  "completion_marker": true,
+  "questions_saved": 4,
+  "finished_at": "2026-10-15T02:55:19.064992+00:00",
+  "wall_seconds": 668.7468487923034,
+  "previous_raw_unchanged": true,
+  "output_sha256": "0a11704e64d43b9c959e8c5ed84beecfff9bee88aee7d699792146e315ed0ac7",
+  "source_sha256_after": {
+    "run_experiment.py": "df5709a4c7979d56fb240b25620d25e7cb6f89cee9dc416849bf018e312af08d",
+    "benchmark.py": "0a3d862757b4e5702a38562afe2dda1c31f807a6dff55357e354d0f0b34f4e60",
+    "local_llm.py": "958b823089c37e38e69c8d666d6b1bb765d5ec2dfc6783a511e1daec52fe72d3"
+  },
+  "inference_source_unchanged_during_run": true,
+  "calendar_interval_seconds": 8484.243706,
+  "calendar_minus_monotonic_seconds": 7815.496857207696,
+  "timing_note": "Recorded calendar timestamps span longer than the monotonic timer and summed request timers. System suspension or a clock change could explain the difference, but the cause was not observed. Retain both; do not infer wall-clock performance from the request totals."
+}

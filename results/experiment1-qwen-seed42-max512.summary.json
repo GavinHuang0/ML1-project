@@ -1,0 +1,1326 @@
+{
+  "schema_version": 1,
+  "source": {
+    "path": "results/experiment1-qwen-seed42-max512.jsonl",
+    "bytes": 110854,
+    "sha256": "0a11704e64d43b9c959e8c5ed84beecfff9bee88aee7d699792146e315ed0ac7"
+  },
+  "metadata": {
+    "type": "metadata",
+    "model": "qwen2.5:3b",
+    "model_metadata": {
+      "name": "qwen2.5:3b",
+      "model": "qwen2.5:3b",
+      "modified_at": "2026-10-14T00:02:34.759198235-04:00",
+      "size": 1929912432,
+      "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "3.1B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 32768,
+        "embedding_length": 2048,
+        "runner": "ggml"
+      },
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "ollama_version": "0.40.4",
+    "settings": {
+      "model": "qwen2.5:3b",
+      "questions": 4,
+      "agents": 3,
+      "seed": 42,
+      "temperature": 0.7,
+      "max_tokens": 512,
+      "timeout": 300.0,
+      "dry_run": false
+    },
+    "created_at": "2026-10-15T00:33:54.952714+00:00"
+  },
+  "analysis": {
+    "created_at": "2026-10-15T02:55:23.956923+00:00",
+    "checked_against_git_revision": "8d87e38dc75331a237e5472cfeb99d3383384244",
+    "run_git_revision": null,
+    "source_sha256": {
+      "benchmark.py": "0a3d862757b4e5702a38562afe2dda1c31f807a6dff55357e354d0f0b34f4e60",
+      "run_experiment.py": "df5709a4c7979d56fb240b25620d25e7cb6f89cee9dc416849bf018e312af08d",
+      "local_llm.py": "958b823089c37e38e69c8d666d6b1bb765d5ec2dfc6783a511e1daec52fe72d3",
+      "analyze_results.py": "102c2ddf965567599d55d356428d06a95428866f77d0c0fa6f6a67ba8cc0b779"
+    },
+    "validation": "Completion, seeded tasks, raw parsing, stored metrics, and budgets all match",
+    "notes": [
+      "Run metadata did not record a Git revision; the checked revision describes analysis only.",
+      "Accuracy includes invalid answers as failures. G and H use all paired agent slots.",
+      "Probability means exclude invalid responses; compare alongside their valid counts.",
+      "Per-method standalone budgets overlap. actual_run counts each real call once.",
+      "Agent slots and revision branches share questions; they are not independent trials."
+    ]
+  },
+  "actual_run": {
+    "calls": 60,
+    "input_tokens": 29082,
+    "output_tokens": 12550,
+    "elapsed_seconds": 668.4541702894494,
+    "invalid_answers": 0,
+    "invalid_and_truncated": 0,
+    "done_reasons": {
+      "stop": 60
+    }
+  },
+  "methods": {
+    "single": {
+      "overall": {
+        "questions": 4,
+        "panel_correct": 2,
+        "panel_accuracy": 0.5,
+        "panel_abstentions": 0,
+        "individual_responses": 4,
+        "individual_correct": 2,
+        "individual_accuracy": 0.5,
+        "invalid_answers": 0,
+        "truncated_responses": 0,
+        "evidence_probability_valid_count": 2,
+        "mean_brier_valid_only": 0.0333625,
+        "mean_posterior_absolute_error_valid_only": 0.150945609421832,
+        "standalone_budget_including_initial": {
+          "calls": 4,
+          "input_tokens": 590,
+          "output_tokens": 755,
+          "elapsed_seconds": 42.40524704148993
+        }
+      },
+      "families": {
+        "evidence": {
+          "questions": 2,
+          "panel_correct": 2,
+          "panel_accuracy": 1.0,
+          "panel_abstentions": 0,
+          "individual_responses": 2,
+          "individual_correct": 2,
+          "individual_accuracy": 1.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 2,
+          "mean_brier_valid_only": 0.0333625,
+          "mean_posterior_absolute_error_valid_only": 0.150945609421832,
+          "standalone_budget_including_initial": {
+            "calls": 2,
+            "input_tokens": 386,
+            "output_tokens": 550,
+            "elapsed_seconds": 26.761033249553293
+          }
+        },
+        "reasoning": {
+          "questions": 2,
+          "panel_correct": 0,
+          "panel_accuracy": 0.0,
+          "panel_abstentions": 0,
+          "individual_responses": 2,
+          "individual_correct": 0,
+          "individual_accuracy": 0.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 0,
+          "mean_brier_valid_only": null,
+          "mean_posterior_absolute_error_valid_only": null,
+          "standalone_budget_including_initial": {
+            "calls": 2,
+            "input_tokens": 204,
+            "output_tokens": 205,
+            "elapsed_seconds": 15.644213791936636
+          }
+        }
+      }
+    },
+    "independent_voting": {
+      "overall": {
+        "questions": 4,
+        "panel_correct": 2,
+        "panel_accuracy": 0.5,
+        "panel_abstentions": 0,
+        "individual_responses": 12,
+        "individual_correct": 6,
+        "individual_accuracy": 0.5,
+        "invalid_answers": 0,
+        "truncated_responses": 0,
+        "evidence_probability_valid_count": 6,
+        "mean_brier_valid_only": 0.03174996421487603,
+        "mean_posterior_absolute_error_valid_only": 0.1295334882097108,
+        "standalone_budget_including_initial": {
+          "calls": 12,
+          "input_tokens": 1770,
+          "output_tokens": 2258,
+          "elapsed_seconds": 112.88304554019123
+        }
+      },
+      "families": {
+        "evidence": {
+          "questions": 2,
+          "panel_correct": 2,
+          "panel_accuracy": 1.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 6,
+          "individual_accuracy": 1.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 6,
+          "mean_brier_valid_only": 0.03174996421487603,
+          "mean_posterior_absolute_error_valid_only": 0.1295334882097108,
+          "standalone_budget_including_initial": {
+            "calls": 6,
+            "input_tokens": 1158,
+            "output_tokens": 1540,
+            "elapsed_seconds": 69.76829783245921
+          }
+        },
+        "reasoning": {
+          "questions": 2,
+          "panel_correct": 0,
+          "panel_accuracy": 0.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 0,
+          "individual_accuracy": 0.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 0,
+          "mean_brier_valid_only": null,
+          "mean_posterior_absolute_error_valid_only": null,
+          "standalone_budget_including_initial": {
+            "calls": 6,
+            "input_tokens": 612,
+            "output_tokens": 718,
+            "elapsed_seconds": 43.11474770773202
+          }
+        }
+      }
+    },
+    "self_revision": {
+      "overall": {
+        "questions": 4,
+        "panel_correct": 2,
+        "panel_accuracy": 0.5,
+        "panel_abstentions": 0,
+        "individual_responses": 12,
+        "individual_correct": 6,
+        "individual_accuracy": 0.5,
+        "invalid_answers": 0,
+        "truncated_responses": 0,
+        "evidence_probability_valid_count": 6,
+        "mean_brier_valid_only": 0.031695155881542696,
+        "mean_posterior_absolute_error_valid_only": 0.12875015487637745,
+        "standalone_budget_including_initial": {
+          "calls": 24,
+          "input_tokens": 6098,
+          "output_tokens": 4621,
+          "elapsed_seconds": 234.4988047084771
+        },
+        "transitions": {
+          "wrong_to_correct": 0,
+          "correct_to_wrong": 0,
+          "invalid_to_correct": 0,
+          "valid_wrong_to_correct": 0,
+          "correct_to_invalid": 0,
+          "correct_to_valid_wrong": 0
+        },
+        "G": 0.0,
+        "H": 0.0,
+        "delta": 0.0
+      },
+      "families": {
+        "evidence": {
+          "questions": 2,
+          "panel_correct": 2,
+          "panel_accuracy": 1.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 6,
+          "individual_accuracy": 1.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 6,
+          "mean_brier_valid_only": 0.031695155881542696,
+          "mean_posterior_absolute_error_valid_only": 0.12875015487637745,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 4006,
+            "output_tokens": 3065,
+            "elapsed_seconds": 142.21958174929023
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        },
+        "reasoning": {
+          "questions": 2,
+          "panel_correct": 0,
+          "panel_accuracy": 0.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 0,
+          "individual_accuracy": 0.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 0,
+          "mean_brier_valid_only": null,
+          "mean_posterior_absolute_error_valid_only": null,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 2092,
+            "output_tokens": 1556,
+            "elapsed_seconds": 92.27922295918688
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "answers_only": {
+      "overall": {
+        "questions": 4,
+        "panel_correct": 2,
+        "panel_accuracy": 0.5,
+        "panel_abstentions": 0,
+        "individual_responses": 12,
+        "individual_correct": 6,
+        "individual_accuracy": 0.5,
+        "invalid_answers": 0,
+        "truncated_responses": 0,
+        "evidence_probability_valid_count": 6,
+        "mean_brier_valid_only": 0.031255445,
+        "mean_posterior_absolute_error_valid_only": 0.120095609421832,
+        "standalone_budget_including_initial": {
+          "calls": 24,
+          "input_tokens": 6420,
+          "output_tokens": 4381,
+          "elapsed_seconds": 224.46945070615038
+        },
+        "transitions": {
+          "wrong_to_correct": 0,
+          "correct_to_wrong": 0,
+          "invalid_to_correct": 0,
+          "valid_wrong_to_correct": 0,
+          "correct_to_invalid": 0,
+          "correct_to_valid_wrong": 0
+        },
+        "G": 0.0,
+        "H": 0.0,
+        "delta": 0.0
+      },
+      "families": {
+        "evidence": {
+          "questions": 2,
+          "panel_correct": 2,
+          "panel_accuracy": 1.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 6,
+          "individual_accuracy": 1.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 6,
+          "mean_brier_valid_only": 0.031255445,
+          "mean_posterior_absolute_error_valid_only": 0.120095609421832,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 4144,
+            "output_tokens": 2925,
+            "elapsed_seconds": 135.76273587392643
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        },
+        "reasoning": {
+          "questions": 2,
+          "panel_correct": 0,
+          "panel_accuracy": 0.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 0,
+          "individual_accuracy": 0.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 0,
+          "mean_brier_valid_only": null,
+          "mean_posterior_absolute_error_valid_only": null,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 2276,
+            "output_tokens": 1456,
+            "elapsed_seconds": 88.70671483222395
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "justifications": {
+      "overall": {
+        "questions": 4,
+        "panel_correct": 2,
+        "panel_accuracy": 0.5,
+        "panel_abstentions": 0,
+        "individual_responses": 12,
+        "individual_correct": 6,
+        "individual_accuracy": 0.5,
+        "invalid_answers": 0,
+        "truncated_responses": 0,
+        "evidence_probability_valid_count": 6,
+        "mean_brier_valid_only": 0.033232993333333335,
+        "mean_posterior_absolute_error_valid_only": 0.12387894275516532,
+        "standalone_budget_including_initial": {
+          "calls": 24,
+          "input_tokens": 11072,
+          "output_tokens": 4809,
+          "elapsed_seconds": 246.8583369543776
+        },
+        "transitions": {
+          "wrong_to_correct": 0,
+          "correct_to_wrong": 0,
+          "invalid_to_correct": 0,
+          "valid_wrong_to_correct": 0,
+          "correct_to_invalid": 0,
+          "correct_to_valid_wrong": 0
+        },
+        "G": 0.0,
+        "H": 0.0,
+        "delta": 0.0
+      },
+      "families": {
+        "evidence": {
+          "questions": 2,
+          "panel_correct": 2,
+          "panel_accuracy": 1.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 6,
+          "individual_accuracy": 1.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 6,
+          "mean_brier_valid_only": 0.033232993333333335,
+          "mean_posterior_absolute_error_valid_only": 0.12387894275516532,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 7674,
+            "output_tokens": 3270,
+            "elapsed_seconds": 150.25413499819115
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        },
+        "reasoning": {
+          "questions": 2,
+          "panel_correct": 0,
+          "panel_accuracy": 0.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 0,
+          "individual_accuracy": 0.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 0,
+          "mean_brier_valid_only": null,
+          "mean_posterior_absolute_error_valid_only": null,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 3398,
+            "output_tokens": 1539,
+            "elapsed_seconds": 96.60420195618644
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        }
+      }
+    },
+    "source_dedup": {
+      "overall": {
+        "questions": 4,
+        "panel_correct": 2,
+        "panel_accuracy": 0.5,
+        "panel_abstentions": 0,
+        "individual_responses": 12,
+        "individual_correct": 6,
+        "individual_accuracy": 0.5,
+        "invalid_answers": 0,
+        "truncated_responses": 0,
+        "evidence_probability_valid_count": 6,
+        "mean_brier_valid_only": 0.03591526421487603,
+        "mean_posterior_absolute_error_valid_only": 0.13793348820971077,
+        "standalone_budget_including_initial": {
+          "calls": 24,
+          "input_tokens": 10802,
+          "output_tokens": 5513,
+          "elapsed_seconds": 301.276714541018
+        },
+        "transitions": {
+          "wrong_to_correct": 0,
+          "correct_to_wrong": 0,
+          "invalid_to_correct": 0,
+          "valid_wrong_to_correct": 0,
+          "correct_to_invalid": 0,
+          "correct_to_valid_wrong": 0
+        },
+        "G": 0.0,
+        "H": 0.0,
+        "delta": 0.0
+      },
+      "families": {
+        "evidence": {
+          "questions": 2,
+          "panel_correct": 2,
+          "panel_accuracy": 1.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 6,
+          "individual_accuracy": 1.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 6,
+          "mean_brier_valid_only": 0.03591526421487603,
+          "mean_posterior_absolute_error_valid_only": 0.13793348820971077,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 7248,
+            "output_tokens": 3780,
+            "elapsed_seconds": 198.78446104191244
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        },
+        "reasoning": {
+          "questions": 2,
+          "panel_correct": 0,
+          "panel_accuracy": 0.0,
+          "panel_abstentions": 0,
+          "individual_responses": 6,
+          "individual_correct": 0,
+          "individual_accuracy": 0.0,
+          "invalid_answers": 0,
+          "truncated_responses": 0,
+          "evidence_probability_valid_count": 0,
+          "mean_brier_valid_only": null,
+          "mean_posterior_absolute_error_valid_only": null,
+          "standalone_budget_including_initial": {
+            "calls": 12,
+            "input_tokens": 3554,
+            "output_tokens": 1733,
+            "elapsed_seconds": 102.49225349910557
+          },
+          "transitions": {
+            "wrong_to_correct": 0,
+            "correct_to_wrong": 0,
+            "invalid_to_correct": 0,
+            "valid_wrong_to_correct": 0,
+            "correct_to_invalid": 0,
+            "correct_to_valid_wrong": 0
+          },
+          "G": 0.0,
+          "H": 0.0,
+          "delta": 0.0
+        }
+      }
+    }
+  },
+  "questions": [
+    {
+      "task": {
+        "id": "pilot-42-0000",
+        "family": "reasoning",
+        "prompt": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+        "gold_probability": 0.6285714285714286,
+        "gold_fraction": "22/35"
+      },
+      "methods": {
+        "single": {
+          "probabilities": [
+            0.4666666666666667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.4666666666666667,
+              "correct": false,
+              "abstained": false
+            }
+          }
+        },
+        "independent_voting": {
+          "probabilities": [
+            0.4666666666666667,
+            0.4666666666666667,
+            0.4666666666666667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.4666666666666667,
+              "correct": false,
+              "abstained": false
+            }
+          }
+        },
+        "self_revision": {
+          "probabilities": [
+            0.4666666666666667,
+            0.4,
+            0.4666666666666667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.4666666666666667,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "answers_only": {
+          "probabilities": [
+            0.4666666666666667,
+            0.4666666666666667,
+            0.4666666666666667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.4666666666666667,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "justifications": {
+          "probabilities": [
+            0.4666666666666667,
+            0.4666666666666667,
+            0.4666666666666667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.4666666666666667,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "source_dedup": {
+          "probabilities": [
+            0.4666666666666667,
+            0.4,
+            0.4666666666666667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.4666666666666667,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        }
+      }
+    },
+    {
+      "task": {
+        "id": "pilot-42-0001",
+        "family": "evidence",
+        "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.9\nS2: observation=0, reliability=0.6\nS3: observation=1, reliability=0.6\nS4: observation=0, reliability=0.9",
+        "clues": [
+          {
+            "id": "S1",
+            "value": 0,
+            "reliability": 0.9
+          },
+          {
+            "id": "S2",
+            "value": 0,
+            "reliability": 0.6
+          },
+          {
+            "id": "S3",
+            "value": 1,
+            "reliability": 0.6
+          },
+          {
+            "id": "S4",
+            "value": 0,
+            "reliability": 0.9
+          }
+        ],
+        "gold_state": 0,
+        "gold_probability": 0.012195121951219507
+      },
+      "methods": {
+        "single": {
+          "probabilities": [
+            0.25
+          ],
+          "metrics": {
+            "individual_correct": [
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0625
+            ],
+            "posterior_absolute_errors": [
+              0.2378048780487805
+            ]
+          }
+        },
+        "independent_voting": {
+          "probabilities": [
+            0.25,
+            0.2222,
+            0.2727272727272727
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0625,
+              0.04937284,
+              0.07438016528925619
+            ],
+            "posterior_absolute_errors": [
+              0.2378048780487805,
+              0.2100048780487805,
+              0.2605321507760532
+            ]
+          }
+        },
+        "self_revision": {
+          "probabilities": [
+            0.25,
+            0.2222,
+            0.2727272727272727
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0625,
+              0.04937284,
+              0.07438016528925619
+            ],
+            "posterior_absolute_errors": [
+              0.2378048780487805,
+              0.2100048780487805,
+              0.2605321507760532
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "answers_only": {
+          "probabilities": [
+            0.25,
+            0.25,
+            0.25
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0625,
+              0.0625,
+              0.0625
+            ],
+            "posterior_absolute_errors": [
+              0.2378048780487805,
+              0.2378048780487805,
+              0.2378048780487805
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "justifications": {
+          "probabilities": [
+            0.25,
+            0.2727,
+            0.25
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0625,
+              0.07436529,
+              0.0625
+            ],
+            "posterior_absolute_errors": [
+              0.2378048780487805,
+              0.2605048780487805,
+              0.2378048780487805
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "source_dedup": {
+          "probabilities": [
+            0.25,
+            0.2727,
+            0.2727272727272727
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0625,
+              0.07436529,
+              0.07438016528925619
+            ],
+            "posterior_absolute_errors": [
+              0.2378048780487805,
+              0.2605048780487805,
+              0.2605321507760532
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        }
+      }
+    },
+    {
+      "task": {
+        "id": "pilot-42-0002",
+        "family": "reasoning",
+        "prompt": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+        "gold_probability": 0.6363636363636364,
+        "gold_fraction": "7/11"
+      },
+      "methods": {
+        "single": {
+          "probabilities": [
+            0.75
+          ],
+          "metrics": {
+            "individual_correct": [
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.75,
+              "correct": false,
+              "abstained": false
+            }
+          }
+        },
+        "independent_voting": {
+          "probabilities": [
+            0.75,
+            0.75,
+            0.6667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.75,
+              "correct": false,
+              "abstained": false
+            }
+          }
+        },
+        "self_revision": {
+          "probabilities": [
+            0.5,
+            0.25,
+            0.5
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.5,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "answers_only": {
+          "probabilities": [
+            0.75,
+            0.75,
+            0.5714
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.75,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "justifications": {
+          "probabilities": [
+            0.6667,
+            0.6667,
+            0.75
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.6667,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "source_dedup": {
+          "probabilities": [
+            0.6667,
+            0.75,
+            0.6667
+          ],
+          "metrics": {
+            "individual_correct": [
+              false,
+              false,
+              false
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0.6667,
+              "correct": false,
+              "abstained": false
+            },
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        }
+      }
+    },
+    {
+      "task": {
+        "id": "pilot-42-0003",
+        "family": "evidence",
+        "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.6\nS2: observation=0, reliability=0.9\nS3: observation=0, reliability=0.9\nS4: observation=0, reliability=0.9",
+        "clues": [
+          {
+            "id": "S1",
+            "value": 0,
+            "reliability": 0.6
+          },
+          {
+            "id": "S2",
+            "value": 0,
+            "reliability": 0.9
+          },
+          {
+            "id": "S3",
+            "value": 0,
+            "reliability": 0.9
+          },
+          {
+            "id": "S4",
+            "value": 0,
+            "reliability": 0.9
+          }
+        ],
+        "gold_state": 0,
+        "gold_probability": 0.0009136592051164912
+      },
+      "methods": {
+        "single": {
+          "probabilities": [
+            0.065
+          ],
+          "metrics": {
+            "individual_correct": [
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0042250000000000005
+            ],
+            "posterior_absolute_errors": [
+              0.06408634079488351
+            ]
+          }
+        },
+        "independent_voting": {
+          "probabilities": [
+            0.065,
+            0.0033,
+            0.0033
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0042250000000000005,
+              1.0889999999999999e-05,
+              1.0889999999999999e-05
+            ],
+            "posterior_absolute_errors": [
+              0.06408634079488351,
+              0.0023863407948835087,
+              0.0023863407948835087
+            ]
+          }
+        },
+        "self_revision": {
+          "probabilities": [
+            0.0625,
+            0.0032,
+            0.0012
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.00390625,
+              1.024e-05,
+              1.4399999999999998e-06
+            ],
+            "posterior_absolute_errors": [
+              0.06158634079488351,
+              0.002286340794883509,
+              0.0002863407948835087
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "answers_only": {
+          "probabilities": [
+            0.0033,
+            0.0033,
+            0.0033
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              1.0889999999999999e-05,
+              1.0889999999999999e-05,
+              1.0889999999999999e-05
+            ],
+            "posterior_absolute_errors": [
+              0.0023863407948835087,
+              0.0023863407948835087,
+              0.0023863407948835087
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "justifications": {
+          "probabilities": [
+            0.0033,
+            0.0033,
+            0.0033
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              1.0889999999999999e-05,
+              1.0889999999999999e-05,
+              1.0889999999999999e-05
+            ],
+            "posterior_absolute_errors": [
+              0.0023863407948835087,
+              0.0023863407948835087,
+              0.0023863407948835087
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        },
+        "source_dedup": {
+          "probabilities": [
+            0.065,
+            0.0033,
+            0.0032
+          ],
+          "metrics": {
+            "individual_correct": [
+              true,
+              true,
+              true
+            ],
+            "invalid_answers": 0,
+            "ensemble": {
+              "answer": 0,
+              "correct": true,
+              "abstained": false
+            },
+            "brier_scores": [
+              0.0042250000000000005,
+              1.0889999999999999e-05,
+              1.024e-05
+            ],
+            "posterior_absolute_errors": [
+              0.06408634079488351,
+              0.0023863407948835087,
+              0.002286340794883509
+            ],
+            "G": 0.0,
+            "H": 0.0,
+            "ensemble_G": 0,
+            "ensemble_H": 0
+          }
+        }
+      }
+    }
+  ]
+}

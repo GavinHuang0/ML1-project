@@ -1,0 +1,144 @@
+{
+  "previous_run": "results/experiment1-qwen-seed42.jsonl",
+  "execution_status": "complete",
+  "diagnostic_status": "insufficient_for_method_comparison",
+  "primary_format_failure": "The 256-token generation limit cut off JSON explanations, invalidating otherwise visible answer fragments.",
+  "invalid_responses": 12,
+  "invalid_by_stage": {
+    "initial": 2,
+    "self_revision": 2,
+    "answers_only": 2,
+    "justifications": 1,
+    "source_dedup": 5
+  },
+  "failures": [
+    {
+      "jsonl_line": 3,
+      "task_id": "pilot-42-0001",
+      "family": "evidence",
+      "stage": "initial",
+      "agent": 2,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 18 (char 47)"
+    },
+    {
+      "jsonl_line": 3,
+      "task_id": "pilot-42-0001",
+      "family": "evidence",
+      "stage": "self_revision",
+      "agent": 2,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 18 (char 47)"
+    },
+    {
+      "jsonl_line": 3,
+      "task_id": "pilot-42-0001",
+      "family": "evidence",
+      "stage": "answers_only",
+      "agent": 1,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 63)"
+    },
+    {
+      "jsonl_line": 3,
+      "task_id": "pilot-42-0001",
+      "family": "evidence",
+      "stage": "justifications",
+      "agent": 2,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 18 (char 47)"
+    },
+    {
+      "jsonl_line": 3,
+      "task_id": "pilot-42-0001",
+      "family": "evidence",
+      "stage": "source_dedup",
+      "agent": 1,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 49)"
+    },
+    {
+      "jsonl_line": 3,
+      "task_id": "pilot-42-0001",
+      "family": "evidence",
+      "stage": "source_dedup",
+      "agent": 2,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 18 (char 47)"
+    },
+    {
+      "jsonl_line": 3,
+      "task_id": "pilot-42-0001",
+      "family": "evidence",
+      "stage": "source_dedup",
+      "agent": 3,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 49)"
+    },
+    {
+      "jsonl_line": 5,
+      "task_id": "pilot-42-0003",
+      "family": "evidence",
+      "stage": "initial",
+      "agent": 1,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 50)"
+    },
+    {
+      "jsonl_line": 5,
+      "task_id": "pilot-42-0003",
+      "family": "evidence",
+      "stage": "self_revision",
+      "agent": 1,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 50)"
+    },
+    {
+      "jsonl_line": 5,
+      "task_id": "pilot-42-0003",
+      "family": "evidence",
+      "stage": "answers_only",
+      "agent": 1,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 51)"
+    },
+    {
+      "jsonl_line": 5,
+      "task_id": "pilot-42-0003",
+      "family": "evidence",
+      "stage": "source_dedup",
+      "agent": 1,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 51)"
+    },
+    {
+      "jsonl_line": 5,
+      "task_id": "pilot-42-0003",
+      "family": "evidence",
+      "stage": "source_dedup",
+      "agent": 3,
+      "done_reason": "length",
+      "output_tokens": 256,
+      "parse_error": "Model did not return valid prediction JSON: Unterminated string starting at: line 3 column 20 (char 51)"
+    }
+  ],
+  "other_limitations": [
+    "All 30 valid reasoning responses were mathematically wrong.",
+    "Correct sensor state decisions often masked incorrect posterior probabilities.",
+    "All measured G/H differences reflected answer validity transitions.",
+    "Four questions and both sensor states equal to 0 cannot rank methods."
+  ],
+  "follow_up": "Rerun the same four questions at 512 tokens with the other generation settings and prompt templates held fixed.",
+  "previous_raw_sha256": "5f34df5b85c2fb8513e420d0536bd6015040012444104eec025647350ed30548"
+}

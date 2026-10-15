@@ -1,0 +1,15 @@
+Completed 1/4: pilot-42-0000
+Completed 2/4: pilot-42-0001
+Completed 3/4: pilot-42-0002
+Completed 4/4: pilot-42-0003
+{
+  "output": "results/experiment1-qwen-seed42-max512.jsonl",
+  "ensemble_accuracy": {
+    "single": 0.5,
+    "independent_voting": 0.5,
+    "self_revision": 0.5,
+    "answers_only": 0.5,
+    "justifications": 0.5,
+    "source_dedup": 0.5
+  }
+}

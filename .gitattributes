@@ -1,0 +1,4 @@
+# Preserve archived response bytes and source hashes across checkouts.
+*.py text eol=lf
+results/*.jsonl -text
+results/*.json text eol=lf

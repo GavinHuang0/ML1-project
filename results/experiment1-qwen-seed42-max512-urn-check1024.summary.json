@@ -1,0 +1,129 @@
+{
+  "parent_pilot": "results/experiment1-qwen-seed42-max512.jsonl",
+  "raw": "results/experiment1-qwen-seed42-max512-urn-check1024.jsonl",
+  "raw_sha256": "789218f3de77831935a6ecbde98c8ab39837c5573687c64eda500fcd88d4d28d",
+  "settings": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "context_tokens": 4096,
+    "timeout": 300,
+    "agents": 1,
+    "calls_per_question_per_condition": 1,
+    "sampling_seeds": {
+      "pilot-42-0000": 42,
+      "pilot-42-0002": 242
+    }
+  },
+  "prompts": {
+    "original": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON.",
+    "math_check": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON. Before giving final_answer, end your explanation with a Math check: recompute the arithmetic step by step, verify that fractions and decimals agree, and check that your expression answers the stated event using the original ball counts and any conditioning information. Correct any mistake you find before giving final_answer. Put explanation before final_answer in the JSON object."
+  },
+  "actual_budget": {
+    "calls": 4,
+    "input_tokens": 542,
+    "output_tokens": 1022,
+    "elapsed_seconds": 43.17040012450889
+  },
+  "conditions": {
+    "original": {
+      "questions": 2,
+      "correct": 0,
+      "invalid": 0,
+      "length_stops": 0
+    },
+    "math_check": {
+      "questions": 2,
+      "correct": 1,
+      "invalid": 1,
+      "length_stops": 0
+    }
+  },
+  "answers": [
+    {
+      "condition": "original",
+      "task": {
+        "id": "pilot-42-0000",
+        "family": "reasoning",
+        "prompt": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+        "gold_probability": 0.6285714285714286,
+        "gold_fraction": "22/35"
+      },
+      "seed": 42,
+      "correct": false,
+      "absolute_error": 0.16190476190476188,
+      "math_check_mentioned": false,
+      "probability": 0.4666666666666667,
+      "prediction": {
+        "final_answer": "0.4666666666666667",
+        "explanation": "The probability of drawing a red ball first is 12/15. After drawing one red ball, there are now 11 red balls left in a total of 14 balls. So, the probability of drawing a second red ball is 11/14. The combined probability is (12/15) * (11/14) = 0.4666666666666667."
+      },
+      "parse_error": null,
+      "done_reason": "stop",
+      "output_tokens": 132
+    },
+    {
+      "condition": "original",
+      "task": {
+        "id": "pilot-42-0002",
+        "family": "reasoning",
+        "prompt": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+        "gold_probability": 0.6363636363636364,
+        "gold_fraction": "7/11"
+      },
+      "seed": 242,
+      "correct": false,
+      "absolute_error": 0.11363636363636365,
+      "math_check_mentioned": false,
+      "probability": 0.75,
+      "prediction": {
+        "final_answer": "0.75",
+        "explanation": "Given at least one red ball, there are 6 remaining red balls and 1 blue ball out of the remaining 9 balls. The probability of both balls being red is therefore \\(\frac{6}{9} = 0.75\\)."
+      },
+      "parse_error": null,
+      "done_reason": "stop",
+      "output_tokens": 73
+    },
+    {
+      "condition": "math_check",
+      "task": {
+        "id": "pilot-42-0000",
+        "family": "reasoning",
+        "prompt": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+        "gold_probability": 0.6285714285714286,
+        "gold_fraction": "22/35"
+      },
+      "seed": 42,
+      "correct": true,
+      "absolute_error": 0.0,
+      "math_check_mentioned": false,
+      "probability": 0.6285714285714286,
+      "prediction": {
+        "explanation": "To find the probability that both balls drawn are red, we consider the following:\n\n1. First, the probability of drawing a red ball on the first draw is \\(\\frac{12}{15}\\) because there are 12 red balls out of 15 total balls.\n\n2. After drawing one red ball, there are now 11 red balls left and 14 balls in total. Therefore, the probability of drawing a second red ball is \\(\\frac{11}{14}\\).\n\nThe probability of both events happening (drawing two red balls in succession) is the product of these probabilities: \\(\\frac{12}{15} \\times \\frac{11}{14}\\). Let's compute this value.\n\n\\(\\frac{12}{15} \\times \\frac{11}{14} = \\frac{132}{210} = \\frac{22}{35}\\). The final answer is \\(\\frac{22}{35}\\).",
+        "final_answer": "22/35"
+      },
+      "parse_error": null,
+      "done_reason": "stop",
+      "output_tokens": 249
+    },
+    {
+      "condition": "math_check",
+      "task": {
+        "id": "pilot-42-0002",
+        "family": "reasoning",
+        "prompt": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+        "gold_probability": 0.6363636363636364,
+        "gold_fraction": "7/11"
+      },
+      "seed": 242,
+      "correct": false,
+      "absolute_error": null,
+      "math_check_mentioned": false,
+      "probability": null,
+      "prediction": null,
+      "parse_error": "final_answer must be a fraction or decimal between 0 and 1",
+      "done_reason": "stop",
+      "output_tokens": 568
+    }
+  ],
+  "limitations": "Two already inspected tasks, one fixed sampling seed each; descriptive prompt diagnostic, not held-out evidence. The prompt addition combines explicit checks with explanation-first field order."
+}

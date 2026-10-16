@@ -1,0 +1,513 @@
+{
+  "raw": "results/experiment1-qwen-seed42-max512-diagnostic1024.jsonl",
+  "raw_sha256": "059e0dcb284d274e123e52047e8f87e349faf1e9413a0de2ba18682f1f790ca7",
+  "groups": {
+    "baseline": {
+      "arithmetic": {
+        "items": 2,
+        "correct": 1,
+        "invalid": 0
+      },
+      "construction": {
+        "items": 2,
+        "correct": 0,
+        "invalid": 1
+      },
+      "full_solution": {
+        "items": 2,
+        "correct": 0,
+        "invalid": 0
+      },
+      "transfer": {
+        "items": 2,
+        "correct": 1,
+        "invalid": 0
+      }
+    },
+    "checking": {
+      "arithmetic": {
+        "items": 2,
+        "correct": 2,
+        "invalid": 0
+      },
+      "construction": {
+        "items": 2,
+        "correct": 0,
+        "invalid": 1
+      },
+      "full_solution": {
+        "items": 2,
+        "correct": 0,
+        "invalid": 0
+      },
+      "transfer": {
+        "items": 2,
+        "correct": 1,
+        "invalid": 1
+      }
+    }
+  },
+  "budget": {
+    "calls": 16,
+    "input_tokens": 2332,
+    "output_tokens": 2008,
+    "elapsed_seconds": 121.31970704114065
+  },
+  "length_stops": 0,
+  "answers": [
+    {
+      "condition": "baseline",
+      "task_id": "unconditional-arithmetic",
+      "task": {
+        "id": "unconditional-arithmetic",
+        "family": "unconditional",
+        "stage": "arithmetic",
+        "seed": 1042,
+        "prompt": "Evaluate (7/12) * (6/11). Return a plain fraction or decimal as final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "7/22"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "To evaluate the multiplication of the fractions (7/12) * (6/11), we multiply the numerators together and the denominators together. This gives us (7 * 6) / (12 * 11). We can simplify this fraction before or after calculating the numbers.",
+          "final_answer": "7/22"
+        },
+        "value": "7/22",
+        "format_valid": true,
+        "correct": true,
+        "absolute_error": 0.0,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 82,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "baseline",
+      "task_id": "unconditional-construction",
+      "task": {
+        "id": "unconditional-construction",
+        "family": "unconditional",
+        "stage": "construction",
+        "seed": 1042,
+        "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+        "answer_kind": "expression",
+        "gold_fraction": "7/22"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "The probability that both balls drawn are red can be expressed as the ratio of the number of ways to choose 2 red balls to the total number of ways to choose any 2 balls from the urn. The numerator counts the ways to choose 2 red balls from 7 red balls, while the denominator counts all possible ways to choose any 2 balls from the total of 12 balls (7 red + 5 blue).",
+          "final_answer": "7/12 * (7-1)/((12-2)!/(2!*(12-2)!))"
+        },
+        "value": null,
+        "format_valid": false,
+        "correct": false,
+        "absolute_error": null,
+        "error": "invalid syntax (<unknown>, line 1)",
+        "check_label": false
+      },
+      "output_tokens": 129,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "baseline",
+      "task_id": "unconditional-full_solution",
+      "task": {
+        "id": "unconditional-full_solution",
+        "family": "unconditional",
+        "stage": "full_solution",
+        "seed": 1042,
+        "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "7/22"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "The probability of drawing two red balls without replacement can be calculated by considering the probability of drawing a red ball on the first draw and then the probability of drawing another red ball on the second draw. The probability of drawing a red ball on the first draw is 7/12 (since there are 7 red balls out of a total of 12 balls). After drawing one red ball, there are now 6 red balls left out of a total of 11 balls. Therefore, the probability of drawing another red ball is 6/11. The combined probability of these two events happening in sequence is the product of the individual probabilities.",
+          "final_answer": "0.3333333333333333"
+        },
+        "value": "3333333333333333/10000000000000000",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 0.015151515151515119,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 166,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "baseline",
+      "task_id": "conditional-arithmetic",
+      "task": {
+        "id": "conditional-arithmetic",
+        "family": "conditional",
+        "stage": "arithmetic",
+        "seed": 1043,
+        "prompt": "Evaluate (6*5) / (10*9 - 4*3). Return a plain fraction or decimal as final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "5/13"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "First, we calculate the numerator, which is 6 * 5. Then we calculate the denominator, which is 10 * 9 - 4 * 3. After obtaining both values, we divide the numerator by the denominator to get the final result. Let's proceed with these calculations.",
+          "final_answer": "0.6666666666666666"
+        },
+        "value": "3333333333333333/5000000000000000",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 0.282051282051282,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 95,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "baseline",
+      "task_id": "conditional-construction",
+      "task": {
+        "id": "conditional-construction",
+        "family": "conditional",
+        "stage": "construction",
+        "seed": 1043,
+        "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+        "answer_kind": "expression",
+        "gold_fraction": "5/13"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "Given the condition that at least one ball is red, the numerator counts the number of ways to draw two red balls out of the remaining 5 red balls and 4 blue balls. The denominator counts the number of ways to draw at least one red ball out of the total 10 balls. The probability is thus the ratio of these two counts.",
+          "final_answer": "((6 * 5) / (10 * 9)) / (((6 * 5) + (4 * 9)) / (10 * 9))"
+        },
+        "value": "5/11",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 0.06993006993006994,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 122,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "baseline",
+      "task_id": "conditional-full_solution",
+      "task": {
+        "id": "conditional-full_solution",
+        "family": "conditional",
+        "stage": "full_solution",
+        "seed": 1043,
+        "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "5/13"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "To find the probability that both balls are red given that at least one ball is red, we first calculate the total number of ways to draw two balls that include at least one red ball. This can be found by calculating the total number of ways to draw two balls and subtracting the number of ways to draw two balls that are not red (i.e., both are blue). Then, we calculate the number of ways to draw two red balls. Finally, the conditional probability is the number of ways to draw two red balls divided by the total number of ways to draw at least one red ball.",
+          "final_answer": "0.25"
+        },
+        "value": "1/4",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 0.1346153846153846,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 140,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "baseline",
+      "task_id": "algebra",
+      "task": {
+        "id": "algebra",
+        "family": "algebra",
+        "stage": "transfer",
+        "seed": 1044,
+        "prompt": "Solve 5*x - 9 = 26 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "7"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "To solve the equation 5*x - 9 = 26 for x, we first add 9 to both sides of the equation to isolate the term with x. This gives us 5*x = 35. Then, we divide both sides by 5 to solve for x. Thus, x = 35 / 5.",
+          "final_answer": "7"
+        },
+        "value": "7",
+        "format_valid": true,
+        "correct": true,
+        "absolute_error": 0.0,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 88,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "baseline",
+      "task_id": "units",
+      "task": {
+        "id": "units",
+        "family": "units",
+        "stage": "transfer",
+        "seed": 1045,
+        "prompt": "A vehicle travels at a constant speed of 72 kilometres per hour for 25 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "30"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "To find the distance traveled, use the formula: distance = speed \u00d7 time. First, convert the time from minutes to hours since the speed is given in kilometres per hour. There are 60 minutes in an hour, so 25 minutes is equal to \frac{25}{60} hours. Now calculate the distance.",
+          "final_answer": "25"
+        },
+        "value": "25",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 5.0,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 88,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "unconditional-arithmetic",
+      "task": {
+        "id": "unconditional-arithmetic",
+        "family": "unconditional",
+        "stage": "arithmetic",
+        "seed": 1042,
+        "prompt": "Evaluate (7/12) * (6/11). Return a plain fraction or decimal as final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "7/22"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "To solve the multiplication of the fractions (7/12) * (6/11), we multiply the numerators together and the denominators together. This gives us (7 * 6) / (12 * 11). Simplifying the multiplication of the numbers in the numerator and denominator step by step will give us the result. Let's do the arithmetic.",
+          "final_answer": "7/22"
+        },
+        "value": "7/22",
+        "format_valid": true,
+        "correct": true,
+        "absolute_error": 0.0,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 98,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "unconditional-construction",
+      "task": {
+        "id": "unconditional-construction",
+        "family": "unconditional",
+        "stage": "construction",
+        "seed": 1042,
+        "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+        "answer_kind": "expression",
+        "gold_fraction": "7/22"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "To find the probability that both balls drawn are red, we need to consider the total number of ways to draw two balls and the number of ways to draw two red balls. The total number of ways to draw two balls from the 12 is given by the combination formula *C(12, 2)*. The number of ways to draw two red balls from the 7 red balls is given by *C(7, 2)*. The probability is the ratio of these two quantities.",
+          "final_answer": "C(7, 2) / C(12, 2)"
+        },
+        "value": null,
+        "format_valid": false,
+        "correct": false,
+        "absolute_error": null,
+        "error": "Only arithmetic numbers and + - * / are accepted",
+        "check_label": false
+      },
+      "output_tokens": 133,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "unconditional-full_solution",
+      "task": {
+        "id": "unconditional-full_solution",
+        "family": "unconditional",
+        "stage": "full_solution",
+        "seed": 1042,
+        "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "7/22"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "The probability of drawing two red balls without replacement can be calculated by considering the probability of drawing a red ball first and then another red ball second. The probability of drawing a red ball first is the number of red balls divided by the total number of balls. After drawing one red ball, there are now 6 red balls left and a total of 11 balls. The probability of drawing a second red ball is then 6/11. The overall probability is the product of these two probabilities.",
+          "final_answer": "0.36363636363636365"
+        },
+        "value": "7272727272727273/20000000000000000",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 0.04545454545454547,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 137,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "conditional-arithmetic",
+      "task": {
+        "id": "conditional-arithmetic",
+        "family": "conditional",
+        "stage": "arithmetic",
+        "seed": 1043,
+        "prompt": "Evaluate (6*5) / (10*9 - 4*3). Return a plain fraction or decimal as final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "5/13"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "First, we compute the numerator: 6*5 = 30. Next, we compute the denominator: (10*9 - 4*3) = (90 - 12) = 78. Then, we divide the numerator by the denominator: 30 / 78. To simplify this fraction, we can divide both the numerator and denominator by their greatest common divisor, which is 6. Therefore, 30 / 6 = 5 and 78 / 6 = 13, giving us the simplified fraction 5 / 13. So, the final answer is 5 / 13.",
+          "final_answer": "0.3846153846153846"
+        },
+        "value": "1923076923076923/5000000000000000",
+        "format_valid": true,
+        "correct": true,
+        "absolute_error": 1.5384615384615385e-17,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 172,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "conditional-construction",
+      "task": {
+        "id": "conditional-construction",
+        "family": "conditional",
+        "stage": "construction",
+        "seed": 1043,
+        "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+        "answer_kind": "expression",
+        "gold_fraction": "5/13"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "We need to calculate the probability that both balls drawn are red, given that at least one ball is red. Let's denote the total number of balls by 10. We can calculate this probability by dividing the favorable outcomes (both balls are red) by the total outcomes (at least one ball is red). The numerator will count the number of ways to draw two red balls from the six red balls, and the denominator will count the number of ways to draw at least one red ball from the total of ten balls. The total number of ways to draw any two balls from ten is the denominator, and the number of ways to draw at least one red ball can be found by subtracting the ways to draw two non-red balls from the total possible outcomes.",
+          "final_answer": "((6 * 5) / (10 * 9)) / ((10 * 9) - (4 * 3))"
+        },
+        "value": "1/234",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 0.3803418803418803,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 198,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "conditional-full_solution",
+      "task": {
+        "id": "conditional-full_solution",
+        "family": "conditional",
+        "stage": "full_solution",
+        "seed": 1043,
+        "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "5/13"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "To find the probability that both balls drawn are red given that at least one ball is red, we first calculate the total number of ways to draw two balls with at least one red ball. This can be found by subtracting the number of ways to draw two non-red balls (i.e., both blue) from the total number of ways to draw two balls. Then, we calculate the number of ways to draw two red balls. The probability is then the ratio of the number of favorable outcomes to the total number of outcomes.",
+          "final_answer": "0.2222"
+        },
+        "value": "1111/5000",
+        "format_valid": true,
+        "correct": false,
+        "absolute_error": 0.16241538461538463,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 129,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "algebra",
+      "task": {
+        "id": "algebra",
+        "family": "algebra",
+        "stage": "transfer",
+        "seed": 1044,
+        "prompt": "Solve 5*x - 9 = 26 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "7"
+      },
+      "score": {
+        "prediction": {
+          "explanation": "First, we solve the equation 5*x - 9 = 26 for x. We start by adding 9 to both sides of the equation to isolate the term with x: 5*x - 9 + 9 = 26 + 9. This simplifies to 5*x = 35. Next, we divide both sides by 5 to solve for x: 5*x \u00f7 5 = 35 \u00f7 5. This gives us x = 7.",
+          "final_answer": "7"
+        },
+        "value": "7",
+        "format_valid": true,
+        "correct": true,
+        "absolute_error": 0.0,
+        "error": null,
+        "check_label": false
+      },
+      "output_tokens": 122,
+      "done_reason": "stop"
+    },
+    {
+      "condition": "checking",
+      "task_id": "units",
+      "task": {
+        "id": "units",
+        "family": "units",
+        "stage": "transfer",
+        "seed": 1045,
+        "prompt": "A vehicle travels at a constant speed of 72 kilometres per hour for 25 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+        "answer_kind": "numeric",
+        "gold_fraction": "30"
+      },
+      "score": {
+        "prediction": null,
+        "value": null,
+        "format_valid": false,
+        "correct": false,
+        "absolute_error": null,
+        "error": "Prediction needs a nonempty string final_answer",
+        "check_label": false
+      },
+      "output_tokens": 109,
+      "done_reason": "stop"
+    }
+  ],
+  "manual_review": {
+    "baseline_unconditional_construction": "Explanation describes the appropriate combination-count ratio, but the final factorial expression is malformed under the requested arithmetic-only syntax and does not correctly express that ratio.",
+    "checking_unconditional_construction": {
+      "answer": "C(7, 2) / C(12, 2)",
+      "mathematical_setup_correct": true,
+      "reference": "21/66 = 7/22",
+      "official_format_valid": false,
+      "note": "Correct combinatorial setup; combination-function notation violates the predeclared numbers-and-arithmetic-only contract. Official score unchanged."
+    },
+    "conditional_construction": {
+      "baseline_value": "5/11",
+      "checking_value": "1/234",
+      "reference": "5/13",
+      "both_mathematically_wrong": true
+    },
+    "checking_units": {
+      "raw_final_answer": 27,
+      "reference": 30,
+      "valid_json": true,
+      "answer_type_valid": false,
+      "note": "JSON number instead of required string, and the numerical answer is also wrong."
+    },
+    "checking_compliance": "All eight checking-condition explanations omit the requested Check: section. A label alone would not establish an actual verification either.",
+    "interpretation": "Only the supplied conditional-expression evaluation becomes correct. Both fresh end-to-end urn answers remain wrong. Algebra is correct in both conditions; the units question is wrong in both. This does not establish generalization across domains."
+  }
+}

@@ -172,14 +172,43 @@ The file must end with the `complete` record before being treated as a completed
 
 ### Optional: compare Llama or scale the pilot
 
-To compare **`llama3.2:3b`**, download it and run the same questions/settings in a separate file (on Windows, replace `python3` with `py -3`):
+To install **`llama3.2:3b`**, leave Ollama running and use the existing installer (on Windows, replace `python3` with `py -3`):
 
 ```sh
-python3 setup_models.py --models llama3.2:3b --smoke
-python3 run_experiment.py --model llama3.2:3b --questions 4 --agents 3 --seed 42 --output results/experiment1-llama-seed42.jsonl
+python3 setup_models.py --models llama3.2:3b
+python3 setup_models.py --models llama3.2:3b --check
 ```
 
-This remains a same-model panel within each run, not a mixed-model debate. Running `setup_models.py --smoke` without `--models` downloads **both** defaults from `config/models.json`. Custom tags must refer to downloaded local weights; obvious cloud tags are rejected, but renamed cloud aliases cannot be identified from their names.
+Then preview and run the same reviewed pilots with Llama:
+
+```sh
+python3 run_pilots.py --model llama3.2:3b --pilot all --dry-run
+python3 run_pilots.py --model llama3.2:3b --pilot all
+```
+
+The preview makes no Ollama requests and writes no files. The real command runs sequentially and saves into a new timestamped directory under `results/`, with raw JSONL files, summaries, and `run-manifest.json`. Existing directories are refused, so Qwen outputs and earlier Llama runs are preserved. Use `--output-dir results/llama-pilots-run1` to choose a new directory explicitly.
+
+| `--pilot` | Repeated setup | Generation calls |
+| --- | --- | --- |
+| `256` | Original four questions, three agents, four revision branches, 256 tokens | 60 |
+| `512` | Same full pilot at 512 tokens | 60 |
+| `urn-check` | Two original urn questions, original and math-check prompts, one agent, 1024 tokens | 4 |
+| `diagnostic` | Eight arithmetic, construction, full-solution, algebra, and units items; baseline and checking prompts; one agent, 1024 tokens | 16 |
+| `all` | All four profiles above | 140 |
+
+For only the latest single-agent diagnostic, run:
+
+```sh
+python3 run_pilots.py --model llama3.2:3b --pilot diagnostic
+```
+
+The full pilots generate Llama's own initial answers and peer contexts using the historical runner. The single-agent profiles replay the exact archived task messages, prompts, and sampling seeds, with their original scoring contracts. The saved reference data is read as JSON; embedded historical runner source is never executed. Gold answers are used only after generation for scoring. No calculator is available to the agents.
+
+Each run records Llama's actual digest, Ollama version, generation-source hashes, and the reference artifact hashes. A failed or interrupted profile stops the sequence and preserves partial data; a completed profile has a completion marker and a summary. The manifest distinguishes planned calls from completed profiles. The existing full-panel analyzer handles the `256` and `512` files; the two single-agent profiles use their separate probability and diagnostic scorers.
+
+These are repeats of the inspected development cases, not new held-out evaluations. Llama is a comparison candidate; its accuracy is measured rather than assumed. Models run in separate panels, not mixed-model debate. Matching seeds does not guarantee matching outputs across models, and fixed token limits do not match their compute costs.
+
+An optional smoke request is `python3 setup_models.py --models llama3.2:3b --check --smoke`; it is one extra generation outside the pilot counts above. Running `setup_models.py --smoke` without `--models` downloads **both** defaults from `config/models.json`. Custom tags must refer to downloaded local weights; obvious cloud tags are rejected, but renamed cloud aliases cannot be identified from their names.
 
 After inspecting the tiny pilot's raw answers, use `--questions 50` for a larger pilot: that makes **750 generation calls** with three agents. Use a new result file and retain comparable settings across models. A smaller `--questions 2` run makes 30 calls. Development/held-out splits and their uncertainty analysis still need to be implemented before drawing research conclusions.
 

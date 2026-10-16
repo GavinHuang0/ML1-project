@@ -18,6 +18,10 @@ Thumbs.db
 !/results/experiment1-qwen-seed42-max512.comparison.json
 !/results/experiment1-qwen-seed42-max512.run.json
 !/results/experiment1-qwen-seed42-max512.run.log
+!/results/experiment1-qwen-seed42-max512-urn-check1024.jsonl
+!/results/experiment1-qwen-seed42-max512-urn-check1024.summary.json
+!/results/experiment1-qwen-seed42-max512-diagnostic1024.jsonl
+!/results/experiment1-qwen-seed42-max512-diagnostic1024.summary.json
 models/
 *.gguf
 *.safetensors

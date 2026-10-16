@@ -1,6 +1,6 @@
 # Next experiment plan
 
-The next improvement should target calculation quality. The 512-token pilot removed all observed JSON truncation, but all 30 urn responses remained wrong and many sensor probabilities contradicted their explanations. More output space alone did not improve mathematical reasoning. Keep 512 tokens as the provisional limit and retain the current prompts as the comparison baseline.
+The next improvement should target calculation quality. The 512-token pilot removed all observed JSON truncation, but all 30 urn responses remained wrong and many sensor probabilities contradicted their explanations. More output space alone did not improve mathematical reasoning. The current single-agent prompt diagnostics use 1024 tokens; the historical 512-token pilot and its baseline prompts remain preserved for comparison.
 
 ## First test a calculation check
 
@@ -22,4 +22,4 @@ Add six independent answers per question as a baseline against three initial plu
 
 Only after selecting settings on development data should the project freeze prompts and evaluate on a separate held-out set. Estimate uncertainty at the underlying-question level, keeping its agents, branches, and related variants together. Source deduplication also changes verification instructions and table presentation, so isolating its effect requires varying those factors separately.
 
-These are proposed changes. The calculation-checking prompt, balanced generator, and six-answer baseline have not been implemented or run. The completed [256-token report](PILOT_RESULTS.md) and [512-token comparison](PILOT_512_RESULTS.md) remain the evidence available so far.
+The balanced generator, calculation-checking multi-agent comparison, and six-answer baseline remain proposed changes. A simpler single-agent prompt check at 1024 tokens is recorded as an [appendix to the second pilot](PILOT_512_RESULTS.md#single-agent-urn-follow-up-at-1024-tokens): it fixed one original urn answer but left the conditional case wrong. A subsequent [diagnostic sequence and transfer check](PILOT_512_RESULTS.md#single-agent-diagnostic-sequence-and-transfer-check) improved supplied-expression evaluation but left both fresh full urn questions wrong; algebra was already correct, the units item remained wrong, and the requested check sections were omitted. These results do not establish a general self-checking procedure. The [256-token report](PILOT_RESULTS.md) and [second pilot report](PILOT_512_RESULTS.md) preserve the completed results.

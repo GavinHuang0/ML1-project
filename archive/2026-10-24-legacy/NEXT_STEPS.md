@@ -2,6 +2,12 @@
 
 The next improvement should target calculation quality. The 512-token pilot removed all observed JSON truncation, but all 30 urn responses remained wrong and many sensor probabilities contradicted their explanations. More output space alone did not improve mathematical reasoning. The current single-agent prompt diagnostics use 1024 tokens; the historical 512-token pilot and its baseline prompts remain preserved for comparison.
 
+## Immediate follow up after the Llama comparison
+
+The [Llama repeat](PILOT_512_RESULTS.md#llama-comparison-using-the-same-pilots) solved both original urn questions with the math-check prompt, but scored no valid correct full solutions on the two fresh urn cases. Eight of its 16 diagnostic responses violated the answer contract, including five with a correct mathematical conclusion or equivalent derivation in the explanation. None was truncated.
+
+Before scaling or adding peer discussion, test a fixed `explanation` and `final_answer` template against the frozen prompt on a small new set of urn, algebra, and unit questions. Keep one agent, one generation per item, 1024 tokens, matched seeds, and no calculator or retries. Report required-field validity, mathematical correctness, and agreement between the explanation and answer separately. Preserve all historical scores. This is a proposed test of output reliability, not a demonstrated fix; arithmetic and conditional-probability errors also remain.
+
 ## First test a calculation check
 
 Add a separately versioned revision prompt that asks each agent to verify its calculation before accepting its own or a peer's answer. For urn tasks, require an explicit event numerator and denominator, an exact fraction, and a consistent decimal. For sensor tasks, require one likelihood contribution per unique source ID, the likelihood under each hidden state, and the normalized posterior `L1 / (L0 + L1)` for the equal prior. Ask for a concise calculation within the existing JSON explanation field.

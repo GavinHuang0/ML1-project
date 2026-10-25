@@ -6,6 +6,7 @@ import math
 
 from benchmark import correct, probability
 from local_llm import OllamaError, parse_prediction
+from experiment_config import PROBABILITY_TOLERANCE
 
 
 def _expression_value(text):
@@ -75,7 +76,7 @@ def score_response(raw, task, pilot):
                  else Fraction(parsed["final_answer"].strip()))
         error = abs(value - Fraction(task["gold_fraction"]))
         result.update(value=str(value), format_valid=True,
-                      correct=error <= Fraction(1, 1000), absolute_error=float(error))
+                      correct=error <= Fraction(str(PROBABILITY_TOLERANCE)), absolute_error=float(error))
     except (OllamaError, ValueError, SyntaxError, TypeError, ZeroDivisionError, OverflowError) as exc:
         result["error"] = str(exc)
     return result

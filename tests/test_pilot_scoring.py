@@ -9,7 +9,7 @@ from pilot_scoring import score_response
 
 
 ROOT = Path(__file__).resolve().parents[1]
-STEM = ROOT / "results" / "experiment1-qwen-seed42-max512"
+STEM = ROOT / "archive" / "2026-10-24-legacy" / "results" / "experiment1-qwen-seed42-max512"
 
 
 def saved_answers(suffix):

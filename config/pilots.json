@@ -1,0 +1,484 @@
+{
+  "schema_version": 2,
+  "protocol_version": "llama-1024-posterior-v2",
+  "model": "llama3.2:3b",
+  "max_tokens": 1024,
+  "profiles": {
+    "urn-check": {
+      "source": {
+        "archive_file": "archive/2026-10-24-legacy/results/experiment1-qwen-seed42-max512-urn-check1024.jsonl",
+        "sha256": "789218f3de77831935a6ecbde98c8ab39837c5573687c64eda500fcd88d4d28d"
+      },
+      "prompts": {
+        "original": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON.",
+        "math_check": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON. Before giving final_answer, end your explanation with a Math check: recompute the arithmetic step by step, verify that fractions and decimals agree, and check that your expression answers the stated event using the original ball counts and any conditioning information. Correct any mistake you find before giving final_answer. Put explanation before final_answer in the JSON object."
+      },
+      "cases": [
+        {
+          "condition": "original",
+          "task": {
+            "id": "pilot-42-0000",
+            "family": "reasoning",
+            "prompt": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+            "gold_probability": 0.6285714285714286,
+            "gold_fraction": "22/35"
+          },
+          "seed": 42,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?"
+            }
+          ]
+        },
+        {
+          "condition": "original",
+          "task": {
+            "id": "pilot-42-0002",
+            "family": "reasoning",
+            "prompt": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+            "gold_probability": 0.6363636363636364,
+            "gold_fraction": "7/11"
+          },
+          "seed": 242,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?"
+            }
+          ]
+        },
+        {
+          "condition": "math_check",
+          "task": {
+            "id": "pilot-42-0000",
+            "family": "reasoning",
+            "prompt": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+            "gold_probability": 0.6285714285714286,
+            "gold_fraction": "22/35"
+          },
+          "seed": 42,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON. Before giving final_answer, end your explanation with a Math check: recompute the arithmetic step by step, verify that fractions and decimals agree, and check that your expression answers the stated event using the original ball counts and any conditioning information. Correct any mistake you find before giving final_answer. Put explanation before final_answer in the JSON object."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?"
+            }
+          ]
+        },
+        {
+          "condition": "math_check",
+          "task": {
+            "id": "pilot-42-0002",
+            "family": "reasoning",
+            "prompt": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+            "gold_probability": 0.6363636363636364,
+            "gold_fraction": "7/11"
+          },
+          "seed": 242,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's probability problem. Return ONLY a JSON object with final_answer (a string containing a fraction or decimal probability between 0 and 1) and explanation (a concise, auditable calculation, citing source IDs when given). Do not write extra text outside JSON. Before giving final_answer, end your explanation with a Math check: recompute the arithmetic step by step, verify that fractions and decimals agree, and check that your expression answers the stated event using the original ball counts and any conditioning information. Correct any mistake you find before giving final_answer. Put explanation before final_answer in the JSON object."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?"
+            }
+          ]
+        }
+      ]
+    },
+    "diagnostic": {
+      "source": {
+        "archive_file": "archive/2026-10-24-legacy/results/experiment1-qwen-seed42-max512-diagnostic1024.jsonl",
+        "sha256": "059e0dcb284d274e123e52047e8f87e349faf1e9413a0de2ba18682f1f790ca7"
+      },
+      "prompts": {
+        "baseline": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON.",
+        "checking": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+      },
+      "cases": [
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "unconditional-arithmetic",
+            "family": "unconditional",
+            "stage": "arithmetic",
+            "seed": 1042,
+            "prompt": "Evaluate (7/12) * (6/11). Return a plain fraction or decimal as final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "7/22"
+          },
+          "seed": 1042,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "Evaluate (7/12) * (6/11). Return a plain fraction or decimal as final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "unconditional-construction",
+            "family": "unconditional",
+            "stage": "construction",
+            "seed": 1042,
+            "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+            "answer_kind": "expression",
+            "gold_fraction": "7/22"
+          },
+          "seed": 1042,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count."
+            }
+          ]
+        },
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "unconditional-full_solution",
+            "family": "unconditional",
+            "stage": "full_solution",
+            "seed": 1042,
+            "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "7/22"
+          },
+          "seed": 1042,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "conditional-arithmetic",
+            "family": "conditional",
+            "stage": "arithmetic",
+            "seed": 1043,
+            "prompt": "Evaluate (6*5) / (10*9 - 4*3). Return a plain fraction or decimal as final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "5/13"
+          },
+          "seed": 1043,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "Evaluate (6*5) / (10*9 - 4*3). Return a plain fraction or decimal as final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "conditional-construction",
+            "family": "conditional",
+            "stage": "construction",
+            "seed": 1043,
+            "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+            "answer_kind": "expression",
+            "gold_fraction": "5/13"
+          },
+          "seed": 1043,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count."
+            }
+          ]
+        },
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "conditional-full_solution",
+            "family": "conditional",
+            "stage": "full_solution",
+            "seed": 1043,
+            "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "5/13"
+          },
+          "seed": 1043,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "algebra",
+            "family": "algebra",
+            "stage": "transfer",
+            "seed": 1044,
+            "prompt": "Solve 5*x - 9 = 26 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "7"
+          },
+          "seed": 1044,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "Solve 5*x - 9 = 26 for x. Return only the numerical value of x as a plain number or fraction in final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "baseline",
+          "task": {
+            "id": "units",
+            "family": "units",
+            "stage": "transfer",
+            "seed": 1045,
+            "prompt": "A vehicle travels at a constant speed of 72 kilometres per hour for 25 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "30"
+          },
+          "seed": 1045,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON."
+            },
+            {
+              "role": "user",
+              "content": "A vehicle travels at a constant speed of 72 kilometres per hour for 25 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "unconditional-arithmetic",
+            "family": "unconditional",
+            "stage": "arithmetic",
+            "seed": 1042,
+            "prompt": "Evaluate (7/12) * (6/11). Return a plain fraction or decimal as final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "7/22"
+          },
+          "seed": 1042,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "Evaluate (7/12) * (6/11). Return a plain fraction or decimal as final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "unconditional-construction",
+            "family": "unconditional",
+            "stage": "construction",
+            "seed": 1042,
+            "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+            "answer_kind": "expression",
+            "gold_fraction": "7/22"
+          },
+          "seed": 1042,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "unconditional-full_solution",
+            "family": "unconditional",
+            "stage": "full_solution",
+            "seed": 1042,
+            "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "7/22"
+          },
+          "seed": 1042,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "conditional-arithmetic",
+            "family": "conditional",
+            "stage": "arithmetic",
+            "seed": 1043,
+            "prompt": "Evaluate (6*5) / (10*9 - 4*3). Return a plain fraction or decimal as final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "5/13"
+          },
+          "seed": 1043,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "Evaluate (6*5) / (10*9 - 4*3). Return a plain fraction or decimal as final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "conditional-construction",
+            "family": "conditional",
+            "stage": "construction",
+            "seed": 1043,
+            "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+            "answer_kind": "expression",
+            "gold_fraction": "5/13"
+          },
+          "seed": 1043,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "conditional-full_solution",
+            "family": "conditional",
+            "stage": "full_solution",
+            "seed": 1043,
+            "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "5/13"
+          },
+          "seed": 1043,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "algebra",
+            "family": "algebra",
+            "stage": "transfer",
+            "seed": 1044,
+            "prompt": "Solve 5*x - 9 = 26 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "7"
+          },
+          "seed": 1044,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "Solve 5*x - 9 = 26 for x. Return only the numerical value of x as a plain number or fraction in final_answer."
+            }
+          ]
+        },
+        {
+          "condition": "checking",
+          "task": {
+            "id": "units",
+            "family": "units",
+            "stage": "transfer",
+            "seed": 1045,
+            "prompt": "A vehicle travels at a constant speed of 72 kilometres per hour for 25 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+            "answer_kind": "numeric",
+            "gold_fraction": "30"
+          },
+          "seed": 1045,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Before finalizing, end your explanation with a Check: section. Verify that your setup uses the original given values and constraints; recompute each arithmetic step; and verify the result against the original problem using a second check when possible. Correct any inconsistency you find before giving final_answer. Make the check specific rather than merely stating that the answer is correct."
+            },
+            {
+              "role": "user",
+              "content": "A vehicle travels at a constant speed of 72 kilometres per hour for 25 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

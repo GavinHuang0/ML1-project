@@ -1,4 +1,4 @@
-"""Download the experiment's models to this computer, then optionally test them."""
+"""Install the active experiment's Llama model, then optionally test it."""
 
 import argparse
 import json
@@ -9,6 +9,7 @@ import subprocess
 import sys
 
 from local_llm import BASE_URL, OllamaClient, OllamaError, parse_prediction, validate_model_tag
+from experiment_config import MAX_TOKENS, MODEL
 
 
 DEFAULT_CONFIG = Path(__file__).resolve().parent / "config" / "models.json"
@@ -30,14 +31,14 @@ def smoke(client, model):
     response = client.chat(model, [{
         "role": "user",
         "content": 'What is 2 + 2? Return JSON with string fields "final_answer" and "explanation".',
-    }], seed=0, temperature=0, max_tokens=128)
+    }], seed=0, temperature=0, max_tokens=MAX_TOKENS)
     prediction = parse_prediction(response)
     print(f"{model}: {json.dumps(prediction, ensure_ascii=False)}")
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--models", nargs="+", help="Override config/models.json model tags")
+    parser.add_argument("--models", nargs="+", help=f"Compatibility option; only {MODEL} is supported")
     parser.add_argument("--check", action="store_true", help="Check existing models without downloading")
     parser.add_argument("--smoke", action="store_true", help="Ask each installed model a small test question")
     args = parser.parse_args(argv)
@@ -64,8 +65,7 @@ def main(argv=None):
                    and (":" in model.rsplit("/", 1)[-1] or model + ":latest" not in installed)]
         if missing:
             raise OllamaError("Missing models: " + ", ".join(missing)
-                              + ". Run python setup_models.py to download the defaults, "
-                              "or ollama pull <model> for each custom tag.")
+                              + ". Run python setup_models.py to download " + MODEL + ".")
         print("All requested models are installed locally: " + ", ".join(models))
         if args.smoke:
             for model in models:

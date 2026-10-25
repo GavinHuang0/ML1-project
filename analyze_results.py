@@ -11,6 +11,7 @@ import subprocess
 from benchmark import correct, make_tasks, probability
 from local_llm import OllamaError, parse_prediction
 from run_experiment import CONDITIONS, budget, evaluate
+from experiment_config import (MODEL, MAX_TOKENS, protocol_metadata, source_hashes)
 
 
 METHODS = ("single", "independent_voting", *CONDITIONS)
@@ -97,6 +98,14 @@ def analyze(path):
     require(all(question.get("type") == "question" for question in questions),
             "Unexpected record inside the question sequence")
     settings = rows[0]["settings"]
+    require(rows[0].get("protocol") == protocol_metadata(),
+            "Not an active posterior-v2 run. Use the archived analyzer for historical results.")
+    require(rows[0].get("model") == MODEL and settings.get("max_tokens") == MAX_TOKENS,
+            "Active results must use llama3.2:3b at 1024 tokens")
+    require(rows[-1].get("generation_sources_unchanged") is True,
+            "Run did not confirm unchanged generation sources")
+    require(rows[0]["generation"]["source_sha256"] == rows[-1].get("source_sha256_after"),
+            "Generation source hashes differ before and after the run")
     require(len(questions) == settings["questions"] == rows[-1]["questions_completed"],
             "Question count differs from settings or completion marker")
     require([question["task"] for question in questions] == make_tasks(settings["questions"], settings["seed"]),
@@ -142,18 +151,19 @@ def analyze(path):
                               capture_output=True, text=True, check=False)
     families = sorted({question["task"]["family"] for question in questions})
     return {
-        "schema_version": 1,
+        "schema_version": 2,
+        "protocol": protocol_metadata(),
         "source": {"path": str(path), "bytes": len(source), "sha256": hashlib.sha256(source).hexdigest()},
         "metadata": rows[0],
         "analysis": {
             "created_at": datetime.now(timezone.utc).isoformat(),
             "checked_against_git_revision": revision.stdout.strip() if revision.returncode == 0 else None,
-            "run_git_revision": None,
-            "source_sha256": {name: hashlib.sha256((root / name).read_bytes()).hexdigest()
-                              for name in ("benchmark.py", "run_experiment.py", "local_llm.py", "analyze_results.py")},
+            "run_git_revision": rows[0]["generation"].get("git_revision"),
+            "source_sha256": source_hashes(),
             "validation": "Completion, seeded tasks, raw parsing, stored metrics, and budgets all match",
             "notes": [
-                "Run metadata did not record a Git revision; the checked revision describes analysis only.",
+                "Run provenance includes Git revision, dirty status, and generation source hashes.",
+                "Sensor correctness is absolute posterior error <= 0.001; panels use the median valid posterior.",
                 "Accuracy includes invalid answers as failures. G and H use all paired agent slots.",
                 "Probability means exclude invalid responses; compare alongside their valid counts.",
                 "Per-method standalone budgets overlap. actual_run counts each real call once.",

@@ -7,21 +7,10 @@ venv/
 !.env.example
 .DS_Store
 Thumbs.db
-# New runs stay local; these reviewed pilot artifacts are versioned.
+# Current runs stay local unless deliberately selected for versioning.
 /results/*
 !/results/README.md
-!/results/experiment1-qwen-seed42.jsonl
-!/results/experiment1-qwen-seed42.summary.json
-!/results/experiment1-qwen-seed42.failure.json
-!/results/experiment1-qwen-seed42-max512.jsonl
-!/results/experiment1-qwen-seed42-max512.summary.json
-!/results/experiment1-qwen-seed42-max512.comparison.json
-!/results/experiment1-qwen-seed42-max512.run.json
-!/results/experiment1-qwen-seed42-max512.run.log
-!/results/experiment1-qwen-seed42-max512-urn-check1024.jsonl
-!/results/experiment1-qwen-seed42-max512-urn-check1024.summary.json
-!/results/experiment1-qwen-seed42-max512-diagnostic1024.jsonl
-!/results/experiment1-qwen-seed42-max512-diagnostic1024.summary.json
+# The legacy archive is outside /results/ and is versioned in full.
 models/
 *.gguf
 *.safetensors

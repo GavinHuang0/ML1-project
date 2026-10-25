@@ -6,6 +6,8 @@ import socket
 from urllib.error import HTTPError, URLError
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 
+from experiment_config import MAX_TOKENS, MODEL
+
 
 BASE_URL = "http://127.0.0.1:11434"
 
@@ -15,12 +17,14 @@ class OllamaError(RuntimeError):
 
 
 def validate_model_tag(model):
-    """Accept model tags intended for downloaded local weights."""
+    """Accept the single model fixed by the active experiment protocol."""
     if (not isinstance(model, str) or not model or model.startswith("-")
             or any(character.isspace() for character in model)):
         raise ValueError("model must be a nonempty valid model tag")
     if model.lower().endswith((":cloud", "-cloud")):
         raise ValueError("Cloud model tags are unsupported; choose a downloaded local model.")
+    if model != MODEL:
+        raise ValueError(f"The active experiment requires model {MODEL}")
     return model
 
 
@@ -88,7 +92,7 @@ class OllamaClient:
             raise OllamaError("Ollama model metadata is missing model names")
         return {"version": version["version"], "models": tags["models"]}
 
-    def chat(self, model, messages, *, seed=0, temperature=0.7, max_tokens=256):
+    def chat(self, model, messages, *, seed=0, temperature=0.7, max_tokens=MAX_TOKENS):
         """Generate one JSON answer, unloading the model after the request."""
         model = validate_model_tag(model)
         if not isinstance(messages, list) or not messages:
@@ -102,8 +106,8 @@ class OllamaClient:
             raise ValueError("seed must be an integer")
         if not math.isfinite(temperature) or temperature < 0:
             raise ValueError("temperature must be finite and nonnegative")
-        if isinstance(max_tokens, bool) or not isinstance(max_tokens, int) or max_tokens <= 0:
-            raise ValueError("max_tokens must be a positive integer")
+        if isinstance(max_tokens, bool) or not isinstance(max_tokens, int) or max_tokens != MAX_TOKENS:
+            raise ValueError(f"The active experiment requires max_tokens={MAX_TOKENS}")
         response = self._request("/api/chat", {
             "model": model, "messages": messages, "stream": False,
             "format": "json", "keep_alive": 0,

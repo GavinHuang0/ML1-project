@@ -1,0 +1,101 @@
+{
+  "model": "llama3.2:3b",
+  "output_dir": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z",
+  "timeout": 300,
+  "planned_calls": 140,
+  "jobs": [
+    {
+      "pilot": "256",
+      "planned_calls": 60,
+      "max_tokens": 256,
+      "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/pilot256.jsonl",
+      "summary": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/pilot256.summary.json",
+      "reference": "/Users/gavinhuang/Desktop/ML1-Project/results/experiment1-qwen-seed42.jsonl",
+      "reference_sha256": "5f34df5b85c2fb8513e420d0536bd6015040012444104eec025647350ed30548"
+    },
+    {
+      "pilot": "512",
+      "planned_calls": 60,
+      "max_tokens": 512,
+      "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/pilot512.jsonl",
+      "summary": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/pilot512.summary.json",
+      "reference": "/Users/gavinhuang/Desktop/ML1-Project/results/experiment1-qwen-seed42-max512.jsonl",
+      "reference_sha256": "0a11704e64d43b9c959e8c5ed84beecfff9bee88aee7d699792146e315ed0ac7"
+    },
+    {
+      "pilot": "urn-check",
+      "planned_calls": 4,
+      "max_tokens": 1024,
+      "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/urn-check1024.jsonl",
+      "summary": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/urn-check1024.summary.json",
+      "reference": "/Users/gavinhuang/Desktop/ML1-Project/results/experiment1-qwen-seed42-max512-urn-check1024.jsonl",
+      "reference_sha256": "789218f3de77831935a6ecbde98c8ab39837c5573687c64eda500fcd88d4d28d"
+    },
+    {
+      "pilot": "diagnostic",
+      "planned_calls": 16,
+      "max_tokens": 1024,
+      "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/diagnostic1024.jsonl",
+      "summary": "/Users/gavinhuang/Desktop/ML1-Project/results/llama3.2-3b-pilots-20261016T193719153075Z/diagnostic1024.summary.json",
+      "reference": "/Users/gavinhuang/Desktop/ML1-Project/results/experiment1-qwen-seed42-max512-diagnostic1024.jsonl",
+      "reference_sha256": "059e0dcb284d274e123e52047e8f87e349faf1e9413a0de2ba18682f1f790ca7"
+    }
+  ],
+  "status": "complete",
+  "started_at": "2026-10-16T19:37:19.250084+00:00",
+  "generation": {
+    "git_revision": "9a48da266b5e357e0b3d491984649dc5d77d5251",
+    "source_sha256": {
+      "run_pilots.py": "bfeaa2e3777870fe230f2d7ee8eccd8e6e82ac127cb0e7e02b040a1c660b1393",
+      "pilot_scoring.py": "3ed90ec1f1efc1dc8ab8cce87f3420cccc86b1b725fe3de152deebc41c114347",
+      "run_experiment.py": "df5709a4c7979d56fb240b25620d25e7cb6f89cee9dc416849bf018e312af08d",
+      "benchmark.py": "0a3d862757b4e5702a38562afe2dda1c31f807a6dff55357e354d0f0b34f4e60",
+      "local_llm.py": "958b823089c37e38e69c8d666d6b1bb765d5ec2dfc6783a511e1daec52fe72d3",
+      "analyze_results.py": "102c2ddf965567599d55d356428d06a95428866f77d0c0fa6f6a67ba8cc0b779"
+    },
+    "python_version": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:28:27) [Clang 14.0.6 ]",
+    "cwd": "/Users/gavinhuang/Desktop/ML1-Project",
+    "request_timeout": 300
+  },
+  "model_metadata": {
+    "name": "llama3.2:3b",
+    "model": "llama3.2:3b",
+    "modified_at": "2026-10-16T15:37:07.530691639-04:00",
+    "size": 2019393189,
+    "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "3.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 3072,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools"
+    ]
+  },
+  "ollama_version": "0.40.4",
+  "completed_jobs": [
+    "256",
+    "512",
+    "urn-check",
+    "diagnostic"
+  ],
+  "finished_at": "2026-10-16T20:01:13.716296+00:00",
+  "source_sha256_after": {
+    "run_pilots.py": "bfeaa2e3777870fe230f2d7ee8eccd8e6e82ac127cb0e7e02b040a1c660b1393",
+    "pilot_scoring.py": "3ed90ec1f1efc1dc8ab8cce87f3420cccc86b1b725fe3de152deebc41c114347",
+    "run_experiment.py": "df5709a4c7979d56fb240b25620d25e7cb6f89cee9dc416849bf018e312af08d",
+    "benchmark.py": "0a3d862757b4e5702a38562afe2dda1c31f807a6dff55357e354d0f0b34f4e60",
+    "local_llm.py": "958b823089c37e38e69c8d666d6b1bb765d5ec2dfc6783a511e1daec52fe72d3",
+    "analyze_results.py": "102c2ddf965567599d55d356428d06a95428866f77d0c0fa6f6a67ba8cc0b779"
+  },
+  "generation_sources_unchanged": true
+}

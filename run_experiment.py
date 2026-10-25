@@ -9,6 +9,8 @@ import time
 from pathlib import Path
 
 from benchmark import clue_table, correct, ensemble, make_tasks, probability
+from experiment_config import (MODEL, MAX_TOKENS, generation_metadata,
+                               protocol_metadata, source_hashes)
 from local_llm import OllamaClient, OllamaError, parse_prediction, validate_model_tag
 
 
@@ -20,6 +22,9 @@ CONDITIONS = ("self_revision", "answers_only", "justifications", "source_dedup")
 
 
 def call(client, model, messages, seed, temperature, max_tokens):
+    validate_model_tag(model)
+    if max_tokens != MAX_TOKENS:
+        raise ValueError(f"The active protocol requires {MAX_TOKENS} output tokens")
     started = time.perf_counter()
     raw = client.chat(model, messages, seed=seed, temperature=temperature, max_tokens=max_tokens)
     record = {"raw": raw, "elapsed_seconds": time.perf_counter() - started}
@@ -118,12 +123,12 @@ def run_question(client, task, model, args, index):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", default="qwen2.5:3b")
+    parser.add_argument("--model", choices=(MODEL,), default=MODEL)
     parser.add_argument("--questions", type=int, default=4)
     parser.add_argument("--agents", type=int, choices=(3, 5), default=3)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--temperature", type=float, default=0.7)
-    parser.add_argument("--max-tokens", type=int, default=256)
+    parser.add_argument("--max-tokens", type=int, choices=(MAX_TOKENS,), default=MAX_TOKENS)
     parser.add_argument("--timeout", type=float, default=300)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--dry-run", action="store_true", help="Inspect generated tasks without Ollama")
@@ -138,10 +143,11 @@ def main(argv=None):
         parser.error("temperature must be between 0 and 2")
     tasks = make_tasks(args.questions, args.seed)
     if args.dry_run:
-        print(json.dumps({"questions": len(tasks), "calls_per_question": args.agents * 5,
+        print(json.dumps({"protocol": protocol_metadata(), "questions": len(tasks),
+                          "calls_per_question": args.agents * 5,
                           "conditions": CONDITIONS, "tasks": tasks}, indent=2))
         return 0
-    path = args.output or Path("results") / (
+    path = args.output or Path(__file__).resolve().parent / "results" / "runs" / (
         "pilot-" + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + ".jsonl")
     client = OllamaClient(timeout=args.timeout)
     try:
@@ -152,9 +158,11 @@ def main(argv=None):
         if metadata is None:
             raise OllamaError(f"Model {args.model} is missing. Run: python setup_models.py --models {args.model}")
         path.parent.mkdir(parents=True, exist_ok=True)
+        generation = generation_metadata()
         summary = {name: [] for name in ("single", "independent_voting", *CONDITIONS)}
         with path.open("x", encoding="utf-8") as output:
             output.write(json.dumps({"type": "metadata", "model": args.model,
+                                     "protocol": protocol_metadata(), "generation": generation,
                                      "model_metadata": metadata, "ollama_version": health["version"],
                                      "settings": {k: v for k, v in vars(args).items() if k != "output"},
                                      "created_at": datetime.datetime.now(datetime.timezone.utc).isoformat()}) + "\n")
@@ -168,7 +176,12 @@ def main(argv=None):
                 for name in CONDITIONS:
                     summary[name].append(result["conditions"][name]["metrics"]["ensemble"]["correct"])
                 print(f"Completed {index + 1}/{len(tasks)}: {task['id']}", flush=True)
-            output.write(json.dumps({"type": "complete", "questions_completed": len(tasks)}) + "\n")
+            after = source_hashes()
+            if after != generation["source_sha256"]:
+                raise OllamaError("Generation source changed during the run")
+            output.write(json.dumps({"type": "complete", "questions_completed": len(tasks),
+                                     "source_sha256_after": after,
+                                     "generation_sources_unchanged": True}) + "\n")
         print(json.dumps({"output": str(path), "ensemble_accuracy":
                           {name: sum(scores) / len(scores) for name, scores in summary.items()}}, indent=2))
         return 0

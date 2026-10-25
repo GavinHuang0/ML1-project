@@ -5,6 +5,8 @@ import random
 from fractions import Fraction
 from statistics import median
 
+from experiment_config import PROBABILITY_ROUNDOFF, PROBABILITY_TOLERANCE
+
 
 def posterior(clues):
     """Equal prior; clues are conditionally independent given the hidden state."""
@@ -76,30 +78,30 @@ def probability(answer):
 def correct(task, value):
     if value is None:
         return False
-    if task["family"] == "evidence":
-        return int(value >= 0.5) == task["gold_state"]
-    return abs(value - task["gold_probability"]) <= 0.001
+    error = abs(value - task["gold_probability"])
+    return (error <= PROBABILITY_TOLERANCE
+            or math.isclose(error, PROBABILITY_TOLERANCE,
+                            rel_tol=0.0, abs_tol=PROBABILITY_ROUNDOFF))
 
 
 def ensemble(task, values):
-    """Abstain on a tied plurality. Invalid answers abstain, and cannot win a vote."""
-    votes = {}
-    for value in values:
-        if value is not None:
-            vote = int(value >= 0.5) if task["family"] == "evidence" else round(value, 3)
-            votes[vote] = votes.get(vote, 0) + 1
-    if not votes:
+    """Aggregate sensor posteriors numerically; urn answers use rounded plurality."""
+    valid = [value for value in values if value is not None]
+    if not valid:
         return {"answer": None, "correct": False, "abstained": True}
+    if task["family"] == "evidence":
+        answer = median(valid)
+        return {"answer": answer, "correct": correct(task, answer), "abstained": False}
+    votes = {}
+    for value in valid:
+        vote = round(value, 3)
+        votes[vote] = votes.get(vote, 0) + 1
     highest = max(votes.values())
     winners = [vote for vote, n in votes.items() if n == highest]
     if len(winners) != 1:
         return {"answer": None, "correct": False, "abstained": True}
     winner = winners[0]
-    if task["family"] == "evidence":
-        answer = winner
-        is_correct = winner == task["gold_state"]
-    else:
-        # Rounding groups equivalent votes; score their original median value.
-        answer = median(value for value in values if value is not None and round(value, 3) == winner)
-        is_correct = correct(task, answer)
+    # Rounding groups equivalent votes; score their original median value.
+    answer = median(value for value in valid if round(value, 3) == winner)
+    is_correct = correct(task, answer)
     return {"answer": answer, "correct": is_correct, "abstained": False}

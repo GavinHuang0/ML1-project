@@ -1,4 +1,4 @@
-"""Repeat the reviewed pilots with another local model; no downloads are performed."""
+"""Run the active Llama 3.2 3B pilots at 1024 tokens; no downloads are performed."""
 
 import argparse
 from collections import defaultdict
@@ -7,96 +7,76 @@ import hashlib
 import json
 import math
 from pathlib import Path
-import re
-import subprocess
 import sys
 import time
 
 import analyze_results
-from benchmark import make_tasks
-from local_llm import OllamaClient, OllamaError, validate_model_tag
+from experiment_config import (MAX_TOKENS, MODEL, PROTOCOL_VERSION,
+                               generation_metadata, protocol_metadata, source_hashes)
+from local_llm import OllamaClient, OllamaError
 from pilot_scoring import score_response
 import run_experiment as experiment
 
 
 ROOT = Path(__file__).resolve().parent
-ARTIFACTS = ROOT / "results"
-REFERENCES = {
-    "256": "experiment1-qwen-seed42.jsonl",
-    "512": "experiment1-qwen-seed42-max512.jsonl",
-    "urn-check": "experiment1-qwen-seed42-max512-urn-check1024.jsonl",
-    "diagnostic": "experiment1-qwen-seed42-max512-diagnostic1024.jsonl",
-}
-FILENAMES = {"256": "pilot256", "512": "pilot512",
-             "urn-check": "urn-check1024", "diagnostic": "diagnostic1024"}
-COUNTS = {"256": 60, "512": 60, "urn-check": 4, "diagnostic": 16}
+ARTIFACTS = ROOT / "results" / "runs"
+CONFIG_PATH = ROOT / "config" / "pilots.json"
+FILENAMES = {"full": "full1024", "urn-check": "urn-check1024", "diagnostic": "diagnostic1024"}
+COUNTS = {"full": 60, "urn-check": 4, "diagnostic": 16}
 
 
-def read_reference(pilot):
-    path = ARTIFACTS / REFERENCES[pilot]
-    data = path.read_bytes()
-    rows = [json.loads(line) for line in data.decode("utf-8").splitlines()]
-    summary = json.loads(path.with_suffix(".summary.json").read_text())
-    expected_hash = summary.get("raw_sha256") or summary["source"]["sha256"]
-    if hashlib.sha256(data).hexdigest() != expected_hash:
-        raise ValueError(f"Reference hash mismatch: {path}")
-    if rows[0].get("type") != "metadata" or rows[-1].get("type") != "complete":
-        raise ValueError(f"Incomplete reference: {path}")
-    if pilot in ("256", "512"):
-        if rows[-1].get("questions_completed") != 4 or [r["task"] for r in rows[1:-1]] != make_tasks(4, 42):
-            raise ValueError(f"Historical tasks differ from the current generator: {path}")
-        manifest = json.loads((ARTIFACTS / "experiment1-qwen-seed42-max512.run.json").read_text())
-        for name, digest in manifest["source_sha256"].items():
-            if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != digest:
-                raise ValueError(f"Historical inference source changed: {name}")
-    else:
-        answers = rows[1:-1]
-        if (len(answers) != COUNTS[pilot] or rows[-1].get("calls_completed") != COUNTS[pilot]
-                or any(r.get("type") != "answer" for r in answers)):
-            raise ValueError(f"Unexpected reference call count: {path}")
-        settings = rows[0]["settings"]
-        if settings.get("max_tokens") != 1024 or settings.get("temperature") != 0.7:
-            raise ValueError(f"Unexpected reference sampling settings: {path}")
-        cells = set()
-        for row in answers:
-            task = row["task"]
-            seed = row.get("seed", task.get("seed"))
-            expected = [{"role": "system", "content": rows[0]["prompts"][row["condition"]]},
+def read_protocol():
+    """Validate the active prompt/case configuration without reading old results."""
+    data = CONFIG_PATH.read_bytes()
+    config = json.loads(data)
+    if (config.get("schema_version") != 2 or config.get("protocol_version") != PROTOCOL_VERSION
+            or config.get("model") != MODEL or config.get("max_tokens") != MAX_TOKENS
+            or set(config["profiles"]) != {"urn-check", "diagnostic"}):
+        raise ValueError(f"Unexpected active protocol settings: {CONFIG_PATH}")
+    expected_conditions = {"urn-check": {"original", "math_check"},
+                           "diagnostic": {"baseline", "checking"}}
+    for name, profile in config["profiles"].items():
+        if len(profile["cases"]) != COUNTS[name] or set(profile["prompts"]) != expected_conditions[name]:
+            raise ValueError(f"Unexpected conditions or case count in {name}")
+        cells, tasks, seeds = set(), {}, {}
+        for case in profile["cases"]:
+            task, condition, seed = case["task"], case["condition"], case["seed"]
+            expected = [{"role": "system", "content": profile["prompts"][condition]},
                         {"role": "user", "content": task["prompt"]}]
-            cell = (row["condition"], task["id"])
-            if row["messages"] != expected or not isinstance(seed, int) or cell in cells:
-                raise ValueError(f"Inconsistent reference prompt/seed/cell: {path}")
-            expected_seed = (settings["sampling_seeds"][task["id"]] if pilot == "urn-check" else task["seed"])
-            if seed != expected_seed:
-                raise ValueError(f"Reference sampling seed differs from its manifest: {path}")
+            cell = (condition, task["id"])
+            if (case["messages"] != expected or type(seed) is not int or cell in cells
+                    or ("seed" in task and task["seed"] != seed)
+                    or (task["id"] in tasks and tasks[task["id"]] != task)
+                    or (task["id"] in seeds and seeds[task["id"]] != seed)):
+                raise ValueError(f"Inconsistent active prompt/seed/cell in {name}: {task['id']}")
             cells.add(cell)
-        for name, digest in rows[0]["source_sha256"].items():
-            if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != digest:
-                raise ValueError(f"Historical inference source changed: {name}")
-    return path, rows, expected_hash
+            tasks[task["id"]], seeds[task["id"]] = task, seed
+        if cells != {(condition, task_id) for condition in expected_conditions[name] for task_id in tasks}:
+            raise ValueError(f"Unpaired conditions in {name}")
+    return config, hashlib.sha256(data).hexdigest()
 
 
 def build_plan(model, pilot, output_dir, timeout=300):
-    jobs = []
-    selected = list(REFERENCES) if pilot == "all" else [pilot]
-    for name in selected:
-        reference, _, digest = read_reference(name)
-        jobs.append({"pilot": name, "planned_calls": COUNTS[name],
-                     "max_tokens": int(name) if name in ("256", "512") else 1024,
-                     "raw": str(output_dir / (FILENAMES[name] + ".jsonl")),
-                     "summary": str(output_dir / (FILENAMES[name] + ".summary.json")),
-                     "reference": str(reference), "reference_sha256": digest})
-    return {"model": model, "output_dir": str(output_dir), "timeout": timeout,
+    if model != MODEL:
+        raise ValueError(f"The active protocol only supports {MODEL}")
+    _, digest = read_protocol()
+    selected = list(COUNTS) if pilot == "all" else [pilot]
+    jobs = [{"pilot": name, "planned_calls": COUNTS[name], "max_tokens": MAX_TOKENS,
+             "raw": str(output_dir / (FILENAMES[name] + ".jsonl")),
+             "summary": str(output_dir / (FILENAMES[name] + ".summary.json")),
+             "protocol_file": str(CONFIG_PATH), "protocol_sha256": digest}
+            for name in selected]
+    return {"model": model, "max_tokens": MAX_TOKENS, "protocol": protocol_metadata(),
+            "output_dir": str(output_dir), "timeout": timeout,
             "planned_calls": sum(job["planned_calls"] for job in jobs), "jobs": jobs}
 
 
 def installed_model(client, model):
     health = client.health()
-    name = model if ":" in model.rsplit("/", 1)[-1] else model + ":latest"
     metadata = next((item for item in health["models"]
-                     if item.get("name") == name or item.get("model") == name), None)
+                     if item.get("name") == model or item.get("model") == model), None)
     if metadata is None:
-        raise OllamaError(f"Model {model} is missing. Run: python3 setup_models.py --models {model}")
+        raise OllamaError(f"Model {model} is missing. Run: python3 setup_models.py")
     return health, metadata
 
 
@@ -106,42 +86,39 @@ def write_json(path, value, exclusive=False):
         output.write("\n")
 
 
-def source_hashes():
-    return {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
-            for name in ("run_pilots.py", "pilot_scoring.py", "run_experiment.py",
-                         "benchmark.py", "local_llm.py", "analyze_results.py")}
-
-
 def run_single(client, model, job, health, model_metadata, generation):
-    _, source_rows, _ = read_reference(job["pilot"])
-    source_settings = dict(source_rows[0]["settings"])
-    source_settings["timeout"] = generation["request_timeout"]
+    config, digest = read_protocol()
+    if digest != job["protocol_sha256"]:
+        raise ValueError("Active pilot configuration changed after planning")
+    profile = config["profiles"][job["pilot"]]
     records = []
     metadata = {"type": "metadata", "pilot": job["pilot"], "model": model,
-                "model_metadata": model_metadata, "ollama_version": health["version"],
+                "protocol": protocol_metadata(), "model_metadata": model_metadata,
+                "ollama_version": health["version"],
                 "created_at": datetime.now(timezone.utc).isoformat(),
-                "settings": source_settings, "reference": job["reference"],
-                "reference_sha256": job["reference_sha256"],
-                "generation": generation,
-                "prompts": source_rows[0]["prompts"],
-                "scope": "Exact replay of archived single-agent messages and seeds with a new model"}
+                "settings": {"max_tokens": MAX_TOKENS, "temperature": 0.7,
+                             "timeout": generation["request_timeout"],
+                             "sampling_seeds": {c["task"]["id"]: c["seed"] for c in profile["cases"]}},
+                "provenance": {"configuration": job["protocol_file"], "sha256": digest,
+                               "origin": profile["source"]},
+                "generation": generation, "prompts": profile["prompts"],
+                "scope": "Independent single-agent calls using the active frozen prompts and seeds"}
     with Path(job["raw"]).open("x", encoding="utf-8") as output:
         output.write(json.dumps(metadata) + "\n")
         output.flush()
-        for source in source_rows[1:-1]:
-            task = source["task"]
-            seed = source.get("seed", task.get("seed"))
+        for case in profile["cases"]:
+            task, seed = case["task"], case["seed"]
             started = time.perf_counter()
-            raw = client.chat(model, source["messages"], seed=seed, temperature=0.7, max_tokens=1024)
-            record = {"type": "answer", "condition": source["condition"], "task": task,
-                      "seed": seed, "messages": source["messages"], "raw": raw,
+            raw = client.chat(model, case["messages"], seed=seed, temperature=0.7, max_tokens=MAX_TOKENS)
+            record = {"type": "answer", "condition": case["condition"], "task": task,
+                      "seed": seed, "messages": case["messages"], "raw": raw,
                       "elapsed_seconds": time.perf_counter() - started,
                       "score": score_response(raw, task, job["pilot"])}
             records.append(record)
             output.write(json.dumps(record, allow_nan=False) + "\n")
             output.flush()
             print(f"{job['pilot']}: {len(records)}/{job['planned_calls']} "
-                  f"{source['condition']} {task['id']}", flush=True)
+                  f"{case['condition']} {task['id']}", flush=True)
         output.write(json.dumps({"type": "complete", "calls_completed": len(records)}) + "\n")
     groups = defaultdict(lambda: defaultdict(lambda: {"items": 0, "correct": 0, "invalid": 0}))
     for record in records:
@@ -150,7 +127,7 @@ def run_single(client, model, job, health, model_metadata, generation):
         group["correct"] += record["score"]["correct"]
         group["invalid"] += not record["score"]["format_valid"]
     return {"raw": job["raw"], "raw_sha256": hashlib.sha256(Path(job["raw"]).read_bytes()).hexdigest(),
-            "groups": groups, "budget": experiment.budget(records),
+            "protocol": protocol_metadata(), "groups": groups, "budget": experiment.budget(records),
             "length_stops": sum(r["raw"].get("done_reason") == "length" for r in records),
             "answers": [{"condition": r["condition"], "task_id": r["task"]["id"],
                          "score": r["score"], "output_tokens": r["raw"].get("eval_count")}
@@ -159,18 +136,19 @@ def run_single(client, model, job, health, model_metadata, generation):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", default="llama3.2:3b")
-    parser.add_argument("--pilot", choices=(*REFERENCES, "all"), default="all")
+    parser.add_argument("--model", choices=(MODEL,), default=MODEL)
+    parser.add_argument("--max-tokens", type=int, choices=(MAX_TOKENS,), default=MAX_TOKENS)
+    parser.add_argument("--pilot", choices=(*COUNTS, "all"), default="all")
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--timeout", type=float, default=300)
     parser.add_argument("--dry-run", action="store_true", help="Print the plan without Ollama calls or file writes")
     args = parser.parse_args(argv)
     try:
-        model = validate_model_tag(args.model)
+        model = args.model
         if not math.isfinite(args.timeout) or args.timeout <= 0:
             raise ValueError("timeout must be positive and finite")
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-        output_dir = args.output_dir or ARTIFACTS / (re.sub(r"[^a-zA-Z0-9._-]", "-", model) + "-pilots-" + stamp)
+        output_dir = args.output_dir or ARTIFACTS / ("llama3.2-3b-pilots-" + stamp)
         plan = build_plan(model, args.pilot, output_dir, args.timeout)
         if args.dry_run:
             print(json.dumps(plan, indent=2))
@@ -183,11 +161,7 @@ def main(argv=None):
     except (OllamaError, OSError, ValueError, KeyError, TypeError) as exc:
         print(f"Pilot setup failed: {exc}", file=sys.stderr)
         return 1
-    revision = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
-                              capture_output=True, text=True, check=False)
-    generation = {"git_revision": revision.stdout.strip() if revision.returncode == 0 else None,
-                  "source_sha256": source_hashes(), "python_version": sys.version,
-                  "cwd": str(Path.cwd()), "request_timeout": args.timeout}
+    generation = {**generation_metadata(), "cwd": str(Path.cwd()), "request_timeout": args.timeout}
     manifest = {**plan, "status": "running", "started_at": datetime.now(timezone.utc).isoformat(),
                 "generation": generation, "model_metadata": model_metadata,
                 "ollama_version": health["version"], "completed_jobs": []}
@@ -196,6 +170,8 @@ def main(argv=None):
     code = 0
     try:
         for job in plan["jobs"]:
+            if source_hashes() != generation["source_sha256"]:
+                raise ValueError("Generation source changed during the run")
             current_health, current_model = installed_model(client, model)
             if (current_model.get("digest") != model_metadata.get("digest")
                     or current_health["version"] != health["version"]):
@@ -203,14 +179,14 @@ def main(argv=None):
             manifest["active_job"] = job["pilot"]
             write_json(manifest_path, manifest)
             print(f"Starting {job['pilot']}: {job['planned_calls']} planned calls", flush=True)
-            if job["pilot"] in ("256", "512"):
+            if job["pilot"] == "full":
                 status = experiment.main(["--model", model, "--questions", "4", "--agents", "3",
-                                          "--seed", "42", "--temperature", "0.7", "--max-tokens", str(job["max_tokens"]),
+                                          "--seed", "42", "--temperature", "0.7", "--max-tokens", str(MAX_TOKENS),
                                           "--timeout", str(args.timeout), "--output", job["raw"]])
                 if status == 130:
                     raise KeyboardInterrupt
                 if status != 0:
-                    raise OllamaError(f"Pilot {job['pilot']} failed; keeping partial output and stopping")
+                    raise OllamaError("Full pilot failed; keeping partial output and stopping")
                 raw_metadata = json.loads(Path(job["raw"]).read_text().splitlines()[0])
                 if (raw_metadata["model_metadata"].get("digest") != model_metadata.get("digest")
                         or raw_metadata["ollama_version"] != health["version"]):

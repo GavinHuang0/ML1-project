@@ -173,3 +173,75 @@ All eight checking-condition explanations omitted the requested `Check:` section
 A general checklist can ask whether the given values, constraints, setup, calculations, and result agree, but the actual test depends on the domain. Algebra can use substitution, rates can use units and a reverse calculation, and conditional probability must check the eligible sample space. Factual questions require evidence checks rather than arithmetic alone. These two transfer items do not establish that this prompt works across those domains, and no universal accuracy claim follows from this diagnostic.
 
 The [raw diagnostic record](results/experiment1-qwen-seed42-max512-diagnostic1024.jsonl) stores all prompts, the frozen task manifest, settings, responses, scoring rules, provenance, and runner source. The [summary and manual review](results/experiment1-qwen-seed42-max512-diagnostic1024.summary.json) preserve official results separately from mathematical inspection. Expression evaluation happened only after generation for scoring; no computed values were fed back to the agent. The original pilot and first prompt-check records remain unchanged. Peer-discussion comparisons remain untested in these single-agent follow-ups.
+
+## Llama comparison using the same pilots
+
+On October 16, 2026, `llama3.2:3b` completed all four replay profiles and 140 generation calls. The math-checking prompt solved both original urn questions, but the fresh diagnostic still produced no valid correct full urn answers. The historical full-panel prompts also performed worse than Qwen on these inspected cases. Changing models therefore helped one narrow prompt condition without resolving the broader reliability problem.
+
+### Run validation and settings
+
+The [run manifest](results/llama3.2-3b-pilots-20261016T193719153075Z/run-manifest.json) records revision `9a48da266b5e357e0b3d491984649dc5d77d5251`, Ollama `0.40.4`, temperature 0.7, a 4096-token requested context, and the same seeds, tasks, and token limits as the corresponding Qwen profiles. The installed model was 3.2B, `Q4_K_M`, with digest `a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72`. The full pilots generated Llama's own initial answers and peer messages; the single-agent profiles replayed the exact archived messages and seeds.
+
+Independent validation matched every raw-file hash to its summary, recomputed all full-panel scores and budgets, and rescored all 20 single-agent answers. The saved generation-source hashes match the current files and stayed unchanged across the run. All profiles have completion markers. Validation and manual qualifications are saved in the [verified comparison](results/llama3.2-3b-pilots-20261016T193719153075Z/comparison.verified.json). No raw responses or official scores were changed.
+
+### Full pilots and the effect of the token limit
+
+| Method | Llama at 256 tokens | Llama at 512 tokens | Qwen at 512 tokens |
+| --- | --- | --- | --- |
+| Single answer | 0/4 | 0/4 | 2/4 |
+| Independent voting | 0/4 | 1/4 | 2/4 |
+| Self revision | 0/4 | 0/4 | 2/4 |
+| Answers only | 0/4 | 1/4 | 2/4 |
+| Justifications | 0/4 | 0/4 | 2/4 |
+| Source deduplication | 0/4 | 1/4 | 2/4 |
+
+These are panel scores on four questions, not accuracy over independent generation calls. Llama had 19/60 invalid answers at 256 tokens and 3/60 at 512 tokens; all were truncated JSON. Qwen had 12/60 and 0/60 respectively. Llama's paired call positions include 18 format recoveries, two new truncations, and one persistent truncation. Larger limits changed initial answers and therefore later revision inputs, so the improvement was not uniform at every position.
+
+Llama produced no correct urn answer in either full pilot: 0/26 valid urn responses at 256 tokens and 0/29 at 512. Correct expressions often ended in inconsistent numbers. For example, an initial answer wrote `(12/15) * (11/14)` but claimed it simplified to `11/60`, rather than `22/35`.
+
+Sensor reasoning also failed. At 512 tokens the initial panel returned `0.625`, `0.8`, and `0.75` on question `0001`, against the reference `1/82`, approximately `0.012195`. Some explanations reversed likelihoods or confused distinct source IDs with repeated observations. Qwen's higher binary scores still do not establish accurate posterior computation, and both sensor questions have hidden state 0.
+
+At 512 tokens, independent voting initially had a correct decision on sensor question `0003`. Self revision and justifications each lost it, leaving panel scores of 0/4. Each had one valid correct-to-wrong transition and no correction across the 12 paired slots. Answers-only and source deduplication each had one correction and one corruption, preserving 1/4 panel accuracy. One initial explanation contained the incorrect number `0.78125` while its official answer was `1/3`; later responses adopted `0.78125`. This is a useful example of inconsistent reasoning spreading or being reinforced, but a single case does not establish the cause or a general communication penalty.
+
+### Original urn questions at 1024 tokens
+
+| Original urn question | Reference | Llama original prompt | Llama math-check prompt | Qwen math-check prompt |
+| --- | --- | --- | --- | --- |
+| 12 red, 3 blue; both red | `22/35` | `11/60`, wrong | `22/35`, correct | `22/35`, correct |
+| 8 red, 2 blue; both red given at least one red | `7/11` | `1/3`, wrong | `7/11`, correct | Invalid LaTeX answer, also wrong |
+
+Llama improved from **0/2 to 2/2**, compared with Qwen's 0/2 to 1/2. Its checked conditional derivation was sound: `P(BB)=1/45`, `P(at least one red)=44/45`, and `(56/90)/(44/45)=7/11`. This demonstrates that Llama can solve these particular cases with the engineered prompt. The prompt also changes field ordering, so the result cannot isolate arithmetic checking from explanation-first generation.
+
+### Fresh diagnostic questions at 1024 tokens
+
+| Diagnostic stage | Qwen baseline to checking | Llama baseline to checking |
+| --- | --- | --- |
+| Supplied expression evaluation | 1/2 to 2/2 | 0/2 to 1/2 |
+| Expression construction | 0/2 to 0/2 | 2/2 to 1/2 |
+| Full urn solution | 0/2 to 0/2 | 0/2 to 0/2 |
+| Algebra and unit conversion | 1/2 to 1/2 | 0/2 to 1/2 |
+| Total under the fixed scoring rule | 2/8 to 3/8 | 2/8 to 3/8 |
+
+These totals mix distinct tasks and related urn variants; they are descriptive diagnostic counts. Both models still fail the full fresh urn questions under the official answer contract. However, the causes differ substantially. Llama had five invalid baseline responses and three invalid checking responses, compared with Qwen's one and two. All 16 Llama diagnostic responses were valid JSON objects: six omitted `final_answer`, one omitted `explanation`, and one used unsupported expression notation. These were field or answer-contract failures rather than broken JSON syntax.
+
+At least five of Llama's eight invalid responses contained a correct mathematical conclusion or equivalent derivation: baseline conditional arithmetic (`5/13`), algebra (`7`), and units (`30`); checked unconditional full solving (`7/22`); and checked algebra (`35/5`). They remain official failures because the required answer field is missing. In particular, the checked fresh unconditional urn response reached the right result in its explanation, so its failure should not be described as an arithmetic error.
+
+Other failures were mathematical. The checked supplied unconditional product returned `0.58333333333` instead of `7/22`. Checked conditional full solving returned `5/11` instead of `5/13`. Checked conditional construction used `6C2/(6C2 + 4C2)`, which violates the permitted syntax and equals `5/7`, also the wrong probability. Conversely, baseline conditional construction's `15/39` is mathematically correct and accepted by the scorer, although it evaluates counts despite the request for an unevaluated expression. The automatic construction score therefore does not fully measure instruction compliance. These manual findings are separate from the unchanged official scores.
+
+None of Llama's ten checking-condition responses across the two single-agent profiles included the requested `Math check` or `Check:` label. Correct answers therefore do not demonstrate that the requested checking procedure was followed. All 20 responses stopped normally; the longest used 293 tokens. Raising the cap further would not address these observed failures.
+
+### Budget and next step
+
+| Llama profile | Calls | Input tokens | Output tokens | Summed request seconds |
+| --- | --- | --- | --- | --- |
+| Full pilot at 256 | 60 | 24,535 | 10,654 | 551.61 |
+| Full pilot at 512 | 60 | 30,085 | 12,500 | 715.45 |
+| Original urn check at 1024 | 4 | 588 | 668 | 36.90 |
+| Diagnostic at 1024 | 16 | 2,512 | 1,911 | 127.97 |
+| Total | 140 | 57,720 | 25,733 | 1,431.92 |
+
+The manifest's calendar interval is about 23 minutes 54 seconds. Matching token caps across different tokenizers does not match compute costs, and these request timers are not a controlled speed benchmark.
+
+The next small experiment should separate answer delivery from mathematical correctness: test a fixed two-field response template at 1024 tokens, retaining one agent, one generation per item, and no calculator or retries. Compare it with the frozen prompt on a small new set of urn, algebra, and unit questions with matched seeds. Record required-field validity, numerical correctness, and consistency between explanation and final answer separately; do not rescue previous scores by extracting numbers from prose. Once that output contract is reliable, test any checking improvement on new development questions before returning to peer discussion.
+
+The present evidence supports a specific prompt success on the two original urn cases, plus continuing arithmetic, formulation, and output-contract failures elsewhere. Four inspected full-pilot questions and a few related diagnostic cases do not establish general model superiority or a universal self-checking method.

@@ -64,9 +64,9 @@ Full-profile files can be independently checked without model calls. Use a new o
 python3 analyze_results.py results/runs/YOUR_RUN/full1024.jsonl --output results/runs/YOUR_RUN/full1024.recheck.json
 ```
 
-The analyzer requires the current protocol and rejects historical files. Single-agent summaries are written by the suite using their numeric/expression scorers. Raw answers remain available for manual inspection; correct numbers in explanations do not replace a required final-answer field. Gold answers are used only after generation, and no calculator, retries, or correctness feedback are supplied to the model.
+The unassisted analyzer requires its matching protocol and rejects historical files. Single-agent summaries are written by the suite using their numeric/expression scorers. Raw answers remain available for manual inspection; correct numbers in explanations do not replace a required final-answer field. In these unassisted profiles, gold answers are used only after generation, and no calculator, retries, or correctness feedback are supplied to the model.
 
-The complete prompts and frozen single-agent cases are in [config/pilots.json](config/pilots.json). Full-pilot prompt construction is in [run_experiment.py](run_experiment.py). To run the full experiment directly while retaining the fixed model and cap:
+The complete prompts and frozen single-agent cases are in [config/pilots.json](config/pilots.json). Full-pilot prompt construction is in [run_experiment.py](run_experiment.py). To run the unassisted full experiment directly while retaining the fixed model and cap:
 
 ```sh
 python3 run_experiment.py --questions 4 --agents 3
@@ -83,6 +83,17 @@ python3 run_template_experiment.py
 
 The completed comparison improved fresh valid answers from 3/12 to 11/12 and strict correctness from 1/12 to 5/12. Mathematical behavior remained mixed, and only 12/20 treatment responses obeyed the 60-word limit. Read the [results and qualifications](docs/TEMPLATE_EXPERIMENT.md#results-on-november-6-2026) before treating the candidate as a general reasoning improvement. The original suite's prompts remain unchanged.
 
+## Calculator-assisted mode
+
+The separate [calculator-assisted protocol](docs/CALCULATOR_PROTOCOL.md) has Llama return an arithmetic expression and uses exact code execution to produce the numerical answer. It retains the same model/token cap and records planning-format, execution, and numeric errors separately. The prepared eight-question development pilot is available with:
+
+```sh
+python3 run_calculator_pilot.py --dry-run
+python3 run_calculator_pilot.py
+```
+
+The [first calculator pilot](docs/CALCULATOR_RESULTS.md) completed eight calls: all responses supplied both fields, five expressions executed, and three computed answers were correct. Its computed answers are labeled separately from the unassisted results. The report distinguishes wrong formulations from unsupported syntax and does not treat this known-case pilot as an isolated calculator-benefit estimate.
+
 ## Repository layout
 
 | Location | Purpose |
@@ -90,6 +101,8 @@ The completed comparison improved fresh valid answers from 3/12 to 11/12 and str
 | [docs/PROTOCOL.md](docs/PROTOCOL.md) | Current prompts, procedure, posterior correctness, and limitations |
 | [docs/NEXT_STEPS.md](docs/NEXT_STEPS.md) | Next proposed experiments |
 | [docs/TEMPLATE_EXPERIMENT.md](docs/TEMPLATE_EXPERIMENT.md) | Frozen template comparison design and results |
+| [docs/CALCULATOR_PROTOCOL.md](docs/CALCULATOR_PROTOCOL.md) | Planning-plus-calculator procedure, scoring, and future comparison policy |
+| [docs/CALCULATOR_RESULTS.md](docs/CALCULATOR_RESULTS.md) | Verified calculator pilot outcomes and failure interpretation |
 | [config/](config/) | Fixed model and frozen single-agent prompt/task cases |
 | [results/](results/README.md) | Current results location and recording policy |
 | [archive/2026-10-24-legacy/](archive/2026-10-24-legacy/README.md) | Preserved previous experiments, code, reports, and checksums |

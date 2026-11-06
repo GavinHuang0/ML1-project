@@ -28,6 +28,12 @@ Thumbs.db
 !/results/runs/template-bounded-20261106T195732100566Z/answers.jsonl
 !/results/runs/template-bounded-20261106T195732100566Z/summary.json
 !/results/runs/template-bounded-20261106T195732100566Z/verification.json
+!/results/runs/calculator-pilot-20261106T205135473899Z/
+/results/runs/calculator-pilot-20261106T205135473899Z/*
+!/results/runs/calculator-pilot-20261106T205135473899Z/run-manifest.json
+!/results/runs/calculator-pilot-20261106T205135473899Z/answers.jsonl
+!/results/runs/calculator-pilot-20261106T205135473899Z/summary.json
+!/results/runs/calculator-pilot-20261106T205135473899Z/verification.json
 # The legacy archive is outside /results/ and is versioned in full.
 models/
 *.gguf

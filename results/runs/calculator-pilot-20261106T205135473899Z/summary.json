@@ -1,0 +1,128 @@
+{
+  "experiment_id": "planner-calculator-v1",
+  "protocol": {
+    "version": "planner-calculator-v1",
+    "model": "llama3.2:3b",
+    "max_tokens": 1024,
+    "model_output_fields": [
+      "explanation",
+      "expression"
+    ],
+    "answer_origin": "deterministic_calculator",
+    "calculator": "restricted_exact_rational_arithmetic_v1",
+    "probability_tolerance": 0.001,
+    "reference_free_execution": true,
+    "model_feedback": false,
+    "strict_correctness_requires_complete_method": true
+  },
+  "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/runs/calculator-pilot-20261106T205135473899Z/answers.jsonl",
+  "raw_sha256": "1ecdb06ec884868f3f75cd7f669fe19ae3652457db655c8fbf267aa251b4c5b7",
+  "overall": {
+    "items": 8,
+    "json_valid": 8,
+    "required_fields_valid": 8,
+    "method_format_valid": 5,
+    "calculator_attempted": 8,
+    "calculator_success": 5,
+    "numeric_correct": 3,
+    "correct": 3,
+    "within_explanation_bound": 4,
+    "exact_two_fields": 8,
+    "has_arithmetic_operation": 6,
+    "length_stops": 0,
+    "model_budget": {
+      "calls": 8,
+      "input_tokens": 1753,
+      "output_tokens": 961,
+      "elapsed_seconds": 67.98487062519416
+    }
+  },
+  "families": {
+    "reasoning": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 2,
+      "calculator_attempted": 2,
+      "calculator_success": 2,
+      "numeric_correct": 1,
+      "correct": 1,
+      "within_explanation_bound": 0,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 2,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 391,
+        "output_tokens": 258,
+        "elapsed_seconds": 25.668603375088423
+      }
+    },
+    "evidence": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 1,
+      "calculator_attempted": 2,
+      "calculator_success": 1,
+      "numeric_correct": 0,
+      "correct": 0,
+      "within_explanation_bound": 0,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 1,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 574,
+        "output_tokens": 480,
+        "elapsed_seconds": 23.408400832675397
+      }
+    },
+    "algebra": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 0,
+      "calculator_attempted": 2,
+      "calculator_success": 0,
+      "numeric_correct": 0,
+      "correct": 0,
+      "within_explanation_bound": 2,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 1,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 382,
+        "output_tokens": 96,
+        "elapsed_seconds": 9.357138791587204
+      }
+    },
+    "units": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 2,
+      "calculator_attempted": 2,
+      "calculator_success": 2,
+      "numeric_correct": 2,
+      "correct": 2,
+      "within_explanation_bound": 2,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 2,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 406,
+        "output_tokens": 127,
+        "elapsed_seconds": 9.550727625843138
+      }
+    }
+  },
+  "notes": [
+    "Calculator input contains only the model's explicit expression, never references.",
+    "Numerical equivalence is not proof of correct formulation.",
+    "Known development cases; no new held-out accuracy or isolated calculator-effect claim.",
+    "Literal answers, original-givens usage, exact keys, and word limits require separate compliance review."
+  ]
+}

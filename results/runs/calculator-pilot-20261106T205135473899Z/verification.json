@@ -1,0 +1,181 @@
+{
+  "verified_at": "2026-11-06T20:59:31.816586+00:00",
+  "validation": {
+    "complete8model_calls": true,
+    "all8stored_scores_and_summary_match": true,
+    "calculator_receives_only_explicit_expression_once": true,
+    "model_requests_match_frozen_system_and_question_only": true,
+    "configuration_and_before_after_sources_match": true,
+    "raw_responses_and_scores_unchanged": true
+  },
+  "raw_sha256": "1ecdb06ec884868f3f75cd7f669fe19ae3652457db655c8fbf267aa251b4c5b7",
+  "summary_sha256": "1c22d3d628c7dccdb38495dacd856c823c464116fddb8e666a9a4c6f140becf5",
+  "manifest_sha256": "5dc31534346f9d1c8fc8a8e5de50e25695506c1929f8d3ddffc818a864e95b1b",
+  "configuration_sha256": "1c009e2c9dd183aa095f549c99fdb4b8db639bc3305d19e2392abe9608f1187d",
+  "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+  "ollama_version": "0.40.4",
+  "protocol": {
+    "version": "planner-calculator-v1",
+    "model": "llama3.2:3b",
+    "max_tokens": 1024,
+    "model_output_fields": [
+      "explanation",
+      "expression"
+    ],
+    "answer_origin": "deterministic_calculator",
+    "calculator": "restricted_exact_rational_arithmetic_v1",
+    "probability_tolerance": 0.001,
+    "reference_free_execution": true,
+    "model_feedback": false,
+    "strict_correctness_requires_complete_method": true
+  },
+  "overall": {
+    "items": 8,
+    "json_valid": 8,
+    "required_fields_valid": 8,
+    "method_format_valid": 5,
+    "calculator_attempted": 8,
+    "calculator_success": 5,
+    "numeric_correct": 3,
+    "correct": 3,
+    "within_explanation_bound": 4,
+    "exact_two_fields": 8,
+    "has_arithmetic_operation": 6,
+    "length_stops": 0,
+    "model_budget": {
+      "calls": 8,
+      "input_tokens": 1753,
+      "output_tokens": 961,
+      "elapsed_seconds": 67.98487062519416
+    }
+  },
+  "families": {
+    "reasoning": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 2,
+      "calculator_attempted": 2,
+      "calculator_success": 2,
+      "numeric_correct": 1,
+      "correct": 1,
+      "within_explanation_bound": 0,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 2,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 391,
+        "output_tokens": 258,
+        "elapsed_seconds": 25.668603375088423
+      }
+    },
+    "evidence": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 1,
+      "calculator_attempted": 2,
+      "calculator_success": 1,
+      "numeric_correct": 0,
+      "correct": 0,
+      "within_explanation_bound": 0,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 1,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 574,
+        "output_tokens": 480,
+        "elapsed_seconds": 23.408400832675397
+      }
+    },
+    "algebra": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 0,
+      "calculator_attempted": 2,
+      "calculator_success": 0,
+      "numeric_correct": 0,
+      "correct": 0,
+      "within_explanation_bound": 2,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 1,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 382,
+        "output_tokens": 96,
+        "elapsed_seconds": 9.357138791587204
+      }
+    },
+    "units": {
+      "items": 2,
+      "json_valid": 2,
+      "required_fields_valid": 2,
+      "method_format_valid": 2,
+      "calculator_attempted": 2,
+      "calculator_success": 2,
+      "numeric_correct": 2,
+      "correct": 2,
+      "within_explanation_bound": 2,
+      "exact_two_fields": 2,
+      "has_arithmetic_operation": 2,
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 2,
+        "input_tokens": 406,
+        "output_tokens": 127,
+        "elapsed_seconds": 9.550727625843138
+      }
+    }
+  },
+  "calendar_seconds": 68.663019,
+  "maximum_output_tokens": 257,
+  "manual_review": {
+    "calculator-pilot-42-0000": {
+      "category": "correct formulation and execution",
+      "computed": "22/35"
+    },
+    "calculator-pilot-42-0001": {
+      "category": "executable wrong Bayesian formulation",
+      "computed": "1/2",
+      "reference": "1/82"
+    },
+    "calculator-pilot-42-0002": {
+      "category": "executable wrong conditioning denominator",
+      "computed": "28/71",
+      "reference": "7/11"
+    },
+    "calculator-pilot-42-0003": {
+      "category": "unsupported syntax plus flawed formulation",
+      "detail": "Unicode multiplication, implicit multiplication, duplicated factors, no proper posterior normalization; no repair."
+    },
+    "calculator-algebra-01": {
+      "category": "unsupported assignment syntax with a correct numeric RHS",
+      "detail": "x = (21+11)/4 is rejected; original score preserved, no stripping assignment."
+    },
+    "calculator-algebra-02": {
+      "category": "unsupported variable with incomplete formulation",
+      "detail": "3*x+5-2*x-5 is not a numerical expression for the root and omits the right-hand value."
+    },
+    "calculator-units-01": {
+      "category": "correct formulation and execution",
+      "computed": "49"
+    },
+    "calculator-units-02": {
+      "category": "correct formulation and execution",
+      "computed": "144/5"
+    }
+  },
+  "limitations": [
+    "Eight previously inspected development cases; no new held-out accuracy estimate.",
+    "Prompt, response representation, seeds, and execution differ from earlier unassisted experiments, so calculator benefit is not isolated.",
+    "Three unsupported expressions are not arithmetic calculation mistakes; two executable expressions encode incorrect methods.",
+    "Word bound is secondary, not a retrospective correctness gate.",
+    "Operation-presence false flags are not observed literal-only answers.",
+    "The tiny sensor posterior could accept zero at tolerance0.001, but no such success occurred.",
+    "Independent reevaluation is validation only; no model calls, retries, feedback, or repairs were performed."
+  ]
+}

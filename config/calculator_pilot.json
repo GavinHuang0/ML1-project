@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "experiment_id": "planner-calculator-v1",
+  "model": "llama3.2:3b",
+  "max_tokens": 1024,
+  "temperature": 0.7,
+  "context_tokens": 4096,
+  "explanation_word_limit": 60,
+  "tasks": [
+    {
+      "id": "calculator-pilot-42-0000",
+      "family": "reasoning",
+      "prompt": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+      "gold_probability": 0.6285714285714286,
+      "gold_fraction": "22/35",
+      "source_task_id": "pilot-42-0000",
+      "split": "inspected_development",
+      "seed": 8201,
+      "probability": true,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "calculator-pilot-42-0001",
+      "family": "evidence",
+      "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.9\nS2: observation=0, reliability=0.6\nS3: observation=1, reliability=0.6\nS4: observation=0, reliability=0.9",
+      "clues": [
+        {
+          "id": "S1",
+          "value": 0,
+          "reliability": 0.9
+        },
+        {
+          "id": "S2",
+          "value": 0,
+          "reliability": 0.6
+        },
+        {
+          "id": "S3",
+          "value": 1,
+          "reliability": 0.6
+        },
+        {
+          "id": "S4",
+          "value": 0,
+          "reliability": 0.9
+        }
+      ],
+      "gold_state": 0,
+      "gold_probability": 0.012195121951219507,
+      "source_task_id": "pilot-42-0001",
+      "split": "inspected_development",
+      "seed": 8202,
+      "probability": true,
+      "answer_kind": "expression",
+      "gold_fraction": "1/82"
+    },
+    {
+      "id": "calculator-pilot-42-0002",
+      "family": "reasoning",
+      "prompt": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+      "gold_probability": 0.6363636363636364,
+      "gold_fraction": "7/11",
+      "source_task_id": "pilot-42-0002",
+      "split": "inspected_development",
+      "seed": 8203,
+      "probability": true,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "calculator-pilot-42-0003",
+      "family": "evidence",
+      "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.6\nS2: observation=0, reliability=0.9\nS3: observation=0, reliability=0.9\nS4: observation=0, reliability=0.9",
+      "clues": [
+        {
+          "id": "S1",
+          "value": 0,
+          "reliability": 0.6
+        },
+        {
+          "id": "S2",
+          "value": 0,
+          "reliability": 0.9
+        },
+        {
+          "id": "S3",
+          "value": 0,
+          "reliability": 0.9
+        },
+        {
+          "id": "S4",
+          "value": 0,
+          "reliability": 0.9
+        }
+      ],
+      "gold_state": 0,
+      "gold_probability": 0.0009136592051164912,
+      "source_task_id": "pilot-42-0003",
+      "split": "inspected_development",
+      "seed": 8204,
+      "probability": true,
+      "answer_kind": "expression",
+      "gold_fraction": "2/2189"
+    },
+    {
+      "id": "calculator-algebra-01",
+      "family": "algebra",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 4,
+        "left_constant": -11,
+        "right_x_coefficient": 0,
+        "right_constant": 21
+      },
+      "prompt": "Solve 4*x - 11 = 21 for x. Return an unevaluated arithmetic expression for x in expression.",
+      "gold_fraction": "8",
+      "split": "inspected_development",
+      "seed": 8205,
+      "source_task_id": "fresh-algebra-02"
+    },
+    {
+      "id": "calculator-algebra-02",
+      "family": "algebra",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 3,
+        "left_constant": 5,
+        "right_x_coefficient": 2,
+        "right_constant": 14
+      },
+      "prompt": "Solve 3*x + 5 = 2*x + 14 for x. Return an unevaluated arithmetic expression for x in expression.",
+      "gold_fraction": "9",
+      "split": "inspected_development",
+      "seed": 8206,
+      "source_task_id": "fresh-algebra-03"
+    },
+    {
+      "id": "calculator-units-01",
+      "family": "units",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 84,
+        "minutes": 35
+      },
+      "prompt": "A vehicle travels at a constant speed of 84 kilometres per hour for 35 minutes. How many kilometres does it travel? Return an unevaluated arithmetic expression for the distance in kilometres in expression.",
+      "gold_fraction": "49",
+      "split": "inspected_development",
+      "seed": 8207,
+      "source_task_id": "fresh-units-01"
+    },
+    {
+      "id": "calculator-units-02",
+      "family": "units",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 96,
+        "minutes": 18
+      },
+      "prompt": "A vehicle travels at a constant speed of 96 kilometres per hour for 18 minutes. How many kilometres does it travel? Return an unevaluated arithmetic expression for the distance in kilometres in expression.",
+      "gold_fraction": "144/5",
+      "split": "inspected_development",
+      "seed": 8208,
+      "source_task_id": "fresh-units-03"
+    }
+  ],
+  "description": "Eight previously inspected development cases for checking a separate planning-plus-calculator pipeline; not new held-out or causal-effect evidence.",
+  "calculator_policy": {
+    "model_calls_per_item": 1,
+    "calculator_calls_per_valid_expression": 1,
+    "reference_free": true,
+    "feedback_to_model": false,
+    "repairs": false,
+    "retries": false,
+    "scoring_tolerance": "0.001"
+  },
+  "analysis_plan": {
+    "report_separately": [
+      "method JSON/required fields",
+      "arithmetic expression validity",
+      "calculator execution success",
+      "computed numeric correctness",
+      "strict delivered correctness",
+      "expression-operation and explanation-bound compliance"
+    ],
+    "limitations": [
+      "Correct numerical equivalence does not prove correct formulation.",
+      "Using original givens and conditioning needs separate method review.",
+      "This changes the prompt/answer representation and execution together, so it is not an isolated calculator effect.",
+      "The two inherited sensor questions both have sampled hidden state zero; correctness uses exact posterior tolerance."
+    ]
+  }
+}

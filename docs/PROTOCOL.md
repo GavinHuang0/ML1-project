@@ -2,6 +2,8 @@
 
 Protocol `llama-1024-posterior-v2` became the active setup on October 24, 2026. It uses only `llama3.2:3b` with a 1024-token generated-output cap. The model and limit are enforced by the installer, both runner CLIs, and the local inference client. The shared settings and scoring metadata are defined in [experiment_config.py](../experiment_config.py).
 
+This document describes the unassisted suite. The separate [planning-plus-calculator protocol](CALCULATOR_PROTOCOL.md) introduces deterministic execution without changing or relabeling the unassisted prompts and scores.
+
 ## Generation and recording
 
 The pilot suite uses temperature 0.7, a requested 4096-token context, local Ollama, and a 300-second request timeout by default. The direct full runner defaults to 0.7 but allows a different recorded temperature; the model and output cap remain fixed. Sampling seeds are fixed and matched across prompt conditions. A token cap is a maximum; normally stopped answers can use fewer tokens. There are no calculator tools, answer retries, gold-answer feedback, or automatic prompt repairs. The optional setup smoke check uses temperature 0 and a 1024-token cap and is outside the pilot counts.

@@ -1,0 +1,1605 @@
+{
+  "experiment_id": "template-bounded-v1",
+  "protocol": {
+    "version": "llama-1024-posterior-v2",
+    "model": "llama3.2:3b",
+    "max_tokens": 1024,
+    "scoring_version": "posterior-v2",
+    "probability_tolerance": 0.001,
+    "probability_roundoff": 1e-15,
+    "sensor_headline": "absolute_posterior_error_within_tolerance",
+    "sensor_panel_aggregation": "median_of_valid_posteriors",
+    "urn_panel_aggregation": "rounded_plurality_then_original_median"
+  },
+  "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/runs/template-bounded-20261106T195732100566Z/answers.jsonl",
+  "raw_sha256": "ae6ba02e58602829ec16f78f67ec809adbbd6e903569d8c422dfd7bf6314fa47",
+  "overall": {
+    "items": 40,
+    "json_valid": 40,
+    "required_fields_valid": 25,
+    "final_answer_valid": 26,
+    "numeric_correct": 13,
+    "format_valid": 25,
+    "correct": 13,
+    "within_explanation_bound": 19,
+    "exact_two_fields": 25,
+    "length_stops": 0,
+    "budget": {
+      "calls": 40,
+      "input_tokens": 6032,
+      "output_tokens": 4436,
+      "elapsed_seconds": 259.6899549611844
+    },
+    "numeric_correct_among_format_valid": 13,
+    "numeric_correct_with_invalid_format": 0
+  },
+  "split_condition": {
+    "fresh": {
+      "baseline": {
+        "items": 12,
+        "json_valid": 12,
+        "required_fields_valid": 3,
+        "final_answer_valid": 3,
+        "numeric_correct": 1,
+        "format_valid": 3,
+        "correct": 1,
+        "within_explanation_bound": 5,
+        "exact_two_fields": 3,
+        "length_stops": 0,
+        "budget": {
+          "calls": 12,
+          "input_tokens": 1420,
+          "output_tokens": 1465,
+          "elapsed_seconds": 78.77347604418173
+        },
+        "numeric_correct_among_format_valid": 1,
+        "numeric_correct_with_invalid_format": 0
+      },
+      "template_bounded": {
+        "items": 12,
+        "json_valid": 12,
+        "required_fields_valid": 11,
+        "final_answer_valid": 11,
+        "numeric_correct": 5,
+        "format_valid": 11,
+        "correct": 5,
+        "within_explanation_bound": 6,
+        "exact_two_fields": 11,
+        "length_stops": 0,
+        "budget": {
+          "calls": 12,
+          "input_tokens": 2164,
+          "output_tokens": 1281,
+          "elapsed_seconds": 77.10853283293545
+        },
+        "numeric_correct_among_format_valid": 5,
+        "numeric_correct_with_invalid_format": 0
+      }
+    },
+    "regression": {
+      "baseline": {
+        "items": 8,
+        "json_valid": 8,
+        "required_fields_valid": 3,
+        "final_answer_valid": 4,
+        "numeric_correct": 2,
+        "format_valid": 3,
+        "correct": 2,
+        "within_explanation_bound": 2,
+        "exact_two_fields": 3,
+        "length_stops": 0,
+        "budget": {
+          "calls": 8,
+          "input_tokens": 976,
+          "output_tokens": 920,
+          "elapsed_seconds": 52.38594566611573
+        },
+        "numeric_correct_among_format_valid": 2,
+        "numeric_correct_with_invalid_format": 0
+      },
+      "template_bounded": {
+        "items": 8,
+        "json_valid": 8,
+        "required_fields_valid": 8,
+        "final_answer_valid": 8,
+        "numeric_correct": 5,
+        "format_valid": 8,
+        "correct": 5,
+        "within_explanation_bound": 6,
+        "exact_two_fields": 8,
+        "length_stops": 0,
+        "budget": {
+          "calls": 8,
+          "input_tokens": 1472,
+          "output_tokens": 770,
+          "elapsed_seconds": 51.422000417951494
+        },
+        "numeric_correct_among_format_valid": 5,
+        "numeric_correct_with_invalid_format": 0
+      }
+    }
+  },
+  "groups": {
+    "fresh": {
+      "baseline": {
+        "unconditional": {
+          "full_solution": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 0,
+            "format_valid": 1,
+            "correct": 0,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 354,
+              "output_tokens": 347,
+              "elapsed_seconds": 20.73258808394894
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "conditional": {
+          "full_solution": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 0,
+            "format_valid": 1,
+            "correct": 0,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 381,
+              "output_tokens": 788,
+              "elapsed_seconds": 32.11262266756967
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "algebra": {
+          "transfer": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 0,
+            "final_answer_valid": 0,
+            "numeric_correct": 0,
+            "format_valid": 0,
+            "correct": 0,
+            "within_explanation_bound": 3,
+            "exact_two_fields": 0,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 328,
+              "output_tokens": 215,
+              "elapsed_seconds": 15.248813792131841
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "units": {
+          "transfer": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 357,
+              "output_tokens": 115,
+              "elapsed_seconds": 10.679451500531286
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          }
+        }
+      },
+      "template_bounded": {
+        "unconditional": {
+          "full_solution": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 3,
+            "final_answer_valid": 3,
+            "numeric_correct": 1,
+            "format_valid": 3,
+            "correct": 1,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 3,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 540,
+              "output_tokens": 307,
+              "elapsed_seconds": 19.41458654263988
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "conditional": {
+          "full_solution": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 3,
+            "final_answer_valid": 3,
+            "numeric_correct": 1,
+            "format_valid": 3,
+            "correct": 1,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 3,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 567,
+              "output_tokens": 479,
+              "elapsed_seconds": 22.881480250041932
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "algebra": {
+          "transfer": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 2,
+            "final_answer_valid": 2,
+            "numeric_correct": 2,
+            "format_valid": 2,
+            "correct": 2,
+            "within_explanation_bound": 2,
+            "exact_two_fields": 2,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 514,
+              "output_tokens": 267,
+              "elapsed_seconds": 17.03127545816824
+            },
+            "numeric_correct_among_format_valid": 2,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "units": {
+          "transfer": {
+            "items": 3,
+            "json_valid": 3,
+            "required_fields_valid": 3,
+            "final_answer_valid": 3,
+            "numeric_correct": 1,
+            "format_valid": 3,
+            "correct": 1,
+            "within_explanation_bound": 2,
+            "exact_two_fields": 3,
+            "length_stops": 0,
+            "budget": {
+              "calls": 3,
+              "input_tokens": 543,
+              "output_tokens": 228,
+              "elapsed_seconds": 17.7811905820854
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          }
+        }
+      }
+    },
+    "regression": {
+      "baseline": {
+        "unconditional": {
+          "arithmetic": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 0,
+            "final_answer_valid": 1,
+            "numeric_correct": 0,
+            "format_valid": 0,
+            "correct": 0,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 0,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 99,
+              "output_tokens": 13,
+              "elapsed_seconds": 4.324416124727577
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "construction": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 146,
+              "output_tokens": 102,
+              "elapsed_seconds": 5.31185037503019
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "full_solution": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 0,
+            "format_valid": 1,
+            "correct": 0,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 118,
+              "output_tokens": 128,
+              "elapsed_seconds": 7.18209166591987
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "conditional": {
+          "arithmetic": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 0,
+            "final_answer_valid": 0,
+            "numeric_correct": 0,
+            "format_valid": 0,
+            "correct": 0,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 0,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 104,
+              "output_tokens": 68,
+              "elapsed_seconds": 4.421209417283535
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "construction": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 155,
+              "output_tokens": 293,
+              "elapsed_seconds": 12.611375375185162
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "full_solution": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 0,
+            "final_answer_valid": 0,
+            "numeric_correct": 0,
+            "format_valid": 0,
+            "correct": 0,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 0,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 127,
+              "output_tokens": 132,
+              "elapsed_seconds": 6.219170790631324
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "algebra": {
+          "transfer": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 0,
+            "final_answer_valid": 0,
+            "numeric_correct": 0,
+            "format_valid": 0,
+            "correct": 0,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 0,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 108,
+              "output_tokens": 99,
+              "elapsed_seconds": 5.959598375018686
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "units": {
+          "transfer": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 0,
+            "final_answer_valid": 0,
+            "numeric_correct": 0,
+            "format_valid": 0,
+            "correct": 0,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 0,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 119,
+              "output_tokens": 85,
+              "elapsed_seconds": 6.356233542319387
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        }
+      },
+      "template_bounded": {
+        "unconditional": {
+          "arithmetic": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 161,
+              "output_tokens": 48,
+              "elapsed_seconds": 4.789010041859001
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "construction": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 208,
+              "output_tokens": 77,
+              "elapsed_seconds": 6.013372416142374
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "full_solution": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 0,
+            "format_valid": 1,
+            "correct": 0,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 180,
+              "output_tokens": 84,
+              "elapsed_seconds": 5.879551333375275
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "conditional": {
+          "arithmetic": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 166,
+              "output_tokens": 170,
+              "elapsed_seconds": 10.522011292167008
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "construction": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 0,
+            "format_valid": 1,
+            "correct": 0,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 217,
+              "output_tokens": 58,
+              "elapsed_seconds": 4.299077042378485
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          },
+          "full_solution": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 0,
+            "format_valid": 1,
+            "correct": 0,
+            "within_explanation_bound": 0,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 189,
+              "output_tokens": 163,
+              "elapsed_seconds": 8.585935542359948
+            },
+            "numeric_correct_among_format_valid": 0,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "algebra": {
+          "transfer": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 170,
+              "output_tokens": 90,
+              "elapsed_seconds": 6.327310624998063
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          }
+        },
+        "units": {
+          "transfer": {
+            "items": 1,
+            "json_valid": 1,
+            "required_fields_valid": 1,
+            "final_answer_valid": 1,
+            "numeric_correct": 1,
+            "format_valid": 1,
+            "correct": 1,
+            "within_explanation_bound": 1,
+            "exact_two_fields": 1,
+            "length_stops": 0,
+            "budget": {
+              "calls": 1,
+              "input_tokens": 181,
+              "output_tokens": 80,
+              "elapsed_seconds": 5.00573212467134
+            },
+            "numeric_correct_among_format_valid": 1,
+            "numeric_correct_with_invalid_format": 0
+          }
+        }
+      }
+    }
+  },
+  "paired": {
+    "fresh": {
+      "tasks": [
+        {
+          "task_id": "fresh-unconditional-01",
+          "family": "unconditional",
+          "stage": "full_solution",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 57,
+            "within_explanation_bound": true,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To find the probability of drawing two red balls, we need to calculate the probability of drawing the first red ball (9/15) and then the probability of drawing the second red ball given that the first ball was red (8/14). The probability is then the product of these two probabilities: (9/15) * (8/14) = 72/210 = 12/35."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 54,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability of drawing two red balls without replacement, we first calculate the probability of drawing one red ball, which is 9/15. Then, we multiply this probability by itself to find the probability of drawing two red balls in a row. So, the probability is (9/15) * (8/14) = 72/210 = 12/35.",
+              "final_answer": "12/35"
+            },
+            "value": "12/35",
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-unconditional-02",
+          "family": "unconditional",
+          "stage": "full_solution",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 111,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability that both balls are red, we need to calculate the probability of drawing a red ball on the first draw and then the probability of drawing a red ball on the second draw given that the first ball is red. The probability of drawing a red ball on the first draw is 4/13, and the probability of drawing a red ball on the second draw given that the first ball is red is 3/12, since there are now 3 red balls and 12 total balls left in the urn. We can multiply these probabilities together to get the probability of drawing two red balls in a row.",
+              "final_answer": "4/39"
+            },
+            "value": "4/39",
+            "absolute_error": 0.02564102564102564,
+            "probability_in_range": true,
+            "error": null
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 75,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability of drawing two red balls, we need to calculate the probability of drawing a red ball on the first draw and then again on the second draw. Since the balls are drawn without replacement, the probability changes after each draw. The probability of drawing a red ball on the first draw is 4/13, and on the second draw, given that the first ball is red, the probability is 3/12 = 1/4.",
+              "final_answer": "2/13"
+            },
+            "value": "2/13",
+            "absolute_error": 0.07692307692307693,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-unconditional-03",
+          "family": "unconditional",
+          "stage": "full_solution",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 72,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To find the probability that both balls are red, we first find the probability of drawing a red ball on the first draw, which is 10/17. Then, we find the probability of drawing a red ball on the second draw, given that the first ball drawn was red, which is 9/16. We multiply these probabilities together to find the probability that both balls are red: (10/17) * (9/16) = 90/272 = 45/136."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 68,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability of drawing two red balls, we first find the total number of ways to draw 2 balls from 17. This is given by the combination formula C(17, 2). Then, we find the number of ways to draw 2 red balls from the 10 available, which is C(10, 2). The probability is then the number of favorable outcomes divided by the total number of outcomes.",
+              "final_answer": "0.1176470588235294"
+            },
+            "value": "588235294117647/5000000000000000",
+            "absolute_error": 0.21323529411764708,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-conditional-01",
+          "family": "conditional",
+          "stage": "full_solution",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 212,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To solve this problem, we need to use conditional probability. First, we find the probability of drawing at least one red ball. Then, given that at least one red ball is drawn, we find the probability that the second ball is also red. The probability of drawing the second red ball is the number of remaining red balls divided by the total number of remaining balls. We can calculate this as follows: Total number of balls = 12, number of red balls = 5, number of blue balls = 7. The probability of drawing the first red ball is 5/12. After drawing the first red ball, the probability of drawing the second red ball is 4/11. We can multiply these probabilities together to get the probability of drawing two red balls given that at least one red ball is drawn. The probability of drawing at least one red ball is 1 minus the probability of drawing no red balls. This is 1 - (probability of drawing two blue balls). The probability of drawing two blue balls is (7/12) * (6/11) = 42/132. So, the probability of drawing at least one red ball is 1 - 42/132 = 90/132 = 15/22. Now, we can multiply the probabilities together to get the final answer.",
+              "final_answer": "5/11"
+            },
+            "value": "5/11",
+            "absolute_error": 0.23232323232323232,
+            "probability_in_range": true,
+            "error": null
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 192,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability that both balls are red given that at least one ball is red, we need to use conditional probability. We first find the probability that the first ball is red, which is 5/12. The probability that the second ball is also red, given that the first one is red, is 4/11. We then multiply these probabilities to get the probability that both balls are red: (5/12) * (4/11) = 20/132. To find the probability that at least one ball is red, we can find the probability that both balls are blue and subtract that from 1. The probability that the first ball is blue is 7/12, and the probability that the second ball is also blue, given that the first one is blue, is 6/11. So, the probability that both balls are blue is (7/12) * (6/11) = 42/132. Therefore, the probability that at least one ball is red is 1 - 42/132 = 90/132. Now, we can divide the probability that both balls are red by the probability that at least one ball is red to get the desired probability: (20/132) / (90/132) = 20/90 = 2/9.",
+              "final_answer": "2/9"
+            },
+            "value": "2/9",
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-conditional-02",
+          "family": "conditional",
+          "stage": "full_solution",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 224,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To solve this problem, we need to calculate the probability of drawing two red balls given that at least one ball is red. We can use the concept of conditional probability for this. Let's first calculate the total number of ways to draw two balls from the urn. The total number of balls is 12, so the total number of ways to draw two balls without replacement is 12C2 = 66. Now, let's calculate the number of ways to draw two red balls. There are 9 red balls, so the number of ways to draw two red balls is 9C2 = 36. We can now calculate the probability of drawing two red balls given that at least one ball is red. This is equal to the number of ways to draw two red balls divided by the total number of ways to draw two balls given that at least one ball is red. The number of ways to draw two balls given that at least one ball is red is equal to the number of ways to draw one red ball and one blue ball. The number of ways to draw one red ball and one blue ball is 9C1 * 3C1 = 27. So, the probability of drawing two red balls given that at least one ball is red is 36/66 = 6/11."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 42,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To solve this problem, we can use the concept of conditional probability. We first find the probability of drawing at least one red ball, then find the probability of drawing two red balls given that at least one red ball was drawn.",
+              "final_answer": "0.75"
+            },
+            "value": "3/4",
+            "absolute_error": 0.17857142857142858,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-conditional-03",
+          "family": "conditional",
+          "stage": "full_solution",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 178,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "First, we calculate the total number of ways to draw two balls from the urn. Since there are 11 balls in total, the total number of ways to draw two balls is 11 choose 2, which is 55. Next, we calculate the number of ways to draw at least one red ball. This is the complement of the event that both balls are blue. The number of ways to draw two blue balls is 8 choose 2, which is 28. Therefore, the number of ways to draw at least one red ball is 55 - 28 = 27. Now, we calculate the probability that both balls are red given that at least one ball is red. This is the number of ways to draw two red balls divided by the number of ways to draw at least one red ball. The number of ways to draw two red balls is 3 choose 2, which is 3. Therefore, the probability that both balls are red given that at least one ball is red is 3/27, which simplifies to 1/9."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 96,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability that both balls are red given that at least one ball is red, we need to use conditional probability. We start by finding the total number of ways to draw 2 balls out of 11 without replacement, which is 11C2. Then, we find the number of ways to draw 2 red balls out of 3 without replacement, which is 3C2. The probability of drawing at least one red ball is 1 - (probability of drawing 2 blue balls). We can then use the formula for conditional probability to find the desired probability.",
+              "final_answer": "1/3"
+            },
+            "value": "1/3",
+            "absolute_error": 0.2222222222222222,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-algebra-01",
+          "family": "algebra",
+          "stage": "transfer",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 48,
+            "within_explanation_bound": true,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To solve the equation 7x + 8 = 50, we need to isolate the variable x. We can do this by subtracting 8 from both sides of the equation, resulting in 7x = 42. Then, we can divide both sides by 7, which gives us x = 6."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 46,
+            "within_explanation_bound": true,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To solve for x, we need to isolate the variable. Subtract 8 from both sides of the equation: 7x + 8 - 8 = 50 - 8. This simplifies to 7x = 42. Divide both sides by 7: 7x/7 = 42/7. The x value is 6."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          }
+        },
+        {
+          "task_id": "fresh-algebra-02",
+          "family": "algebra",
+          "stage": "transfer",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 35,
+            "within_explanation_bound": true,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "Add 11 to both sides of the equation 4x - 11 = 21 to isolate the term with x. This results in 4x = 32. Then, divide both sides by 4 to solve for x."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 44,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To solve the equation 4x - 11 = 21, first add 11 to both sides: 4x = 21 + 11. This simplifies to 4x = 32. Then, divide both sides by 4: x = 32 / 4. Finally, simplify the fraction: x = 8.",
+              "final_answer": "8"
+            },
+            "value": "8",
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-algebra-03",
+          "family": "algebra",
+          "stage": "transfer",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 55,
+            "within_explanation_bound": true,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To solve for x, we need to isolate the variable x on one side of the equation. We can do this by subtracting 2x from both sides of the equation and then subtracting 5 from both sides. This results in the equation 3x - 2x = 14 - 5, which simplifies to x = 9."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 65,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To solve the equation, subtract 2x from both sides to get x + 5 = 14. Then, subtract 5 from both sides to isolate x. This results in x = 9. Subtracting 2x from both sides is equivalent to subtracting 2x from the right side as well, which maintains the equation's equality. The same applies to subtracting 5 from both sides, keeping the equation balanced.",
+              "final_answer": "9"
+            },
+            "value": "9",
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-units-01",
+          "family": "units",
+          "stage": "transfer",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": null,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "distance": 9
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 41,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and then multiply by the speed. Since the speed is given in kilometres per hour, we can directly multiply the time in hours by the speed.",
+              "final_answer": "588/5"
+            },
+            "value": "588/5",
+            "absolute_error": 68.6,
+            "probability_in_range": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-units-02",
+          "family": "units",
+          "stage": "transfer",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_format_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 55,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the distance, we need to convert the time from minutes to hours and then multiply it by the speed. There are 60 minutes in an hour, so 40 minutes is equal to 40/60 = 2/3 hours. Now, we can multiply the speed by the time: 54 km/h * 2/3 h = 36 km.",
+              "final_answer": "36"
+            },
+            "value": "36",
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "error": null
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 71,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the distance traveled, convert the time from minutes to hours and multiply by the speed. Since the speed is given in kilometres per hour, the time needs to be converted from minutes to hours. There are 60 minutes in an hour, so 40 minutes is equal to 40/60 = 2/3 hours. Multiply the speed by the time to get the distance: 54 km/h * 2/3 h = 36 km.",
+              "final_answer": "36"
+            },
+            "value": "36",
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-units-03",
+          "family": "units",
+          "stage": "transfer",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": null,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "distance": 16.0
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 42,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and then multiply it by the speed. Since the speed is given in kilometres per hour, we can directly multiply the time in hours by the speed.",
+              "final_answer": "14.4"
+            },
+            "value": "72/5",
+            "absolute_error": 14.4,
+            "probability_in_range": null,
+            "error": null
+          }
+        }
+      ],
+      "strict_transitions": {
+        "0->1": 4,
+        "0->0": 7,
+        "1->1": 1
+      },
+      "numeric_transitions": {
+        "0->1": 4,
+        "0->0": 7,
+        "1->1": 1
+      },
+      "joint_format_valid": {
+        "items": 3,
+        "baseline_numeric_correct": 1,
+        "template_bounded_numeric_correct": 2,
+        "numeric_transitions": {
+          "0->0": 1,
+          "0->1": 1,
+          "1->1": 1
+        }
+      }
+    },
+    "regression": {
+      "tasks": [
+        {
+          "task_id": "regression-unconditional-arithmetic",
+          "family": "unconditional",
+          "stage": "arithmetic",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": null,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "final_answer": "5/22"
+            },
+            "value": "5/22",
+            "absolute_error": 0.09090909090909091,
+            "probability_in_range": true,
+            "error": "Prediction needs a string explanation"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 11,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "(7/12) * (6/11) = (7*6) / (12*11) = 42/132 = 7/22",
+              "final_answer": "7/22"
+            },
+            "value": "7/22",
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-unconditional-construction",
+          "family": "unconditional",
+          "stage": "construction",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_format_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 62,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "The probability of drawing two red balls is calculated by first finding the probability of drawing a red ball on the first draw, then the probability of drawing a red ball on the second draw given that a red ball was drawn on the first draw. This is done using the formula for conditional probability: P(A|B) = P(A & B) / P(B).",
+              "final_answer": "(7/12) * (6/11)"
+            },
+            "value": "7/22",
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "error": null
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 42,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "The probability of drawing a red ball first is 7/12, and the probability of drawing a red ball second, given that the first ball is red, is 6/11. The probability that both balls are red is the product of these two probabilities.",
+              "final_answer": " (7/12) * (6/11) "
+            },
+            "value": "7/22",
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-unconditional-full_solution",
+          "family": "unconditional",
+          "stage": "full_solution",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 81,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability of drawing two red balls without replacement, we can use the concept of conditional probability. The probability of drawing a red ball on the first draw is 7/12. Assuming the first ball drawn is red, the probability of drawing a red ball on the second draw is now 6/11, since one red ball has been removed from the urn. Therefore, the probability of drawing two red balls is the product of these two probabilities: (7/12) * (6/11).",
+              "final_answer": "0.30555555555555556"
+            },
+            "value": "7638888888888889/25000000000000000",
+            "absolute_error": 0.012626262626262623,
+            "probability_in_range": true,
+            "error": null
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 58,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the probability of drawing two red balls, we first need to calculate the total number of ways to draw 2 balls out of 12. Then, we'll find the number of ways to draw 2 red balls out of 7. We'll divide the number of favorable outcomes by the total number of outcomes to get the probability.",
+              "final_answer": "5/33"
+            },
+            "value": "5/33",
+            "absolute_error": 0.16666666666666666,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-conditional-arithmetic",
+          "family": "conditional",
+          "stage": "arithmetic",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 28,
+            "within_explanation_bound": true,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "First, calculate the expressions inside the parentheses: (6*5) = 30 and (10*9 - 4*3) = (90 - 12) = 78. Then, divide 30 by 78: 30/78 = 5/13."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 94,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To evaluate this expression, first calculate the multiplication and division from left to right. Start with the multiplication: (6*5) = 30 and (10*9) = 90, (4*3) = 12. Then calculate the subtraction: 90 - 12 = 78. Finally, divide: 30 / 78 = 0.38461538. We can simplify this fraction by dividing both numerator and denominator by their greatest common divisor, which is 6. 30 / 6 = 5, 78 / 6 = 13. So, 30 / 78 = 5 / 13. But since the question asks for a decimal, the answer is approximately 0.38461538",
+              "final_answer": "0.38461538"
+            },
+            "value": "19230769/50000000",
+            "absolute_error": 4.615384615384615e-09,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-conditional-construction",
+          "family": "conditional",
+          "stage": "construction",
+          "strict_transition": "1->0",
+          "numeric_transition": "1->0",
+          "joint_format_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 211,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "We are drawing 2 balls out of 10 without replacement, and we want to find the probability that both balls are red given that at least one ball is red. Let's first find the total number of ways to draw 2 balls out of 10. This can be calculated using combinations as 10C2 = 45. Now, let's find the number of ways to draw 2 red balls out of 6. This can be calculated using combinations as 6C2 = 15. We are given that at least one ball is red, so we need to find the probability that both balls are red given this condition. The numerator of this probability is the number of ways to draw 2 red balls out of 6, which is 6C2. The denominator is the total number of ways to draw 2 balls out of 10, given that at least one ball is red. This is equal to the total number of ways to draw 2 balls out of 10 minus the number of ways to draw 2 blue balls out of 4, which is 10C2 - 4C2 = 45 - 6 = 39. Therefore, the probability that both balls are red given that at least one ball is red is 6C2 / (10C2 - 4C2).",
+              "final_answer": "(15/39)"
+            },
+            "value": "5/13",
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "error": null
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 28,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "The probability is calculated by dividing the number of favorable outcomes (both balls are red) by the total number of possible outcomes (at least one ball is red).",
+              "final_answer": "(6*5)/(10*9 + 6*5)"
+            },
+            "value": "1/4",
+            "absolute_error": 0.1346153846153846,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-conditional-full_solution",
+          "family": "conditional",
+          "stage": "full_solution",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 100,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "We need to first find the total probability of drawing at least one red ball. The probability of drawing a red ball first is 6/10, then 5/9 for the second ball. The probability of not drawing a red ball first is 4/10, then 3/9 for the second ball. The total probability of drawing at least one red ball is 1 - (probability of not drawing a red ball). We then use the fact that the events are equally likely to occur in any order to find the probability that both balls are red given that at least one is red."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": false,
+            "format_valid": true,
+            "correct": false,
+            "explanation_words": 111,
+            "within_explanation_bound": false,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To solve this problem, we can use the concept of conditional probability. We first find the probability of drawing at least one red ball, then find the probability of both balls being red given that at least one is red. The total number of balls is 10, and the number of ways to draw 2 balls without replacement is 10C2 = 45. The number of ways to draw 2 red balls is 6C2 = 15. So, the probability of drawing at least one red ball is 45 - 15 = 30/45 = 2/3. The probability of both balls being red given that at least one is red is 15/30 = 1/2. ",
+              "final_answer": "1/2"
+            },
+            "value": "1/2",
+            "absolute_error": 0.11538461538461539,
+            "probability_in_range": true,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-algebra",
+          "family": "algebra",
+          "stage": "transfer",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 61,
+            "within_explanation_bound": false,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To solve for x, we need to isolate x on one side of the equation. First, add 9 to both sides of the equation: 5x - 9 + 9 = 26 + 9. This simplifies to 5x = 35. Next, divide both sides of the equation by 5: 5x / 5 = 35 / 5. This simplifies to x = 7."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 54,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To solve for x, we need to isolate the variable on one side of the equation. First, add 9 to both sides of the equation: 5x = 26 + 9. Then, simplify the right side of the equation: 5x = 35. Finally, divide both sides by 5 to solve for x: x = 35/5.",
+              "final_answer": "7"
+            },
+            "value": "7",
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-units",
+          "family": "units",
+          "stage": "transfer",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_format_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": false,
+            "final_answer_valid": false,
+            "numeric_correct": false,
+            "format_valid": false,
+            "correct": false,
+            "explanation_words": 56,
+            "within_explanation_bound": true,
+            "exact_two_fields": false,
+            "prediction": {
+              "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and then multiply it by the speed. There are 60 minutes in an hour, so 25 minutes is equal to 25/60 = 5/12 hours. The distance traveled is then speed multiplied by time, which is 72 * (5/12) = 30 kilometres."
+            },
+            "value": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "error": "Prediction needs a nonempty string final_answer"
+          },
+          "template_bounded": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "final_answer_valid": true,
+            "numeric_correct": true,
+            "format_valid": true,
+            "correct": true,
+            "explanation_words": 48,
+            "within_explanation_bound": true,
+            "exact_two_fields": true,
+            "prediction": {
+              "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and then multiply it by the speed. There are 60 minutes in an hour, so 25 minutes is 25/60 = 5/12 hours. The distance traveled is then 72 * 5/12 = 30 kilometres.",
+              "final_answer": "30"
+            },
+            "value": "30",
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "error": null
+          }
+        }
+      ],
+      "strict_transitions": {
+        "0->1": 4,
+        "1->1": 1,
+        "0->0": 2,
+        "1->0": 1
+      },
+      "numeric_transitions": {
+        "0->1": 4,
+        "1->1": 1,
+        "0->0": 2,
+        "1->0": 1
+      },
+      "joint_format_valid": {
+        "items": 3,
+        "baseline_numeric_correct": 2,
+        "template_bounded_numeric_correct": 1,
+        "numeric_transitions": {
+          "1->1": 1,
+          "0->0": 1,
+          "1->0": 1
+        }
+      }
+    }
+  }
+}

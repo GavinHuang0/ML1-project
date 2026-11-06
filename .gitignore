@@ -10,6 +10,24 @@ Thumbs.db
 # Current runs stay local unless deliberately selected for versioning.
 /results/*
 !/results/README.md
+!/results/runs/
+/results/runs/*
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/
+/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/*
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/run-manifest.json
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/full1024.jsonl
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/full1024.summary.json
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/urn-check1024.jsonl
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/urn-check1024.summary.json
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/diagnostic1024.jsonl
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/diagnostic1024.summary.json
+!/results/runs/llama3.2-3b-pilots-20261106T191224204871Z/interpretation.verified.json
+!/results/runs/template-bounded-20261106T195732100566Z/
+/results/runs/template-bounded-20261106T195732100566Z/*
+!/results/runs/template-bounded-20261106T195732100566Z/run-manifest.json
+!/results/runs/template-bounded-20261106T195732100566Z/answers.jsonl
+!/results/runs/template-bounded-20261106T195732100566Z/summary.json
+!/results/runs/template-bounded-20261106T195732100566Z/verification.json
 # The legacy archive is outside /results/ and is versioned in full.
 models/
 *.gguf

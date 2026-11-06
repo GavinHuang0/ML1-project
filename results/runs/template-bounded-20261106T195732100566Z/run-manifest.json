@@ -1,0 +1,114 @@
+{
+  "experiment_id": "template-bounded-v1",
+  "model": "llama3.2:3b",
+  "max_tokens": 1024,
+  "planned_calls": 40,
+  "output_dir": "/Users/gavinhuang/Desktop/ML1-Project/results/runs/template-bounded-20261106T195732100566Z",
+  "timeout": 300,
+  "configuration": "/Users/gavinhuang/Desktop/ML1-Project/config/template_experiment.json",
+  "configuration_sha256": "fa398ee8a67f74fc5a66b5a2aeec50c9e7c7430b681b939aef684ea98c272815",
+  "protocol": {
+    "version": "llama-1024-posterior-v2",
+    "model": "llama3.2:3b",
+    "max_tokens": 1024,
+    "scoring_version": "posterior-v2",
+    "probability_tolerance": 0.001,
+    "probability_roundoff": 1e-15,
+    "sensor_headline": "absolute_posterior_error_within_tolerance",
+    "sensor_panel_aggregation": "median_of_valid_posteriors",
+    "urn_panel_aggregation": "rounded_plurality_then_original_median"
+  },
+  "source_sha256": {
+    "experiment_config.py": "f440a4d9adc639aa0fa3baeaab0d3d55fcbca063d7cb1b4edbd3800e2892c751",
+    "benchmark.py": "5c0a9e671e10e3ca12cba2ebe274be78b1146458ab2ed50bcfbf3c5112394f66",
+    "local_llm.py": "ef356d9eb3875dc5393aaabc9c7e2110ed06fe6d3093b9807356ff8464ec6188",
+    "setup_models.py": "0f3ff6e5467f5c3298019ca307498c75ae6d2e8911321c253c5a18fc8687edfc",
+    "run_experiment.py": "43c1c9f26b75e780dd5348629279bae30707e3fc67b3f0fa3acbd910f539149e",
+    "run_pilots.py": "8100aaf86353f67f9de87b58e509c890ddc65d1a86b983178412473d5cb576b8",
+    "pilot_scoring.py": "a125db50fe3785d3262499ed49277df7640e8b2c464a45e4ab863aee91224c0a",
+    "analyze_results.py": "2c241b2794ab973f7e004c7e1f21cea41a2ca9b654084b53e2cd93b45d24ac32",
+    "config/models.json": "54240aea5849d9119f3954ca4be6b47674200b150de40594344adbaafaa7f5ef",
+    "config/pilots.json": "5aa6764212bc41f31ba4c558c66713dfad005861e7b290760c29ad1bfd2a1c14",
+    "run_template_experiment.py": "9b260b124a38c5c21e80286dd05b2b5e678a3de2fbacb16a473460cdf6a45919",
+    "template_scoring.py": "9244ffe3571336ac0c03ec955c1c849af63221fa40903314ef29945b13915574",
+    "config/template_experiment.json": "fa398ee8a67f74fc5a66b5a2aeec50c9e7c7430b681b939aef684ea98c272815"
+  },
+  "settings": {
+    "max_tokens": 1024,
+    "temperature": 0.7,
+    "num_ctx": 4096,
+    "format": "json",
+    "keep_alive": 0,
+    "explanation_word_limit": 60,
+    "explanation_word_count": "whitespace_split"
+  },
+  "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/runs/template-bounded-20261106T195732100566Z/answers.jsonl",
+  "summary": "/Users/gavinhuang/Desktop/ML1-Project/results/runs/template-bounded-20261106T195732100566Z/summary.json",
+  "status": "complete",
+  "started_at": "2026-11-06T19:57:32.188859+00:00",
+  "generation": {
+    "git_revision": "02cf4376bef11b9364aa04d47b2aad5b3bca48ab",
+    "git_dirty": true,
+    "source_sha256": {
+      "experiment_config.py": "f440a4d9adc639aa0fa3baeaab0d3d55fcbca063d7cb1b4edbd3800e2892c751",
+      "benchmark.py": "5c0a9e671e10e3ca12cba2ebe274be78b1146458ab2ed50bcfbf3c5112394f66",
+      "local_llm.py": "ef356d9eb3875dc5393aaabc9c7e2110ed06fe6d3093b9807356ff8464ec6188",
+      "setup_models.py": "0f3ff6e5467f5c3298019ca307498c75ae6d2e8911321c253c5a18fc8687edfc",
+      "run_experiment.py": "43c1c9f26b75e780dd5348629279bae30707e3fc67b3f0fa3acbd910f539149e",
+      "run_pilots.py": "8100aaf86353f67f9de87b58e509c890ddc65d1a86b983178412473d5cb576b8",
+      "pilot_scoring.py": "a125db50fe3785d3262499ed49277df7640e8b2c464a45e4ab863aee91224c0a",
+      "analyze_results.py": "2c241b2794ab973f7e004c7e1f21cea41a2ca9b654084b53e2cd93b45d24ac32",
+      "config/models.json": "54240aea5849d9119f3954ca4be6b47674200b150de40594344adbaafaa7f5ef",
+      "config/pilots.json": "5aa6764212bc41f31ba4c558c66713dfad005861e7b290760c29ad1bfd2a1c14",
+      "run_template_experiment.py": "9b260b124a38c5c21e80286dd05b2b5e678a3de2fbacb16a473460cdf6a45919",
+      "template_scoring.py": "9244ffe3571336ac0c03ec955c1c849af63221fa40903314ef29945b13915574",
+      "config/template_experiment.json": "fa398ee8a67f74fc5a66b5a2aeec50c9e7c7430b681b939aef684ea98c272815"
+    },
+    "python_version": "3.13.1 (v3.13.1:06714517797, Dec  3 2024, 14:00:22) [Clang 15.0.0 (clang-1500.3.9.4)]",
+    "cwd": "/Users/gavinhuang/Desktop/ML1-Project",
+    "request_timeout": 300
+  },
+  "model_metadata": {
+    "name": "llama3.2:3b",
+    "model": "llama3.2:3b",
+    "modified_at": "2026-10-16T15:37:07.530691639-04:00",
+    "size": 2019393189,
+    "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "3.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 3072,
+      "runner": "ggml"
+    },
+    "capabilities": [
+      "completion",
+      "tools"
+    ]
+  },
+  "ollama_version": "0.40.4",
+  "calls_completed": 40,
+  "finished_at": "2026-11-06T20:01:52.771109+00:00",
+  "source_sha256_after": {
+    "experiment_config.py": "f440a4d9adc639aa0fa3baeaab0d3d55fcbca063d7cb1b4edbd3800e2892c751",
+    "benchmark.py": "5c0a9e671e10e3ca12cba2ebe274be78b1146458ab2ed50bcfbf3c5112394f66",
+    "local_llm.py": "ef356d9eb3875dc5393aaabc9c7e2110ed06fe6d3093b9807356ff8464ec6188",
+    "setup_models.py": "0f3ff6e5467f5c3298019ca307498c75ae6d2e8911321c253c5a18fc8687edfc",
+    "run_experiment.py": "43c1c9f26b75e780dd5348629279bae30707e3fc67b3f0fa3acbd910f539149e",
+    "run_pilots.py": "8100aaf86353f67f9de87b58e509c890ddc65d1a86b983178412473d5cb576b8",
+    "pilot_scoring.py": "a125db50fe3785d3262499ed49277df7640e8b2c464a45e4ab863aee91224c0a",
+    "analyze_results.py": "2c241b2794ab973f7e004c7e1f21cea41a2ca9b654084b53e2cd93b45d24ac32",
+    "config/models.json": "54240aea5849d9119f3954ca4be6b47674200b150de40594344adbaafaa7f5ef",
+    "config/pilots.json": "5aa6764212bc41f31ba4c558c66713dfad005861e7b290760c29ad1bfd2a1c14",
+    "run_template_experiment.py": "9b260b124a38c5c21e80286dd05b2b5e678a3de2fbacb16a473460cdf6a45919",
+    "template_scoring.py": "9244ffe3571336ac0c03ec955c1c849af63221fa40903314ef29945b13915574",
+    "config/template_experiment.json": "fa398ee8a67f74fc5a66b5a2aeec50c9e7c7430b681b939aef684ea98c272815"
+  },
+  "generation_sources_unchanged": true
+}

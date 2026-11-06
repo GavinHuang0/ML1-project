@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "experiment_id": "template-bounded-v1",
+  "model": "llama3.2:3b",
+  "max_tokens": 1024,
+  "temperature": 0.7,
+  "context_tokens": 4096,
+  "explanation_word_limit": 60,
+  "prompts": {
+    "baseline": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON.",
+    "template_bounded": "Solve the user's problem. Return ONLY one valid JSON object with explanation (a concise derivation) and final_answer (a string in the format requested by the question). Put explanation before final_answer. Do not use LaTeX, Markdown, or text outside JSON. Use exactly the two string fields in this JSON template, replacing both placeholders with your own content: {\"explanation\":\"BRIEF CALCULATION\",\"final_answer\":\"ANSWER IN THE FORMAT REQUESTED BY THE QUESTION\"}. Keep explanation to at most 60 words. Include both fields and finish the JSON object."
+  },
+  "tasks": [
+    {
+      "id": "fresh-unconditional-01",
+      "family": "unconditional",
+      "stage": "full_solution",
+      "answer_kind": "numeric",
+      "probability": true,
+      "parameters": {
+        "red": 9,
+        "blue": 6,
+        "conditioned_on_at_least_one_red": false
+      },
+      "prompt": "An urn has 9 red and 6 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "gold_fraction": "12/35",
+      "gold_probability": 0.34285714285714286,
+      "split": "fresh",
+      "seed": 6001
+    },
+    {
+      "id": "fresh-unconditional-02",
+      "family": "unconditional",
+      "stage": "full_solution",
+      "answer_kind": "numeric",
+      "probability": true,
+      "parameters": {
+        "red": 4,
+        "blue": 9,
+        "conditioned_on_at_least_one_red": false
+      },
+      "prompt": "An urn has 4 red and 9 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "gold_fraction": "1/13",
+      "gold_probability": 0.07692307692307693,
+      "split": "fresh",
+      "seed": 6002
+    },
+    {
+      "id": "fresh-unconditional-03",
+      "family": "unconditional",
+      "stage": "full_solution",
+      "answer_kind": "numeric",
+      "probability": true,
+      "parameters": {
+        "red": 10,
+        "blue": 7,
+        "conditioned_on_at_least_one_red": false
+      },
+      "prompt": "An urn has 10 red and 7 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "gold_fraction": "45/136",
+      "gold_probability": 0.33088235294117646,
+      "split": "fresh",
+      "seed": 6003
+    },
+    {
+      "id": "fresh-conditional-01",
+      "family": "conditional",
+      "stage": "full_solution",
+      "answer_kind": "numeric",
+      "probability": true,
+      "parameters": {
+        "red": 5,
+        "blue": 7,
+        "conditioned_on_at_least_one_red": true
+      },
+      "prompt": "An urn has 5 red and 7 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "gold_fraction": "2/9",
+      "gold_probability": 0.2222222222222222,
+      "split": "fresh",
+      "seed": 6004
+    },
+    {
+      "id": "fresh-conditional-02",
+      "family": "conditional",
+      "stage": "full_solution",
+      "answer_kind": "numeric",
+      "probability": true,
+      "parameters": {
+        "red": 9,
+        "blue": 3,
+        "conditioned_on_at_least_one_red": true
+      },
+      "prompt": "An urn has 9 red and 3 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "gold_fraction": "4/7",
+      "gold_probability": 0.5714285714285714,
+      "split": "fresh",
+      "seed": 6005
+    },
+    {
+      "id": "fresh-conditional-03",
+      "family": "conditional",
+      "stage": "full_solution",
+      "answer_kind": "numeric",
+      "probability": true,
+      "parameters": {
+        "red": 3,
+        "blue": 8,
+        "conditioned_on_at_least_one_red": true
+      },
+      "prompt": "An urn has 3 red and 8 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "gold_fraction": "1/9",
+      "gold_probability": 0.1111111111111111,
+      "split": "fresh",
+      "seed": 6006
+    },
+    {
+      "id": "fresh-algebra-01",
+      "family": "algebra",
+      "stage": "transfer",
+      "answer_kind": "numeric",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 7,
+        "left_constant": 8,
+        "right_x_coefficient": 0,
+        "right_constant": 50
+      },
+      "prompt": "Solve 7*x + 8 = 50 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+      "gold_fraction": "6",
+      "split": "fresh",
+      "seed": 6007
+    },
+    {
+      "id": "fresh-algebra-02",
+      "family": "algebra",
+      "stage": "transfer",
+      "answer_kind": "numeric",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 4,
+        "left_constant": -11,
+        "right_x_coefficient": 0,
+        "right_constant": 21
+      },
+      "prompt": "Solve 4*x - 11 = 21 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+      "gold_fraction": "8",
+      "split": "fresh",
+      "seed": 6008
+    },
+    {
+      "id": "fresh-algebra-03",
+      "family": "algebra",
+      "stage": "transfer",
+      "answer_kind": "numeric",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 3,
+        "left_constant": 5,
+        "right_x_coefficient": 2,
+        "right_constant": 14
+      },
+      "prompt": "Solve 3*x + 5 = 2*x + 14 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+      "gold_fraction": "9",
+      "split": "fresh",
+      "seed": 6009
+    },
+    {
+      "id": "fresh-units-01",
+      "family": "units",
+      "stage": "transfer",
+      "answer_kind": "numeric",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 84,
+        "minutes": 35
+      },
+      "prompt": "A vehicle travels at a constant speed of 84 kilometres per hour for 35 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+      "gold_fraction": "49",
+      "split": "fresh",
+      "seed": 6010
+    },
+    {
+      "id": "fresh-units-02",
+      "family": "units",
+      "stage": "transfer",
+      "answer_kind": "numeric",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 54,
+        "minutes": 40
+      },
+      "prompt": "A vehicle travels at a constant speed of 54 kilometres per hour for 40 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+      "gold_fraction": "36",
+      "split": "fresh",
+      "seed": 6011
+    },
+    {
+      "id": "fresh-units-03",
+      "family": "units",
+      "stage": "transfer",
+      "answer_kind": "numeric",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 96,
+        "minutes": 18
+      },
+      "prompt": "A vehicle travels at a constant speed of 96 kilometres per hour for 18 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+      "gold_fraction": "144/5",
+      "split": "fresh",
+      "seed": 6012
+    },
+    {
+      "id": "regression-unconditional-arithmetic",
+      "family": "unconditional",
+      "stage": "arithmetic",
+      "seed": 1042,
+      "prompt": "Evaluate (7/12) * (6/11). Return a plain fraction or decimal as final_answer.",
+      "answer_kind": "numeric",
+      "gold_fraction": "7/22",
+      "source_task_id": "unconditional-arithmetic",
+      "split": "regression",
+      "probability": true
+    },
+    {
+      "id": "regression-unconditional-construction",
+      "family": "unconditional",
+      "stage": "construction",
+      "seed": 1042,
+      "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+      "answer_kind": "expression",
+      "gold_fraction": "7/22",
+      "source_task_id": "unconditional-construction",
+      "split": "regression",
+      "probability": true
+    },
+    {
+      "id": "regression-unconditional-full_solution",
+      "family": "unconditional",
+      "stage": "full_solution",
+      "seed": 1042,
+      "prompt": "An urn has 7 red and 5 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "answer_kind": "numeric",
+      "gold_fraction": "7/22",
+      "source_task_id": "unconditional-full_solution",
+      "split": "regression",
+      "probability": true
+    },
+    {
+      "id": "regression-conditional-arithmetic",
+      "family": "conditional",
+      "stage": "arithmetic",
+      "seed": 1043,
+      "prompt": "Evaluate (6*5) / (10*9 - 4*3). Return a plain fraction or decimal as final_answer.",
+      "answer_kind": "numeric",
+      "gold_fraction": "5/13",
+      "source_task_id": "conditional-arithmetic",
+      "split": "regression",
+      "probability": true
+    },
+    {
+      "id": "regression-conditional-construction",
+      "family": "conditional",
+      "stage": "construction",
+      "seed": 1043,
+      "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Construct an arithmetic expression for this probability, without evaluating or simplifying it. Put that expression in final_answer using only numbers, parentheses, and +, -, *, /. Explain what the numerator and denominator count.",
+      "answer_kind": "expression",
+      "gold_fraction": "5/13",
+      "source_task_id": "conditional-construction",
+      "split": "regression",
+      "probability": true
+    },
+    {
+      "id": "regression-conditional-full_solution",
+      "family": "conditional",
+      "stage": "full_solution",
+      "seed": 1043,
+      "prompt": "An urn has 6 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red? Return the probability as a plain fraction or decimal in final_answer.",
+      "answer_kind": "numeric",
+      "gold_fraction": "5/13",
+      "source_task_id": "conditional-full_solution",
+      "split": "regression",
+      "probability": true
+    },
+    {
+      "id": "regression-algebra",
+      "family": "algebra",
+      "stage": "transfer",
+      "seed": 1044,
+      "prompt": "Solve 5*x - 9 = 26 for x. Return only the numerical value of x as a plain number or fraction in final_answer.",
+      "answer_kind": "numeric",
+      "gold_fraction": "7",
+      "source_task_id": "algebra",
+      "split": "regression",
+      "probability": false
+    },
+    {
+      "id": "regression-units",
+      "family": "units",
+      "stage": "transfer",
+      "seed": 1045,
+      "prompt": "A vehicle travels at a constant speed of 72 kilometres per hour for 25 minutes. How many kilometres does it travel? Return only the numerical distance in kilometres as a plain number or fraction in final_answer.",
+      "answer_kind": "numeric",
+      "gold_fraction": "30",
+      "source_task_id": "units",
+      "split": "regression",
+      "probability": false
+    }
+  ],
+  "call_order": [
+    {
+      "task_id": "fresh-unconditional-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-unconditional-01",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-unconditional-02",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-unconditional-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-unconditional-03",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-unconditional-03",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-conditional-01",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-conditional-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-conditional-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-conditional-02",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-conditional-03",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-conditional-03",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-algebra-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-algebra-01",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-algebra-02",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-algebra-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-algebra-03",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-algebra-03",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-units-01",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-units-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-units-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-units-02",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-units-03",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "fresh-units-03",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-unconditional-arithmetic",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-unconditional-arithmetic",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-unconditional-construction",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-unconditional-construction",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-unconditional-full_solution",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-unconditional-full_solution",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-conditional-arithmetic",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-conditional-arithmetic",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-conditional-construction",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-conditional-construction",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-conditional-full_solution",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-conditional-full_solution",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-algebra",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-algebra",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-units",
+      "condition": "template_bounded"
+    },
+    {
+      "task_id": "regression-units",
+      "condition": "baseline"
+    }
+  ],
+  "origin": {
+    "regression_source": "config/pilots.json",
+    "sha256": "5aa6764212bc41f31ba4c558c66713dfad005861e7b290760c29ad1bfd2a1c14"
+  },
+  "analysis_plan": {
+    "primary_population": "fresh (12 questions); regression (8 inspected items) reported separately",
+    "primary_outcomes": [
+      "required_fields_valid",
+      "format_valid",
+      "correct"
+    ],
+    "secondary_outcomes": [
+      "numeric_correct from JSON final_answer only",
+      "final_answer_valid",
+      "exact_two_fields",
+      "within_explanation_bound",
+      "done_reason and generated tokens",
+      "paired joint-valid numerical correctness"
+    ],
+    "word_count": "len(explanation.split()) for a string explanation",
+    "strict_correctness": "same diagnostic answer contract as baseline; numerical tolerance 0.001; no answer extracted from explanation",
+    "limitations": [
+      "Template and explanation bound are bundled; their separate effects are not identified.",
+      "One matched seed per item; known regression stages sharing an urn are dependent.",
+      "Joint-valid accuracy is a selected subset affected by the intervention, reported only as a secondary diagnostic."
+    ],
+    "no_adaptation": "Frozen before inference; no prompt retuning, answer retries, or gold feedback."
+  }
+}

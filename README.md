@@ -56,6 +56,8 @@ The new rule is recorded as scoring version `posterior-v2` in raw metadata and s
 
 ## Inspect and validate results
 
+The first complete run under the current protocol is documented in the [November 6 results](docs/RESULTS.md). It completed 80 calls; the report distinguishes posterior accuracy, answer-format failures, and repeated historical response texts.
+
 Full-profile files can be independently checked without model calls. Use a new output filename:
 
 ```sh
@@ -70,12 +72,24 @@ The complete prompts and frozen single-agent cases are in [config/pilots.json](c
 python3 run_experiment.py --questions 4 --agents 3
 ```
 
+## Template experiment
+
+The separate [template and bounded-explanation experiment](docs/TEMPLATE_EXPERIMENT.md) compares the existing prompt with an explicit JSON template and a 60-word explanation limit. It uses 12 fresh questions and eight regression items, with one matched-seed call per prompt condition: 40 calls in total, all Llama at 1024 tokens. Its scores distinguish required fields, final-answer mathematics, strict correctness, and prompt compliance.
+
+```sh
+python3 run_template_experiment.py --dry-run
+python3 run_template_experiment.py
+```
+
+The completed comparison improved fresh valid answers from 3/12 to 11/12 and strict correctness from 1/12 to 5/12. Mathematical behavior remained mixed, and only 12/20 treatment responses obeyed the 60-word limit. Read the [results and qualifications](docs/TEMPLATE_EXPERIMENT.md#results-on-november-6-2026) before treating the candidate as a general reasoning improvement. The original suite's prompts remain unchanged.
+
 ## Repository layout
 
 | Location | Purpose |
 | --- | --- |
 | [docs/PROTOCOL.md](docs/PROTOCOL.md) | Current prompts, procedure, posterior correctness, and limitations |
 | [docs/NEXT_STEPS.md](docs/NEXT_STEPS.md) | Next proposed experiments |
+| [docs/TEMPLATE_EXPERIMENT.md](docs/TEMPLATE_EXPERIMENT.md) | Frozen template comparison design and results |
 | [config/](config/) | Fixed model and frozen single-agent prompt/task cases |
 | [results/](results/README.md) | Current results location and recording policy |
 | [archive/2026-10-24-legacy/](archive/2026-10-24-legacy/README.md) | Preserved previous experiments, code, reports, and checksums |

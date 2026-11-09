@@ -208,18 +208,30 @@ class InstallerTests(unittest.TestCase):
                 self.assertTrue(call.kwargs["check"])
                 self.assertEqual(call.kwargs["env"]["OLLAMA_HOST"], "http://127.0.0.1:11434")
 
-    def test_smoke_accepts_structured_response_without_checking_accuracy(self):
+    def test_smoke_uses_baseline_prompt_and_calculator(self):
         with patch("setup_models.OllamaClient") as client:
             client.return_value.health.return_value = {
                 "version": "test", "models": [{"name": MODEL}],
             }
             client.return_value.chat.return_value = {
-                "message": {"content": '{"final_answer":"five","explanation":"test"}'},
+                "message": {"content": '{"expression":"2+2","explanation":"Addition."}'},
             }
             self.assertEqual(setup_models.main(["--check", "--smoke"]), 0)
             self.assertEqual(client.return_value.chat.call_args.args[0], MODEL)
             self.assertEqual(client.return_value.chat.call_args.kwargs["max_tokens"], 1024)
-        self.assertIn("five", self.output.getvalue())
+            self.assertEqual(client.return_value.chat.call_args.args[1], [
+                {"role": "system", "content": setup_models.SYSTEM},
+                {"role": "user", "content": "What is 2 + 2?"}])
+        self.assertIn('"computed_fraction": "4"', self.output.getvalue())
+
+    def test_smoke_records_unsupported_expression_without_repair_or_retry(self):
+        with patch("setup_models.OllamaClient") as client:
+            client.return_value.health.return_value = {"version": "test", "models": [{"name": MODEL}]}
+            client.return_value.chat.return_value = {
+                "message": {"content": '{"expression":"x = 2+2","explanation":"Addition."}'}}
+            self.assertEqual(setup_models.main(["--check", "--smoke"]), 1)
+            client.return_value.chat.assert_called_once()
+        self.assertIn("no repair or retry", self.error.getvalue())
 
 
 if __name__ == "__main__":

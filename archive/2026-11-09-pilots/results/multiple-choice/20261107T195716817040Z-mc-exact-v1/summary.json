@@ -1,0 +1,987 @@
+{
+  "experiment_id": "mc-exact-v1",
+  "protocol": {
+    "version": "mc-exact-v1",
+    "model": "llama3.2:3b",
+    "max_tokens": 1024,
+    "model_output_fields": [
+      "explanation",
+      "choice"
+    ],
+    "option_count": 15,
+    "scoring": "exact_selected_label",
+    "strict_correctness_requires_both_string_fields": true,
+    "word_bound_and_extra_fields_are_secondary": true,
+    "external_tools": false,
+    "repairs": false,
+    "retries": false
+  },
+  "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/multiple-choice/20261107T195716817040Z-mc-exact-v1/answers.jsonl",
+  "raw_sha256": "3cdc3d141b50922732ffe5292c72c8dbfe64f1bfbaf32f059c373d355c9cc29f",
+  "overall": {
+    "items": 16,
+    "json_valid": 15,
+    "required_fields_valid": 15,
+    "choice_valid": 15,
+    "choice_correct": 1,
+    "correct": 1,
+    "exact_two_fields": 15,
+    "within_explanation_bound": 10,
+    "strict_accuracy": 0.0625,
+    "choice_accuracy": 0.0625,
+    "choice_correct_with_invalid_required_fields": 0,
+    "answer_letter_distribution": {
+      "F": 1,
+      "B": 4,
+      "C": 2,
+      "invalid": 1,
+      "A": 4,
+      "E": 1,
+      "L": 1,
+      "H": 2
+    },
+    "selected_distractor_rationale_counts": {
+      "Computes matching colours rather than both red.": 1,
+      "Uses independent draws with replacement.": 1,
+      "Multiplies reported reliabilities without incorporating observation values or normalization.": 2,
+      "Treats every observed reading as 1, regardless of its given value.": 1,
+      "Divides the right constant first, then subtracts the entire left constant.": 1,
+      "Uses a duration one minute too small.": 1,
+      "Adds elapsed minutes to the conversion denominator.": 1,
+      "Uses one ordered red-blue outcome instead of both red.": 1,
+      "Computes at least one blue rather than both red.": 1,
+      "Returns the posterior for Y=0 instead of Y=1.": 1,
+      "Nearby exact alternative offset by 1/1; no unique misconception attribution.": 1,
+      "Adds speed and duration instead of multiplying before conversion.": 1,
+      "Treats the number of minutes as hundredths of an hour.": 1
+    },
+    "parse_errors": {
+      "Unterminated string starting at: line 3 column 18 (char 36)": 1
+    },
+    "done_reasons": {
+      "stop": 15,
+      "length": 1
+    },
+    "length_stops": 1,
+    "model_budget": {
+      "calls": 16,
+      "input_tokens": 4543,
+      "output_tokens": 2631,
+      "elapsed_seconds": 137.12067524855956
+    },
+    "scoring_seconds": 0.0057486663572490215
+  },
+  "cohorts": {
+    "syntax_reuse": {
+      "items": 8,
+      "json_valid": 7,
+      "required_fields_valid": 7,
+      "choice_valid": 7,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 7,
+      "within_explanation_bound": 3,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "F": 1,
+        "B": 2,
+        "C": 1,
+        "invalid": 1,
+        "A": 2,
+        "E": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Computes matching colours rather than both red.": 1,
+        "Uses independent draws with replacement.": 1,
+        "Multiplies reported reliabilities without incorporating observation values or normalization.": 1,
+        "Treats every observed reading as 1, regardless of its given value.": 1,
+        "Divides the right constant first, then subtracts the entire left constant.": 1,
+        "Uses a duration one minute too small.": 1,
+        "Adds elapsed minutes to the conversion denominator.": 1
+      },
+      "parse_errors": {
+        "Unterminated string starting at: line 3 column 18 (char 36)": 1
+      },
+      "done_reasons": {
+        "stop": 7,
+        "length": 1
+      },
+      "length_stops": 1,
+      "model_budget": {
+        "calls": 8,
+        "input_tokens": 2251,
+        "output_tokens": 1929,
+        "elapsed_seconds": 88.804264373146
+      },
+      "scoring_seconds": 0.0033916248939931393
+    },
+    "pilot_reuse": {
+      "items": 8,
+      "json_valid": 8,
+      "required_fields_valid": 8,
+      "choice_valid": 8,
+      "choice_correct": 1,
+      "correct": 1,
+      "exact_two_fields": 8,
+      "within_explanation_bound": 7,
+      "strict_accuracy": 0.125,
+      "choice_accuracy": 0.125,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "A": 2,
+        "B": 2,
+        "L": 1,
+        "H": 2,
+        "C": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Uses one ordered red-blue outcome instead of both red.": 1,
+        "Multiplies reported reliabilities without incorporating observation values or normalization.": 1,
+        "Computes at least one blue rather than both red.": 1,
+        "Returns the posterior for Y=0 instead of Y=1.": 1,
+        "Nearby exact alternative offset by 1/1; no unique misconception attribution.": 1,
+        "Adds speed and duration instead of multiplying before conversion.": 1,
+        "Treats the number of minutes as hundredths of an hour.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 8
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 8,
+        "input_tokens": 2292,
+        "output_tokens": 702,
+        "elapsed_seconds": 48.31641087541357
+      },
+      "scoring_seconds": 0.0023570414632558823
+    }
+  },
+  "families": {
+    "reasoning": {
+      "items": 4,
+      "json_valid": 4,
+      "required_fields_valid": 4,
+      "choice_valid": 4,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 4,
+      "within_explanation_bound": 2,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "F": 1,
+        "B": 1,
+        "A": 1,
+        "L": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Computes matching colours rather than both red.": 1,
+        "Uses independent draws with replacement.": 1,
+        "Uses one ordered red-blue outcome instead of both red.": 1,
+        "Computes at least one blue rather than both red.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 4
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1070,
+        "output_tokens": 480,
+        "elapsed_seconds": 31.231792124453932
+      },
+      "scoring_seconds": 0.0007653320208191872
+    },
+    "evidence": {
+      "items": 4,
+      "json_valid": 4,
+      "required_fields_valid": 4,
+      "choice_valid": 4,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 4,
+      "within_explanation_bound": 3,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "C": 1,
+        "B": 2,
+        "H": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Multiplies reported reliabilities without incorporating observation values or normalization.": 2,
+        "Treats every observed reading as 1, regardless of its given value.": 1,
+        "Returns the posterior for Y=0 instead of Y=1.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 4
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1429,
+        "output_tokens": 349,
+        "elapsed_seconds": 25.740751708857715
+      },
+      "scoring_seconds": 0.0009413333609700203
+    },
+    "algebra": {
+      "items": 4,
+      "json_valid": 3,
+      "required_fields_valid": 3,
+      "choice_valid": 3,
+      "choice_correct": 1,
+      "correct": 1,
+      "exact_two_fields": 3,
+      "within_explanation_bound": 2,
+      "strict_accuracy": 0.25,
+      "choice_accuracy": 0.25,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "invalid": 1,
+        "A": 2,
+        "H": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Divides the right constant first, then subtracts the entire left constant.": 1,
+        "Nearby exact alternative offset by 1/1; no unique misconception attribution.": 1
+      },
+      "parse_errors": {
+        "Unterminated string starting at: line 3 column 18 (char 36)": 1
+      },
+      "done_reasons": {
+        "length": 1,
+        "stop": 3
+      },
+      "length_stops": 1,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1004,
+        "output_tokens": 1438,
+        "elapsed_seconds": 53.90806174837053
+      },
+      "scoring_seconds": 0.001837624702602625
+    },
+    "units": {
+      "items": 4,
+      "json_valid": 4,
+      "required_fields_valid": 4,
+      "choice_valid": 4,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 4,
+      "within_explanation_bound": 3,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "E": 1,
+        "A": 1,
+        "B": 1,
+        "C": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Uses a duration one minute too small.": 1,
+        "Adds elapsed minutes to the conversion denominator.": 1,
+        "Adds speed and duration instead of multiplying before conversion.": 1,
+        "Treats the number of minutes as hundredths of an hour.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 4
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1040,
+        "output_tokens": 364,
+        "elapsed_seconds": 26.24006966687739
+      },
+      "scoring_seconds": 0.002204376272857189
+    }
+  },
+  "groups": {
+    "syntax_reuse": {
+      "reasoning": {
+        "items": 2,
+        "json_valid": 2,
+        "required_fields_valid": 2,
+        "choice_valid": 2,
+        "choice_correct": 0,
+        "correct": 0,
+        "exact_two_fields": 2,
+        "within_explanation_bound": 1,
+        "strict_accuracy": 0.0,
+        "choice_accuracy": 0.0,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "F": 1,
+          "B": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Computes matching colours rather than both red.": 1,
+          "Uses independent draws with replacement.": 1
+        },
+        "parse_errors": {},
+        "done_reasons": {
+          "stop": 2
+        },
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 535,
+          "output_tokens": 249,
+          "elapsed_seconds": 19.25049291551113
+        },
+        "scoring_seconds": 0.00040783314034342766
+      },
+      "evidence": {
+        "items": 2,
+        "json_valid": 2,
+        "required_fields_valid": 2,
+        "choice_valid": 2,
+        "choice_correct": 0,
+        "correct": 0,
+        "exact_two_fields": 2,
+        "within_explanation_bound": 1,
+        "strict_accuracy": 0.0,
+        "choice_accuracy": 0.0,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "C": 1,
+          "B": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Multiplies reported reliabilities without incorporating observation values or normalization.": 1,
+          "Treats every observed reading as 1, regardless of its given value.": 1
+        },
+        "parse_errors": {},
+        "done_reasons": {
+          "stop": 2
+        },
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 694,
+          "output_tokens": 188,
+          "elapsed_seconds": 13.435116666834801
+        },
+        "scoring_seconds": 0.0007287501357495785
+      },
+      "algebra": {
+        "items": 2,
+        "json_valid": 1,
+        "required_fields_valid": 1,
+        "choice_valid": 1,
+        "choice_correct": 0,
+        "correct": 0,
+        "exact_two_fields": 1,
+        "within_explanation_bound": 0,
+        "strict_accuracy": 0.0,
+        "choice_accuracy": 0.0,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "invalid": 1,
+          "A": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Divides the right constant first, then subtracts the entire left constant.": 1
+        },
+        "parse_errors": {
+          "Unterminated string starting at: line 3 column 18 (char 36)": 1
+        },
+        "done_reasons": {
+          "length": 1,
+          "stop": 1
+        },
+        "length_stops": 1,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 502,
+          "output_tokens": 1260,
+          "elapsed_seconds": 41.736317665316164
+        },
+        "scoring_seconds": 0.0004109577275812626
+      },
+      "units": {
+        "items": 2,
+        "json_valid": 2,
+        "required_fields_valid": 2,
+        "choice_valid": 2,
+        "choice_correct": 0,
+        "correct": 0,
+        "exact_two_fields": 2,
+        "within_explanation_bound": 1,
+        "strict_accuracy": 0.0,
+        "choice_accuracy": 0.0,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "E": 1,
+          "A": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Uses a duration one minute too small.": 1,
+          "Adds elapsed minutes to the conversion denominator.": 1
+        },
+        "parse_errors": {},
+        "done_reasons": {
+          "stop": 2
+        },
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 520,
+          "output_tokens": 232,
+          "elapsed_seconds": 14.3823371254839
+        },
+        "scoring_seconds": 0.0018440838903188705
+      }
+    },
+    "pilot_reuse": {
+      "reasoning": {
+        "items": 2,
+        "json_valid": 2,
+        "required_fields_valid": 2,
+        "choice_valid": 2,
+        "choice_correct": 0,
+        "correct": 0,
+        "exact_two_fields": 2,
+        "within_explanation_bound": 1,
+        "strict_accuracy": 0.0,
+        "choice_accuracy": 0.0,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "A": 1,
+          "L": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Uses one ordered red-blue outcome instead of both red.": 1,
+          "Computes at least one blue rather than both red.": 1
+        },
+        "parse_errors": {},
+        "done_reasons": {
+          "stop": 2
+        },
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 535,
+          "output_tokens": 231,
+          "elapsed_seconds": 11.9812992089428
+        },
+        "scoring_seconds": 0.0003574988804757595
+      },
+      "evidence": {
+        "items": 2,
+        "json_valid": 2,
+        "required_fields_valid": 2,
+        "choice_valid": 2,
+        "choice_correct": 0,
+        "correct": 0,
+        "exact_two_fields": 2,
+        "within_explanation_bound": 2,
+        "strict_accuracy": 0.0,
+        "choice_accuracy": 0.0,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "B": 1,
+          "H": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Multiplies reported reliabilities without incorporating observation values or normalization.": 1,
+          "Returns the posterior for Y=0 instead of Y=1.": 1
+        },
+        "parse_errors": {},
+        "done_reasons": {
+          "stop": 2
+        },
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 735,
+          "output_tokens": 161,
+          "elapsed_seconds": 12.305635042022914
+        },
+        "scoring_seconds": 0.00021258322522044182
+      },
+      "algebra": {
+        "items": 2,
+        "json_valid": 2,
+        "required_fields_valid": 2,
+        "choice_valid": 2,
+        "choice_correct": 1,
+        "correct": 1,
+        "exact_two_fields": 2,
+        "within_explanation_bound": 2,
+        "strict_accuracy": 0.5,
+        "choice_accuracy": 0.5,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "H": 1,
+          "A": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Nearby exact alternative offset by 1/1; no unique misconception attribution.": 1
+        },
+        "parse_errors": {},
+        "done_reasons": {
+          "stop": 2
+        },
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 502,
+          "output_tokens": 178,
+          "elapsed_seconds": 12.171744083054364
+        },
+        "scoring_seconds": 0.0014266669750213623
+      },
+      "units": {
+        "items": 2,
+        "json_valid": 2,
+        "required_fields_valid": 2,
+        "choice_valid": 2,
+        "choice_correct": 0,
+        "correct": 0,
+        "exact_two_fields": 2,
+        "within_explanation_bound": 2,
+        "strict_accuracy": 0.0,
+        "choice_accuracy": 0.0,
+        "choice_correct_with_invalid_required_fields": 0,
+        "answer_letter_distribution": {
+          "B": 1,
+          "C": 1
+        },
+        "selected_distractor_rationale_counts": {
+          "Adds speed and duration instead of multiplying before conversion.": 1,
+          "Treats the number of minutes as hundredths of an hour.": 1
+        },
+        "parse_errors": {},
+        "done_reasons": {
+          "stop": 2
+        },
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 2,
+          "input_tokens": 520,
+          "output_tokens": 132,
+          "elapsed_seconds": 11.857732541393489
+        },
+        "scoring_seconds": 0.00036029238253831863
+      }
+    }
+  },
+  "answers": [
+    {
+      "task_id": "mc-fresh-urn-unconditional",
+      "source_task_id": "fresh-urn-unconditional",
+      "cohort": "syntax_reuse",
+      "family": "reasoning",
+      "seed": 9101,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 45,
+        "choice": "F",
+        "selected_fraction": "17/35",
+        "prediction": {
+          "choice": "F",
+          "explanation": "The total number of balls is 15, and the number of ways to draw 2 balls without replacement is 15C2 = 105. The number of ways to draw 2 red balls is 6C2 = 15. The probability is 15/105 = 15/105 * 7/7 = 17/35"
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Computes matching colours rather than both red."
+    },
+    {
+      "task_id": "mc-fresh-urn-conditional",
+      "source_task_id": "fresh-urn-conditional",
+      "cohort": "syntax_reuse",
+      "family": "reasoning",
+      "seed": 9102,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": false,
+        "explanation_word_count": 83,
+        "choice": "B",
+        "selected_fraction": "49/121",
+        "prediction": {
+          "choice": "B",
+          "explanation": "Given that at least one ball is red, we can calculate the probability using the formula P(A|B) = P(A and B) / P(B). Here, P(A and B) is the probability of drawing two red balls initially, which is (7/11) * (6/10) = 42/110. P(B) is the probability of drawing at least one red ball, which can be found using the complementary probability: 1 - P(no red balls) = 1 - (4/11) * (3/10) = 121/110. Therefore, P(A|B) = (42/110) / (121/110) = 42/121."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Uses independent draws with replacement."
+    },
+    {
+      "task_id": "mc-fresh-sensor-01",
+      "source_task_id": "fresh-sensor-01",
+      "cohort": "syntax_reuse",
+      "family": "evidence",
+      "seed": 9103,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": false,
+        "explanation_word_count": 66,
+        "choice": "C",
+        "selected_fraction": "81/200",
+        "prediction": {
+          "choice": "C",
+          "explanation": "Bayes' theorem is used to update the probability of the hidden state Y given the observations. Since each observation is conditionally independent given Y and the reliability r represents P(observation = Y | Y), the probability of observing the given values for each sensor is calculated. The probabilities of each state Y (0 or 1) are then combined using Bayes' theorem, resulting in option C: 81/200."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Multiplies reported reliabilities without incorporating observation values or normalization."
+    },
+    {
+      "task_id": "mc-fresh-sensor-02",
+      "source_task_id": "fresh-sensor-02",
+      "cohort": "syntax_reuse",
+      "family": "evidence",
+      "seed": 9104,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 53,
+        "choice": "B",
+        "selected_fraction": "27/31",
+        "prediction": {
+          "choice": "B",
+          "explanation": "Using Bayes' theorem, P(Y=1 | these observations) can be calculated by considering the likelihood of observing the given data given Y=1, and the prior probabilities of Y. The correct answer, B, is obtained by applying Bayes' theorem and simplifying the expression, considering the independence of the observations and the reliability of the sensors."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Treats every observed reading as 1, regardless of its given value."
+    },
+    {
+      "task_id": "mc-fresh-algebra-01",
+      "source_task_id": "fresh-algebra-01",
+      "cohort": "syntax_reuse",
+      "family": "algebra",
+      "seed": 9105,
+      "score": {
+        "json_valid": false,
+        "required_fields_valid": false,
+        "choice_valid": false,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": false,
+        "within_explanation_bound": false,
+        "explanation_word_count": null,
+        "choice": null,
+        "selected_fraction": null,
+        "prediction": null,
+        "parse_error": "Unterminated string starting at: line 3 column 18 (char 36)"
+      },
+      "selected_distractor_rationale": null
+    },
+    {
+      "task_id": "mc-fresh-algebra-02",
+      "source_task_id": "fresh-algebra-02",
+      "cohort": "syntax_reuse",
+      "family": "algebra",
+      "seed": 9106,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": false,
+        "explanation_word_count": 148,
+        "choice": "A",
+        "selected_fraction": "22/3",
+        "prediction": {
+          "choice": "A",
+          "explanation": "To solve for x, isolate the variable by moving terms involving x to one side. Add 4 to both sides: 6x - 4 + 4 = 2x + 20 + 4, simplifying to 6x = 2x + 24. Subtract 2x from both sides: 4x = 24. Divide both sides by 4: x = 6. This solution matches option A (22/3) if we multiply by 3/2, which is the same as dividing by 2 and multiplying by 3, but this is not a valid solution, so instead we keep it as 6 and compare it to the answer choices, finding that only option A (22/3) is close and correct when multiplied by 3/2. However, there is no answer choice with 6, so the closest value is A (22/3) = 6 * 3/2, however, we only want the closest value without the extra multiplication factor, so we choose A (22/3)."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Divides the right constant first, then subtracts the entire left constant."
+    },
+    {
+      "task_id": "mc-fresh-units-01",
+      "source_task_id": "fresh-units-01",
+      "cohort": "syntax_reuse",
+      "family": "units",
+      "seed": 9107,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": false,
+        "explanation_word_count": 74,
+        "choice": "E",
+        "selected_fraction": "39/2",
+        "prediction": {
+          "choice": "E",
+          "explanation": "To find the distance traveled, multiply the speed (90 km/h) by the time (14 minutes). First, convert the time to hours: 14 minutes / 60 = 7/15 hours. Then, multiply the speed by the time: 90 km/h * 7/15 = 42 km. The option 39/2 is not correct, but 90/1 and 42/1 represent the speed and 42 km respectively, the closest match is 39/2, which represents 39 km, which is close to 42 km."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Uses a duration one minute too small."
+    },
+    {
+      "task_id": "mc-fresh-units-02",
+      "source_task_id": "fresh-units-02",
+      "cohort": "syntax_reuse",
+      "family": "units",
+      "seed": 9108,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 47,
+        "choice": "A",
+        "selected_fraction": "198/7",
+        "prediction": {
+          "choice": "A",
+          "explanation": "To find the distance traveled, multiply the speed (66 km/h) by the time (45 minutes). First, convert 45 minutes to hours: 45/60 = 0.75 hours. Then, multiply: 66 * 0.75 = 49.5 km. Convert 49.5 to a fraction: 99/2. The correct option is A, 198/7 is incorrect."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Adds elapsed minutes to the conversion denominator."
+    },
+    {
+      "task_id": "mc-regression-calculator-pilot-42-0000",
+      "source_task_id": "regression-calculator-pilot-42-0000",
+      "cohort": "pilot_reuse",
+      "family": "reasoning",
+      "seed": 8201,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 53,
+        "choice": "A",
+        "selected_fraction": "6/35",
+        "prediction": {
+          "choice": "A",
+          "explanation": "To find the probability of both balls being red, we calculate the probability of the first ball being red (12/15) and the probability of the second ball being red given that the first one is red (11/14). The probability of both events occurring is (12/15) * (11/14) = 132/210 = 12/15 = 6/35."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Uses one ordered red-blue outcome instead of both red."
+    },
+    {
+      "task_id": "mc-regression-calculator-pilot-42-0001",
+      "source_task_id": "regression-calculator-pilot-42-0001",
+      "cohort": "pilot_reuse",
+      "family": "evidence",
+      "seed": 8202,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 42,
+        "choice": "B",
+        "selected_fraction": "729/2500",
+        "prediction": {
+          "choice": "B",
+          "explanation": "Bayes' theorem is applied to update the probability based on the observations and their reliabilities. The correct option is B because it results from applying Bayes' theorem with the given probabilities and reliabilities, considering the conditional independence and uniqueness of sensor observations."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Multiplies reported reliabilities without incorporating observation values or normalization."
+    },
+    {
+      "task_id": "mc-regression-calculator-pilot-42-0002",
+      "source_task_id": "regression-calculator-pilot-42-0002",
+      "cohort": "pilot_reuse",
+      "family": "reasoning",
+      "seed": 8203,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": false,
+        "explanation_word_count": 87,
+        "choice": "L",
+        "selected_fraction": "17/45",
+        "prediction": {
+          "choice": "L",
+          "explanation": "Given that at least one ball is red, we calculate the probability of both balls being red. The total number of ways to draw 2 balls out of 10 is 45. The number of ways to draw 2 red balls is 8C2 = 28. The probability of drawing at least one red ball is 1 - (2 blue balls are drawn) = 1 - 2/45 = 43/45. The conditional probability of both balls being red is then 28/43, which simplifies to 28/45 when reduced to lowest terms."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Computes at least one blue rather than both red."
+    },
+    {
+      "task_id": "mc-regression-calculator-pilot-42-0003",
+      "source_task_id": "regression-calculator-pilot-42-0003",
+      "cohort": "pilot_reuse",
+      "family": "evidence",
+      "seed": 8204,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 60,
+        "choice": "H",
+        "selected_fraction": "2187/2189",
+        "prediction": {
+          "choice": "H",
+          "explanation": "Given that each sensor observation is conditionally independent given Y, and the prior probabilities of Y are equal, the likelihood of Y=1 given the observations is the same as the likelihood of Y=0. Since the reliability of all observations is the same, the posterior probability of Y=1 is also the same as the prior probability of Y=1, which is 0.5."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Returns the posterior for Y=0 instead of Y=1."
+    },
+    {
+      "task_id": "mc-regression-calculator-algebra-01",
+      "source_task_id": "regression-calculator-algebra-01",
+      "cohort": "pilot_reuse",
+      "family": "algebra",
+      "seed": 8205,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 50,
+        "choice": "H",
+        "selected_fraction": "9/1",
+        "prediction": {
+          "choice": "H",
+          "explanation": "To solve for x, add 11 to both sides of the equation: 4x = 21 + 11, which simplifies to 4x = 32. Then, divide both sides by 4: x = 32/4, which simplifies to x = 8. Since 8/1 is the exact value of x, option H is correct."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Nearby exact alternative offset by 1/1; no unique misconception attribution."
+    },
+    {
+      "task_id": "mc-regression-calculator-algebra-02",
+      "source_task_id": "regression-calculator-algebra-02",
+      "cohort": "pilot_reuse",
+      "family": "algebra",
+      "seed": 8206,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": true,
+        "correct": true,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 40,
+        "choice": "A",
+        "selected_fraction": "9/1",
+        "prediction": {
+          "choice": "A",
+          "explanation": "First, subtract 2x from both sides: 3x - 2x + 5 = 2x - 2x + 14. This simplifies to x + 5 = 14. Next, subtract 5 from both sides: x = 14 - 5. So, x = 9."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": null
+    },
+    {
+      "task_id": "mc-regression-calculator-units-01",
+      "source_task_id": "regression-calculator-units-01",
+      "cohort": "pilot_reuse",
+      "family": "units",
+      "seed": 8207,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 26,
+        "choice": "B",
+        "selected_fraction": "119/60",
+        "prediction": {
+          "choice": "B",
+          "explanation": "To find the distance traveled, multiply the speed (84 km/h) by the time (35 minutes) converted to hours (35/60). This equals 119/60, which is option B."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Adds speed and duration instead of multiplying before conversion."
+    },
+    {
+      "task_id": "mc-regression-calculator-units-02",
+      "source_task_id": "regression-calculator-units-02",
+      "cohort": "pilot_reuse",
+      "family": "units",
+      "seed": 8208,
+      "score": {
+        "json_valid": true,
+        "required_fields_valid": true,
+        "choice_valid": true,
+        "choice_correct": false,
+        "correct": false,
+        "exact_two_fields": true,
+        "within_explanation_bound": true,
+        "explanation_word_count": 40,
+        "choice": "C",
+        "selected_fraction": "432/25",
+        "prediction": {
+          "choice": "C",
+          "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and then multiply it by the speed. 18 minutes is 18/60 = 3/10 hours. So, the distance traveled is 96 * 3/10 = 288/5 km."
+        },
+        "parse_error": null
+      },
+      "selected_distractor_rationale": "Treats the number of minutes as hundredths of an hour."
+    }
+  ],
+  "notes": [
+    "Headline correctness requires both string fields and the exact keyed option label.",
+    "Choices are not normalized or interpreted as numerical answers.",
+    "Option rationales and answer keys are local author metadata, never model inputs.",
+    "A selected distractor does not prove its authored misconception caused the answer.",
+    "These are reused inspected cases and one frozen option order, not held-out evidence."
+  ]
+}

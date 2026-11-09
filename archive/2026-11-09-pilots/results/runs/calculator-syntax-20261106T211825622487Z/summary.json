@@ -1,0 +1,1709 @@
+{
+  "experiment_id": "calculator-syntax-v1",
+  "protocol": {
+    "version": "calculator-syntax-v1",
+    "model": "llama3.2:3b",
+    "max_tokens": 1024,
+    "execution_protocol": "planner-calculator-v1",
+    "execution_and_scoring_unchanged": true,
+    "conditions": [
+      "baseline",
+      "syntax_clear"
+    ],
+    "model_output_fields": [
+      "explanation",
+      "expression"
+    ],
+    "answer_origin": "deterministic_calculator",
+    "calculator": "restricted_exact_rational_arithmetic_v1",
+    "probability_tolerance": 0.001,
+    "reference_free_execution": true,
+    "model_feedback": false,
+    "repairs": false,
+    "retries": false,
+    "strict_correctness_requires_complete_method": true
+  },
+  "raw": "/Users/gavinhuang/Desktop/ML1-Project/results/runs/calculator-syntax-20261106T211825622487Z/answers.jsonl",
+  "raw_sha256": "3ad3c2f25d36a361603a1eefaafd59ad06fae70e99f8ae07e73e5a5ab2b9497e",
+  "overall": {
+    "items": 32,
+    "json_valid": 32,
+    "required_fields_valid": 32,
+    "method_format_valid": 23,
+    "calculator_attempted": 32,
+    "calculator_success": 23,
+    "numeric_correct": 15,
+    "correct": 15,
+    "within_explanation_bound": 20,
+    "exact_two_fields": 32,
+    "has_arithmetic_operation": 27,
+    "length_stops": 0,
+    "model_budget": {
+      "calls": 32,
+      "input_tokens": 10640,
+      "output_tokens": 3590,
+      "elapsed_seconds": 227.33424087101594
+    },
+    "postprocessing_seconds": 0.08378279255703092,
+    "errors": {
+      "parse_error": {},
+      "calculator_error": {
+        "Use only numeric literals, parentheses, and arithmetic signs": 9
+      },
+      "scoring_error": {}
+    },
+    "numeric_correct_with_invalid_method": 0,
+    "numeric_correct_among_method_valid": 15,
+    "calculator_success_but_numeric_incorrect": 8
+  },
+  "split_condition": {
+    "fresh": {
+      "baseline": {
+        "items": 8,
+        "json_valid": 8,
+        "required_fields_valid": 8,
+        "method_format_valid": 6,
+        "calculator_attempted": 8,
+        "calculator_success": 6,
+        "numeric_correct": 4,
+        "correct": 4,
+        "within_explanation_bound": 6,
+        "exact_two_fields": 8,
+        "has_arithmetic_operation": 6,
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 8,
+          "input_tokens": 1727,
+          "output_tokens": 818,
+          "elapsed_seconds": 56.23498703958467
+        },
+        "postprocessing_seconds": 0.01641508238390088,
+        "errors": {
+          "parse_error": {},
+          "calculator_error": {
+            "Use only numeric literals, parentheses, and arithmetic signs": 2
+          },
+          "scoring_error": {}
+        },
+        "numeric_correct_with_invalid_method": 0,
+        "numeric_correct_among_method_valid": 4,
+        "calculator_success_but_numeric_incorrect": 2
+      },
+      "syntax_clear": {
+        "items": 8,
+        "json_valid": 8,
+        "required_fields_valid": 8,
+        "method_format_valid": 7,
+        "calculator_attempted": 8,
+        "calculator_success": 7,
+        "numeric_correct": 4,
+        "correct": 4,
+        "within_explanation_bound": 5,
+        "exact_two_fields": 8,
+        "has_arithmetic_operation": 8,
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 8,
+          "input_tokens": 3567,
+          "output_tokens": 998,
+          "elapsed_seconds": 60.72186229052022
+        },
+        "postprocessing_seconds": 0.020091210026293993,
+        "errors": {
+          "parse_error": {},
+          "calculator_error": {
+            "Use only numeric literals, parentheses, and arithmetic signs": 1
+          },
+          "scoring_error": {}
+        },
+        "numeric_correct_with_invalid_method": 0,
+        "numeric_correct_among_method_valid": 4,
+        "calculator_success_but_numeric_incorrect": 3
+      }
+    },
+    "regression": {
+      "baseline": {
+        "items": 8,
+        "json_valid": 8,
+        "required_fields_valid": 8,
+        "method_format_valid": 5,
+        "calculator_attempted": 8,
+        "calculator_success": 5,
+        "numeric_correct": 3,
+        "correct": 3,
+        "within_explanation_bound": 4,
+        "exact_two_fields": 8,
+        "has_arithmetic_operation": 6,
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 8,
+          "input_tokens": 1753,
+          "output_tokens": 961,
+          "elapsed_seconds": 54.46823095763102
+        },
+        "postprocessing_seconds": 0.025254583451896906,
+        "errors": {
+          "parse_error": {},
+          "calculator_error": {
+            "Use only numeric literals, parentheses, and arithmetic signs": 3
+          },
+          "scoring_error": {}
+        },
+        "numeric_correct_with_invalid_method": 0,
+        "numeric_correct_among_method_valid": 3,
+        "calculator_success_but_numeric_incorrect": 2
+      },
+      "syntax_clear": {
+        "items": 8,
+        "json_valid": 8,
+        "required_fields_valid": 8,
+        "method_format_valid": 5,
+        "calculator_attempted": 8,
+        "calculator_success": 5,
+        "numeric_correct": 4,
+        "correct": 4,
+        "within_explanation_bound": 5,
+        "exact_two_fields": 8,
+        "has_arithmetic_operation": 7,
+        "length_stops": 0,
+        "model_budget": {
+          "calls": 8,
+          "input_tokens": 3593,
+          "output_tokens": 813,
+          "elapsed_seconds": 55.90916058328003
+        },
+        "postprocessing_seconds": 0.022021916694939137,
+        "errors": {
+          "parse_error": {},
+          "calculator_error": {
+            "Use only numeric literals, parentheses, and arithmetic signs": 3
+          },
+          "scoring_error": {}
+        },
+        "numeric_correct_with_invalid_method": 0,
+        "numeric_correct_among_method_valid": 4,
+        "calculator_success_but_numeric_incorrect": 1
+      }
+    }
+  },
+  "groups": {
+    "fresh": {
+      "baseline": {
+        "reasoning": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 2,
+          "correct": 2,
+          "within_explanation_bound": 1,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 391,
+            "output_tokens": 320,
+            "elapsed_seconds": 22.156330041587353
+          },
+          "postprocessing_seconds": 0.006881457753479481,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 2,
+          "calculator_success_but_numeric_incorrect": 0
+        },
+        "evidence": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 0,
+          "correct": 0,
+          "within_explanation_bound": 1,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 548,
+            "output_tokens": 236,
+            "elapsed_seconds": 12.95548658259213
+          },
+          "postprocessing_seconds": 0.0059679169207811356,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 0,
+          "calculator_success_but_numeric_incorrect": 2
+        },
+        "algebra": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 0,
+          "calculator_attempted": 2,
+          "calculator_success": 0,
+          "numeric_correct": 0,
+          "correct": 0,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 0,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 382,
+            "output_tokens": 141,
+            "elapsed_seconds": 11.961528457701206
+          },
+          "postprocessing_seconds": 0.0012804996222257614,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {
+              "Use only numeric literals, parentheses, and arithmetic signs": 2
+            },
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 0,
+          "calculator_success_but_numeric_incorrect": 0
+        },
+        "units": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 2,
+          "correct": 2,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 406,
+            "output_tokens": 121,
+            "elapsed_seconds": 9.161641957703978
+          },
+          "postprocessing_seconds": 0.002285208087414503,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 2,
+          "calculator_success_but_numeric_incorrect": 0
+        }
+      },
+      "syntax_clear": {
+        "reasoning": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 1,
+          "correct": 1,
+          "within_explanation_bound": 1,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 851,
+            "output_tokens": 390,
+            "elapsed_seconds": 21.156479916069657
+          },
+          "postprocessing_seconds": 0.0064898342825472355,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 1,
+          "calculator_success_but_numeric_incorrect": 1
+        },
+        "evidence": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 1,
+          "calculator_attempted": 2,
+          "calculator_success": 1,
+          "numeric_correct": 0,
+          "correct": 0,
+          "within_explanation_bound": 0,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 1008,
+            "output_tokens": 313,
+            "elapsed_seconds": 15.843137624673545
+          },
+          "postprocessing_seconds": 0.0040234168991446495,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {
+              "Use only numeric literals, parentheses, and arithmetic signs": 1
+            },
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 0,
+          "calculator_success_but_numeric_incorrect": 1
+        },
+        "algebra": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 1,
+          "correct": 1,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 842,
+            "output_tokens": 160,
+            "elapsed_seconds": 11.765878416597843
+          },
+          "postprocessing_seconds": 0.004661167040467262,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 1,
+          "calculator_success_but_numeric_incorrect": 1
+        },
+        "units": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 2,
+          "correct": 2,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 866,
+            "output_tokens": 135,
+            "elapsed_seconds": 11.956366333179176
+          },
+          "postprocessing_seconds": 0.004916791804134846,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 2,
+          "calculator_success_but_numeric_incorrect": 0
+        }
+      }
+    },
+    "regression": {
+      "baseline": {
+        "reasoning": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 1,
+          "correct": 1,
+          "within_explanation_bound": 0,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 391,
+            "output_tokens": 258,
+            "elapsed_seconds": 14.235814000014216
+          },
+          "postprocessing_seconds": 0.005238709039986134,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 1,
+          "calculator_success_but_numeric_incorrect": 1
+        },
+        "evidence": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 1,
+          "calculator_attempted": 2,
+          "calculator_success": 1,
+          "numeric_correct": 0,
+          "correct": 0,
+          "within_explanation_bound": 0,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 1,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 574,
+            "output_tokens": 480,
+            "elapsed_seconds": 20.297021124046296
+          },
+          "postprocessing_seconds": 0.006894125137478113,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {
+              "Use only numeric literals, parentheses, and arithmetic signs": 1
+            },
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 0,
+          "calculator_success_but_numeric_incorrect": 1
+        },
+        "algebra": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 0,
+          "calculator_attempted": 2,
+          "calculator_success": 0,
+          "numeric_correct": 0,
+          "correct": 0,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 1,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 382,
+            "output_tokens": 96,
+            "elapsed_seconds": 9.696310124825686
+          },
+          "postprocessing_seconds": 0.00802704133093357,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {
+              "Use only numeric literals, parentheses, and arithmetic signs": 2
+            },
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 0,
+          "calculator_success_but_numeric_incorrect": 0
+        },
+        "units": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 2,
+          "correct": 2,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 406,
+            "output_tokens": 127,
+            "elapsed_seconds": 10.239085708744824
+          },
+          "postprocessing_seconds": 0.005094707943499088,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 2,
+          "calculator_success_but_numeric_incorrect": 0
+        }
+      },
+      "syntax_clear": {
+        "reasoning": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 1,
+          "calculator_attempted": 2,
+          "calculator_success": 1,
+          "numeric_correct": 1,
+          "correct": 1,
+          "within_explanation_bound": 0,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 1,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 851,
+            "output_tokens": 206,
+            "elapsed_seconds": 13.243961123749614
+          },
+          "postprocessing_seconds": 0.006936625111848116,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {
+              "Use only numeric literals, parentheses, and arithmetic signs": 1
+            },
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 1,
+          "calculator_success_but_numeric_incorrect": 0
+        },
+        "evidence": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 1,
+          "calculator_attempted": 2,
+          "calculator_success": 1,
+          "numeric_correct": 0,
+          "correct": 0,
+          "within_explanation_bound": 1,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 1034,
+            "output_tokens": 378,
+            "elapsed_seconds": 20.568623458966613
+          },
+          "postprocessing_seconds": 0.0056943329982459545,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {
+              "Use only numeric literals, parentheses, and arithmetic signs": 1
+            },
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 0,
+          "calculator_success_but_numeric_incorrect": 1
+        },
+        "algebra": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 1,
+          "calculator_attempted": 2,
+          "calculator_success": 1,
+          "numeric_correct": 1,
+          "correct": 1,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 842,
+            "output_tokens": 107,
+            "elapsed_seconds": 10.88975379243493
+          },
+          "postprocessing_seconds": 0.004470833111554384,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {
+              "Use only numeric literals, parentheses, and arithmetic signs": 1
+            },
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 1,
+          "calculator_success_but_numeric_incorrect": 0
+        },
+        "units": {
+          "items": 2,
+          "json_valid": 2,
+          "required_fields_valid": 2,
+          "method_format_valid": 2,
+          "calculator_attempted": 2,
+          "calculator_success": 2,
+          "numeric_correct": 2,
+          "correct": 2,
+          "within_explanation_bound": 2,
+          "exact_two_fields": 2,
+          "has_arithmetic_operation": 2,
+          "length_stops": 0,
+          "model_budget": {
+            "calls": 2,
+            "input_tokens": 866,
+            "output_tokens": 122,
+            "elapsed_seconds": 11.20682220812887
+          },
+          "postprocessing_seconds": 0.004920125473290682,
+          "errors": {
+            "parse_error": {},
+            "calculator_error": {},
+            "scoring_error": {}
+          },
+          "numeric_correct_with_invalid_method": 0,
+          "numeric_correct_among_method_valid": 2,
+          "calculator_success_but_numeric_incorrect": 0
+        }
+      }
+    }
+  },
+  "paired": {
+    "fresh": {
+      "tasks": [
+        {
+          "task_id": "fresh-urn-unconditional",
+          "family": "reasoning",
+          "executable_transition": "1->1",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 52,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "The probability of drawing two red balls from the urn can be calculated by first finding the probability of drawing a red ball on the first draw, then the probability of drawing a red ball on the second draw given that the first ball was red. This is a conditional probability problem.",
+              "expression": "(6/15) * (5/14)"
+            },
+            "expression": "(6/15) * (5/14)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "1/7",
+            "computed_decimal": 0.14285714285714285,
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 45,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "The probability of drawing two red balls without replacement can be calculated by multiplying the probability of drawing a red ball on the first draw by the probability of drawing a red ball on the second draw given that the first ball drawn was red.",
+              "expression": "(6/15)*(5/14)"
+            },
+            "expression": "(6/15)*(5/14)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "1/7",
+            "computed_decimal": 0.14285714285714285,
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-urn-conditional",
+          "family": "reasoning",
+          "executable_transition": "1->1",
+          "strict_transition": "1->0",
+          "numeric_transition": "1->0",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 170,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "We first find the total number of ways to draw 2 balls from the urn. The urn has 11 balls in total, so there are \binom{11}{2} = 55 ways to draw 2 balls. We then find the number of ways to draw at least one red ball. We can do this by finding the total number of ways to draw 2 balls and subtracting the number of ways to draw 2 blue balls. The urn has 4 blue balls, so there are \binom{4}{2} = 6 ways to draw 2 blue balls. Thus, there are 55 - 6 = 49 ways to draw at least one red ball. We then find the number of ways to draw 2 red balls. The urn has 7 red balls, so there are \binom{7}{2} = 21 ways to draw 2 red balls. We can now calculate the probability by dividing the number of ways to draw 2 red balls by the number of ways to draw at least one red ball. The probability is \frac{21}{49}.",
+              "expression": "21/49"
+            },
+            "expression": "21/49",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "3/7",
+            "computed_decimal": 0.42857142857142855,
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 193,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "We start with a total of 11 balls, 7 red and 4 blue. We draw 2 balls without replacement. We can use the conditional probability formula, P(A|B) = P(A and B) / P(B), where A is the event that both balls are red, and B is the event that at least one ball is red. We first find P(A and B), the probability that both balls are red. There are 7 red balls out of a total of 11 balls, so P(A) = 7/11. The probability that the second ball is also red, given that the first ball is red, is 6/10, since there are now 6 red balls out of a total of 10 balls. Therefore, P(A and B) = P(A) * P(A|B) = (7/11) * (6/10) = 42/110. Now, we find P(B), the probability that at least one ball is red. This is 1 minus the probability that both balls are blue, which is (4/11) * (3/10) = 12/110. Therefore, P(B) = 1 - 12/110 = 98/110. Finally, we use the conditional probability formula to get P(A|B) = P(A and B) / P(B) = (42/110) / (98/110) = 42/98 = 21/49.",
+              "expression": "(7/11)*(6/10)"
+            },
+            "expression": "(7/11)*(6/10)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "21/55",
+            "computed_decimal": 0.38181818181818183,
+            "absolute_error": 0.046753246753246755,
+            "probability_in_range": true,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-sensor-01",
+          "family": "evidence",
+          "executable_transition": "1->1",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 43,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "Given a hidden state Y (0 or 1) with prior probability 0.5, and sensor observations with conditional reliability r, we compute the posterior probability of Y=1 given these observations. We use Bayes' theorem and the law of total probability to update the probabilities.",
+              "expression": "(0.5)*(0.75) + (0.5)*(0.6)"
+            },
+            "expression": "(0.5)*(0.75) + (0.5)*(0.6)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "27/40",
+            "computed_decimal": 0.675,
+            "absolute_error": 0.2723684210526316,
+            "probability_in_range": true,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 97,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given that each sensor observation is conditionally independent given Y, and the prior probabilities of Y are equal (0.5), we can use Bayes' theorem to update the probabilities. First, we need to calculate the likelihood of each observation given Y, and then multiply it by the prior probability of Y. Since the prior probabilities are equal, we can assume that Y=0 or Y=1. We can use the reliability of each observation to calculate the likelihood of each observation given Y. We will then use these likelihoods and the prior probabilities to calculate the posterior probability of Y=1.",
+              "expression": "(0.5)*(0.9)*(0.75) + (0.5)*(0.6)*(0.6)"
+            },
+            "expression": "(0.5)*(0.9)*(0.75) + (0.5)*(0.6)*(0.6)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "207/400",
+            "computed_decimal": 0.5175,
+            "absolute_error": 0.42986842105263157,
+            "probability_in_range": true,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-sensor-02",
+          "family": "evidence",
+          "executable_transition": "1->0",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 62,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given the prior probabilities of the hidden state Y (0 or 1) are equal (0.5), and each sensor observation is conditionally independent given Y, we need to update the probabilities using Bayes' theorem. The repeated source ID indicates the same observation, not a new independent clue. We will use the reliability r to compute the posterior probability of Y=1 given the observations.",
+              "expression": "(0.5 * 0.75 + 0.5 * 0.6) / (0.5 * 0.75 + 0.5 * 0.6 + 0.5 * 0.6 + 0.5 * 0.6)"
+            },
+            "expression": "(0.5 * 0.75 + 0.5 * 0.6) / (0.5 * 0.75 + 0.5 * 0.6 + 0.5 * 0.6 + 0.5 * 0.6)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "9/17",
+            "computed_decimal": 0.5294117647058824,
+            "absolute_error": 0.27941176470588236,
+            "probability_in_range": true,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 87,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given the prior probabilities of the hidden state Y (0 or 1) are equal (0.5), and each sensor observation is conditionally independent given Y, we can compute the posterior probability P(Y=1 | these observations). We will use Bayes' theorem to update the probabilities based on the sensor observations and their reliabilities. First, we need to compute the likelihood of each observation given the hidden state Y. The likelihood of an observation given Y is the reliability r. Then, we will apply Bayes' theorem to update the probabilities.",
+              "expression": "0.5*(0.75^1)*(0.6^0) + 0.5*(0.75^0)*(0.6^1)"
+            },
+            "expression": "0.5*(0.75^1)*(0.6^0) + 0.5*(0.75^0)*(0.6^1)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          }
+        },
+        {
+          "task_id": "fresh-algebra-01",
+          "family": "algebra",
+          "executable_transition": "0->1",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 20,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "To solve for x, we need to isolate the variable. Subtract 7 from both sides and then divide by 5.",
+              "expression": "x = (42 - 7) / 5"
+            },
+            "expression": "x = (42 - 7) / 5",
+            "has_arithmetic_operation": false,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 48,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "To solve for x, we need to isolate it on one side of the equation. Given the equation 5*x + 7 = 42, we can first subtract 7 from both sides, resulting in 5*x = 35. Then, we divide both sides by 5 to get x = 7.",
+              "expression": "42-7/5"
+            },
+            "expression": "42-7/5",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "203/5",
+            "computed_decimal": 40.6,
+            "absolute_error": 33.6,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-algebra-02",
+          "family": "algebra",
+          "executable_transition": "0->1",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 52,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "To solve for x, we need to isolate the variable x on one side of the equation. First, subtract 2x from both sides to get 4x - 4 = 20. Then, add 4 to both sides to get 4x = 24. Finally, divide both sides by 4 to get x = 6.",
+              "expression": "x = (24 / 4) + 4"
+            },
+            "expression": "x = (24 / 4) + 4",
+            "has_arithmetic_operation": false,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 37,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "To isolate x, first subtract 2x from both sides: 4x - 4 = 20. Then add 4 to both sides: 4x = 24. Finally, divide by 4: x = 24/4. Simplify the right side: x = 6.",
+              "expression": "24/4"
+            },
+            "expression": "24/4",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "6",
+            "computed_decimal": 6.0,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-units-01",
+          "family": "units",
+          "executable_transition": "1->1",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 39,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and then multiply it by the speed. 14 minutes is equal to 14/60 = 0.233 hours. Multiply this by the speed of 90 km/h.",
+              "expression": "90 * (14 / 60)"
+            },
+            "expression": "90 * (14 / 60)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "21",
+            "computed_decimal": 21.0,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 52,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and multiply it by the speed. The vehicle travels at 90 km/h for 14 minutes, so we first convert 14 minutes to hours by dividing by 60. Then we multiply the speed by the time in hours.",
+              "expression": "90*(14/60)"
+            },
+            "expression": "90*(14/60)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "21",
+            "computed_decimal": 21.0,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "fresh-units-02",
+          "family": "units",
+          "executable_transition": "1->1",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 28,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "The vehicle travels at a constant speed for a given time. To find the distance, multiply the speed by the time. Convert the time from minutes to hours.",
+              "expression": "66 * (45/60)"
+            },
+            "expression": "66 * (45/60)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "99/2",
+            "computed_decimal": 49.5,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 33,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "The vehicle travels at a constant speed of 66 km/h for 45 minutes. To find the distance, we need to convert the time from minutes to hours and multiply it by the speed.",
+              "expression": "66*(45/60)"
+            },
+            "expression": "66*(45/60)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "99/2",
+            "computed_decimal": 49.5,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        }
+      ],
+      "executable_transitions": {
+        "1->1": 5,
+        "1->0": 1,
+        "0->1": 2
+      },
+      "strict_transitions": {
+        "1->1": 3,
+        "1->0": 1,
+        "0->0": 3,
+        "0->1": 1
+      },
+      "numeric_transitions": {
+        "1->1": 3,
+        "1->0": 1,
+        "0->0": 3,
+        "0->1": 1
+      },
+      "joint_method_valid": {
+        "items": 5,
+        "baseline_numeric_correct": 4,
+        "syntax_clear_numeric_correct": 3,
+        "numeric_transitions": {
+          "1->1": 3,
+          "1->0": 1,
+          "0->0": 1
+        }
+      }
+    },
+    "regression": {
+      "tasks": [
+        {
+          "task_id": "regression-calculator-pilot-42-0000",
+          "family": "reasoning",
+          "executable_transition": "1->1",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 62,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "The total number of balls is 15, so the probability of drawing the first red ball is 12/15. After drawing the first red ball, there are 11 red balls and 3 blue balls left, for a total of 14 balls. The probability of drawing the second red ball is 11/14. Multiply these probabilities to find the probability of both balls being red.",
+              "expression": "(12/15) * (11/14)"
+            },
+            "expression": "(12/15) * (11/14)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "22/35",
+            "computed_decimal": 0.6285714285714286,
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 72,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "We want to find the probability of drawing 2 red balls from an urn with 12 red and 3 blue balls. We will draw the balls one by one without replacement. The probability of drawing a red ball on the first draw is 12/15, and on the second draw is 11/14, since one red ball has already been drawn. We multiply these probabilities to find the probability of drawing 2 red balls.",
+              "expression": "(12/15) * (11/14)"
+            },
+            "expression": "(12/15) * (11/14)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "22/35",
+            "computed_decimal": 0.6285714285714286,
+            "absolute_error": 0.0,
+            "probability_in_range": true,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-calculator-pilot-42-0001",
+          "family": "evidence",
+          "executable_transition": "1->0",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 90,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given the sensor observations and their reliabilities, we can use Bayes' theorem to update the probability of the hidden state Y. Since each observation is conditionally independent given Y, we can calculate the probability of each observation given Y as the product of the reliability and the prior probability of Y. Then, we can apply Bayes' theorem to update the probability of Y given the observations. The updated probability of Y given the observations will be the maximum of the probabilities of Y given each observation, weighted by their reliabilities.",
+              "expression": "(0.5 * 0.9 * (1-0.9) + 0.5 * 0.6 * (1-0.6)) / (0.5 * 0.9 * (1-0.9) + 0.5 * 0.6 * (1-0.6) + 0.5 * 0.6 * (1-0.6) + 0.5 * 0.9 * (1-0.9))"
+            },
+            "expression": "(0.5 * 0.9 * (1-0.9) + 0.5 * 0.6 * (1-0.6)) / (0.5 * 0.9 * (1-0.9) + 0.5 * 0.6 * (1-0.6) + 0.5 * 0.6 * (1-0.6) + 0.5 * 0.9 * (1-0.9))",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "1/2",
+            "computed_decimal": 0.5,
+            "absolute_error": 0.4878048780487805,
+            "probability_in_range": true,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 93,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given the unique sensor observations and their reliabilities, we can compute the probability of the hidden state Y=1 by using Bayes' theorem. Since each observation is conditionally independent given Y, we can multiply the probabilities of each observation given Y. We start with the probability of Y=1, which is 0.5, and multiply it by the probabilities of each observation given Y=1 and Y=0, which are 0.6 and 0.4 respectively. Then, we divide the result by the sum of the probabilities of each observation given Y=0 and Y=1, which are 0.9 and 0.1 respectively.",
+              "expression": "0.5 * (0.6^3) / (0.4 * 0.9 + 0.6 * 0.1)"
+            },
+            "expression": "0.5 * (0.6^3) / (0.4 * 0.9 + 0.6 * 0.1)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          }
+        },
+        {
+          "task_id": "regression-calculator-pilot-42-0002",
+          "family": "reasoning",
+          "executable_transition": "1->0",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 104,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given that at least one ball is red, we need to find the probability that both balls are red. We start with the total number of balls, 10, and then draw one red ball, leaving 7 balls. The probability of drawing a red ball first is 8/10, and then drawing another red ball is 7/9. We multiply these probabilities together to get the probability of drawing two red balls in a row. However, we must also consider that the first ball drawn is red, and the second ball drawn is also red. We can use the formula for conditional probability to calculate this probability.",
+              "expression": "(8/10) * (7/9) / ((8/10) + (7/9))"
+            },
+            "expression": "(8/10) * (7/9) / ((8/10) + (7/9))",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "28/71",
+            "computed_decimal": 0.39436619718309857,
+            "absolute_error": 0.24199743918053776,
+            "probability_in_range": true,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 64,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given that at least one ball is red, we need to find the probability that both balls are red. We can start by finding the total number of ways to draw 2 balls from 10 balls. Then, we can find the number of ways to draw 2 red balls from the 8 red balls. We will use these values to calculate the desired probability.",
+              "expression": "(8C2)/(2C1+8C2)"
+            },
+            "expression": "(8C2)/(2C1+8C2)",
+            "has_arithmetic_operation": false,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          }
+        },
+        {
+          "task_id": "regression-calculator-pilot-42-0003",
+          "family": "evidence",
+          "executable_transition": "0->1",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 110,
+            "within_explanation_bound": false,
+            "prediction": {
+              "explanation": "Given that each sensor observation is conditionally independent given the hidden state Y, and the reliability r represents the probability of a correct observation given Y, we can calculate the posterior probability P(Y=1 | these observations) using Bayes' theorem. Since each observation is conditionally independent, we can multiply the probabilities. The prior probability of Y=1 is 0.5. We can then calculate the posterior probability as follows: P(Y=1 | these observations) = P(Y=1) \u2217 P(observation = 0 | Y=1) \u2217 r1 \u2217 P(observation = 0 | Y=0) \u2217 r2 \u2217 (1-r1)(1-r2). We will substitute the given values for r1 and r2 into the equation and solve for P(Y=1 | these observations).",
+              "expression": "0.5 \u2217 (1-0.6) \u2217 (1-0.9) \u2217 (1-0.9) \u2217 (1-0.9) \u2217 (1-0.6)(1-0.9)"
+            },
+            "expression": "0.5 \u2217 (1-0.6) \u2217 (1-0.9) \u2217 (1-0.9) \u2217 (1-0.9) \u2217 (1-0.6)(1-0.9)",
+            "has_arithmetic_operation": false,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 55,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "Given the reliability of each sensor, we can calculate the probability of each observation being true. Since each observation is conditionally independent given Y, we can multiply the probabilities. We also know that each state has a prior probability of 0.5. We can use Bayes' theorem to update the probability of Y=1 given the observations.",
+              "expression": "(0.5 * 0.6 * 0.6 * 0.9 * 0.9 * 0.9) / (0.5 * 0.6 * 0.6 * 0.9 * 0.9 * 0.9 + 0.5 * 0.6 * 0.6 * 0.9 * 0.9 * 0.9 + 0.5 * 0.4 * 0.4 * 0.9 * 0.9 * 0.9)"
+            },
+            "expression": "(0.5 * 0.6 * 0.6 * 0.9 * 0.9 * 0.9) / (0.5 * 0.6 * 0.6 * 0.9 * 0.9 * 0.9 + 0.5 * 0.6 * 0.6 * 0.9 * 0.9 * 0.9 + 0.5 * 0.4 * 0.4 * 0.9 * 0.9 * 0.9)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "9/22",
+            "computed_decimal": 0.4090909090909091,
+            "absolute_error": 0.4081772498857926,
+            "probability_in_range": true,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-calculator-algebra-01",
+          "family": "algebra",
+          "executable_transition": "0->1",
+          "strict_transition": "0->1",
+          "numeric_transition": "0->1",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 21,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "Given equation is 4x - 11 = 21. To isolate x, add 11 to both sides and then divide by 4.",
+              "expression": "x = (21 + 11) / 4"
+            },
+            "expression": "x = (21 + 11) / 4",
+            "has_arithmetic_operation": false,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 29,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "Given equation: 4x - 11 = 21. Add 11 to both sides: 4x = 32. Divide both sides by 4: x = 8. Constructing unevaluated expression for x: 8",
+              "expression": "8*1"
+            },
+            "expression": "8*1",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "8",
+            "computed_decimal": 8.0,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-calculator-algebra-02",
+          "family": "algebra",
+          "executable_transition": "0->0",
+          "strict_transition": "0->0",
+          "numeric_transition": "0->0",
+          "joint_method_valid": false,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 15,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "Subtract 2x from both sides and then subtract 5 from both sides to isolate x.",
+              "expression": "3*x + 5 - 2*x - 5"
+            },
+            "expression": "3*x + 5 - 2*x - 5",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": false,
+            "exact_two_fields": true,
+            "explanation_words": 11,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "Subtract 2x from both sides, then subtract 5 from both sides.",
+              "expression": "(3*x + 5) - (2*x + 5)"
+            },
+            "expression": "(3*x + 5) - (2*x + 5)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": false,
+            "computed_fraction": null,
+            "computed_decimal": null,
+            "absolute_error": null,
+            "probability_in_range": null,
+            "numeric_correct": false,
+            "correct": false,
+            "parse_error": null,
+            "calculator_error": "Use only numeric literals, parentheses, and arithmetic signs",
+            "scoring_error": null,
+            "error": "Use only numeric literals, parentheses, and arithmetic signs"
+          }
+        },
+        {
+          "task_id": "regression-calculator-units-01",
+          "family": "units",
+          "executable_transition": "1->1",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 44,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "To find the distance traveled, we need to convert the time from minutes to hours and multiply it by the speed. The formula is distance = speed * time. In this case, the time is 35 minutes, which needs to be converted to hours.",
+              "expression": "(35/60) * 84"
+            },
+            "expression": "(35/60) * 84",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "49",
+            "computed_decimal": 49.0,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 38,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "The vehicle travels at a constant speed of 84 km/h for 35 minutes. To find the distance, we need to convert the time from minutes to hours and multiply it by the speed. Distance = speed \times time.",
+              "expression": "(84 * 35 / 60)"
+            },
+            "expression": "(84 * 35 / 60)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "49",
+            "computed_decimal": 49.0,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        },
+        {
+          "task_id": "regression-calculator-units-02",
+          "family": "units",
+          "executable_transition": "1->1",
+          "strict_transition": "1->1",
+          "numeric_transition": "1->1",
+          "joint_method_valid": true,
+          "baseline": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 33,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "The vehicle travels at a constant speed of 96 km/h for 18 minutes. To find the distance, we need to convert the time from minutes to hours and multiply it by the speed.",
+              "expression": "(96 * 18) / 60"
+            },
+            "expression": "(96 * 18) / 60",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "144/5",
+            "computed_decimal": 28.8,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          },
+          "syntax_clear": {
+            "json_valid": true,
+            "required_fields_valid": true,
+            "method_format_valid": true,
+            "exact_two_fields": true,
+            "explanation_words": 33,
+            "within_explanation_bound": true,
+            "prediction": {
+              "explanation": "The vehicle travels at a constant speed of 96 km/h for 18 minutes. To find the distance, we need to convert the time from minutes to hours and multiply it by the speed.",
+              "expression": "96 * (18/60)"
+            },
+            "expression": "96 * (18/60)",
+            "has_arithmetic_operation": true,
+            "calculator_attempted": true,
+            "calculator_success": true,
+            "computed_fraction": "144/5",
+            "computed_decimal": 28.8,
+            "absolute_error": 0.0,
+            "probability_in_range": null,
+            "numeric_correct": true,
+            "correct": true,
+            "parse_error": null,
+            "calculator_error": null,
+            "scoring_error": null,
+            "error": null
+          }
+        }
+      ],
+      "executable_transitions": {
+        "1->1": 3,
+        "1->0": 2,
+        "0->1": 2,
+        "0->0": 1
+      },
+      "strict_transitions": {
+        "1->1": 3,
+        "0->0": 4,
+        "0->1": 1
+      },
+      "numeric_transitions": {
+        "1->1": 3,
+        "0->0": 4,
+        "0->1": 1
+      },
+      "joint_method_valid": {
+        "items": 3,
+        "baseline_numeric_correct": 3,
+        "syntax_clear_numeric_correct": 3,
+        "numeric_transitions": {
+          "1->1": 3
+        }
+      }
+    }
+  },
+  "notes": [
+    "Only the prompt-clarification bundle differs; execution and scoring are unchanged.",
+    "Calculator input is only the model's explicit expression, never references.",
+    "A successful calculation or numerically matching literal does not prove correct formulation.",
+    "Fresh tasks are analyzed separately from the inspected regression cases.",
+    "Word bound, exact keys, and arithmetic-operation presence are secondary compliance flags."
+  ]
+}

@@ -1,0 +1,1454 @@
+{
+  "schema_version": 1,
+  "experiment_id": "mc-exact-v1",
+  "model": "llama3.2:3b",
+  "max_tokens": 1024,
+  "temperature": 0.7,
+  "context_tokens": 4096,
+  "explanation_word_limit": 60,
+  "option_count": 15,
+  "system_prompt": "Choose the one correct exact value for the user's question from options A through O. Preserve the given values, conditioning information, and requested units. Every option is an exact fraction; n/1 represents the integer n. Return ONLY a valid JSON object with exactly two string fields: explanation, briefly explaining your reasoning in at most 60 words; and choice, containing exactly one uppercase letter A through O. Before sending, check that the chosen label matches the value you intend.",
+  "tasks": [
+    {
+      "id": "mc-fresh-urn-unconditional",
+      "source_task_id": "fresh-urn-unconditional",
+      "cohort": "syntax_reuse",
+      "family": "reasoning",
+      "seed": 9101,
+      "probability": true,
+      "question": "An urn has 6 red and 9 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+      "options": [
+        {
+          "label": "A",
+          "value": "15/98",
+          "rationale": "Decreases both population denominators."
+        },
+        {
+          "label": "B",
+          "value": "1/7",
+          "rationale": "correct"
+        },
+        {
+          "label": "C",
+          "value": "5/23",
+          "rationale": "Unnecessarily conditions on at least one red."
+        },
+        {
+          "label": "D",
+          "value": "1/3",
+          "rationale": "Uses the remaining-red fraction with the original population denominator."
+        },
+        {
+          "label": "E",
+          "value": "6/7",
+          "rationale": "Computes at least one blue rather than both red."
+        },
+        {
+          "label": "F",
+          "value": "17/35",
+          "rationale": "Computes matching colours rather than both red."
+        },
+        {
+          "label": "G",
+          "value": "1/8",
+          "rationale": "Increases the second population denominator instead of decreasing it."
+        },
+        {
+          "label": "H",
+          "value": "6/35",
+          "rationale": "Depletes the population but not the red count."
+        },
+        {
+          "label": "I",
+          "value": "2/15",
+          "rationale": "Depletes the red count but keeps the second denominator unchanged."
+        },
+        {
+          "label": "J",
+          "value": "12/35",
+          "rationale": "Computes both blue rather than both red."
+        },
+        {
+          "label": "K",
+          "value": "2/5",
+          "rationale": "Uses the probability of one red draw."
+        },
+        {
+          "label": "L",
+          "value": "18/35",
+          "rationale": "Computes exactly one red rather than two red."
+        },
+        {
+          "label": "M",
+          "value": "4/25",
+          "rationale": "Uses independent draws with replacement."
+        },
+        {
+          "label": "N",
+          "value": "23/35",
+          "rationale": "Computes at least one red rather than both red."
+        },
+        {
+          "label": "O",
+          "value": "9/35",
+          "rationale": "Uses one ordered red-blue outcome instead of both red."
+        }
+      ],
+      "gold_fraction": "1/7",
+      "correct_choice": "B"
+    },
+    {
+      "id": "mc-fresh-urn-conditional",
+      "source_task_id": "fresh-urn-conditional",
+      "cohort": "syntax_reuse",
+      "family": "reasoning",
+      "seed": 9102,
+      "probability": true,
+      "question": "An urn has 7 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+      "options": [
+        {
+          "label": "A",
+          "value": "42/121",
+          "rationale": "Depletes the red count but keeps the second denominator unchanged."
+        },
+        {
+          "label": "B",
+          "value": "49/121",
+          "rationale": "Uses independent draws with replacement."
+        },
+        {
+          "label": "C",
+          "value": "3/5",
+          "rationale": "Conditions on the first draw being red rather than at least one red."
+        },
+        {
+          "label": "D",
+          "value": "14/55",
+          "rationale": "Uses one ordered red-blue outcome instead of both red."
+        },
+        {
+          "label": "E",
+          "value": "7/9",
+          "rationale": "Conditions on matching colours instead of at least one red."
+        },
+        {
+          "label": "F",
+          "value": "21/55",
+          "rationale": "Ignores the condition and uses the unconditional both-red probability."
+        },
+        {
+          "label": "G",
+          "value": "7/11",
+          "rationale": "Uses the probability of one red draw."
+        },
+        {
+          "label": "H",
+          "value": "6/55",
+          "rationale": "Computes both blue rather than both red."
+        },
+        {
+          "label": "I",
+          "value": "21/68",
+          "rationale": "Divides the both-red probability by a sum of single-draw red probabilities."
+        },
+        {
+          "label": "J",
+          "value": "27/55",
+          "rationale": "Computes matching colours rather than both red."
+        },
+        {
+          "label": "K",
+          "value": "34/55",
+          "rationale": "Computes at least one blue rather than both red."
+        },
+        {
+          "label": "L",
+          "value": "28/55",
+          "rationale": "Computes exactly one red rather than two red."
+        },
+        {
+          "label": "M",
+          "value": "49/55",
+          "rationale": "Computes at least one red rather than both red."
+        },
+        {
+          "label": "N",
+          "value": "7/15",
+          "rationale": "Conditions correctly after incorrectly treating draws as with replacement."
+        },
+        {
+          "label": "O",
+          "value": "3/7",
+          "rationale": "correct"
+        }
+      ],
+      "gold_fraction": "3/7",
+      "correct_choice": "O"
+    },
+    {
+      "id": "mc-fresh-sensor-01",
+      "source_task_id": "fresh-sensor-01",
+      "cohort": "syntax_reuse",
+      "family": "evidence",
+      "seed": 9103,
+      "probability": true,
+      "question": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=1, reliability=0.75\nS2: observation=0, reliability=0.6\nS3: observation=1, reliability=0.9",
+      "options": [
+        {
+          "label": "A",
+          "value": "3/400",
+          "rationale": "Returns the unnormalized joint probability P(Y=0, observations)."
+        },
+        {
+          "label": "B",
+          "value": "81/83",
+          "rationale": "Treats every observed reading as 1, regardless of its given value."
+        },
+        {
+          "label": "C",
+          "value": "81/200",
+          "rationale": "Multiplies reported reliabilities without incorporating observation values or normalization."
+        },
+        {
+          "label": "D",
+          "value": "1/19",
+          "rationale": "Returns the posterior for Y=0 instead of Y=1."
+        },
+        {
+          "label": "E",
+          "value": "1/18",
+          "rationale": "Reverses likelihood odds and treats them as a probability."
+        },
+        {
+          "label": "F",
+          "value": "3/200",
+          "rationale": "Returns the Y=0 likelihood instead of the requested posterior."
+        },
+        {
+          "label": "G",
+          "value": "18/19",
+          "rationale": "correct"
+        },
+        {
+          "label": "H",
+          "value": "27/100",
+          "rationale": "Returns the Y=1 likelihood without posterior normalization."
+        },
+        {
+          "label": "I",
+          "value": "1/2",
+          "rationale": "Keeps the equal prior and ignores all observations."
+        },
+        {
+          "label": "J",
+          "value": "27/28",
+          "rationale": "Omits observation S2 from the likelihoods."
+        },
+        {
+          "label": "K",
+          "value": "2/3",
+          "rationale": "Omits observation S3 from the likelihoods."
+        },
+        {
+          "label": "L",
+          "value": "6/7",
+          "rationale": "Omits observation S1 from the likelihoods."
+        },
+        {
+          "label": "M",
+          "value": "27/200",
+          "rationale": "Returns the unnormalized joint probability P(Y=1, observations)."
+        },
+        {
+          "label": "N",
+          "value": "3/4",
+          "rationale": "Averages reliabilities while ignoring observation directions."
+        },
+        {
+          "label": "O",
+          "value": "41/60",
+          "rationale": "Averages separate one-sensor posteriors instead of multiplying independent likelihoods."
+        }
+      ],
+      "gold_fraction": "18/19",
+      "correct_choice": "G"
+    },
+    {
+      "id": "mc-fresh-sensor-02",
+      "source_task_id": "fresh-sensor-02",
+      "cohort": "syntax_reuse",
+      "family": "evidence",
+      "seed": 9104,
+      "probability": true,
+      "question": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.75\nS2: observation=1, reliability=0.6\nS3: observation=0, reliability=0.6",
+      "options": [
+        {
+          "label": "A",
+          "value": "1/3",
+          "rationale": "Returns likelihood odds rather than converting odds to a probability."
+        },
+        {
+          "label": "B",
+          "value": "27/31",
+          "rationale": "Treats every observed reading as 1, regardless of its given value."
+        },
+        {
+          "label": "C",
+          "value": "13/20",
+          "rationale": "Averages reliabilities while ignoring observation directions."
+        },
+        {
+          "label": "D",
+          "value": "9/100",
+          "rationale": "Returns the unnormalized joint probability P(Y=0, observations)."
+        },
+        {
+          "label": "E",
+          "value": "9/50",
+          "rationale": "Returns the Y=0 likelihood instead of the requested posterior."
+        },
+        {
+          "label": "F",
+          "value": "3/5",
+          "rationale": "Uses only observation S2, ignoring the remaining observations."
+        },
+        {
+          "label": "G",
+          "value": "3/4",
+          "rationale": "Returns the posterior for Y=0 instead of Y=1."
+        },
+        {
+          "label": "H",
+          "value": "27/100",
+          "rationale": "Multiplies reported reliabilities without incorporating observation values or normalization."
+        },
+        {
+          "label": "I",
+          "value": "2/5",
+          "rationale": "Uses only observation S3, ignoring the remaining observations."
+        },
+        {
+          "label": "J",
+          "value": "5/12",
+          "rationale": "Averages separate one-sensor posteriors instead of multiplying independent likelihoods."
+        },
+        {
+          "label": "K",
+          "value": "2/11",
+          "rationale": "Omits observation S2 from the likelihoods."
+        },
+        {
+          "label": "L",
+          "value": "1/4",
+          "rationale": "correct"
+        },
+        {
+          "label": "M",
+          "value": "1/2",
+          "rationale": "Keeps the equal prior and ignores all observations."
+        },
+        {
+          "label": "N",
+          "value": "3/100",
+          "rationale": "Returns the unnormalized joint probability P(Y=1, observations)."
+        },
+        {
+          "label": "O",
+          "value": "3/50",
+          "rationale": "Returns the Y=1 likelihood without posterior normalization."
+        }
+      ],
+      "gold_fraction": "1/4",
+      "correct_choice": "L"
+    },
+    {
+      "id": "mc-fresh-algebra-01",
+      "source_task_id": "fresh-algebra-01",
+      "cohort": "syntax_reuse",
+      "family": "algebra",
+      "seed": 9105,
+      "probability": false,
+      "question": "Solve 5*x + 7 = 42 for x.",
+      "options": [
+        {
+          "label": "A",
+          "value": "35/1",
+          "rationale": "Moves the constant correctly but omits division by the remaining x coefficient."
+        },
+        {
+          "label": "B",
+          "value": "7/5",
+          "rationale": "Divides the right constant first, then subtracts the entire left constant."
+        },
+        {
+          "label": "C",
+          "value": "42/5",
+          "rationale": "Ignores the constants and any x term on the right."
+        },
+        {
+          "label": "D",
+          "value": "13/2",
+          "rationale": "Nearby exact alternative offset by -1/2; no unique misconception attribution."
+        },
+        {
+          "label": "E",
+          "value": "203/5",
+          "rationale": "Drops the numerator parentheses and divides only the left constant."
+        },
+        {
+          "label": "F",
+          "value": "35/4",
+          "rationale": "Uses a remaining x coefficient one smaller than specified."
+        },
+        {
+          "label": "G",
+          "value": "8/1",
+          "rationale": "Nearby exact alternative offset by 1/1; no unique misconception attribution."
+        },
+        {
+          "label": "H",
+          "value": "15/2",
+          "rationale": "Nearby exact alternative offset by 1/2; no unique misconception attribution."
+        },
+        {
+          "label": "I",
+          "value": "35/6",
+          "rationale": "Uses a remaining x coefficient one larger than specified."
+        },
+        {
+          "label": "J",
+          "value": "175/1",
+          "rationale": "Multiplies by the remaining x coefficient instead of dividing."
+        },
+        {
+          "label": "K",
+          "value": "7/1",
+          "rationale": "correct"
+        },
+        {
+          "label": "L",
+          "value": "49/5",
+          "rationale": "Moves the left constant to the right with the wrong sign."
+        },
+        {
+          "label": "M",
+          "value": "1/7",
+          "rationale": "Inverts the final quotient."
+        },
+        {
+          "label": "N",
+          "value": "77/5",
+          "rationale": "Divides the right constant first, then adds the entire left constant."
+        },
+        {
+          "label": "O",
+          "value": "6/1",
+          "rationale": "Nearby exact alternative offset by -1/1; no unique misconception attribution."
+        }
+      ],
+      "gold_fraction": "7/1",
+      "correct_choice": "K"
+    },
+    {
+      "id": "mc-fresh-algebra-02",
+      "source_task_id": "fresh-algebra-02",
+      "cohort": "syntax_reuse",
+      "family": "algebra",
+      "seed": 9106,
+      "probability": false,
+      "question": "Solve 6*x - 4 = 2*x + 20 for x.",
+      "options": [
+        {
+          "label": "A",
+          "value": "22/3",
+          "rationale": "Divides the right constant first, then subtracts the entire left constant."
+        },
+        {
+          "label": "B",
+          "value": "3/1",
+          "rationale": "Adds the x coefficients instead of subtracting the right coefficient."
+        },
+        {
+          "label": "C",
+          "value": "1/6",
+          "rationale": "Inverts the final quotient."
+        },
+        {
+          "label": "D",
+          "value": "8/1",
+          "rationale": "Uses a remaining x coefficient one smaller than specified."
+        },
+        {
+          "label": "E",
+          "value": "24/1",
+          "rationale": "Moves the constant correctly but omits division by the remaining x coefficient."
+        },
+        {
+          "label": "F",
+          "value": "4/1",
+          "rationale": "Moves the left constant to the right with the wrong sign."
+        },
+        {
+          "label": "G",
+          "value": "5/1",
+          "rationale": "Omits the left constant from the numerator."
+        },
+        {
+          "label": "H",
+          "value": "62/3",
+          "rationale": "Drops the numerator parentheses and divides only the left constant."
+        },
+        {
+          "label": "I",
+          "value": "10/3",
+          "rationale": "Ignores the constants and any x term on the right."
+        },
+        {
+          "label": "J",
+          "value": "8/3",
+          "rationale": "Uses the wrong sign for the constant and ignores the right x term."
+        },
+        {
+          "label": "K",
+          "value": "96/1",
+          "rationale": "Multiplies by the remaining x coefficient instead of dividing."
+        },
+        {
+          "label": "L",
+          "value": "24/5",
+          "rationale": "Uses a remaining x coefficient one larger than specified."
+        },
+        {
+          "label": "M",
+          "value": "2/1",
+          "rationale": "Uses the wrong sign for both the constant and the right x coefficient."
+        },
+        {
+          "label": "N",
+          "value": "6/1",
+          "rationale": "correct"
+        },
+        {
+          "label": "O",
+          "value": "1/3",
+          "rationale": "Adds the x coefficients and inverts the final quotient."
+        }
+      ],
+      "gold_fraction": "6/1",
+      "correct_choice": "N"
+    },
+    {
+      "id": "mc-fresh-units-01",
+      "source_task_id": "fresh-units-01",
+      "cohort": "syntax_reuse",
+      "family": "units",
+      "seed": 9107,
+      "probability": false,
+      "question": "A vehicle travels at a constant speed of 90 kilometres per hour for 14 minutes. How many kilometres does it travel?",
+      "options": [
+        {
+          "label": "A",
+          "value": "26/15",
+          "rationale": "Adds speed and duration instead of multiplying before conversion."
+        },
+        {
+          "label": "B",
+          "value": "21/2",
+          "rationale": "Uses twice the required minutes-per-hour denominator."
+        },
+        {
+          "label": "C",
+          "value": "14/1",
+          "rationale": "Copies the minute count as distance."
+        },
+        {
+          "label": "D",
+          "value": "63/5",
+          "rationale": "Treats the number of minutes as hundredths of an hour."
+        },
+        {
+          "label": "E",
+          "value": "39/2",
+          "rationale": "Uses a duration one minute too small."
+        },
+        {
+          "label": "F",
+          "value": "21/1",
+          "rationale": "correct"
+        },
+        {
+          "label": "G",
+          "value": "630/37",
+          "rationale": "Adds elapsed minutes to the conversion denominator."
+        },
+        {
+          "label": "H",
+          "value": "42/1",
+          "rationale": "Uses half the required minutes-per-hour denominator."
+        },
+        {
+          "label": "I",
+          "value": "90/1",
+          "rationale": "Copies the speed as distance, as if one hour had elapsed."
+        },
+        {
+          "label": "J",
+          "value": "45/7",
+          "rationale": "Divides speed by the minute count rather than multiplying by elapsed hours."
+        },
+        {
+          "label": "K",
+          "value": "126/5",
+          "rationale": "Uses 50 minutes per hour."
+        },
+        {
+          "label": "L",
+          "value": "3/2",
+          "rationale": "Converts the speed to kilometres per minute but omits the duration."
+        },
+        {
+          "label": "M",
+          "value": "105/2",
+          "rationale": "Uses 24 as the time-conversion denominator."
+        },
+        {
+          "label": "N",
+          "value": "7/20",
+          "rationale": "Uses the seconds-per-hour denominator for a duration given in minutes."
+        },
+        {
+          "label": "O",
+          "value": "45/2",
+          "rationale": "Uses a duration one minute too large."
+        }
+      ],
+      "gold_fraction": "21/1",
+      "correct_choice": "F"
+    },
+    {
+      "id": "mc-fresh-units-02",
+      "source_task_id": "fresh-units-02",
+      "cohort": "syntax_reuse",
+      "family": "units",
+      "seed": 9108,
+      "probability": false,
+      "question": "A vehicle travels at a constant speed of 66 kilometres per hour for 45 minutes. How many kilometres does it travel?",
+      "options": [
+        {
+          "label": "A",
+          "value": "198/7",
+          "rationale": "Adds elapsed minutes to the conversion denominator."
+        },
+        {
+          "label": "B",
+          "value": "253/5",
+          "rationale": "Uses a duration one minute too large."
+        },
+        {
+          "label": "C",
+          "value": "45/1",
+          "rationale": "Copies the minute count as distance."
+        },
+        {
+          "label": "D",
+          "value": "99/1",
+          "rationale": "Uses half the required minutes-per-hour denominator."
+        },
+        {
+          "label": "E",
+          "value": "297/10",
+          "rationale": "Treats the number of minutes as hundredths of an hour."
+        },
+        {
+          "label": "F",
+          "value": "242/5",
+          "rationale": "Uses a duration one minute too small."
+        },
+        {
+          "label": "G",
+          "value": "66/1",
+          "rationale": "Copies the speed as distance, as if one hour had elapsed."
+        },
+        {
+          "label": "H",
+          "value": "495/4",
+          "rationale": "Uses 24 as the time-conversion denominator."
+        },
+        {
+          "label": "I",
+          "value": "99/2",
+          "rationale": "correct"
+        },
+        {
+          "label": "J",
+          "value": "297/5",
+          "rationale": "Uses 50 minutes per hour."
+        },
+        {
+          "label": "K",
+          "value": "33/40",
+          "rationale": "Uses the seconds-per-hour denominator for a duration given in minutes."
+        },
+        {
+          "label": "L",
+          "value": "11/10",
+          "rationale": "Converts the speed to kilometres per minute but omits the duration."
+        },
+        {
+          "label": "M",
+          "value": "22/15",
+          "rationale": "Divides speed by the minute count rather than multiplying by elapsed hours."
+        },
+        {
+          "label": "N",
+          "value": "99/4",
+          "rationale": "Uses twice the required minutes-per-hour denominator."
+        },
+        {
+          "label": "O",
+          "value": "37/20",
+          "rationale": "Adds speed and duration instead of multiplying before conversion."
+        }
+      ],
+      "gold_fraction": "99/2",
+      "correct_choice": "I"
+    },
+    {
+      "id": "mc-regression-calculator-pilot-42-0000",
+      "source_task_id": "regression-calculator-pilot-42-0000",
+      "cohort": "pilot_reuse",
+      "family": "reasoning",
+      "seed": 8201,
+      "probability": true,
+      "question": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+      "options": [
+        {
+          "label": "A",
+          "value": "6/35",
+          "rationale": "Uses one ordered red-blue outcome instead of both red."
+        },
+        {
+          "label": "B",
+          "value": "1/35",
+          "rationale": "Computes both blue rather than both red."
+        },
+        {
+          "label": "C",
+          "value": "4/5",
+          "rationale": "Uses the probability of one red draw."
+        },
+        {
+          "label": "D",
+          "value": "22/35",
+          "rationale": "correct"
+        },
+        {
+          "label": "E",
+          "value": "11/15",
+          "rationale": "Uses the remaining-red fraction with the original population denominator."
+        },
+        {
+          "label": "F",
+          "value": "16/25",
+          "rationale": "Uses independent draws with replacement."
+        },
+        {
+          "label": "G",
+          "value": "11/20",
+          "rationale": "Increases the second population denominator instead of decreasing it."
+        },
+        {
+          "label": "H",
+          "value": "33/49",
+          "rationale": "Decreases both population denominators."
+        },
+        {
+          "label": "I",
+          "value": "13/35",
+          "rationale": "Computes at least one blue rather than both red."
+        },
+        {
+          "label": "J",
+          "value": "11/17",
+          "rationale": "Unnecessarily conditions on at least one red."
+        },
+        {
+          "label": "K",
+          "value": "44/75",
+          "rationale": "Depletes the red count but keeps the second denominator unchanged."
+        },
+        {
+          "label": "L",
+          "value": "12/35",
+          "rationale": "Computes exactly one red rather than two red."
+        },
+        {
+          "label": "M",
+          "value": "23/35",
+          "rationale": "Computes matching colours rather than both red."
+        },
+        {
+          "label": "N",
+          "value": "24/35",
+          "rationale": "Depletes the population but not the red count."
+        },
+        {
+          "label": "O",
+          "value": "34/35",
+          "rationale": "Computes at least one red rather than both red."
+        }
+      ],
+      "gold_fraction": "22/35",
+      "correct_choice": "D"
+    },
+    {
+      "id": "mc-regression-calculator-pilot-42-0001",
+      "source_task_id": "regression-calculator-pilot-42-0001",
+      "cohort": "pilot_reuse",
+      "family": "evidence",
+      "seed": 8202,
+      "probability": true,
+      "question": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.9\nS2: observation=0, reliability=0.6\nS3: observation=1, reliability=0.6\nS4: observation=0, reliability=0.9",
+      "options": [
+        {
+          "label": "A",
+          "value": "2/245",
+          "rationale": "Omits observation S3 from the likelihoods."
+        },
+        {
+          "label": "B",
+          "value": "729/2500",
+          "rationale": "Multiplies reported reliabilities without incorporating observation values or normalization."
+        },
+        {
+          "label": "C",
+          "value": "729/733",
+          "rationale": "Treats every observed reading as 1, regardless of its given value."
+        },
+        {
+          "label": "D",
+          "value": "243/1250",
+          "rationale": "Returns the Y=0 likelihood instead of the requested posterior."
+        },
+        {
+          "label": "E",
+          "value": "1/82",
+          "rationale": "correct"
+        },
+        {
+          "label": "F",
+          "value": "81/82",
+          "rationale": "Returns the posterior for Y=0 instead of Y=1."
+        },
+        {
+          "label": "G",
+          "value": "3/4",
+          "rationale": "Averages reliabilities while ignoring observation directions."
+        },
+        {
+          "label": "H",
+          "value": "3/2500",
+          "rationale": "Returns the unnormalized joint probability P(Y=1, observations)."
+        },
+        {
+          "label": "I",
+          "value": "1/2",
+          "rationale": "Keeps the equal prior and ignores all observations."
+        },
+        {
+          "label": "J",
+          "value": "3/1250",
+          "rationale": "Returns the Y=1 likelihood without posterior normalization."
+        },
+        {
+          "label": "K",
+          "value": "1/55",
+          "rationale": "Omits observation S2 from the likelihoods."
+        },
+        {
+          "label": "L",
+          "value": "243/2500",
+          "rationale": "Returns the unnormalized joint probability P(Y=0, observations)."
+        },
+        {
+          "label": "M",
+          "value": "3/10",
+          "rationale": "Averages separate one-sensor posteriors instead of multiplying independent likelihoods."
+        },
+        {
+          "label": "N",
+          "value": "1/10",
+          "rationale": "Omits observation S1 from the likelihoods."
+        },
+        {
+          "label": "O",
+          "value": "1/81",
+          "rationale": "Returns likelihood odds rather than converting odds to a probability."
+        }
+      ],
+      "gold_fraction": "1/82",
+      "correct_choice": "E"
+    },
+    {
+      "id": "mc-regression-calculator-pilot-42-0002",
+      "source_task_id": "regression-calculator-pilot-42-0002",
+      "cohort": "pilot_reuse",
+      "family": "reasoning",
+      "seed": 8203,
+      "probability": true,
+      "question": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+      "options": [
+        {
+          "label": "A",
+          "value": "29/45",
+          "rationale": "Computes matching colours rather than both red."
+        },
+        {
+          "label": "B",
+          "value": "28/71",
+          "rationale": "Divides the both-red probability by a sum of single-draw red probabilities."
+        },
+        {
+          "label": "C",
+          "value": "4/5",
+          "rationale": "Uses the probability of one red draw."
+        },
+        {
+          "label": "D",
+          "value": "28/45",
+          "rationale": "Ignores the condition and uses the unconditional both-red probability."
+        },
+        {
+          "label": "E",
+          "value": "16/45",
+          "rationale": "Computes exactly one red rather than two red."
+        },
+        {
+          "label": "F",
+          "value": "2/3",
+          "rationale": "Conditions correctly after incorrectly treating draws as with replacement."
+        },
+        {
+          "label": "G",
+          "value": "1/45",
+          "rationale": "Computes both blue rather than both red."
+        },
+        {
+          "label": "H",
+          "value": "28/29",
+          "rationale": "Conditions on matching colours instead of at least one red."
+        },
+        {
+          "label": "I",
+          "value": "14/25",
+          "rationale": "Depletes the red count but keeps the second denominator unchanged."
+        },
+        {
+          "label": "J",
+          "value": "7/11",
+          "rationale": "correct"
+        },
+        {
+          "label": "K",
+          "value": "8/45",
+          "rationale": "Uses one ordered red-blue outcome instead of both red."
+        },
+        {
+          "label": "L",
+          "value": "17/45",
+          "rationale": "Computes at least one blue rather than both red."
+        },
+        {
+          "label": "M",
+          "value": "44/45",
+          "rationale": "Computes at least one red rather than both red."
+        },
+        {
+          "label": "N",
+          "value": "16/25",
+          "rationale": "Uses independent draws with replacement."
+        },
+        {
+          "label": "O",
+          "value": "7/9",
+          "rationale": "Conditions on the first draw being red rather than at least one red."
+        }
+      ],
+      "gold_fraction": "7/11",
+      "correct_choice": "J"
+    },
+    {
+      "id": "mc-regression-calculator-pilot-42-0003",
+      "source_task_id": "regression-calculator-pilot-42-0003",
+      "cohort": "pilot_reuse",
+      "family": "evidence",
+      "seed": 8204,
+      "probability": true,
+      "question": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.6\nS2: observation=0, reliability=0.9\nS3: observation=0, reliability=0.9\nS4: observation=0, reliability=0.9",
+      "options": [
+        {
+          "label": "A",
+          "value": "7/40",
+          "rationale": "Averages separate one-sensor posteriors instead of multiplying independent likelihoods."
+        },
+        {
+          "label": "B",
+          "value": "1/2",
+          "rationale": "Keeps the equal prior and ignores all observations."
+        },
+        {
+          "label": "C",
+          "value": "2/2189",
+          "rationale": "correct"
+        },
+        {
+          "label": "D",
+          "value": "1/10",
+          "rationale": "Uses only observation S2, ignoring the remaining observations."
+        },
+        {
+          "label": "E",
+          "value": "1/487",
+          "rationale": "Reverses the stated reading of observation S1."
+        },
+        {
+          "label": "F",
+          "value": "2187/5000",
+          "rationale": "Returns the Y=0 likelihood instead of the requested posterior."
+        },
+        {
+          "label": "G",
+          "value": "33/40",
+          "rationale": "Averages reliabilities while ignoring observation directions."
+        },
+        {
+          "label": "H",
+          "value": "2187/2189",
+          "rationale": "Returns the posterior for Y=0 instead of Y=1."
+        },
+        {
+          "label": "I",
+          "value": "2/5",
+          "rationale": "Uses only observation S1, ignoring the remaining observations."
+        },
+        {
+          "label": "J",
+          "value": "1/2500",
+          "rationale": "Returns the Y=1 likelihood without posterior normalization."
+        },
+        {
+          "label": "K",
+          "value": "2187/10000",
+          "rationale": "Returns the unnormalized joint probability P(Y=0, observations)."
+        },
+        {
+          "label": "L",
+          "value": "1/5000",
+          "rationale": "Returns the unnormalized joint probability P(Y=1, observations)."
+        },
+        {
+          "label": "M",
+          "value": "2/2187",
+          "rationale": "Returns likelihood odds rather than converting odds to a probability."
+        },
+        {
+          "label": "N",
+          "value": "2/245",
+          "rationale": "Omits observation S2 from the likelihoods."
+        },
+        {
+          "label": "O",
+          "value": "1/730",
+          "rationale": "Omits observation S1 from the likelihoods."
+        }
+      ],
+      "gold_fraction": "2/2189",
+      "correct_choice": "C"
+    },
+    {
+      "id": "mc-regression-calculator-algebra-01",
+      "source_task_id": "regression-calculator-algebra-01",
+      "cohort": "pilot_reuse",
+      "family": "algebra",
+      "seed": 8205,
+      "probability": false,
+      "question": "Solve 4*x - 11 = 21 for x.",
+      "options": [
+        {
+          "label": "A",
+          "value": "8/1",
+          "rationale": "correct"
+        },
+        {
+          "label": "B",
+          "value": "5/2",
+          "rationale": "Moves the left constant to the right with the wrong sign."
+        },
+        {
+          "label": "C",
+          "value": "10/1",
+          "rationale": "Nearby exact alternative offset by 2/1; no unique misconception attribution."
+        },
+        {
+          "label": "D",
+          "value": "1/8",
+          "rationale": "Inverts the final quotient."
+        },
+        {
+          "label": "E",
+          "value": "7/1",
+          "rationale": "Nearby exact alternative offset by -1/1; no unique misconception attribution."
+        },
+        {
+          "label": "F",
+          "value": "32/3",
+          "rationale": "Uses a remaining x coefficient one smaller than specified."
+        },
+        {
+          "label": "G",
+          "value": "65/4",
+          "rationale": "Divides the right constant first, then subtracts the entire left constant."
+        },
+        {
+          "label": "H",
+          "value": "9/1",
+          "rationale": "Nearby exact alternative offset by 1/1; no unique misconception attribution."
+        },
+        {
+          "label": "I",
+          "value": "95/4",
+          "rationale": "Drops the numerator parentheses and divides only the left constant."
+        },
+        {
+          "label": "J",
+          "value": "21/4",
+          "rationale": "Ignores the constants and any x term on the right."
+        },
+        {
+          "label": "K",
+          "value": "15/2",
+          "rationale": "Nearby exact alternative offset by -1/2; no unique misconception attribution."
+        },
+        {
+          "label": "L",
+          "value": "17/2",
+          "rationale": "Nearby exact alternative offset by 1/2; no unique misconception attribution."
+        },
+        {
+          "label": "M",
+          "value": "128/1",
+          "rationale": "Multiplies by the remaining x coefficient instead of dividing."
+        },
+        {
+          "label": "N",
+          "value": "32/5",
+          "rationale": "Uses a remaining x coefficient one larger than specified."
+        },
+        {
+          "label": "O",
+          "value": "32/1",
+          "rationale": "Moves the constant correctly but omits division by the remaining x coefficient."
+        }
+      ],
+      "gold_fraction": "8/1",
+      "correct_choice": "A"
+    },
+    {
+      "id": "mc-regression-calculator-algebra-02",
+      "source_task_id": "regression-calculator-algebra-02",
+      "cohort": "pilot_reuse",
+      "family": "algebra",
+      "seed": 8206,
+      "probability": false,
+      "question": "Solve 3*x + 5 = 2*x + 14 for x.",
+      "options": [
+        {
+          "label": "A",
+          "value": "9/1",
+          "rationale": "correct"
+        },
+        {
+          "label": "B",
+          "value": "14/1",
+          "rationale": "Omits the left constant from the numerator."
+        },
+        {
+          "label": "C",
+          "value": "10/1",
+          "rationale": "Nearby exact alternative offset by 1/1; no unique misconception attribution."
+        },
+        {
+          "label": "D",
+          "value": "19/3",
+          "rationale": "Uses the wrong sign for the constant and ignores the right x term."
+        },
+        {
+          "label": "E",
+          "value": "1/9",
+          "rationale": "Inverts the final quotient."
+        },
+        {
+          "label": "F",
+          "value": "3/2",
+          "rationale": "Adds the x coefficients and an extra unit coefficient."
+        },
+        {
+          "label": "G",
+          "value": "14/3",
+          "rationale": "Ignores the constants and any x term on the right."
+        },
+        {
+          "label": "H",
+          "value": "5/9",
+          "rationale": "Adds the x coefficients and inverts the final quotient."
+        },
+        {
+          "label": "I",
+          "value": "19/1",
+          "rationale": "Moves the left constant to the right with the wrong sign."
+        },
+        {
+          "label": "J",
+          "value": "9/2",
+          "rationale": "Uses a remaining x coefficient one larger than specified."
+        },
+        {
+          "label": "K",
+          "value": "19/5",
+          "rationale": "Uses the wrong sign for both the constant and the right x coefficient."
+        },
+        {
+          "label": "L",
+          "value": "3/1",
+          "rationale": "Ignores the x term on the right-hand side."
+        },
+        {
+          "label": "M",
+          "value": "9/5",
+          "rationale": "Adds the x coefficients instead of subtracting the right coefficient."
+        },
+        {
+          "label": "N",
+          "value": "37/3",
+          "rationale": "Drops the numerator parentheses and divides only the left constant."
+        },
+        {
+          "label": "O",
+          "value": "29/3",
+          "rationale": "Divides the right constant first, then adds the entire left constant."
+        }
+      ],
+      "gold_fraction": "9/1",
+      "correct_choice": "A"
+    },
+    {
+      "id": "mc-regression-calculator-units-01",
+      "source_task_id": "regression-calculator-units-01",
+      "cohort": "pilot_reuse",
+      "family": "units",
+      "seed": 8207,
+      "probability": false,
+      "question": "A vehicle travels at a constant speed of 84 kilometres per hour for 35 minutes. How many kilometres does it travel?",
+      "options": [
+        {
+          "label": "A",
+          "value": "238/5",
+          "rationale": "Uses a duration one minute too small."
+        },
+        {
+          "label": "B",
+          "value": "119/60",
+          "rationale": "Adds speed and duration instead of multiplying before conversion."
+        },
+        {
+          "label": "C",
+          "value": "294/5",
+          "rationale": "Uses 50 minutes per hour."
+        },
+        {
+          "label": "D",
+          "value": "35/1",
+          "rationale": "Copies the minute count as distance."
+        },
+        {
+          "label": "E",
+          "value": "12/5",
+          "rationale": "Divides speed by the minute count rather than multiplying by elapsed hours."
+        },
+        {
+          "label": "F",
+          "value": "252/5",
+          "rationale": "Uses a duration one minute too large."
+        },
+        {
+          "label": "G",
+          "value": "49/60",
+          "rationale": "Uses the seconds-per-hour denominator for a duration given in minutes."
+        },
+        {
+          "label": "H",
+          "value": "49/1",
+          "rationale": "correct"
+        },
+        {
+          "label": "I",
+          "value": "84/1",
+          "rationale": "Copies the speed as distance, as if one hour had elapsed."
+        },
+        {
+          "label": "J",
+          "value": "588/19",
+          "rationale": "Adds elapsed minutes to the conversion denominator."
+        },
+        {
+          "label": "K",
+          "value": "49/2",
+          "rationale": "Uses twice the required minutes-per-hour denominator."
+        },
+        {
+          "label": "L",
+          "value": "98/1",
+          "rationale": "Uses half the required minutes-per-hour denominator."
+        },
+        {
+          "label": "M",
+          "value": "147/5",
+          "rationale": "Treats the number of minutes as hundredths of an hour."
+        },
+        {
+          "label": "N",
+          "value": "245/2",
+          "rationale": "Uses 24 as the time-conversion denominator."
+        },
+        {
+          "label": "O",
+          "value": "7/5",
+          "rationale": "Converts the speed to kilometres per minute but omits the duration."
+        }
+      ],
+      "gold_fraction": "49/1",
+      "correct_choice": "H"
+    },
+    {
+      "id": "mc-regression-calculator-units-02",
+      "source_task_id": "regression-calculator-units-02",
+      "cohort": "pilot_reuse",
+      "family": "units",
+      "seed": 8208,
+      "probability": false,
+      "question": "A vehicle travels at a constant speed of 96 kilometres per hour for 18 minutes. How many kilometres does it travel?",
+      "options": [
+        {
+          "label": "A",
+          "value": "288/5",
+          "rationale": "Uses half the required minutes-per-hour denominator."
+        },
+        {
+          "label": "B",
+          "value": "72/5",
+          "rationale": "Uses twice the required minutes-per-hour denominator."
+        },
+        {
+          "label": "C",
+          "value": "432/25",
+          "rationale": "Treats the number of minutes as hundredths of an hour."
+        },
+        {
+          "label": "D",
+          "value": "18/1",
+          "rationale": "Copies the minute count as distance."
+        },
+        {
+          "label": "E",
+          "value": "16/3",
+          "rationale": "Divides speed by the minute count rather than multiplying by elapsed hours."
+        },
+        {
+          "label": "F",
+          "value": "8/5",
+          "rationale": "Converts the speed to kilometres per minute but omits the duration."
+        },
+        {
+          "label": "G",
+          "value": "12/25",
+          "rationale": "Uses the seconds-per-hour denominator for a duration given in minutes."
+        },
+        {
+          "label": "H",
+          "value": "72/1",
+          "rationale": "Uses 24 as the time-conversion denominator."
+        },
+        {
+          "label": "I",
+          "value": "96/1",
+          "rationale": "Copies the speed as distance, as if one hour had elapsed."
+        },
+        {
+          "label": "J",
+          "value": "864/25",
+          "rationale": "Uses 50 minutes per hour."
+        },
+        {
+          "label": "K",
+          "value": "136/5",
+          "rationale": "Uses a duration one minute too small."
+        },
+        {
+          "label": "L",
+          "value": "19/10",
+          "rationale": "Adds speed and duration instead of multiplying before conversion."
+        },
+        {
+          "label": "M",
+          "value": "144/5",
+          "rationale": "correct"
+        },
+        {
+          "label": "N",
+          "value": "152/5",
+          "rationale": "Uses a duration one minute too large."
+        },
+        {
+          "label": "O",
+          "value": "288/13",
+          "rationale": "Adds elapsed minutes to the conversion denominator."
+        }
+      ],
+      "gold_fraction": "144/5",
+      "correct_choice": "M"
+    }
+  ],
+  "source": {
+    "path": "config/calculator_syntax_experiment.json",
+    "sha256": "f35c71d3c5db19223ac292826dd9413c9d2b45d7bd6cb059e707fd7bf478612c",
+    "item_count": 16,
+    "reuse_status": "All 16 items and their earlier model outputs have already been inspected. Neither cohort is held out or fresh for this experiment.",
+    "cohorts": {
+      "syntax_reuse": "The eight items called fresh in calculator-syntax-v1; they are previously inspected reused items here.",
+      "pilot_reuse": "The eight regression items reused from the original calculator pilot; also previously inspected."
+    },
+    "question_transform": "Preserve mathematical wording and all givens exactly. Remove only the terminal legacy instruction to return an unevaluated expression, where present.",
+    "shuffle_seed": 20261107,
+    "shuffle_algorithm": "Python random.Random(20261107). First shuffle the list A..O plus an extra A for target correct positions; then, in source task order, shuffle the 14 selected distractors and insert the correct value at the assigned position. Label the resulting unsorted list A..O.",
+    "correct_position_rule": "Across 16 questions, A is correct twice and every other label is correct once. Positions are randomized before option construction.",
+    "distractor_generation": {
+      "selection_rule": "For each item, enumerate the family-specific error-derived candidates in the frozen order below, discard nonpositive values, probability values outside (0,1), the gold value, and rational duplicates, then retain the first 14. Each option uses the same reduced n/d format, including integers n/1. Option order is shuffled independently of numeric magnitude.",
+      "reasoning": "For conditioned urns prioritize ignoring conditioning, replacement conditioning, conditioning on the first draw, dividing by the sum of single-draw marginals, and conditioning on matching colours. For unconditioned urns first include unwanted at-least-one-red conditioning. Then enumerate replacement draws, single red, ordered mixed colour, exactly one red, both blue, at least one red, matching colours, at least one blue, depleted numerator only, depleted denominator only, inflated denominator, both denominators depleted, remaining red over original population, inflated single-draw counts, and a single blue draw. Duplicates and any correct candidates are removed.",
+      "evidence": "Enumerate the opposite posterior, unchanged prior, unnormalized joint probabilities and likelihoods, unnormalized odds in either direction, averages of single-sensor evidence or reliabilities, omission of each observation, treating all readings as 1, product of reported reliabilities, use of a single observation, and reversal of one observation. Rational duplicates, invalid probabilities, and gold are removed.",
+      "algebra": "Enumerate sign errors when moving constants or x terms, missing numerator parentheses, omission of right-hand x terms or constants, missing division, multiplication instead of division, off-by-one coefficients, inverted quotients, misplaced division, and extra coefficients. If fewer than 14 distinct positive wrong values remain, append exact offsets +1, -1, +1/2, -1/2, +2, -2 from gold as explicitly tagged nearby alternatives.",
+      "units": "Enumerate wrong time denominators 100, 50, 30, 120, 24, and 3600; speed divided by minutes; copied speed or minute count; omitted duration; duration off by one minute; speed plus duration before conversion; denominator 60 plus or minus elapsed minutes; and minutes treated as hours. Retain the first 14 distinct positive wrong values.",
+      "rationale_visibility": "Rationales, correct_choice, gold_fraction, source metadata, family, cohort, and earlier results are author-facing only and must not be included in model messages.",
+      "limitations": "Distractors are engineered from plausible error rules and some nearby alternatives, not validated to have equal difficulty. A selected distractor does not prove that its named misconception caused the response. Some magnitude or fraction-complexity cues may remain. Reused, already inspected questions and author-designed alternatives limit generalization."
+    }
+  },
+  "analysis_plan": {
+    "status": "Freeze questions, options, prompt, labels, and source hashes before inference. Save new results separately under mc-exact-v1; do not alter old protocols or scores.",
+    "design": "One agent and one model call per question. No calculators, external tools, repairs, retries, peers, feedback, or adaptive option changes. Use llama3.2:3b with a 1024-token output cap and the frozen question seeds.",
+    "primary_metric": "Headline delivered correctness requires a valid JSON object, both required string fields, and an exact uppercase A-O choice equal to correct_choice. Also report choice_correct independently of explanation delivery. No closest-number scoring and no 0.001 posterior tolerance; the exact-choice rule also applies to sensor questions. Invalid or missing choices count as incorrect. Explanations are retained for review and not automatically judged.",
+    "format_metrics": "Record JSON validity, required string fields, choice membership in A-O, exact two-field compliance, and explanation word count separately. Do not make the explanation bound or extra-key flag a numerical correctness gate.",
+    "reporting": "Report exact choice accuracy and response-format validity overall, by family, and by reuse cohort, including denominators and per-question selections. Record token budgets and stopping reasons. Chance selection accuracy is 1/15, approximately 6.67%.",
+    "comparison": "Descriptive comparisons with the calculator runs concern a different assisted answer-selection task. Historical numerical scores used a tolerance and remain unchanged. Any additional exact-value comparison must be explicitly labeled and kept separate from original historical scores.",
+    "interpretation": "Multiple choice removes expression generation and supplies candidate answers, but may support recognition, elimination, or guessing and still require arithmetic. It does not cleanly establish separation of reasoning from calculation or an improvement in underlying reasoning.",
+    "generalization": "All questions have been inspected previously. This run is a small diagnostic pilot with no held-out accuracy claim, no estimate that prompt changes generalize, and no option-order robustness claim from one frozen ordering."
+  }
+}

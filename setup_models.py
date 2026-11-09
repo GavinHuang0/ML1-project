@@ -8,8 +8,9 @@ import shutil
 import subprocess
 import sys
 
-from local_llm import BASE_URL, OllamaClient, OllamaError, parse_prediction, validate_model_tag
-from experiment_config import MAX_TOKENS, MODEL
+from calculator_protocol import SYSTEM, process_response
+from local_llm import BASE_URL, OllamaClient, OllamaError, validate_model_tag
+from experiment_config import MAX_TOKENS, MODEL, TEMPERATURE
 
 
 DEFAULT_CONFIG = Path(__file__).resolve().parent / "config" / "models.json"
@@ -28,12 +29,15 @@ def validate_models(models):
 
 
 def smoke(client, model):
-    response = client.chat(model, [{
-        "role": "user",
-        "content": 'What is 2 + 2? Return JSON with string fields "final_answer" and "explanation".',
-    }], seed=0, temperature=0, max_tokens=MAX_TOKENS)
-    prediction = parse_prediction(response)
-    print(f"{model}: {json.dumps(prediction, ensure_ascii=False)}")
+    response = client.chat(model, [
+        {"role": "system", "content": SYSTEM},
+        {"role": "user", "content": "What is 2 + 2?"},
+    ], seed=0, temperature=TEMPERATURE, max_tokens=MAX_TOKENS)
+    score = process_response(response, {"family": "algebra", "probability": False, "gold_fraction": "4"})
+    print(f"{model}: {json.dumps({'raw': response, 'score': score}, ensure_ascii=False)}")
+    if not score["correct"]:
+        raise OllamaError("Calculator-baseline smoke check did not deliver the correct computed value. "
+                          "Inspect the original response and score above; no repair or retry was applied.")
 
 
 def main(argv=None):

@@ -1,0 +1,452 @@
+{
+  "archive_date": "2026-11-09",
+  "purpose": "Complete pre-baseline snapshot: all prior pilot approaches and artifacts, including calculator source and results, preserved before active cleanup.",
+  "files": [
+    {
+      "original_path": ".gitattributes",
+      "archive_path": "REPOSITORY_GITATTRIBUTES.txt",
+      "bytes": 289,
+      "sha256": "1678ce1d90fb7b6e0fb3d842b27de73f80482bf417ab0186a0399046337beef9"
+    },
+    {
+      "original_path": ".gitignore",
+      "archive_path": "REPOSITORY_GITIGNORE.txt",
+      "bytes": 2783,
+      "sha256": "c539bc60840bbd2b694160385489273b7b5f4fb40b778d57e5ed5ac80bf534d1"
+    },
+    {
+      "original_path": "README.md",
+      "archive_path": "REPOSITORY_README.md",
+      "bytes": 10397,
+      "sha256": "1c6cc8d73a3ddf7f0673efaa6cfd627314dd22ebf45c39e7d786cd5f6cf2634a"
+    },
+    {
+      "original_path": "analyze_results.py",
+      "archive_path": "analyze_results.py",
+      "bytes": 10819,
+      "sha256": "2c241b2794ab973f7e004c7e1f21cea41a2ca9b654084b53e2cd93b45d24ac32"
+    },
+    {
+      "original_path": "benchmark.py",
+      "archive_path": "benchmark.py",
+      "bytes": 4786,
+      "sha256": "5c0a9e671e10e3ca12cba2ebe274be78b1146458ab2ed50bcfbf3c5112394f66"
+    },
+    {
+      "original_path": "calculator.py",
+      "archive_path": "calculator.py",
+      "bytes": 3498,
+      "sha256": "15005e5e1863d9d7675b628b4e3db51161b09c8b0486e637343951f817362846"
+    },
+    {
+      "original_path": "calculator_protocol.py",
+      "archive_path": "calculator_protocol.py",
+      "bytes": 6695,
+      "sha256": "fc5c8d42e0cec258f9f3ce416277de6bcee2ec5208a173df998860e3bd2fd611"
+    },
+    {
+      "original_path": "config/calculator_pilot.json",
+      "archive_path": "config/calculator_pilot.json",
+      "bytes": 7119,
+      "sha256": "1c009e2c9dd183aa095f549c99fdb4b8db639bc3305d19e2392abe9608f1187d"
+    },
+    {
+      "original_path": "config/calculator_syntax_experiment.json",
+      "archive_path": "config/calculator_syntax_experiment.json",
+      "bytes": 18855,
+      "sha256": "f35c71d3c5db19223ac292826dd9413c9d2b45d7bd6cb059e707fd7bf478612c"
+    },
+    {
+      "original_path": "config/models.json",
+      "archive_path": "config/models.json",
+      "bytes": 32,
+      "sha256": "54240aea5849d9119f3954ca4be6b47674200b150de40594344adbaafaa7f5ef"
+    },
+    {
+      "original_path": "config/multiple_choice_experiment.json",
+      "archive_path": "config/multiple_choice_experiment.json",
+      "bytes": 51649,
+      "sha256": "c4fe818a796604087315d1df9bbfaf1f751e1695bb69b36d3713843390bf566f"
+    },
+    {
+      "original_path": "config/pilots.json",
+      "archive_path": "config/pilots.json",
+      "bytes": 30563,
+      "sha256": "5aa6764212bc41f31ba4c558c66713dfad005861e7b290760c29ad1bfd2a1c14"
+    },
+    {
+      "original_path": "config/template_experiment.json",
+      "archive_path": "config/template_experiment.json",
+      "bytes": 17362,
+      "sha256": "fa398ee8a67f74fc5a66b5a2aeec50c9e7c7430b681b939aef684ea98c272815"
+    },
+    {
+      "original_path": "docs/CALCULATOR_PROTOCOL.md",
+      "archive_path": "docs/CALCULATOR_PROTOCOL.md",
+      "bytes": 7570,
+      "sha256": "669a25d718120b4c0b13f8c224994927bc7c9ab222add67e05ccdcaaf04fc6d0"
+    },
+    {
+      "original_path": "docs/CALCULATOR_RESULTS.md",
+      "archive_path": "docs/CALCULATOR_RESULTS.md",
+      "bytes": 7373,
+      "sha256": "4a44cda9e841b76faa78416449c33e2fdb8719e47d4a0a36af60311ee57b11ff"
+    },
+    {
+      "original_path": "docs/CALCULATOR_SYNTAX_EXPERIMENT.md",
+      "archive_path": "docs/CALCULATOR_SYNTAX_EXPERIMENT.md",
+      "bytes": 12349,
+      "sha256": "20f9f45df3b076c960a7510269ef84df3330b2cf8dd0a90232394e20fffb2503"
+    },
+    {
+      "original_path": "docs/MULTIPLE_CHOICE_EXPERIMENT.md",
+      "archive_path": "docs/MULTIPLE_CHOICE_EXPERIMENT.md",
+      "bytes": 16186,
+      "sha256": "1fb251d595aae390275846a3b2a58747e32a6db44dcb4c821a973e431816a2cf"
+    },
+    {
+      "original_path": "docs/MULTIPLE_CHOICE_QUESTION_BANK.md",
+      "archive_path": "docs/MULTIPLE_CHOICE_QUESTION_BANK.md",
+      "bytes": 9411,
+      "sha256": "f4d19166dca46ba80da671b3e580cefa78e619aacb683a9f3c4af0a892e2b1c8"
+    },
+    {
+      "original_path": "docs/NEXT_STEPS.md",
+      "archive_path": "docs/NEXT_STEPS.md",
+      "bytes": 5833,
+      "sha256": "b6c5fda943f601cb02f03db58ab4d64f9c510e99246304229ba8cca1749a6b37"
+    },
+    {
+      "original_path": "docs/PROTOCOL.md",
+      "archive_path": "docs/PROTOCOL.md",
+      "bytes": 10380,
+      "sha256": "5476fe85e7d7b62b49601265d41b03b49525013af061729c52042c8f066f4f78"
+    },
+    {
+      "original_path": "docs/RESULTS.md",
+      "archive_path": "docs/RESULTS.md",
+      "bytes": 10076,
+      "sha256": "e610448cfa40e098a63c57fe676eee739107ba1674ebff3d6f89a63a0d1b17e7"
+    },
+    {
+      "original_path": "docs/TEMPLATE_EXPERIMENT.md",
+      "archive_path": "docs/TEMPLATE_EXPERIMENT.md",
+      "bytes": 12659,
+      "sha256": "38a4c56a1f6861665033deb28b05afea35c985a8da4ca7464561178ce8d350d5"
+    },
+    {
+      "original_path": "experiment_config.py",
+      "archive_path": "experiment_config.py",
+      "bytes": 1835,
+      "sha256": "f440a4d9adc639aa0fa3baeaab0d3d55fcbca063d7cb1b4edbd3800e2892c751"
+    },
+    {
+      "original_path": "local_llm.py",
+      "archive_path": "local_llm.py",
+      "bytes": 6404,
+      "sha256": "ef356d9eb3875dc5393aaabc9c7e2110ed06fe6d3093b9807356ff8464ec6188"
+    },
+    {
+      "original_path": "multiple_choice_protocol.py",
+      "archive_path": "multiple_choice_protocol.py",
+      "bytes": 8340,
+      "sha256": "08a63ba2403a55c8ccf7646498f74aeede604478ba904d4e2e978b9acc8e13a7"
+    },
+    {
+      "original_path": "pilot_scoring.py",
+      "archive_path": "pilot_scoring.py",
+      "bytes": 3832,
+      "sha256": "a125db50fe3785d3262499ed49277df7640e8b2c464a45e4ab863aee91224c0a"
+    },
+    {
+      "original_path": "results/README.md",
+      "archive_path": "results/README.md",
+      "bytes": 4796,
+      "sha256": "ce34c547d8e9451de0750663b58ecf452ba6d1fd230f5f68c8d466b55b8bf4e6"
+    },
+    {
+      "original_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/answers.jsonl",
+      "archive_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/answers.jsonl",
+      "bytes": 133998,
+      "sha256": "3cdc3d141b50922732ffe5292c72c8dbfe64f1bfbaf32f059c373d355c9cc29f"
+    },
+    {
+      "original_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/run-manifest.json",
+      "archive_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/run-manifest.json",
+      "bytes": 76631,
+      "sha256": "f69d624fa677faf74656553b9a4baceee57cf232cfe9116b5b4b441277d0d665"
+    },
+    {
+      "original_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/summary.json",
+      "archive_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/summary.json",
+      "bytes": 35362,
+      "sha256": "acd377bcbf47b70b7316c61d81a2dd4245eb97dc127bbb7f6613f82bdbd1fbc5"
+    },
+    {
+      "original_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/verification.json",
+      "archive_path": "results/multiple-choice/20261107T195716817040Z-mc-exact-v1/verification.json",
+      "bytes": 14040,
+      "sha256": "807cca990c0dcd96ba6553acb198461b21350b6ee14bde7d680af4cbb366ef6a"
+    },
+    {
+      "original_path": "results/multiple-choice/README.md",
+      "archive_path": "results/multiple-choice/README.md",
+      "bytes": 2212,
+      "sha256": "77f67c5acd4c6fc8aa72e2253f535c31d3fc9e7ca47b00b2ac0cdf5721880ea5"
+    },
+    {
+      "original_path": "results/runs/calculator-pilot-20261106T205135473899Z/answers.jsonl",
+      "archive_path": "results/runs/calculator-pilot-20261106T205135473899Z/answers.jsonl",
+      "bytes": 38812,
+      "sha256": "1ecdb06ec884868f3f75cd7f669fe19ae3652457db655c8fbf267aa251b4c5b7"
+    },
+    {
+      "original_path": "results/runs/calculator-pilot-20261106T205135473899Z/run-manifest.json",
+      "archive_path": "results/runs/calculator-pilot-20261106T205135473899Z/run-manifest.json",
+      "bytes": 12821,
+      "sha256": "5dc31534346f9d1c8fc8a8e5de50e25695506c1929f8d3ddffc818a864e95b1b"
+    },
+    {
+      "original_path": "results/runs/calculator-pilot-20261106T205135473899Z/summary.json",
+      "archive_path": "results/runs/calculator-pilot-20261106T205135473899Z/summary.json",
+      "bytes": 3701,
+      "sha256": "1c22d3d628c7dccdb38495dacd856c823c464116fddb8e666a9a4c6f140becf5"
+    },
+    {
+      "original_path": "results/runs/calculator-pilot-20261106T205135473899Z/verification.json",
+      "archive_path": "results/runs/calculator-pilot-20261106T205135473899Z/verification.json",
+      "bytes": 6104,
+      "sha256": "f4ef3e4ebffac44c46820ed3574c18bce2e582b5e72ca644f8af67dfcbb4869f"
+    },
+    {
+      "original_path": "results/runs/calculator-syntax-20261106T211825622487Z/answers.jsonl",
+      "archive_path": "results/runs/calculator-syntax-20261106T211825622487Z/answers.jsonl",
+      "bytes": 152140,
+      "sha256": "3ad3c2f25d36a361603a1eefaafd59ad06fae70e99f8ae07e73e5a5ab2b9497e"
+    },
+    {
+      "original_path": "results/runs/calculator-syntax-20261106T211825622487Z/run-manifest.json",
+      "archive_path": "results/runs/calculator-syntax-20261106T211825622487Z/run-manifest.json",
+      "bytes": 27155,
+      "sha256": "a7659050f250ef250489fed499a6f82a89b13607c0b7dddff63860ee7df30923"
+    },
+    {
+      "original_path": "results/runs/calculator-syntax-20261106T211825622487Z/summary.json",
+      "archive_path": "results/runs/calculator-syntax-20261106T211825622487Z/summary.json",
+      "bytes": 70088,
+      "sha256": "75e5158a0af77752a35029d0cae4a6a5218aeda49cdbe3b3ac605284534acf87"
+    },
+    {
+      "original_path": "results/runs/calculator-syntax-20261106T211825622487Z/verification.json",
+      "archive_path": "results/runs/calculator-syntax-20261106T211825622487Z/verification.json",
+      "bytes": 56115,
+      "sha256": "2fea42c3ea197949454e7e38bf270eacccab9d4953f3491a1dc7cc6169bda311"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/diagnostic1024.jsonl",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/diagnostic1024.jsonl",
+      "bytes": 43126,
+      "sha256": "eb6c4bca36cf70ca65e9521b2fdcf83b61a1bfdb7f0bea9df68a976d0d40d7b4"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/diagnostic1024.summary.json",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/diagnostic1024.summary.json",
+      "bytes": 11988,
+      "sha256": "43bf62739535a0c5c6e33805d7e9c40c295526e7f7eb9ace69a11b4782301d08"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/full1024.jsonl",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/full1024.jsonl",
+      "bytes": 112227,
+      "sha256": "016b619ac411c9756b4b550e5467a2d1a3dd6e27fc688e877d84369725f0583b"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/full1024.summary.json",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/full1024.summary.json",
+      "bytes": 41051,
+      "sha256": "4c671fadfde912d315f00cc0c755f6dce08dc17984bc439151b053917c70346d"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/interpretation.verified.json",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/interpretation.verified.json",
+      "bytes": 64222,
+      "sha256": "6cc052bf429b06d626b7588b5a20bc06cf76a09d38c71e405f05278cde6afb99"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/run-manifest.json",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/run-manifest.json",
+      "bytes": 5344,
+      "sha256": "4b848489dcf9c328d8800ff67636a53c7882e3bbf7c1b76ad5fe7cf24285423b"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/urn-check1024.jsonl",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/urn-check1024.jsonl",
+      "bytes": 14641,
+      "sha256": "313ee9ce54625108cdb0f5e8e4e2be0c94c3af668b622fad8cdda765a2e92df3"
+    },
+    {
+      "original_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/urn-check1024.summary.json",
+      "archive_path": "results/runs/llama3.2-3b-pilots-20261106T191224204871Z/urn-check1024.summary.json",
+      "bytes": 4763,
+      "sha256": "3192c18aaaa9c87348974eb68200e0b6e1ad11a0eee036e6e540e21fc2b73a1c"
+    },
+    {
+      "original_path": "results/runs/template-bounded-20261106T195732100566Z/answers.jsonl",
+      "archive_path": "results/runs/template-bounded-20261106T195732100566Z/answers.jsonl",
+      "bytes": 130532,
+      "sha256": "ae6ba02e58602829ec16f78f67ec809adbbd6e903569d8c422dfd7bf6314fa47"
+    },
+    {
+      "original_path": "results/runs/template-bounded-20261106T195732100566Z/run-manifest.json",
+      "archive_path": "results/runs/template-bounded-20261106T195732100566Z/run-manifest.json",
+      "bytes": 6221,
+      "sha256": "7c6889564c3c85bf87db24b5042d0567dedf0d08d6ded1b1f94c2c88d3daf4a0"
+    },
+    {
+      "original_path": "results/runs/template-bounded-20261106T195732100566Z/summary.json",
+      "archive_path": "results/runs/template-bounded-20261106T195732100566Z/summary.json",
+      "bytes": 66547,
+      "sha256": "cfd00d154fb988ed3f1745a6e79ecee16ecae82262c5003aaf58a4936955983c"
+    },
+    {
+      "original_path": "results/runs/template-bounded-20261106T195732100566Z/verification.json",
+      "archive_path": "results/runs/template-bounded-20261106T195732100566Z/verification.json",
+      "bytes": 52151,
+      "sha256": "9da17dbd29048e7610d56bd092f30cd6cffdbe6501e6a54f061f06bdc0afe57a"
+    },
+    {
+      "original_path": "run_calculator_pilot.py",
+      "archive_path": "run_calculator_pilot.py",
+      "bytes": 12020,
+      "sha256": "ed3f9dec6330133c87a9e3d139100958aabcb6f77b3126be5e8acca291065eb9"
+    },
+    {
+      "original_path": "run_calculator_syntax_experiment.py",
+      "archive_path": "run_calculator_syntax_experiment.py",
+      "bytes": 17964,
+      "sha256": "75bb5214021bf86390fd5ffedf70a5eabf0e6bf3a7ea3081c44969afdd8b9639"
+    },
+    {
+      "original_path": "run_experiment.py",
+      "archive_path": "run_experiment.py",
+      "bytes": 10830,
+      "sha256": "43c1c9f26b75e780dd5348629279bae30707e3fc67b3f0fa3acbd910f539149e"
+    },
+    {
+      "original_path": "run_multiple_choice_experiment.py",
+      "archive_path": "run_multiple_choice_experiment.py",
+      "bytes": 14861,
+      "sha256": "128e75498a64f6f9b544ed2b7e7ed93a788a1678b84ac8b7f0516b9714892ea0"
+    },
+    {
+      "original_path": "run_pilots.py",
+      "archive_path": "run_pilots.py",
+      "bytes": 12558,
+      "sha256": "8100aaf86353f67f9de87b58e509c890ddc65d1a86b983178412473d5cb576b8"
+    },
+    {
+      "original_path": "run_template_experiment.py",
+      "archive_path": "run_template_experiment.py",
+      "bytes": 16336,
+      "sha256": "9b260b124a38c5c21e80286dd05b2b5e678a3de2fbacb16a473460cdf6a45919"
+    },
+    {
+      "original_path": "setup_models.py",
+      "archive_path": "setup_models.py",
+      "bytes": 3477,
+      "sha256": "0f3ff6e5467f5c3298019ca307498c75ae6d2e8911321c253c5a18fc8687edfc"
+    },
+    {
+      "original_path": "template_scoring.py",
+      "archive_path": "template_scoring.py",
+      "bytes": 3421,
+      "sha256": "9244ffe3571336ac0c03ec955c1c849af63221fa40903314ef29945b13915574"
+    },
+    {
+      "original_path": "tests/test_analysis.py",
+      "archive_path": "tests/test_analysis.py",
+      "bytes": 2599,
+      "sha256": "9a1c9cc9bd3cc9e1c8678f83e8406f026f8ff7709bd41396ddc60103e955949f"
+    },
+    {
+      "original_path": "tests/test_calculator.py",
+      "archive_path": "tests/test_calculator.py",
+      "bytes": 5693,
+      "sha256": "8bad402f1620171d6569a2be7ac1e39f7115e7cffb36d671042c56e333341078"
+    },
+    {
+      "original_path": "tests/test_calculator_pilot.py",
+      "archive_path": "tests/test_calculator_pilot.py",
+      "bytes": 11599,
+      "sha256": "9ddf79bc34b353760e3b63fe8e242f63bd29f82082351b947b01ffdd81e086fe"
+    },
+    {
+      "original_path": "tests/test_calculator_protocol.py",
+      "archive_path": "tests/test_calculator_protocol.py",
+      "bytes": 10194,
+      "sha256": "2defd9beb64d7411c553bca7596baa0edae2b38e890bc51efc1bd30059eb52f9"
+    },
+    {
+      "original_path": "tests/test_calculator_syntax_experiment.py",
+      "archive_path": "tests/test_calculator_syntax_experiment.py",
+      "bytes": 14640,
+      "sha256": "bd4ed5dbef1cef2af04dcfbd3b3ac15e61a4bf43a7c605570e56d6934fdc37ce"
+    },
+    {
+      "original_path": "tests/test_experiment.py",
+      "archive_path": "tests/test_experiment.py",
+      "bytes": 10004,
+      "sha256": "f21d608e33eacd216ede34d3014c685c4c3b1b0011556d086529cc11aa46f641"
+    },
+    {
+      "original_path": "tests/test_local_llm.py",
+      "archive_path": "tests/test_local_llm.py",
+      "bytes": 10869,
+      "sha256": "a292f844cf5d55ea7c8837724101d5f7e9310778b0422a2f766a92592d485933"
+    },
+    {
+      "original_path": "tests/test_multiple_choice_bank.py",
+      "archive_path": "tests/test_multiple_choice_bank.py",
+      "bytes": 9697,
+      "sha256": "a3cb4e958a28aaed0e155fc24feb47f86e3b950cea829f5820a6b67d124a6ae5"
+    },
+    {
+      "original_path": "tests/test_multiple_choice_experiment.py",
+      "archive_path": "tests/test_multiple_choice_experiment.py",
+      "bytes": 13714,
+      "sha256": "9b1e0b275648d2e88c1515d4650700ceba8af51add7ccdb810a1f353fb2d3d7e"
+    },
+    {
+      "original_path": "tests/test_multiple_choice_protocol.py",
+      "archive_path": "tests/test_multiple_choice_protocol.py",
+      "bytes": 6599,
+      "sha256": "7233958cc3a8c8502bf15a1854d8bd6e762e865cb2ced099ec0aeface0b1d086"
+    },
+    {
+      "original_path": "tests/test_pilot_scoring.py",
+      "archive_path": "tests/test_pilot_scoring.py",
+      "bytes": 5428,
+      "sha256": "6ec23277fdaa7ca8691c28fd0b076596ad129731b2d31f21dcc79b6089774127"
+    },
+    {
+      "original_path": "tests/test_run_pilots.py",
+      "archive_path": "tests/test_run_pilots.py",
+      "bytes": 14734,
+      "sha256": "e0c6e099c4602ae18c144834cc9bac96b449cde4813e3f9e9e69ed37f2209775"
+    },
+    {
+      "original_path": "tests/test_template_experiment.py",
+      "archive_path": "tests/test_template_experiment.py",
+      "bytes": 12332,
+      "sha256": "43c1175c9cb8562df3ac09f667ded62f6c79b7c6ef00fa7a6c66e57727fb7fdd"
+    },
+    {
+      "original_path": "tests/test_template_scoring.py",
+      "archive_path": "tests/test_template_scoring.py",
+      "bytes": 8639,
+      "sha256": "923a6f376b3e05e44de455957e0e0871753198aa72248fb2c01f369e15f1fca6"
+    }
+  ],
+  "file_count": 74,
+  "total_bytes": 1692091
+}

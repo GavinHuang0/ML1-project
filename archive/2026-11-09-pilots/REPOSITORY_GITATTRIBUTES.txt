@@ -1,0 +1,8 @@
+# Keep active Python source consistent across checkouts.
+*.py text eol=lf
+results/*.jsonl -text
+results/*.json text eol=lf
+results/**/*.jsonl -text
+results/**/*.json text eol=lf
+# Frozen sources, reports, and raw artifacts must retain their exact bytes.
+archive/2026-10-24-legacy/** -text

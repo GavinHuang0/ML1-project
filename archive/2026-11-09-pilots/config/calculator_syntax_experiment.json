@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "experiment_id": "calculator-syntax-v1",
+  "model": "llama3.2:3b",
+  "max_tokens": 1024,
+  "temperature": 0.7,
+  "context_tokens": 4096,
+  "explanation_word_limit": 60,
+  "prompts": {
+    "baseline": "Solve the user's problem by constructing one arithmetic expression. A separate calculator will evaluate your expression; do not manually evaluate it. Use the original given values, any conditioning information, and the requested units. Use standard unit-conversion constants when needed. Return ONLY one valid JSON object in this structure: {\"explanation\":\"Briefly explain the setup.\",\"expression\":\"Unevaluated arithmetic expression\"}. Both fields must be strings. Keep explanation to at most 60 words. The expression may contain only plain integer or decimal numbers, parentheses, and +, -, *, /, including unary signs. Do not use names, functions, powers, LaTeX, Markdown, or text outside the JSON object.",
+    "syntax_clear": "Solve the user's problem by constructing one arithmetic expression. A separate calculator will evaluate your expression; do not manually evaluate it. Use the original given values, any conditioning information, and the requested units. Use standard unit-conversion constants when needed. Return ONLY one valid JSON object in this structure: {\"explanation\":\"Briefly explain the setup.\",\"expression\":\"Unevaluated arithmetic expression\"}. Both fields must be strings. Keep explanation to at most 60 words. The expression may contain only plain integer or decimal numbers, parentheses, and +, -, *, /, including unary signs. Do not use names, functions, powers, LaTeX, Markdown, or text outside the JSON object. Expression-format contract: expression must be one NUMERIC expression, not an equation or an intermediate symbolic rearrangement. For algebra, finish isolating the requested unknown in your setup, then put only a numeric right-hand-side expression for its value in expression. Never put variable names or an equals sign in expression. Use only ASCII digits 0-9, decimal points, spaces, parentheses, and the operators +, -, *, /. Write ASCII '*' for EVERY multiplication and '/' for division. Do not use Unicode operators, implicit multiplication, scientific notation, functions, units, or prose in expression. These are syntax examples only, unrelated to your question. VALID: '(2+3)*4'; '2*(3+4)'; '(7-1)/(5+2)'. INVALID: 'x = (2+3)*4'; '3*y+5'; '2×3'; '2∗3'; '2(3+4)'. Before sending, check that expression has balanced parentheses, no letters or '=', and an explicit ASCII operator between multiplied quantities. Return the original two-field JSON object; do not manually evaluate the expression."
+  },
+  "tasks": [
+    {
+      "id": "fresh-urn-unconditional",
+      "family": "reasoning",
+      "variant": "unconditional",
+      "probability": true,
+      "parameters": {
+        "red": 6,
+        "blue": 9,
+        "conditioned_on_at_least_one_red": false
+      },
+      "prompt": "An urn has 6 red and 9 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+      "gold_fraction": "1/7",
+      "gold_probability": 0.14285714285714285,
+      "split": "fresh",
+      "seed": 9101,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "fresh-urn-conditional",
+      "family": "reasoning",
+      "variant": "conditional",
+      "probability": true,
+      "parameters": {
+        "red": 7,
+        "blue": 4,
+        "conditioned_on_at_least_one_red": true
+      },
+      "prompt": "An urn has 7 red and 4 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+      "gold_fraction": "3/7",
+      "gold_probability": 0.42857142857142855,
+      "split": "fresh",
+      "seed": 9102,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "fresh-sensor-01",
+      "family": "evidence",
+      "probability": true,
+      "clues": [
+        {
+          "id": "S1",
+          "value": 1,
+          "reliability": 0.75
+        },
+        {
+          "id": "S2",
+          "value": 0,
+          "reliability": 0.6
+        },
+        {
+          "id": "S3",
+          "value": 1,
+          "reliability": 0.9
+        }
+      ],
+      "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=1, reliability=0.75\nS2: observation=0, reliability=0.6\nS3: observation=1, reliability=0.9",
+      "gold_fraction": "18/19",
+      "gold_probability": 0.9473684210526315,
+      "split": "fresh",
+      "seed": 9103,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "fresh-sensor-02",
+      "family": "evidence",
+      "probability": true,
+      "clues": [
+        {
+          "id": "S1",
+          "value": 0,
+          "reliability": 0.75
+        },
+        {
+          "id": "S2",
+          "value": 1,
+          "reliability": 0.6
+        },
+        {
+          "id": "S3",
+          "value": 0,
+          "reliability": 0.6
+        }
+      ],
+      "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.75\nS2: observation=1, reliability=0.6\nS3: observation=0, reliability=0.6",
+      "gold_fraction": "1/4",
+      "gold_probability": 0.25,
+      "split": "fresh",
+      "seed": 9104,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "fresh-algebra-01",
+      "family": "algebra",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 5,
+        "left_constant": 7,
+        "right_x_coefficient": 0,
+        "right_constant": 42
+      },
+      "prompt": "Solve 5*x + 7 = 42 for x. Return an unevaluated arithmetic expression for x in expression.",
+      "gold_fraction": "7",
+      "split": "fresh",
+      "seed": 9105,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "fresh-algebra-02",
+      "family": "algebra",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 6,
+        "left_constant": -4,
+        "right_x_coefficient": 2,
+        "right_constant": 20
+      },
+      "prompt": "Solve 6*x - 4 = 2*x + 20 for x. Return an unevaluated arithmetic expression for x in expression.",
+      "gold_fraction": "6",
+      "split": "fresh",
+      "seed": 9106,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "fresh-units-01",
+      "family": "units",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 90,
+        "minutes": 14
+      },
+      "prompt": "A vehicle travels at a constant speed of 90 kilometres per hour for 14 minutes. How many kilometres does it travel? Return an unevaluated arithmetic expression for the distance in kilometres in expression.",
+      "gold_fraction": "21",
+      "split": "fresh",
+      "seed": 9107,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "fresh-units-02",
+      "family": "units",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 66,
+        "minutes": 45
+      },
+      "prompt": "A vehicle travels at a constant speed of 66 kilometres per hour for 45 minutes. How many kilometres does it travel? Return an unevaluated arithmetic expression for the distance in kilometres in expression.",
+      "gold_fraction": "99/2",
+      "split": "fresh",
+      "seed": 9108,
+      "answer_kind": "expression"
+    },
+    {
+      "id": "regression-calculator-pilot-42-0000",
+      "family": "reasoning",
+      "prompt": "An urn has 12 red and 3 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+      "gold_probability": 0.6285714285714286,
+      "gold_fraction": "22/35",
+      "source_task_id": "calculator-pilot-42-0000",
+      "split": "regression",
+      "seed": 8201,
+      "probability": true,
+      "answer_kind": "expression",
+      "prior_source_task_id": "pilot-42-0000"
+    },
+    {
+      "id": "regression-calculator-pilot-42-0001",
+      "family": "evidence",
+      "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.9\nS2: observation=0, reliability=0.6\nS3: observation=1, reliability=0.6\nS4: observation=0, reliability=0.9",
+      "clues": [
+        {
+          "id": "S1",
+          "value": 0,
+          "reliability": 0.9
+        },
+        {
+          "id": "S2",
+          "value": 0,
+          "reliability": 0.6
+        },
+        {
+          "id": "S3",
+          "value": 1,
+          "reliability": 0.6
+        },
+        {
+          "id": "S4",
+          "value": 0,
+          "reliability": 0.9
+        }
+      ],
+      "gold_state": 0,
+      "gold_probability": 0.012195121951219507,
+      "source_task_id": "calculator-pilot-42-0001",
+      "split": "regression",
+      "seed": 8202,
+      "probability": true,
+      "answer_kind": "expression",
+      "gold_fraction": "1/82",
+      "prior_source_task_id": "pilot-42-0001"
+    },
+    {
+      "id": "regression-calculator-pilot-42-0002",
+      "family": "reasoning",
+      "prompt": "An urn has 8 red and 2 blue balls. Draw two uniformly without replacement. Given that at least one ball is red, what is the probability that both balls are red?",
+      "gold_probability": 0.6363636363636364,
+      "gold_fraction": "7/11",
+      "source_task_id": "calculator-pilot-42-0002",
+      "split": "regression",
+      "seed": 8203,
+      "probability": true,
+      "answer_kind": "expression",
+      "prior_source_task_id": "pilot-42-0002"
+    },
+    {
+      "id": "regression-calculator-pilot-42-0003",
+      "family": "evidence",
+      "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=0, reliability=0.6\nS2: observation=0, reliability=0.9\nS3: observation=0, reliability=0.9\nS4: observation=0, reliability=0.9",
+      "clues": [
+        {
+          "id": "S1",
+          "value": 0,
+          "reliability": 0.6
+        },
+        {
+          "id": "S2",
+          "value": 0,
+          "reliability": 0.9
+        },
+        {
+          "id": "S3",
+          "value": 0,
+          "reliability": 0.9
+        },
+        {
+          "id": "S4",
+          "value": 0,
+          "reliability": 0.9
+        }
+      ],
+      "gold_state": 0,
+      "gold_probability": 0.0009136592051164912,
+      "source_task_id": "calculator-pilot-42-0003",
+      "split": "regression",
+      "seed": 8204,
+      "probability": true,
+      "answer_kind": "expression",
+      "gold_fraction": "2/2189",
+      "prior_source_task_id": "pilot-42-0003"
+    },
+    {
+      "id": "regression-calculator-algebra-01",
+      "family": "algebra",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 4,
+        "left_constant": -11,
+        "right_x_coefficient": 0,
+        "right_constant": 21
+      },
+      "prompt": "Solve 4*x - 11 = 21 for x. Return an unevaluated arithmetic expression for x in expression.",
+      "gold_fraction": "8",
+      "split": "regression",
+      "seed": 8205,
+      "source_task_id": "calculator-algebra-01",
+      "prior_source_task_id": "fresh-algebra-02"
+    },
+    {
+      "id": "regression-calculator-algebra-02",
+      "family": "algebra",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 3,
+        "left_constant": 5,
+        "right_x_coefficient": 2,
+        "right_constant": 14
+      },
+      "prompt": "Solve 3*x + 5 = 2*x + 14 for x. Return an unevaluated arithmetic expression for x in expression.",
+      "gold_fraction": "9",
+      "split": "regression",
+      "seed": 8206,
+      "source_task_id": "calculator-algebra-02",
+      "prior_source_task_id": "fresh-algebra-03"
+    },
+    {
+      "id": "regression-calculator-units-01",
+      "family": "units",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 84,
+        "minutes": 35
+      },
+      "prompt": "A vehicle travels at a constant speed of 84 kilometres per hour for 35 minutes. How many kilometres does it travel? Return an unevaluated arithmetic expression for the distance in kilometres in expression.",
+      "gold_fraction": "49",
+      "split": "regression",
+      "seed": 8207,
+      "source_task_id": "calculator-units-01",
+      "prior_source_task_id": "fresh-units-01"
+    },
+    {
+      "id": "regression-calculator-units-02",
+      "family": "units",
+      "stage": "transfer",
+      "answer_kind": "expression",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 96,
+        "minutes": 18
+      },
+      "prompt": "A vehicle travels at a constant speed of 96 kilometres per hour for 18 minutes. How many kilometres does it travel? Return an unevaluated arithmetic expression for the distance in kilometres in expression.",
+      "gold_fraction": "144/5",
+      "split": "regression",
+      "seed": 8208,
+      "source_task_id": "calculator-units-02",
+      "prior_source_task_id": "fresh-units-03"
+    }
+  ],
+  "call_order": [
+    {
+      "task_id": "fresh-urn-unconditional",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-urn-unconditional",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-urn-conditional",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-urn-conditional",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-sensor-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-sensor-01",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-sensor-02",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-sensor-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-algebra-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-algebra-01",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-algebra-02",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-algebra-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-units-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "fresh-units-01",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-units-02",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "fresh-units-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0000",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0000",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0001",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0001",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0002",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0002",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0003",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-pilot-42-0003",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-algebra-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-algebra-01",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-algebra-02",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-algebra-02",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-units-01",
+      "condition": "baseline"
+    },
+    {
+      "task_id": "regression-calculator-units-01",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-units-02",
+      "condition": "syntax_clear"
+    },
+    {
+      "task_id": "regression-calculator-units-02",
+      "condition": "baseline"
+    }
+  ],
+  "origin": {
+    "regression_source": "config/calculator_pilot.json",
+    "sha256": "1c009e2c9dd183aa095f549c99fdb4b8db639bc3305d19e2392abe9608f1187d"
+  },
+  "analysis_plan": {
+    "primary_population": "8 fresh development questions; 8 inspected regression questions reported separately",
+    "primary_outcomes": [
+      "calculator_success (executable expression) per model call",
+      "method_format_valid (required strings plus execution success)"
+    ],
+    "secondary_outcomes": [
+      "JSON/required fields",
+      "numeric_correct",
+      "strict correct",
+      "calculator error counts/types",
+      "word bound/exact keys/operation flags",
+      "paired executable and strict transitions",
+      "joint method-valid numeric correctness as selected secondary diagnostic",
+      "tokens and timing"
+    ],
+    "fixed_components": [
+      "calculator.py evaluator and grammar",
+      "calculator_protocol.process_response scorer",
+      "Llama3.2:3b",
+      "1024 output tokens",
+      "temperature0.7",
+      "one paired seed per task",
+      "one generation per condition",
+      "no input repair/normalization/model feedback/retries"
+    ],
+    "limitations": [
+      "Prompt clarification bundles numeric-only instructions, generic examples, and a pre-send syntax check; their individual effects are not separated.",
+      "Algebra-isolation reminder may affect formulation as well as syntax, so numerical changes are not purely calculator effects.",
+      "Two fresh items per family and one seed are descriptive development evidence.",
+      "Executable expressions can encode wrong reasoning; numerical tolerance does not certify formulation.",
+      "Joint method-valid numerical accuracy conditions on an intervention-dependent selected subset."
+    ],
+    "no_adaptation": "Freeze both prompts, tasks, seeds, and call order before inference; no prompt retuning, repairs, or retries."
+  }
+}

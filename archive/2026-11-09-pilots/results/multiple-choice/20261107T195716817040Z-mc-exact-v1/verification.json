@@ -1,0 +1,420 @@
+{
+  "verified_at": "2026-11-07T20:02:30.183733+00:00",
+  "experiment_id": "mc-exact-v1",
+  "validation": {
+    "complete_16_calls_and_end_marker": true,
+    "exact_original_tasks_messages_seeds_order": true,
+    "source_hashes_match_independent_preflight_and_current": true,
+    "configuration_snapshot_and_hash_match": true,
+    "all_scores_reproduced": true,
+    "summary_reproduced": true,
+    "independent_read_only_audit": "Separate exact-JSON/label checks reproduced all scores, requests, budgets, and summary.",
+    "no_calculator_feedback_repairs_or_retries": true,
+    "prior_run_sources_and_verified_artifacts_unchanged": true,
+    "preparation_tests": {
+      "passed": 147,
+      "new_mc_tests": 28,
+      "real_model_calls": 0
+    }
+  },
+  "raw_sha256": "3cdc3d141b50922732ffe5292c72c8dbfe64f1bfbaf32f059c373d355c9cc29f",
+  "manifest_sha256": "f69d624fa677faf74656553b9a4baceee57cf232cfe9116b5b4b441277d0d665",
+  "summary_sha256": "acd377bcbf47b70b7316c61d81a2dd4245eb97dc127bbb7f6613f82bdbd1fbc5",
+  "configuration_sha256": "c4fe818a796604087315d1df9bbfaf1f751e1695bb69b36d3713843390bf566f",
+  "source_sha256": {
+    "run_multiple_choice_experiment.py": "128e75498a64f6f9b544ed2b7e7ed93a788a1678b84ac8b7f0516b9714892ea0",
+    "multiple_choice_protocol.py": "08a63ba2403a55c8ccf7646498f74aeede604478ba904d4e2e978b9acc8e13a7",
+    "local_llm.py": "ef356d9eb3875dc5393aaabc9c7e2110ed06fe6d3093b9807356ff8464ec6188",
+    "experiment_config.py": "f440a4d9adc639aa0fa3baeaab0d3d55fcbca063d7cb1b4edbd3800e2892c751",
+    "config/multiple_choice_experiment.json": "c4fe818a796604087315d1df9bbfaf1f751e1695bb69b36d3713843390bf566f"
+  },
+  "model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+  "ollama_version": "0.40.4",
+  "calendar_seconds": 137.604776,
+  "overall": {
+    "items": 16,
+    "json_valid": 15,
+    "required_fields_valid": 15,
+    "choice_valid": 15,
+    "choice_correct": 1,
+    "correct": 1,
+    "exact_two_fields": 15,
+    "within_explanation_bound": 10,
+    "strict_accuracy": 0.0625,
+    "choice_accuracy": 0.0625,
+    "choice_correct_with_invalid_required_fields": 0,
+    "answer_letter_distribution": {
+      "F": 1,
+      "B": 4,
+      "C": 2,
+      "invalid": 1,
+      "A": 4,
+      "E": 1,
+      "L": 1,
+      "H": 2
+    },
+    "selected_distractor_rationale_counts": {
+      "Computes matching colours rather than both red.": 1,
+      "Uses independent draws with replacement.": 1,
+      "Multiplies reported reliabilities without incorporating observation values or normalization.": 2,
+      "Treats every observed reading as 1, regardless of its given value.": 1,
+      "Divides the right constant first, then subtracts the entire left constant.": 1,
+      "Uses a duration one minute too small.": 1,
+      "Adds elapsed minutes to the conversion denominator.": 1,
+      "Uses one ordered red-blue outcome instead of both red.": 1,
+      "Computes at least one blue rather than both red.": 1,
+      "Returns the posterior for Y=0 instead of Y=1.": 1,
+      "Nearby exact alternative offset by 1/1; no unique misconception attribution.": 1,
+      "Adds speed and duration instead of multiplying before conversion.": 1,
+      "Treats the number of minutes as hundredths of an hour.": 1
+    },
+    "parse_errors": {
+      "Unterminated string starting at: line 3 column 18 (char 36)": 1
+    },
+    "done_reasons": {
+      "stop": 15,
+      "length": 1
+    },
+    "length_stops": 1,
+    "model_budget": {
+      "calls": 16,
+      "input_tokens": 4543,
+      "output_tokens": 2631,
+      "elapsed_seconds": 137.12067524855956
+    },
+    "scoring_seconds": 0.0057486663572490215
+  },
+  "cohorts": {
+    "syntax_reuse": {
+      "items": 8,
+      "json_valid": 7,
+      "required_fields_valid": 7,
+      "choice_valid": 7,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 7,
+      "within_explanation_bound": 3,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "F": 1,
+        "B": 2,
+        "C": 1,
+        "invalid": 1,
+        "A": 2,
+        "E": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Computes matching colours rather than both red.": 1,
+        "Uses independent draws with replacement.": 1,
+        "Multiplies reported reliabilities without incorporating observation values or normalization.": 1,
+        "Treats every observed reading as 1, regardless of its given value.": 1,
+        "Divides the right constant first, then subtracts the entire left constant.": 1,
+        "Uses a duration one minute too small.": 1,
+        "Adds elapsed minutes to the conversion denominator.": 1
+      },
+      "parse_errors": {
+        "Unterminated string starting at: line 3 column 18 (char 36)": 1
+      },
+      "done_reasons": {
+        "stop": 7,
+        "length": 1
+      },
+      "length_stops": 1,
+      "model_budget": {
+        "calls": 8,
+        "input_tokens": 2251,
+        "output_tokens": 1929,
+        "elapsed_seconds": 88.804264373146
+      },
+      "scoring_seconds": 0.0033916248939931393
+    },
+    "pilot_reuse": {
+      "items": 8,
+      "json_valid": 8,
+      "required_fields_valid": 8,
+      "choice_valid": 8,
+      "choice_correct": 1,
+      "correct": 1,
+      "exact_two_fields": 8,
+      "within_explanation_bound": 7,
+      "strict_accuracy": 0.125,
+      "choice_accuracy": 0.125,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "A": 2,
+        "B": 2,
+        "L": 1,
+        "H": 2,
+        "C": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Uses one ordered red-blue outcome instead of both red.": 1,
+        "Multiplies reported reliabilities without incorporating observation values or normalization.": 1,
+        "Computes at least one blue rather than both red.": 1,
+        "Returns the posterior for Y=0 instead of Y=1.": 1,
+        "Nearby exact alternative offset by 1/1; no unique misconception attribution.": 1,
+        "Adds speed and duration instead of multiplying before conversion.": 1,
+        "Treats the number of minutes as hundredths of an hour.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 8
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 8,
+        "input_tokens": 2292,
+        "output_tokens": 702,
+        "elapsed_seconds": 48.31641087541357
+      },
+      "scoring_seconds": 0.0023570414632558823
+    }
+  },
+  "families": {
+    "reasoning": {
+      "items": 4,
+      "json_valid": 4,
+      "required_fields_valid": 4,
+      "choice_valid": 4,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 4,
+      "within_explanation_bound": 2,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "F": 1,
+        "B": 1,
+        "A": 1,
+        "L": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Computes matching colours rather than both red.": 1,
+        "Uses independent draws with replacement.": 1,
+        "Uses one ordered red-blue outcome instead of both red.": 1,
+        "Computes at least one blue rather than both red.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 4
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1070,
+        "output_tokens": 480,
+        "elapsed_seconds": 31.231792124453932
+      },
+      "scoring_seconds": 0.0007653320208191872
+    },
+    "evidence": {
+      "items": 4,
+      "json_valid": 4,
+      "required_fields_valid": 4,
+      "choice_valid": 4,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 4,
+      "within_explanation_bound": 3,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "C": 1,
+        "B": 2,
+        "H": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Multiplies reported reliabilities without incorporating observation values or normalization.": 2,
+        "Treats every observed reading as 1, regardless of its given value.": 1,
+        "Returns the posterior for Y=0 instead of Y=1.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 4
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1429,
+        "output_tokens": 349,
+        "elapsed_seconds": 25.740751708857715
+      },
+      "scoring_seconds": 0.0009413333609700203
+    },
+    "algebra": {
+      "items": 4,
+      "json_valid": 3,
+      "required_fields_valid": 3,
+      "choice_valid": 3,
+      "choice_correct": 1,
+      "correct": 1,
+      "exact_two_fields": 3,
+      "within_explanation_bound": 2,
+      "strict_accuracy": 0.25,
+      "choice_accuracy": 0.25,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "invalid": 1,
+        "A": 2,
+        "H": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Divides the right constant first, then subtracts the entire left constant.": 1,
+        "Nearby exact alternative offset by 1/1; no unique misconception attribution.": 1
+      },
+      "parse_errors": {
+        "Unterminated string starting at: line 3 column 18 (char 36)": 1
+      },
+      "done_reasons": {
+        "length": 1,
+        "stop": 3
+      },
+      "length_stops": 1,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1004,
+        "output_tokens": 1438,
+        "elapsed_seconds": 53.90806174837053
+      },
+      "scoring_seconds": 0.001837624702602625
+    },
+    "units": {
+      "items": 4,
+      "json_valid": 4,
+      "required_fields_valid": 4,
+      "choice_valid": 4,
+      "choice_correct": 0,
+      "correct": 0,
+      "exact_two_fields": 4,
+      "within_explanation_bound": 3,
+      "strict_accuracy": 0.0,
+      "choice_accuracy": 0.0,
+      "choice_correct_with_invalid_required_fields": 0,
+      "answer_letter_distribution": {
+        "E": 1,
+        "A": 1,
+        "B": 1,
+        "C": 1
+      },
+      "selected_distractor_rationale_counts": {
+        "Uses a duration one minute too small.": 1,
+        "Adds elapsed minutes to the conversion denominator.": 1,
+        "Adds speed and duration instead of multiplying before conversion.": 1,
+        "Treats the number of minutes as hundredths of an hour.": 1
+      },
+      "parse_errors": {},
+      "done_reasons": {
+        "stop": 4
+      },
+      "length_stops": 0,
+      "model_budget": {
+        "calls": 4,
+        "input_tokens": 1040,
+        "output_tokens": 364,
+        "elapsed_seconds": 26.24006966687739
+      },
+      "scoring_seconds": 0.002204376272857189
+    }
+  },
+  "maximum_output_tokens": 1024,
+  "manual_review": {
+    "strict_scores_unchanged": true,
+    "correct_numeric_derivation_without_correct_delivered_choice": [
+      {
+        "task_id": "mc-fresh-algebra-01",
+        "derived_value": "7/1",
+        "key": "K",
+        "outcome": "Initial letter A is wrong; repetitive explanation reaches 1024 tokens and leaves malformed JSON. No extraction or repair."
+      },
+      {
+        "task_id": "mc-fresh-algebra-02",
+        "derived_value": "6/1",
+        "key": "N",
+        "outcome": "Selects A, 22/3, and claims 6 is absent."
+      },
+      {
+        "task_id": "mc-fresh-units-02",
+        "derived_value": "99/2",
+        "key": "I",
+        "outcome": "Selects A, 198/7, while explicitly calling that fraction incorrect."
+      },
+      {
+        "task_id": "mc-regression-calculator-algebra-01",
+        "derived_value": "8/1",
+        "key": "A",
+        "outcome": "Selects H, 9/1, while claiming H represents 8/1."
+      }
+    ],
+    "additional_prose_selection_value_inconsistencies_nonexhaustive": [
+      {
+        "task_id": "mc-fresh-urn-conditional",
+        "prose_value": "42/121",
+        "selected_value": "49/121"
+      },
+      {
+        "task_id": "mc-regression-calculator-pilot-42-0002",
+        "prose_value": "28/45",
+        "selected_value": "17/45"
+      },
+      {
+        "task_id": "mc-regression-calculator-pilot-42-0003",
+        "prose_value": "1/2",
+        "selected_value": "2187/2189"
+      },
+      {
+        "task_id": "mc-regression-calculator-units-02",
+        "prose_value": "288/5",
+        "selected_value": "432/25"
+      }
+    ],
+    "correct_setup_with_false_fraction_equality_examples": [
+      {
+        "task_id": "mc-fresh-urn-unconditional",
+        "correct_setup": "15/105",
+        "incorrect_claim": "17/35"
+      },
+      {
+        "task_id": "mc-regression-calculator-pilot-42-0000",
+        "correct_setup": "132/210",
+        "incorrect_claim": "6/35"
+      }
+    ],
+    "sole_correct": "mc-regression-calculator-algebra-02: x=9; A=9/1",
+    "distractor_rationales_are_author_diagnostics_not_proven_model_causes": true,
+    "limitations": [
+      "Previously inspected questions; one seed and one fixed option order per question.",
+      "Candidate values introduce recognition, elimination, fraction matching, and label binding.",
+      "Exact choice is different from earlier numerical-tolerance scoring.",
+      "1/16 is numerically near uniform guessing expectation; no inference of random or below-chance behavior."
+    ]
+  },
+  "historical_comparison": {
+    "descriptive_only": true,
+    "historical_scores_unchanged": true,
+    "conditions": {
+      "baseline": {
+        "original_correct": 7,
+        "mc_correct": 1,
+        "transitions": {
+          "1->0": 7,
+          "0->0": 8,
+          "0->1": 1
+        }
+      },
+      "syntax_clear": {
+        "original_correct": 8,
+        "mc_correct": 1,
+        "transitions": {
+          "1->0": 8,
+          "0->0": 7,
+          "0->1": 1
+        }
+      }
+    },
+    "note": "Both calculator conditions used the original numerical-tolerance scorer; MC uses exact selected label."
+  }
+}

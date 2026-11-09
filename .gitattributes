@@ -6,3 +6,4 @@ results/**/*.jsonl -text
 results/**/*.json text eol=lf
 # Frozen sources, reports, and raw artifacts must retain their exact bytes.
 archive/2026-10-24-legacy/** -text
+archive/2026-11-09-pilots/** -text

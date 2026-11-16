@@ -1,4 +1,34 @@
-# Calculator baseline
+# ML1 Project: multi-agent communication
+
+How many rounds of communication improve a multi-agent LLM system's collective accuracy enough to justify their token and time costs? We adopt the [experimental design discussed on November 15, 2026](https://chatgpt.com/s/t_6afa1956baec8191b2c6d69d0c30935d) as the project framework, with the remaining choices below to be frozen before the main experiment.
+
+## Experimental design
+
+| Component | Planned procedure |
+| --- | --- |
+| Agent panel | Ten separate generations from the same `llama3.2:3b` model; their errors may be correlated. |
+| Round 0 | Each agent independently returns a brief `explanation` and arithmetic `expression`; the existing exact-rational calculator evaluates the expression. |
+| Communication | Each agent receives the original question, its own previous response, and all nine peers' previous explanations, expressions, and calculator results or failure statuses, then produces a revised response. |
+| Synchronous updates | Every prompt for round `t` uses the same completed round `t-1` snapshot. Calls may execute sequentially or concurrently under a fixed runtime policy. |
+| Answer evaluation | Score the collective numerical result against a private reference; do not judge explanation quality or expose references/correctness feedback to agents. Preserve invalid outputs without repair. |
+
+Collect every round through a prespecified maximum, even if answers stabilize, so all candidate stopping points can be evaluated offline. The primary objective selects **one globally fixed communication-round count**, with agent population and communication structure held fixed:
+
+$$
+R^* = \arg\min_{R \in \{0,\ldots,R_{\max}\}}
+\left[L(R) + \lambda_T\,\widetilde C_T(R) + \lambda_W\,\widetilde C_W(R)\right],
+\qquad \lambda_T,\lambda_W \ge 0.
+$$
+
+Here `L(R)` is one minus family-balanced accuracy. The cost terms are family-balanced means of cumulative input/output tokens and cumulative measured wall-clock time over communication rounds `1..R`, each normalized by a fixed calibration reference; report total costs including round 0 separately. Freeze cost references on development/calibration data, select `R*` on validation data under prespecified penalties, and evaluate on held-out questions without retuning. Report accuracy by round/family, invalid and abstention rates, beneficial/harmful revisions, cost curves, penalty sensitivity, and question-level uncertainty.
+
+Use fresh evaluation questions, initially building on urn probability, sensor posteriors, algebra, and unit/rate problems. The existing sixteen inspected cases remain development/regression data; related question variants must stay in the same split. Round 0 provides the ten-independent-agent comparison. Self-revision and budget-matched independent sampling are recommended additional controls; adaptive learned stopping is a later extension.
+
+**Choices still to freeze:** aggregation and ties, numerical tolerance and output eligibility, maximum rounds, benchmark size/family mix/splits, peer ordering/history/context and runtime policies, and cost normalization/penalties. Current proposals are exact-rational plurality with ties/no eligible answers abstaining (counted incorrect), exact rational equality, previous-round-only history, and at most three communication rounds. These remain provisional rather than finalized settings.
+
+**Implementation status:** the multi-agent runner is planned. Implement it with a separate versioned configuration and result directory, saving per-agent prompts, seeds, raw responses, calculator outcomes, tokens/time, round summaries, and runtime provenance. The runnable code below is the existing single-agent control; its historical scoring and results are preserved.
+
+## Current implementation: calculator baseline
 
 This repository now has one active baseline: **Llama constructs a mathematical expression, a calculator evaluates it, and scoring checks the computed result.** All future experiments should start from this procedure and declare their changes explicitly.
 

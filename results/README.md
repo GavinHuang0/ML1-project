@@ -1,6 +1,8 @@
-# Baseline results
+# Experiment results
 
-New experiment results belong under [baseline/](baseline/README.md), using the sole active `calculator-baseline-v1` entry point. See the [README](../README.md) for its complete procedure.
+New multi-agent runs use `run_multi_agent.py` and unique directories under `results/multi-agent/`. The default four-question inspected development pilot requires 160 calls. Raw generations, evaluated answers, round summaries, manifests, and complete-run analysis/calibration artifacts stay local and ignored until deliberately selected for versioning. See the [frozen protocol](../docs/MULTI_AGENT_PROTOCOL.md) for the schema and development → validation → test workflow.
+
+Single-agent control runs belong under [baseline/](baseline/README.md), using the original `calculator-baseline-v1` entry point. See the [README](../README.md) for its procedure.
 
 The [historical reference selection](baseline/HISTORICAL_REFERENCE.json) reports the preserved original-prompt condition: 7/16 correct and 11/16 executable. It is explicitly not a new inference run. No real-model run of the reorganized wrapper has been made during the November 9 consolidation.
 

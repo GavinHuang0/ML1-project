@@ -1,6 +1,6 @@
 # ML1 Project: multi-agent communication
 
-How many rounds of communication improve a multi-agent LLM system's collective accuracy enough to justify their token and time costs? We adopt the [experimental design discussed on November 15, 2026](https://chatgpt.com/s/t_6afa1956baec8191b2c6d69d0c30935d) as the project framework, with the remaining choices below to be frozen before the main experiment.
+How many rounds of communication improve a multi-agent LLM system's collective accuracy enough to justify their token and time costs? The [November 15 experimental design](https://chatgpt.com/s/t_6afa1956baec8191b2c6d69d0c30935d) is implemented as the frozen `multi-agent-calculator-v1` protocol. The existing single-agent calculator baseline remains the control.
 
 ## Experimental design
 
@@ -9,8 +9,8 @@ How many rounds of communication improve a multi-agent LLM system's collective a
 | Agent panel | Ten separate generations from the same `llama3.2:3b` model; their errors may be correlated. |
 | Round 0 | Each agent independently returns a brief `explanation` and arithmetic `expression`; the existing exact-rational calculator evaluates the expression. |
 | Communication | Each agent receives the original question, its own previous response, and all nine peers' previous explanations, expressions, and calculator results or failure statuses, then produces a revised response. |
-| Synchronous updates | Every prompt for round `t` uses the same completed round `t-1` snapshot. Calls may execute sequentially or concurrently under a fixed runtime policy. |
-| Answer evaluation | Score the collective numerical result against a private reference; do not judge explanation quality or expose references/correctness feedback to agents. Preserve invalid outputs without repair. |
+| Synchronous updates | Every prompt for round `t` uses the same completed round `t-1` snapshot. Calls execute sequentially; only the preceding round is shared, with reproducibly shuffled anonymous peers. |
+| Answer evaluation | Exact-rational plurality over eligible calculator results; tied winners or no eligible results abstain and count incorrect. Required string fields, successful execution, and probability range gate eligibility. Correctness uses exact rational equality. |
 
 Collect every round through a prespecified maximum, even if answers stabilize, so all candidate stopping points can be evaluated offline. The primary objective selects **one globally fixed communication-round count**, with agent population and communication structure held fixed:
 
@@ -22,11 +22,33 @@ $$
 
 Here `L(R)` is one minus family-balanced accuracy. The cost terms are family-balanced means of cumulative input/output tokens and cumulative measured wall-clock time over communication rounds `1..R`, each normalized by a fixed calibration reference; report total costs including round 0 separately. Freeze cost references on development/calibration data, select `R*` on validation data under prespecified penalties, and evaluate on held-out questions without retuning. Report accuracy by round/family, invalid and abstention rates, beneficial/harmful revisions, cost curves, penalty sensitivity, and question-level uncertainty.
 
-Use fresh evaluation questions, initially building on urn probability, sensor posteriors, algebra, and unit/rate problems. The existing sixteen inspected cases remain development/regression data; related question variants must stay in the same split. Round 0 provides the ten-independent-agent comparison. Self-revision and budget-matched independent sampling are recommended additional controls; adaptive learned stopping is a later extension.
+Use fresh evaluation questions, initially building on urn probability, sensor posteriors, algebra, and unit/rate problems. The existing sixteen inspected cases remain development/regression data; related question variants must stay in the same split. Round 0 provides the ten-independent-agent comparison. Self-revision and budget-matched independent sampling remain recommended controls to implement separately; adaptive learned stopping is a later extension.
 
-**Choices still to freeze:** aggregation and ties, numerical tolerance and output eligibility, maximum rounds, benchmark size/family mix/splits, peer ordering/history/context and runtime policies, and cost normalization/penalties. Current proposals are exact-rational plurality with ties/no eligible answers abstaining (counted incorrect), exact rational equality, previous-round-only history, and at most three communication rounds. These remain provisional rather than finalized settings.
+**Frozen settings:** ten agents, three communication rounds after round 0, temperature `0.7`, output cap `1024`, context `16384`, `keep_alive=0`, and base seed `20261116`. The larger context admits ten unshortened peer responses under a conservative UTF-8 byte admission check; oversized prompts stop the run. The historical baseline keeps its `4096` context. Explanations are instructed to stay within 60 words, with length compliance reported separately from correctness. References and correctness feedback never enter agent prompts; malformed expressions are preserved without repair.
 
-**Implementation status:** the multi-agent runner is planned. Implement it with a separate versioned configuration and result directory, saving per-agent prompts, seeds, raw responses, calculator outcomes, tokens/time, round summaries, and runtime provenance. The runnable code below is the existing single-agent control; its historical scoring and results are preserved.
+**Frozen analysis:** `lambda_T = delta * omega`, `lambda_W = delta * (1-omega)`, with primary `delta=0.02`, `omega=0.5`; sensitivity grids are `delta ∈ {0, 0.01, 0.02, 0.05, 0.10}` and `omega ∈ {0, 0.5, 1}`. Development round-1 mean token/time costs, weighted equally by family, define the fixed references. Objective ties choose the smaller round count. Reports include paired, stratified question bootstrap intervals, Pareto rounds, and break-even penalties. The primary penalty is a declared resource preference, not estimated from accuracy.
+
+**Before the main benchmark:** finalize fresh question counts, family mix and grouped splits, and select any additional comparison controls. The default four-question pilot establishes runner feasibility; it does not establish general accuracy. [Frozen configuration](config/multi_agent.json) · [Full protocol and artifact contract](docs/MULTI_AGENT_PROTOCOL.md)
+
+## Run the multi-agent experiment
+
+After [installing Ollama and the model](#install-preview-and-run), preview the default pilot, then run it:
+
+```sh
+python3 run_multi_agent.py --dry-run
+python3 run_multi_agent.py --output-dir results/multi-agent/pilot-v1 --timeout 600
+```
+
+The pilot uses four inspected development questions, one per family, and makes **160 model calls**: `4 questions × 10 agents × 4 rounds`. The dry run makes no service calls or file writes; later-round prompts are deferred until previous responses exist. Without `--output-dir`, the runner creates a unique timestamped directory under `results/multi-agent/`.
+
+Each run saves original generations before validation, evaluated agent records, round summaries, and a provenance/status manifest. Complete runs also save `summary.json` and, when token/time measurements are complete, a development `calibration.json`. Failed/interrupted runs preserve partial evidence and cannot be analyzed as complete; there are no retries or automatic resumes. Offline audit rechecks prompts, seeds, parsing, calculator results, evidence hashes, and scores without contacting Ollama:
+
+```sh
+python3 run_multi_agent.py --analyze-run results/multi-agent/pilot-v1 \
+  --analysis-output results/multi-agent/pilot-v1-analysis.json
+```
+
+Use `--tasks path/to/questions.json` for a new frozen task manifest and `--split validation` or `--split test` to select a partition. Validation requires a development `--calibration` artifact and emits `selection.json`. Test inference requires that same calibration and `--selection` from validation; reports highlight the round chosen before test inference. [Manifest format and workflow](docs/MULTI_AGENT_PROTOCOL.md)
 
 ## Current implementation: calculator baseline
 
@@ -77,7 +99,7 @@ There is **no model revision, peer discussion, answer retry, expression repair, 
 
 ## Exact model prompt
 
-Every question uses this unchanged system instruction from [calculator_protocol.py](calculator_protocol.py):
+Every baseline question uses this unchanged system instruction from [calculator_protocol.py](calculator_protocol.py):
 
 > Solve the user's problem by constructing one arithmetic expression. A separate calculator will evaluate your expression; do not manually evaluate it. Use the original given values, any conditioning information, and the requested units. Use standard unit-conversion constants when needed. Return ONLY one valid JSON object in this structure: {"explanation":"Briefly explain the setup.","expression":"Unevaluated arithmetic expression"}. Both fields must be strings. Keep explanation to at most 60 words. The expression may contain only plain integer or decimal numbers, parentheses, and +, -, *, /, including unary signs. Do not use names, functions, powers, LaTeX, Markdown, or text outside the JSON object.
 
@@ -138,13 +160,17 @@ The [historical reference](results/baseline/HISTORICAL_REFERENCE.json) selects t
 
 Use this baseline as the control. Freeze each new design and questions before inference, use fresh evaluation questions for generalization, and record every intentional difference. Keep the model, token cap, calculator grammar, parser, numerical scoring, and failure policy identical across comparison arms unless one is the declared experimental variable. Do not silently improve old outputs or replace historical scores.
 
-For future self-revision and peer comparisons, reuse the same initial calculator-enabled plans/results in every branch. If peers receive computed values, self revision also receives its own computed value. Do not provide reference-answer feedback. Report and control model-call, token, and calculator budgets separately. These revision/peer branches are not implemented in the active baseline yet.
+For future self-revision and peer comparisons, reuse the same initial calculator-enabled plans/results in every branch. If peers receive computed values, self revision also receives its own computed value. Do not provide reference-answer feedback. Report and control model-call, token, and calculator budgets separately. The separate multi-agent runner implements peer communication; self-revision and matched-budget controls remain future work.
 
 ## Active files and archived experiments
 
 | Location | Purpose |
 | --- | --- |
-| [run_baseline.py](run_baseline.py) | Sole active experiment entry point |
+| [run_multi_agent.py](run_multi_agent.py) | Synchronous multi-agent runner and offline audit CLI |
+| [config/multi_agent.json](config/multi_agent.json), [config/multi_agent_pilot.json](config/multi_agent_pilot.json) | Frozen protocol and inspected four-question pilot |
+| [multi_agent_protocol.py](multi_agent_protocol.py), [multi_agent_llm.py](multi_agent_llm.py) | Reference-free prompts, response evaluation, seeds, and isolated inference settings |
+| [multi_agent_analysis.py](multi_agent_analysis.py) | Exact voting, calibration, validation selection, cost and uncertainty analysis |
+| [run_baseline.py](run_baseline.py) | Original single-agent control entry point |
 | [config/baseline.json](config/baseline.json) | Original prompt, sixteen questions, seeds, and execution policy |
 | [calculator_protocol.py](calculator_protocol.py) | Prompt, parsing, one-shot calculation, and scoring |
 | [calculator.py](calculator.py) | Exact restricted arithmetic |

@@ -191,10 +191,11 @@ class BaselineBankTests(unittest.TestCase):
 
 
 class ActiveSeparationTests(unittest.TestCase):
-    def test_baseline_is_the_only_active_experiment_command_and_bank(self):
-        self.assertEqual({path.name for path in ROOT.glob("run_*.py")}, {"run_baseline.py"})
+    def test_baseline_and_versioned_multi_agent_runner_are_the_active_commands_and_banks(self):
+        self.assertEqual({path.name for path in ROOT.glob("run_*.py")},
+                         {"run_baseline.py", "run_multi_agent.py"})
         self.assertEqual({path.name for path in (ROOT / "config").glob("*.json")},
-                         {"baseline.json", "models.json"})
+                         {"baseline.json", "models.json", "multi_agent.json", "multi_agent_pilot.json"})
 
     def test_active_modules_do_not_import_archived_or_retired_approaches(self):
         active = {path.stem for path in ROOT.glob("*.py")}

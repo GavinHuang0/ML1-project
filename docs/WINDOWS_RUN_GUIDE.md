@@ -22,19 +22,16 @@ The repository is private: sign in to GitHub when Git requests authentication. `
 
 Active configuration JSON files also require LF line endings through `.gitattributes`. Earlier Windows checkouts could convert `config/full_benchmark.json` to CRLF, causing `build_full_benchmark.py --check` to report a deterministic-generation mismatch even though the questions were unchanged.
 
-For an existing copy with that error, run this from the repository root **before starting an experiment**. It verifies that line endings are the only difference before writing LF bytes; any other content mismatch stops without changing the file. It does not regenerate questions or relax the exact-byte check.
+For an existing copy with that error, update the code and run the included helper from the repository root **before starting an experiment**. It checks both `config/baseline.json` against its frozen historical hash and `config/full_benchmark.json` against deterministic generation before changing either file. A content mismatch stops without changes; original bytes are backed up under `results/windows-checkout-backup-*/`. Correct LF files are left untouched.
 
 ```powershell
-py -3 -c "import sys; import build_full_benchmark as b; p=b.DEFAULT_PATH; data=p.read_bytes().replace(b'\r\n', b'\n'); expected=b.manifest_bytes(b.generate_manifest()); data == expected or sys.exit('Benchmark content differs; no files changed.'); p.write_bytes(data)"
+git pull --ff-only origin main
+py -3 .\fix_windows_checkout.py
 py -3 build_full_benchmark.py --check
 py -3 -m unittest discover -s tests -q
 ```
 
-The same conversion can affect `config/baseline.json`: two tests compare its raw SHA256 with frozen historical references. Before starting an experiment, repair its line endings only if the resulting bytes match that frozen hash:
-
-```powershell
-py -3 -c "import hashlib, json, sys; from pathlib import Path; p=Path('config/baseline.json'); data=p.read_bytes().replace(b'\r\n', b'\n'); expected=json.loads(Path('results/baseline/HISTORICAL_REFERENCE.json').read_text(encoding='utf-8'))['configuration_sha256']; hashlib.sha256(data).hexdigest() == expected or sys.exit('Baseline content differs; no files changed.'); p.write_bytes(data)"
-```
+Use `py -3 .\fix_windows_checkout.py --check` for a read-only diagnosis. The helper restores only line endings and does not run a model. The test command's `-q` mode stays quiet until completion, which can take a few minutes on Windows.
 
 The updated tests compare recorded repository paths using `/` on every operating system. The symlink-only protection test skips when Windows reports missing symlink privileges (`WinError 1314`); direct historical-output protections are tested separately and always run. Administrator access is not required for the suite.
 

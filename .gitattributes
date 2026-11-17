@@ -1,5 +1,7 @@
 # Keep active Python source consistent across checkouts.
 *.py text eol=lf
+# Deterministic benchmark checks compare the committed configuration bytes.
+config/*.json text eol=lf
 results/*.jsonl -text
 results/*.json text eol=lf
 results/**/*.jsonl -text

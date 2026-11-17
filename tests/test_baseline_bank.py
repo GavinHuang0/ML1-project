@@ -85,7 +85,7 @@ class BaselineBankTests(unittest.TestCase):
         self.assertEqual(self.bank["experiment_id"], "calculator-baseline-v1")
         self.assertEqual(self.bank["execution_protocol"], "planner-calculator-v1")
         self.assertEqual(self.bank["system_prompt"], self.source["prompts"]["baseline"])
-        self.assertEqual(self.bank["source"]["path"], str(SOURCE.relative_to(ROOT)))
+        self.assertEqual(self.bank["source"]["path"], SOURCE.relative_to(ROOT).as_posix())
         self.assertEqual(self.bank["source"]["sha256"], hashlib.sha256(SOURCE.read_bytes()).hexdigest())
         self.assertEqual(self.bank["source"]["condition"], "baseline")
         for key, expected in {"model": "llama3.2:3b", "max_tokens": 1024,

@@ -181,17 +181,30 @@ class BaselineRunnerTests(unittest.TestCase):
             self.assertEqual(FixtureClient.instances, [])
             self.assertEqual(list(destination.iterdir()), [sentinel])
 
-    def test_historical_namespaces_and_symlink_alias_are_protected(self):
+    def test_historical_namespaces_are_protected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "archive").mkdir()
+            with patch.object(runner, "ROOT", root):
+                for target in (root / "archive/new", root / "results/runs/new",
+                               root / "results/multiple-choice/new"):
+                    with self.subTest(target=target), self.assertRaisesRegex(ValueError, "historical"):
+                        runner.validate_output_directory(target)
+
+    def test_symlink_alias_of_historical_namespace_is_protected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "archive").mkdir()
             alias = root / "alias"
-            alias.symlink_to(root / "archive", target_is_directory=True)
+            try:
+                alias.symlink_to(root / "archive", target_is_directory=True)
+            except OSError as error:
+                if getattr(error, "winerror", None) == 1314:
+                    self.skipTest("Windows does not grant this account permission to create symlinks")
+                raise
             with patch.object(runner, "ROOT", root):
-                for target in (root / "archive/new", root / "results/runs/new",
-                               root / "results/multiple-choice/new", alias / "new"):
-                    with self.subTest(target=target), self.assertRaisesRegex(ValueError, "historical"):
-                        runner.validate_output_directory(target)
+                with self.assertRaisesRegex(ValueError, "historical"):
+                    runner.validate_output_directory(alias / "new")
 
     def test_runtime_drift_stops_after_first_answer(self):
         class DriftingClient(FixtureClient):

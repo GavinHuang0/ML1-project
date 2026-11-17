@@ -1,0 +1,63 @@
+{
+  "source_run": "results/multi-agent/pilot-v1-restart",
+  "status": "complete",
+  "questions": 4,
+  "calls": 160,
+  "source_sha256": {
+    "run-manifest.json": "c6586f3025c1cbe6d8dee6ec0073c45d40137c7bdf9fd7102d8d9caf3b3297e3",
+    "summary.json": "62c2cf0ac1e5a18e562d305aeb4bcfbeb665a16be51664bf14d17d20b5e57577",
+    "answers.jsonl": "08ef22fa387b8bc607fc614cace23245b4d10201bde3e69d580d3940cc5099f1",
+    "rounds.jsonl": "9dceedc9d4834e1c9559679e10b93493cf7c11c6916f9e975fcc28e84f8e5546"
+  },
+  "rounds": [
+    {
+      "round": 0,
+      "accuracy": 0.5,
+      "invalid_agent_rate": 0.425,
+      "agent_accuracy": 0.45,
+      "abstention_rate": 0.25,
+      "family_balanced_cumulative_total_tokens": 2919.25,
+      "family_balanced_cumulative_wall_seconds": 84.07099327072501,
+      "primary_objective": 0.5
+    },
+    {
+      "round": 1,
+      "accuracy": 0.75,
+      "invalid_agent_rate": 0.3,
+      "agent_accuracy": 0.5,
+      "abstention_rate": 0.0,
+      "family_balanced_cumulative_total_tokens": 16613.75,
+      "family_balanced_cumulative_wall_seconds": 213.04927387461066,
+      "primary_objective": 0.27
+    },
+    {
+      "round": 2,
+      "accuracy": 0.75,
+      "invalid_agent_rate": 0.19999999999999998,
+      "agent_accuracy": 0.55,
+      "abstention_rate": 0.0,
+      "family_balanced_cumulative_total_tokens": 31191.25,
+      "family_balanced_cumulative_wall_seconds": 348.31619464524556,
+      "primary_objective": 0.2911323579797931
+    },
+    {
+      "round": 3,
+      "accuracy": 0.5,
+      "invalid_agent_rate": 0.25,
+      "agent_accuracy": 0.475,
+      "abstention_rate": 0.25,
+      "family_balanced_cumulative_total_tokens": 45913.25,
+      "family_balanced_cumulative_wall_seconds": 486.9677960932022,
+      "primary_objective": 0.5626326553033869
+    }
+  ],
+  "format": {
+    "json_valid": 160,
+    "required_fields_valid": 160,
+    "calculator_errors": 46,
+    "eligible": 113,
+    "length_stops": 0
+  },
+  "model_loading_seconds": 680.767622706,
+  "interpretation": "Feasibility confirmed; development-only four-question evidence. Algebra changes reflect syntax eligibility, not proof of improved reasoning. R1 has one eligible algebra vote. Sensor wrong consensus persists. No validation-optimal R selected."
+}

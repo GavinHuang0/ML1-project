@@ -62,4 +62,4 @@ Recompute a complete run offline into a new external report:
 python3 run_multi_agent.py --analyze-run results/multi-agent/pilot-v1 --analysis-output /tmp/pilot-v1-analysis.json
 ```
 
-Replay checks completion, evidence hashes, frozen inputs, prompts, seeds, and evaluated results. Self-revision and budget-matched independent-sampling controls remain recommended additions; they are not implemented comparison arms yet.
+Replay checks completion, evidence hashes, frozen inputs, prompts, seeds, and evaluated results. The separate [full-study workflow](FULL_EXPERIMENT.md) adds self-revision with an identical initial panel and whole-question checkpoints. Additional budget-matched independent sampling remains future work.

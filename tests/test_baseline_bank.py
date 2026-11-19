@@ -191,20 +191,26 @@ class BaselineBankTests(unittest.TestCase):
 
 
 class ActiveSeparationTests(unittest.TestCase):
-    def test_only_declared_baseline_multi_agent_and_study_commands_and_banks_are_active(self):
+    def test_only_declared_current_and_provenance_pinned_commands_and_banks_exist(self):
         self.assertEqual({path.name for path in ROOT.glob("run_*.py")},
                          {"run_baseline.py", "run_multi_agent.py", "run_self_revision.py", "run_full_experiment.py",
-                          "run_followup_pilot.py"})
+                          "run_followup_pilot.py", "run_format_followup.py", "run_communication_pilot.py",
+                          "run_communication_recovery.py", "run_offline_comparison.py",
+                          "run_confirmation_pilot.py", "run_five_agent_pilot.py", "run_sparse_peer_pilot.py"})
         self.assertEqual({path.name for path in (ROOT / "config").glob("*.json")},
                          {"baseline.json", "models.json", "multi_agent.json", "multi_agent_pilot.json",
-                          "full_benchmark.json", "full_experiment.json", "followup_pilot.json"})
+                          "full_benchmark.json", "full_experiment.json", "followup_pilot.json",
+                          "format_followup.json", "format_followup_tasks.json", "communication_pilot.json",
+                          "communication_recovery.json", "offline_policy_comparison.json",
+                          "confirmation_pilot.json", "confirmation_environment.json",
+                          "five_agent_pilot.json", "sparse_peer_pilot.json", "full_study_v2.json"})
 
     def test_active_modules_do_not_import_archived_or_retired_approaches(self):
         active = {path.stem for path in ROOT.glob("*.py")}
         retired = {path.stem for path in ARCHIVE.glob("*.py")} - active
         self.assertIn("run_baseline", active)
         self.assertTrue(retired)
-        for path in ROOT.glob("*.py"):
+        for path in [*ROOT.glob("*.py"), *(ROOT / "experiments").rglob("*.py")]:
             tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
             imports = []
             for node in ast.walk(tree):

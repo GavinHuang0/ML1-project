@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "study_id": "ml1-full-study-v1",
+  "base_config": "multi_agent.json",
+  "task_manifest": "full_benchmark.json",
+  "design": {
+    "base_protocol_sha256": "c201800643b4ab420da0c20a90a0bfe8e52906c741cf91cca7b4e430d81a7066",
+    "conditions": ["all_to_all", "self_revision"],
+    "shared_initial_panel": true,
+    "sampling_replicates": 1,
+    "development_questions": 20,
+    "validation_questions": 40,
+    "test_questions": 40,
+    "families": ["algebra", "evidence", "reasoning", "units"],
+    "groups_per_family": 13,
+    "questions_per_family": 25,
+    "development_groups_per_family": 3,
+    "validation_groups_per_family": 5,
+    "test_groups_per_family": 5,
+    "round_selection_condition": "all_to_all",
+    "uncertainty_unit": "structural_problem_group",
+    "execution_order": "development_then_validation_then_test",
+    "checkpoint_unit": "durable_completed_model_call",
+    "failed_question_policy": "stop_then_explicit_resume_at_next_pending_call",
+    "hardware_policy": "same_machine_os_cpu_memory_model_digest_and_ollama_version",
+    "matching": "equal_generation_counts_shared_round_zero_not_equal_token_budgets"
+  }
+}

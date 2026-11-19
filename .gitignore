@@ -16,6 +16,8 @@ Thumbs.db
 !/results/baseline/HISTORICAL_REFERENCE.json
 # Frozen archives are outside /results/ and are versioned in full.
 models/
+# Local, verified weight backups are large; their manifests and inventories are versioned.
+/archive/model-artifacts/**/blobs/
 *.gguf
 *.safetensors
 *.bin

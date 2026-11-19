@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "experiment_id": "development-complete-expression-pilot-v2",
+  "task_manifest": "format_followup_tasks.json",
+  "task_ids": [
+    "full-v1-reasoning-development-01",
+    "full-v1-reasoning-development-02",
+    "full-v1-evidence-development-01",
+    "full-v1-evidence-development-02",
+    "full-v1-algebra-development-01",
+    "full-v1-algebra-development-02",
+    "full-v1-units-development-01",
+    "full-v1-units-development-02",
+    "format-v2-reasoning-development-01",
+    "format-v2-reasoning-development-02",
+    "format-v2-evidence-development-01",
+    "format-v2-evidence-development-02",
+    "format-v2-algebra-development-01",
+    "format-v2-algebra-development-02",
+    "format-v2-units-development-01",
+    "format-v2-units-development-02"
+  ],
+  "evaluation_sets": {
+    "regression": [
+      "full-v1-reasoning-development-01",
+      "full-v1-reasoning-development-02",
+      "full-v1-evidence-development-01",
+      "full-v1-evidence-development-02",
+      "full-v1-algebra-development-01",
+      "full-v1-algebra-development-02",
+      "full-v1-units-development-01",
+      "full-v1-units-development-02"
+    ],
+    "screening": [
+      "format-v2-reasoning-development-01",
+      "format-v2-reasoning-development-02",
+      "format-v2-evidence-development-01",
+      "format-v2-evidence-development-02",
+      "format-v2-algebra-development-01",
+      "format-v2-algebra-development-02",
+      "format-v2-units-development-01",
+      "format-v2-units-development-02"
+    ]
+  },
+  "protocol": {
+    "model": "llama3.2:3b",
+    "num_agents": 10,
+    "round": 0,
+    "temperature": 0.7,
+    "max_tokens": 1024,
+    "context_tokens": 16384,
+    "keep_alive": 0,
+    "transport": "nonstreaming_local_ollama",
+    "execution_mode": "sequential_alternating_pairs",
+    "pair_order": "strict_schema_first_when_question_index_plus_agent_id_is_even",
+    "seed_policy": "agent_seed(question_id,0,agent_id)",
+    "prompt_policy": "same_strict_schema_and_original_question_only_candidate_appends_complete_expression_instruction",
+    "scoring": "exact_rational_plurality_ties_abstain_exact_equality",
+    "explanation_word_limit": 60,
+    "explanation_bound_is_correctness_gate": false,
+    "repairs": false,
+    "technical_min_eligible": 72,
+    "technical_max_calculator_errors": 4,
+    "maximum_collective_accuracy_loss_questions": 1,
+    "decision_set": "screening",
+    "regression_role": "descriptive_only_no_selection_or_retuning",
+    "adoption_policy": "recommendation_only_new_full_protocol_requires_review"
+  },
+  "profiles": {
+    "strict_schema": {
+      "type": "object",
+      "properties": {
+        "explanation": {
+          "type": "string"
+        },
+        "expression": {
+          "type": "string",
+          "pattern": "^[0-9.()+*/ -]{1,1000}$"
+        }
+      },
+      "required": [
+        "explanation",
+        "expression"
+      ],
+      "additionalProperties": false
+    },
+    "complete_expression": {
+      "type": "object",
+      "properties": {
+        "explanation": {
+          "type": "string"
+        },
+        "expression": {
+          "type": "string",
+          "pattern": "^[0-9.()+*/ -]{1,1000}$"
+        }
+      },
+      "required": [
+        "explanation",
+        "expression"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "system_prompts": {
+    "strict_schema": "Solve the user's problem by constructing one arithmetic expression. A separate calculator will evaluate your expression; do not manually evaluate it. Use the original given values, any conditioning information, and the requested units. Use standard unit-conversion constants when needed. Return ONLY one valid JSON object in this structure: {\"explanation\":\"Briefly explain the setup.\",\"expression\":\"Unevaluated arithmetic expression\"}. Both fields must be strings. Keep explanation to at most 60 words. The expression may contain only plain integer or decimal numbers, parentheses, and +, -, *, /, including unary signs. Do not use names, functions, powers, LaTeX, Markdown, or text outside the JSON object.",
+    "complete_expression": "Solve the user's problem by constructing one arithmetic expression. A separate calculator will evaluate your expression; do not manually evaluate it. Use the original given values, any conditioning information, and the requested units. Use standard unit-conversion constants when needed. Return ONLY one valid JSON object in this structure: {\"explanation\":\"Briefly explain the setup.\",\"expression\":\"Unevaluated arithmetic expression\"}. Both fields must be strings. Keep explanation to at most 60 words. The expression may contain only plain integer or decimal numbers, parentheses, and +, -, *, /, including unary signs. Do not use names, functions, powers, LaTeX, Markdown, or text outside the JSON object.\nBefore returning JSON, make expression a complete, finite arithmetic expression consistent with your explanation. Write every multiplication with *. Do not use assignments, ellipses, implicit multiplication, or unfinished operators. Check balanced parentheses and include an operand on both sides of every binary operator."
+  }
+}

@@ -1,213 +1,143 @@
-# ML1 Project: multi-agent communication
+# ML1 Project: communication versus self-revision
 
-How many rounds of communication improve a multi-agent LLM system's collective accuracy enough to justify their token and time costs? The [November 15 experimental design](https://chatgpt.com/s/t_6afa1956baec8191b2c6d69d0c30935d) is implemented as the frozen `multi-agent-calculator-v1` protocol. The existing single-agent calculator baseline remains the control.
+Does access to peers improve a multi-agent LLM system beyond giving each agent another attempt, and enough to justify the extra tokens and time?
 
-## Experimental design
+The latest completed experiments compare **five agents with all four peers** and **ten agents with two sampled peers**, each against matched self-revision on the same twelve inspected development questions. Both use the selected **original calculator instruction + strict JSON schema**, shared initial panels and three synchronous revision rounds. The underlying model is `llama3.2:3b`; no weights are trained or changed.
 
-| Component | Planned procedure |
-| --- | --- |
-| Agent panel | Ten separate generations from the same `llama3.2:3b` model; their errors may be correlated. |
-| Round 0 | Each agent independently returns a brief `explanation` and arithmetic `expression`; the existing exact-rational calculator evaluates the expression. |
-| Communication | Each agent receives the original question, its own previous response, and all nine peers' previous explanations, expressions, and calculator results or failure statuses, then produces a revised response. |
-| Synchronous updates | Every prompt for round `t` uses the same completed round `t-1` snapshot. Calls execute sequentially; only the preceding round is shared, with reproducibly shuffled anonymous peers. |
-| Answer evaluation | Exact-rational plurality over eligible calculator results; tied winners or no eligible results abstain and count incorrect. Required string fields, successful execution, and probability range gate eligibility. Correctness uses exact rational equality. |
+**Completed result:** five-agent communication and self-revision solve the same **3/12** final questions; sparse ten-agent communication solves **2/12** versus its control's **3/12**. Recommend five agents for the primary full research comparison because full-trajectory calls halve, not because it is a validated accuracy winner. Sparse R1 reaches 3/12 at lower prefix token cost than five-agent communication R3. Keep validation-based round selection. [Audited results and configuration decision](docs/ARCHITECTURE_RESULTS_V1.md)
 
-Collect every round through a prespecified maximum, even if answers stabilize, so all candidate stopping points can be evaluated offline. The primary objective selects **one globally fixed communication-round count**, with agent population and communication structure held fixed:
+## Run the five-agent full study
 
-$$
-R^* = \arg\min_{R \in \{0,\ldots,R_{\max}\}}
-\left[L(R) + \lambda_T\,\widetilde C_T(R) + \lambda_W\,\widetilde C_W(R)\right],
-\qquad \lambda_T,\lambda_W \ge 0.
-$$
-
-Here `L(R)` is one minus family-balanced accuracy. The cost terms are family-balanced means of cumulative input/output tokens and cumulative measured wall-clock time over communication rounds `1..R`, each normalized by a fixed calibration reference; report total costs including round 0 separately. Freeze cost references on development/calibration data, select `R*` on validation data under prespecified penalties, and evaluate on held-out questions without retuning. Report accuracy by round/family, invalid and abstention rates, beneficial/harmful revisions, cost curves, penalty sensitivity, and question-level uncertainty.
-
-Use fresh evaluation questions, initially building on urn probability, sensor posteriors, algebra, and unit/rate problems. The existing sixteen inspected cases remain development/regression data; related question variants must stay in the same split. Round 0 provides the ten-independent-agent comparison. The full-study runner adds self-revision with an identical initial panel. Budget-matched additional independent sampling and adaptive learned stopping remain later extensions.
-
-**Frozen settings:** ten agents, three communication rounds after round 0, temperature `0.7`, output cap `1024`, context `16384`, `keep_alive=0`, and base seed `20261116`. The larger context admits ten unshortened peer responses under a conservative UTF-8 byte admission check; oversized prompts stop the run. The historical baseline keeps its `4096` context. Explanations are instructed to stay within 60 words, with length compliance reported separately from correctness. References and correctness feedback never enter agent prompts; malformed expressions are preserved without repair.
-
-**Frozen analysis:** `lambda_T = delta * omega`, `lambda_W = delta * (1-omega)`, with primary `delta=0.02`, `omega=0.5`; sensitivity grids are `delta ∈ {0, 0.01, 0.02, 0.05, 0.10}` and `omega ∈ {0, 0.5, 1}`. Development round-1 mean token/time costs, weighted equally by family, define the fixed references. Objective ties choose the smaller round count. Reports include paired, stratified question bootstrap intervals, Pareto rounds, and break-even penalties. The primary penalty is a declared resource preference, not estimated from accuracy.
-
-**Full-study design:** 100 fresh questions across the same four families, split into 20 development/calibration, 40 validation, and 40 held-out questions. Numeric variants remain within 52 semantic problem groups; uncertainty resamples whole groups. The four-question pilot establishes feasibility, not general accuracy. [Frozen generation configuration](config/multi_agent.json) · [Generation protocol](docs/MULTI_AGENT_PROTOCOL.md) · [Full-study design and pilot interpretation](docs/FULL_EXPERIMENT.md)
-
-## Pilot result, next diagnostic, and prepared full experiment
-
-The completed feasibility pilot produced collective accuracy **50% → 75% → 75% → 50%** over rounds 0–3. The gain and later regression came from algebra syntax eligibility; the sensor panel instead converged on a wrong answer. All 160 calls completed, offline audit reproduces every score, and loading consumed approximately 35% of measured time. These four inspected questions do not establish an optimal round count or communication benefit. [Recorded pilot metrics](docs/PILOT_RESULTS_V1.json)
-
-**Run another short pilot before the full study.** The [follow-up pilot](docs/FOLLOWUP_PILOT.md) compares baseline JSON with one schema-constrained expression format on eight new development questions, keeping prompts and sampling settings identical. It requires **160 calls** and has prespecified technical/accuracy screening rules. It recommends a profile without automatically changing the full-study protocol. [Windows 11 transfer, GPU checks, pause and resume](docs/WINDOWS_RUN_GUIDE.md)
+The active full-study command now implements the selected strict-schema profile: five agents with all four peers versus matched five-agent self-revision, full rounds 0–3, development calibration, validation-selected global round and locked test evaluation. It generates **3,500 fresh calls**, split 700/1,400/1,400 across development/validation/test, with a progress bar and an estimated remaining time based on returned call durations.
 
 ```powershell
-py -3 run_followup_pilot.py --dry-run
-py -3 run_followup_pilot.py --output-dir results/followup-pilot/windows-v1 --timeout 600
+Set-Location D:\ML1-project
+.\run_full_experiment.ps1 -Phase all
 ```
 
-Press Ctrl+C once and wait for `paused`; completed calls are saved. Resume with the same command plus `--resume`. Paused hours are excluded from active timings. Keep the code, model, runtime, driver, hardware, and result paths unchanged during an experiment. No full-study inference has been launched.
+Default output: `results/full-experiment/study-v2`. Inspect [all 100 questions](docs/FULL_STUDY_QUESTIONS.md) or the [question-only JSON](docs/FULL_STUDY_QUESTIONS.json) before running. The default launcher without `-Phase all` runs development only; later phases use `-Phase validation -Resume` and `-Phase test -Resume`. Press Ctrl+C once and wait for `paused`, then resume with the same phase and `-Resume`. [Frozen study, cost objective, ETA and audit commands](docs/FULL_EXPERIMENT.md)
 
-The **prepared full study** compares all-to-all communication with self-revision, reusing the exact initial ten responses. It requires **7,000 new model calls**: 4,000 primary calls and 3,000 additional self-revision calls. This matches generation counts, with actual token/time costs reported separately. An initial estimate is **20–30 hours** on the pilot Mac; PC runtime must be measured. Review the format pilot, then the planned communication/self-revision pilot, before freezing a final full-study profile. The current prepared profile retains baseline JSON.
+Version 2 explicitly calibrates revision cost using summed model-request seconds instead of the old full-round wall-time scope. It does not import pilot calls. The original ten-agent runner/configuration are preserved as [v1 compatibility code](experiments/full_study_v1/runner.py) and [historical design](docs/FULL_EXPERIMENT_V1.md); completed results and their archives are unchanged. No full-study inference has been launched by this setup.
 
-The full-study driver supports Windows, macOS, and Linux with per-call pause/resume. It freezes development calibration, selects one round using primary validation only, and evaluates both arms there on held-out data. It binds hardware/runtime/model/source/dataset identity and preserves partial evidence. [Conditional full commands, checkpoints, and interpretation rules](docs/FULL_EXPERIMENT.md)
+## Inspect the completed architecture pilots
 
-## Run the multi-agent experiment
+Both runs are complete and audited: **420** five-agent generations and **840** sparse ten-agent generations, with eight branch/round summaries and 96 question rows each. The actual common initialization and self-revision outputs match across runs. No offline subset screen preceded inference. Evidence and frozen sources are archived.
 
-After [installing Ollama and the model](#install-preview-and-run), preview the default pilot, then run it:
+Reproduce either read-only audit without Ollama:
 
-```sh
-python3 run_multi_agent.py --dry-run
-python3 run_multi_agent.py --output-dir results/multi-agent/pilot-v1 --timeout 600
+```powershell
+Set-Location D:\ML1-project
+.\run_five_agent_pilot.ps1 -AnalyzeRun results/five-agent-pilot/windows-v1
 ```
 
-The pilot uses four inspected development questions, one per family, and makes **160 model calls**: `4 questions × 10 agents × 4 rounds`. The dry run makes no service calls or file writes; later-round prompts are deferred until previous responses exist. Without `--output-dir`, the runner creates a unique timestamped directory under `results/multi-agent/`.
-
-Each run saves original generations before validation, evaluated agent records, round summaries, and a provenance/status manifest. Complete runs also save `summary.json` and, when token/time measurements are complete, a development `calibration.json`. Failed/interrupted runs preserve partial evidence and cannot be analyzed as complete; there are no retries or automatic resumes. Offline audit rechecks prompts, seeds, parsing, calculator results, evidence hashes, and scores without contacting Ollama:
-
-```sh
-python3 run_multi_agent.py --analyze-run results/multi-agent/pilot-v1 \
-  --analysis-output results/multi-agent/pilot-v1-analysis.json
+```powershell
+.\run_sparse_peer_pilot.ps1 -AnalyzeRun results/sparse-peer-pilot/windows-v1
 ```
 
-Use `--tasks path/to/questions.json` for a new frozen task manifest and `--split validation` or `--split test` to select a partition. Validation requires a development `--calibration` artifact and emits `selection.json`. Test inference requires that same calibration and `--selection` from validation; reports highlight the round chosen before test inference. [Manifest format and workflow](docs/MULTI_AGENT_PROTOCOL.md)
+For the sparse condition, each receiving agent samples two distinct peers uniformly from the other nine for each question and round. Seeds and peer IDs are recorded; pairs are re-sampled each round, with repeats across rounds allowed. [Frozen procedures and routing policy](docs/ARCHITECTURE_PILOTS.md). The five-agent full-study implementation above incorporates the selected profile and a consistent pre-validation cost calibration.
 
-## Current implementation: calculator baseline
+## Inspect the completed confirmation pilot
 
-This repository now has one active baseline: **Llama constructs a mathematical expression, a calculator evaluates it, and scoring checks the computed result.** All future experiments should start from this procedure and declare their changes explicitly.
+The completed **12-question confirmation** uses the selected strict-schema profile and full communication/self-revision trajectories through round 3: **840 unique model calls**, eight structural groups, four newly tested. Plurality gives communication **1/12** versus self-revision **4/12** at R3. Alternative voters show no consistent benefit. High-agreement/stable-majority stopping saves communication 10.92%/4.26% of total tokens, but every early stop is wrong; each final answer matches R3, with no additional observed accuracy loss. Self-revision never stops early. [Results and full-study decision](docs/CONFIRMATION_RESULTS_V1.md)
 
-The baseline uses the **original calculator prompt**, not the longer syntax clarification. It is the most useful starting point among the approaches tested so far, with known expression-format and reasoning weaknesses. Historical performance is **7/16 correct** on inspected development questions; this is not a validated general accuracy estimate. [Selection and results](docs/BASELINE_RESULTS.md)
+In PowerShell:
 
-## Install, preview, and run
-
-Use Python 3.10 or newer and install [Ollama](https://ollama.com/download). Open Ollama or run `ollama serve`, then run these commands from the repository root:
-
-```sh
-python3 setup_models.py
-python3 setup_models.py --check
-python3 run_baseline.py --dry-run
-python3 run_baseline.py
+```powershell
+Set-Location D:\ML1-project
+.\run_confirmation_pilot.ps1 -AnalyzeRun results/confirmation-pilot/windows-v1
 ```
 
-Only `llama3.2:3b` is installed and tested. The code uses the Python standard library; no Python packages are needed. On Windows, replace `python3` with `py -3`.
+This read-only audit requires no Ollama service. The default run is complete; no further policy pilot is required. The new full-study runner keeps plurality/global-round selection primary. [Frozen confirmation procedure](docs/CONFIRMATION_PILOT.md)
 
-`--dry-run` previews all sixteen exact requests without contacting Ollama or writing results. The final command runs **one model call per question**, followed by at most one calculator attempt for that response. The sixteen fixed questions cover four urn, four sensor, four algebra, and four units problems. All have been inspected previously; they are development/regression cases, not a held-out test set.
+The initial preflight stopped before inference because the GPU driver changed from 617.42 to 621.24 on the same PC. The [confirmation environment](config/confirmation_environment.json) records this driver-only amendment. Both completed branches share the new pinned baseline; earlier evidence is unchanged.
 
-New runs go to a unique `results/baseline/<UTC>-calculator-baseline-v1/` directory. An existing directory is never overwritten. For a named run or a slower computer:
+## Inspect earlier development evidence
 
-```sh
-python3 run_baseline.py --output-dir results/baseline/my-run --timeout 600
+The earlier offline comparison covers **three voting rules and two stopping rules**, with fixed-round controls. High-agreement stopping saves about 25–26% of total tokens on those easier traces; stable-majority stopping saves about 17–18%. Both stop only the same three easy questions and preserve round-3 answers. Its recommended confirmation is now complete above. [Earlier results](docs/OFFLINE_POLICY_RESULTS_V1.md)
+
+Reproduce its read-only audit, with no model calls:
+
+```powershell
+Set-Location D:\ML1-project
+.\run_offline_comparison.ps1 -AnalyzeRun results/offline-comparison/pilot-v1
 ```
 
-An optional `python3 setup_models.py --check --smoke` makes one additional calculator-baseline model call as an installation check. It is separate from experimental results.
+Reports are preserved in `results/offline-comparison/pilot-v1` and a byte-verified archive. [Exact definitions, command options, outputs, and limitations](docs/OFFLINE_POLICY_COMPARISON.md)
 
-## What happens for each question
+Offline reanalysis needs no model service. In PowerShell:
 
-1. **Ask Llama to set up the mathematics.** Send the system prompt below and the original question. Reference answers and scoring metadata stay local.
-2. **Read its explicit expression.** The model returns JSON with string fields `explanation` and `expression`.
-3. **Run the calculator once.** Pass only the expression string to the calculator. It has no access to the question or reference answer.
-4. **Score the computed value.** Compare it with the reference after calculation. Preserve format, execution, and mathematical failures separately.
-5. **Save the original evidence.** Record the exact request, unchanged model response, expression, calculator result/error, scores, and generation settings.
-
-For example, for 90 kilometres per hour over 14 minutes, the intended model output could be:
-
-```json
-{"explanation":"Convert minutes to hours, then multiply by speed.","expression":"90*(14/60)"}
+```powershell
+Set-Location D:\ML1-project
+.\run_communication_recovery.ps1 -AnalyzeRun results/communication-pilot/windows-v2
 ```
 
-The calculator returns the exact value `21`. It does not decide whether the formula is appropriate. A wrong formula is faithfully evaluated; unsupported syntax is recorded as a failure. This example explains the procedure and is not inserted into model requests.
+The launcher finds Python 3.10+ automatically. Reanalysis audits the format-pilot parent, original failed-v1 prefix, all 480 revision records and exact scores, and reproduces the saved summary. The completed evidence is under `results/communication-pilot/windows-v2`, with a separate immutable archive. The original v1 stopped on one output-truncated invalid-JSON response; the explicitly amended recovery preserved it as ineligible and generated the remaining 334 responses without replaying the earlier 146.
 
-There is **no model revision, peer discussion, answer retry, expression repair, or extraction from explanation text** in the baseline. A wrong or malformed model answer is recorded once and the next question proceeds. A service failure or interruption preserves partial records and stops the run.
+The selected schema and truncation policy are incorporated in the versioned five-agent full study. The historical v1 implementation retains its plain-JSON profile. A negative communication result remains a legitimate study outcome; do not require a pilot gain or change the questions/scorer to obtain one.
 
-## Exact model prompt
+[Original generation design](docs/COMMUNICATION_PILOT.md) · [Current recovery procedure and commands](docs/COMMUNICATION_RECOVERY.md)
 
-Every baseline question uses this unchanged system instruction from [calculator_protocol.py](calculator_protocol.py):
+## Selected procedure
 
-> Solve the user's problem by constructing one arithmetic expression. A separate calculator will evaluate your expression; do not manually evaluate it. Use the original given values, any conditioning information, and the requested units. Use standard unit-conversion constants when needed. Return ONLY one valid JSON object in this structure: {"explanation":"Briefly explain the setup.","expression":"Unevaluated arithmetic expression"}. Both fields must be strings. Keep explanation to at most 60 words. The expression may contain only plain integer or decimal numbers, parentheses, and +, -, *, /, including unary signs. Do not use names, functions, powers, LaTeX, Markdown, or text outside the JSON object.
-
-The user message is exactly the task's `prompt` in [config/baseline.json](config/baseline.json). There are no answer options, worked examples, reference answers, or task-specific system hints in the actual requests.
-
-| Setting | Baseline value |
+| Component | Procedure |
 | --- | --- |
-| Active wrapper | `calculator-baseline-v1` |
-| Planning/execution contract | `planner-calculator-v1` |
-| Model | `llama3.2:3b` |
-| Maximum output tokens per call | 1024 |
-| Temperature | 0.7 |
-| Context requested | 4096 tokens |
-| Sampling seed | Fixed per question in the configuration |
-| Response transport | JSON, non-streaming, model unloaded after each request |
-| Explanation instruction | At most 60 words; compliance reported separately |
+| Model and sampling | Llama3.2 3B, five separate generations in full-study v2; temperature 0.7, output cap 1024, context 16384, `keep_alive=0` |
+| Initial panel | Five fresh responses per question, shared exactly between branches; no pilot outputs are imported into v2 |
+| Communication | Each agent sees the question, its own previous response, and all four anonymous peers' previous responses |
+| Self-revision | Each agent sees the question and only its own previous response |
+| Shared information | Explanation, expression, exact calculator result, and execution status; references and correctness stay local |
+| Updates | Both branches use completed preceding-round snapshots; every round through 3 is collected |
+| Calculation | Evaluate the explicit expression once with the bounded exact-rational calculator; preserve failures without repair |
+| Collective answer | Unique exact-rational plurality among eligible responses; ties/no eligible values abstain and count incorrect |
+| Reporting | One validation-selected global round is frozen before test; all round/family curves, paired group intervals, revisions, failures and costs remain reported |
 
-## Calculator rules
+Generation counts match, but peer prompts are longer, so token and time costs are reported separately. Pilots do not choose a validated optimal global round or establish general accuracy. The active full study has 100 questions and 3,500 calls; the earlier ten-agent/7,000-call design remains historical.
 
-The [calculator](calculator.py) supports plain integer/decimal literals, parentheses, `+`, `-`, `*`, `/`, and unary signs. Fractions are written as division, such as `3/7`. Every multiplication needs `*`.
+## Why this profile
 
-| Accepted | Rejected |
+The 320-call format follow-up compared the original prompt with one added expression-completeness instruction, both using the same strict schema. On the eight fresh numerical screening questions, the original prompt produced **79/80 eligible outputs, one division-by-zero rejection, 33/80 individually correct answers, and 4/8 collectively correct questions**. The extra instruction produced 72 eligible outputs, six calculator failures, and the same 4/8 collective accuracy while using about 27% more tokens. The prespecified rule selected `strict_schema`.
+
+The extra instruction helped inspected regression cases but did not transfer reliably to fresh numbers. Those regression outcomes remain descriptive. The schema constrains characters, not complete arithmetic or mathematical correctness. Explanations are not graded, and a wrong executable expression may reflect reasoning, transcription, or explanation-expression inconsistency.
+
+[Format follow-up protocol](docs/FORMAT_FOLLOWUP.md) · [All experiment outcomes](docs/EXPERIMENT_CATALOG.md) · [Tested models and weight availability](docs/MODEL_REGISTRY.md)
+
+## Repository map
+
+| Location | Role |
 | --- | --- |
-| `(21+11)/4` | `x = (21+11)/4` |
-| `(8/10)*(7/9)` | `8x`, `2(3+4)`, or Unicode `×`/`∗` |
-| `0.1+0.2` | Variables, functions, powers, units, scientific notation, or prose |
+| `run_full_experiment.ps1`, `run_full_experiment.py` | Active five-agent v2 full-study entry points with ETA, pause/resume and phase audit |
+| [experiments/full_study_v2/](experiments/full_study_v2/) | Selected-profile protocol, durable three-phase runner, cost selection and paired analysis |
+| [docs/FULL_STUDY_QUESTIONS.md](docs/FULL_STUDY_QUESTIONS.md) | All 100 exact question prompts for inspection, without reference answers |
+| [experiments/full_study_v1/](experiments/full_study_v1/) | Historical ten-agent runner compatibility; original configuration remains preserved |
+| `run_five_agent_pilot.ps1`, `run_sparse_peer_pilot.ps1` | Completed architecture experiments and read-only analyzers |
+| [experiments/architecture_pilots/](experiments/architecture_pilots/) | New versioned routing, variable-panel protocol, durable runner and analysis |
+| `run_confirmation_pilot.ps1`, `run_confirmation_pilot.py` | Completed twelve-question confirmation and read-only analyzer; 840 calls, all voting/stopping rules replayed offline |
+| [experiments/confirmation_pilot/](experiments/confirmation_pilot/) | New versioned protocol, durable runner, and paired policy analysis |
+| `run_offline_comparison.ps1`, `run_offline_comparison.py` | Current offline voting/stopping comparison; zero new generations |
+| [experiments/offline_policies/](experiments/offline_policies/) | Versioned policy definitions, prefix replay, and report provenance |
+| `run_communication_recovery.ps1`, `run_communication_recovery.py` | Preserved completed recovery runner and offline source analyzer |
+| [experiments/communication_pilot/](experiments/communication_pilot/) | Preserved completed-pilot protocol, checkpointing runner, and paired analysis |
+| [config/communication_recovery.json](config/communication_recovery.json) | Completed recovery's failure-policy amendment and unchanged generation protocol |
+| [docs/](docs/) | Current pilot guide, experiment catalog, model registry, and preserved designs |
+| [archive/](archive/README.md) | Immutable historical source/configuration/result snapshots and model artifact inventory |
+| [results/](results/README.md) | Operational evidence and new runs; raw active results remain local until deliberately archived |
+| `calculator.py`, `calculator_protocol.py`, `multi_agent_*.py`, `local_llm.py` | Shared exact calculator, scoring, prompt, and transport dependencies |
+| Other root runners/configs | Provenance-pinned baseline, completed-pilot compatibility, and prepared full-study code; use catalog links for their status |
+| [tests/](tests/) | Offline protocol, analysis, archive, and durable-checkpoint tests |
 
-The calculator uses exact rational arithmetic: `0.1+0.2` gives `3/10`. An approximate decimal is saved for display where representable. It never executes Python programs or uses `eval`/`exec`. Limits are 1000 expression characters, 200 AST nodes, depth 40, 64 characters per numeric literal, literal magnitude at most 1,000,000, and 4096 bits per intermediate numerator/denominator. Division by zero and unsupported/oversized expressions produce recorded errors.
+The October and November historical archives retain their original bytes. The November 17 archive preserves both Windows pilots, their raw evidence and exact source snapshots. Some older raw Mac artifacts are unavailable on this PC; their portable metrics and recorded evidence hashes are preserved and cataloged. Completed-run source/configuration files and operational parent results remain in their original paths because historical audits and panel imports depend on those paths. The fresh full-study runner reads its selected-profile identity from the versioned archive, without following ignored operational parent paths.
 
-Only the explicit expression is evaluated, at most once. Assignments are not stripped, Unicode is not normalized, variables are not solved automatically, and no fallback expression is taken from the explanation.
+The locally available Llama weights are backed up with verified content hashes under `archive/model-artifacts/`; large blob backups are ignored by Git, while manifests and inventories can be versioned. Qwen's historical experiments remain archived; its weights are not installed here. [Archive index and verification](archive/README.md)
 
-## What counts as correct
+## Offline checks and other designs
 
-A **strictly correct delivered answer** requires both required string fields, successful expression execution, and a computed value within **absolute error 0.001** of the reference. Probability answers must also lie between zero and one. This inherited tolerance applies to every family. Sensor correctness uses the numerical posterior, with no state decision at a 0.5 threshold.
+The project uses the Python standard library. With a working Python command:
 
-The report distinguishes:
-
-- JSON and required-field validity;
-- calculator attempts and successful execution;
-- numerical correctness of the computed result;
-- strict delivered correctness;
-- explanation length, exact two-key compliance, and arithmetic-operation presence;
-- model calls, input/output tokens, calculator attempts, and time.
-
-If explanation is missing but an explicit expression is available, calculation can still succeed; the response fails strict delivery. Word-limit violations, extra keys, and literal-only answers are secondary flags, not additional correctness gates. Correct values in explanation text never replace the expression field.
-
-**Numerical success does not prove correct reasoning.** A literal answer can pass without demonstrating a formulation. The inherited sensor reference `2/2189` is smaller than 0.001, so even zero lies within tolerance. Keep this limitation visible and inspect methods separately; tightening the rule would require a separately versioned comparison.
-
-## Results and reproducibility
-
-Each completed run saves `answers.jsonl`, `summary.json`, and `run-manifest.json`. They contain the frozen configuration, exact messages, raw responses, calculated answers labeled `origin: "calculator"`, separate scores, source hashes, model digest, Ollama version, sampling settings, and completion/failure status. The runner checks source and model/runtime identity before calls and after the final call.
-
-A complete run has sixteen answer records, a final completion marker, and manifest status `complete`. Failed/interrupted runs retain partial records. New raw runs stay ignored until deliberately selected for versioning. [Result locations](results/README.md)
-
-The [historical reference](results/baseline/HISTORICAL_REFERENCE.json) selects the sixteen original-prompt records from the preserved November 6 comparison: 11/16 executable methods and 7/16 correct. **It is not a newly generated run.** The November 9 consolidation preserves the prompt, calculator, scorer, mathematical questions, and seeds; it prepares a clearer entry point without claiming a new model result.
-
-## Rules for future experiments
-
-Use this baseline as the control. Freeze each new design and questions before inference, use fresh evaluation questions for generalization, and record every intentional difference. Keep the model, token cap, calculator grammar, parser, numerical scoring, and failure policy identical across comparison arms unless one is the declared experimental variable. Do not silently improve old outputs or replace historical scores.
-
-For revision and peer comparisons, reuse the same initial calculator-enabled plans/results in every branch. If peers receive computed values, self revision also receives its own computed value. Do not provide reference-answer feedback. Report and control model-call, token, and calculator budgets separately. The full-study runner implements shared-initial-panel self-revision; additional budget-matched independent sampling remains future work.
-
-## Active files and archived experiments
-
-| Location | Purpose |
-| --- | --- |
-| [run_followup_pilot.py](run_followup_pilot.py), [config/followup_pilot.json](config/followup_pilot.json) | Paired 160-call development format pilot with pause/resume and prespecified screening |
-| [run_full_experiment.py](run_full_experiment.py), [config/full_experiment.json](config/full_experiment.json) | Prepared development → validation → test study with per-call checkpoints |
-| [experiment_runtime.py](experiment_runtime.py), [study_trajectory.py](study_trajectory.py) | Portable single-writer locks, cooperative pause, durable call recovery, and active timing |
-| [build_full_benchmark.py](build_full_benchmark.py), [config/full_benchmark.json](config/full_benchmark.json) | Deterministic 100-question grouped benchmark and independent exact-reference checks |
-| [run_self_revision.py](run_self_revision.py), [full_experiment_analysis.py](full_experiment_analysis.py) | Shared-initial-panel control, paired group uncertainty, and cross-condition diagnostics |
-| [run_multi_agent.py](run_multi_agent.py) | Synchronous multi-agent runner and offline audit CLI |
-| [config/multi_agent.json](config/multi_agent.json), [config/multi_agent_pilot.json](config/multi_agent_pilot.json) | Frozen protocol and inspected four-question pilot |
-| [multi_agent_protocol.py](multi_agent_protocol.py), [multi_agent_llm.py](multi_agent_llm.py) | Reference-free prompts, response evaluation, seeds, and isolated inference settings |
-| [multi_agent_analysis.py](multi_agent_analysis.py) | Exact voting, calibration, validation selection, cost and uncertainty analysis |
-| [run_baseline.py](run_baseline.py) | Original single-agent control entry point |
-| [config/baseline.json](config/baseline.json) | Original prompt, sixteen questions, seeds, and execution policy |
-| [calculator_protocol.py](calculator_protocol.py) | Prompt, parsing, one-shot calculation, and scoring |
-| [calculator.py](calculator.py) | Exact restricted arithmetic |
-| [experiment_config.py](experiment_config.py) | Shared model/settings and provenance |
-| [local_llm.py](local_llm.py), [setup_models.py](setup_models.py) | Local inference and model setup |
-| [docs/BASELINE_RESULTS.md](docs/BASELINE_RESULTS.md) | Why this baseline was chosen and its limitations |
-| [archive/2026-11-09-pilots/](archive/2026-11-09-pilots/README.md) | Preserved unassisted, template, syntax, multiple-choice, and earlier calculator pilots |
-| [archive/2026-10-24-legacy/](archive/2026-10-24-legacy/README.md) | Earlier Qwen/Llama experiments and original scores |
-
-Old experiment commands, configurations, reports, tests, and outputs are archived with their original bytes and SHA256 inventories. Historical provenance strings retain their original paths; the archive index explains how to resolve them. The other approaches remain available for reference but are not active defaults.
-
-Run the active offline tests with:
-
-```sh
-python3 -m unittest discover -s tests -v
+```powershell
+py -3 -B -m unittest discover -s tests -q
+py -3 archive_project_history.py --check
 ```
 
-Tests use simulated model responses and a temporary loopback HTTP fixture. They do not download weights or measure model accuracy.
+The suite uses mocked model responses and a temporary localhost server, without real inference. Environments that block local sockets must allow the existing client tests to access their temporary loopback server. The PowerShell pilot launcher also accepts `-Python C:\path\to\python.exe`.
+
+The preserved single-agent control is documented in [BASELINE_RESULTS.md](docs/BASELINE_RESULTS.md), including its historical 0.001 tolerance. Current multi-agent experiments use exact equality. The old [v1 communication protocol](docs/MULTI_AGENT_PROTOCOL.md) and [v1 full-study design](docs/FULL_EXPERIMENT_V1.md) remain historical reference material. The active [five-agent full study](docs/FULL_EXPERIMENT.md) uses the selected strict schema. Windows installation guidance is in [WINDOWS_RUN_GUIDE.md](docs/WINDOWS_RUN_GUIDE.md).

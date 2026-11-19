@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "experiment_id": "offline-voting-stopping-comparison-v1",
+  "source_run": "results/communication-pilot/windows-v2",
+  "protocol": {
+    "scope": "post_hoc_exploratory_saved_development_traces_no_policy_selection",
+    "arms": [
+      "communication",
+      "self_revision"
+    ],
+    "num_agents": 10,
+    "max_round": 3,
+    "voting_rules": [
+      "plurality",
+      "initial_anchored",
+      "agent_history"
+    ],
+    "stopping_rules": [
+      "fixed_round_0",
+      "fixed_round_1",
+      "fixed_round_2",
+      "fixed_round_3",
+      "high_agreement_8",
+      "stable_majority_6"
+    ],
+    "new_stopping_rules": [
+      "high_agreement_8",
+      "stable_majority_6"
+    ],
+    "voting_definitions": {
+      "plurality": "Unique largest eligible exact-rational current-round vote count; ties abstain.",
+      "initial_anchored": "Round-zero votes plus current-round votes; round zero is counted once when r=0; tied exact scores abstain.",
+      "agent_history": "Each agent contributes total weight one, equally divided over its DISTINCT eligible exact-rational answers observed from round zero through r; no eligible history contributes zero; tied exact scores abstain."
+    },
+    "stopping_definitions": {
+      "high_agreement_8": "First completed round 0..3 where the selected voter has a unique answer and at least eight of the ORIGINAL ten current agents support that answer; otherwise use the selected voter at round three.",
+      "stable_majority_6": "First completed round r>=1 where the selected voter has the same unique answer at r-1 and r and at least six of the ORIGINAL ten agents support that answer in EACH current panel; otherwise use the selected voter at round three.",
+      "fixed_rounds": "Controls stop after the specified full round 0, 1, 2, or 3 and use the selected voter at that round."
+    },
+    "agreement_denominator": "original_ten_agents_not_eligible_count_or_weighted_scores",
+    "answer_policy": "unique_exact_score_winner_else_abstain",
+    "abstention_counts_incorrect": true,
+    "score_arithmetic": "exact_Fraction_weights_and_rational_answers",
+    "reference_policy": "reference_used_only_after_terminal_decision_not_in_voting_or_stopping",
+    "history_policy": "observed_prefix_only_no_future_round_features",
+    "cost_policy": "charge_every_call_in_each_completed_round_through_stop_including_round_zero",
+    "counterfactual_scope": "terminal_aggregation_and_whole_question_stopping_only_no_feedback_or_changed_generation",
+    "cost_interpretation": "saved_prefix_token_counts_and_request_durations_not_realized_new_inference_or_latency_benchmarks",
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 20261118,
+    "bootstrap_unit": "paired_family_stratified_whole_semantic_group",
+    "selection": "none_no_winner_ranking_or_validation_claim",
+    "additional_model_calls": 0
+  }
+}

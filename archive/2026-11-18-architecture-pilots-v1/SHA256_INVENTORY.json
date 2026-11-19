@@ -1,0 +1,1030 @@
+{
+  "schema_version": 1,
+  "archive": "archive/2026-11-18-architecture-pilots-v1",
+  "archived_at": "2026-11-19T01:21:08.890761+00:00",
+  "scope": "Both completed architecture pilots, all12 raw/report/manifest files and10 new frozen architecture source/config/launcher files;42 byte-identical dependencies referenced in existing verified archives. Original paths and bytes remain unchanged.",
+  "run_status": "complete",
+  "analysis_scope": "prespecified_architecture_development_replication_previously_inspected_questions",
+  "unique_generations": 1260,
+  "shared_initial_generations": 180,
+  "revision_generations": 1080,
+  "questions_per_run": 12,
+  "semantic_groups_per_run": 8,
+  "new_question_or_structural_holdout": false,
+  "selection_performed": false,
+  "runs": [
+    {
+      "directory": "results/five-agent-pilot/windows-v1",
+      "preset": "five_agent",
+      "unique_generations": 420,
+      "shared_initial_generations": 60,
+      "revision_generations": 360,
+      "num_agents": 5,
+      "peer_count": 4,
+      "comparison_rows": 8,
+      "question_rows": 96,
+      "manifest_sha256": "650d243e1c6fc784b97a3ad246debdb56f6c78bce482d7459ea407000925bb4a"
+    },
+    {
+      "directory": "results/sparse-peer-pilot/windows-v1",
+      "preset": "sparse_peer",
+      "unique_generations": 840,
+      "shared_initial_generations": 120,
+      "revision_generations": 720,
+      "num_agents": 10,
+      "peer_count": 2,
+      "comparison_rows": 8,
+      "question_rows": 96,
+      "manifest_sha256": "47cbf7c4ced1cee8c6f4a0621cd78ee18852f0cb3f5316434ace322c30c8e553"
+    }
+  ],
+  "file_count": 22,
+  "total_bytes": 12841694,
+  "files": [
+    {
+      "original_path": "config/five_agent_pilot.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\five_agent_pilot.json",
+      "archive_path": "config/five_agent_pilot.json",
+      "operation": "copy",
+      "bytes": 7007,
+      "sha256": "183a8eb458b8262b0416f77f9c13a666894cf75aca4fb1ec87586261e9e58054"
+    },
+    {
+      "original_path": "config/sparse_peer_pilot.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\sparse_peer_pilot.json",
+      "archive_path": "config/sparse_peer_pilot.json",
+      "operation": "copy",
+      "bytes": 7045,
+      "sha256": "6d0763e9a4944e2503752adc7d8e43a4d37ee395a2c489748b01d6dfc3e249de"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\__init__.py",
+      "archive_path": "experiments/architecture_pilots/__init__.py",
+      "operation": "copy",
+      "bytes": 63,
+      "sha256": "5cd60caf05ca6ccb3faba61b116b9f1d6c7a713bb4fe69e9b16b161f6cef0e59"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\analysis.py",
+      "archive_path": "experiments/architecture_pilots/analysis.py",
+      "operation": "copy",
+      "bytes": 24047,
+      "sha256": "33db4b82e292a464aa62f2465c123f0ccabb8ebb74cc873be96c8463b09fd2a2"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\protocol.py",
+      "archive_path": "experiments/architecture_pilots/protocol.py",
+      "operation": "copy",
+      "bytes": 11102,
+      "sha256": "e4d6b8b17c2ca9bd79462df9193bf140bfea0bd3994dee5198882dad5cfd4615"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\runner.py",
+      "archive_path": "experiments/architecture_pilots/runner.py",
+      "operation": "copy",
+      "bytes": 20904,
+      "sha256": "38460fb8c19521273a5d6e696cf93034a716904cfd4881d37c061f66a4684add"
+    },
+    {
+      "original_path": "results/five-agent-pilot/windows-v1/answers.jsonl",
+      "original_absolute_path": "D:\\ML1-project\\results\\five-agent-pilot\\windows-v1\\answers.jsonl",
+      "archive_path": "results/five-agent-pilot/windows-v1/answers.jsonl",
+      "operation": "copy",
+      "bytes": 2062754,
+      "sha256": "5f1121f709a1d949c9efd3d79eb55730a6f5c7421044a1267522b91e2b4d1366"
+    },
+    {
+      "original_path": "results/five-agent-pilot/windows-v1/comparisons.csv",
+      "original_absolute_path": "D:\\ML1-project\\results\\five-agent-pilot\\windows-v1\\comparisons.csv",
+      "archive_path": "results/five-agent-pilot/windows-v1/comparisons.csv",
+      "operation": "copy",
+      "bytes": 93430,
+      "sha256": "bb863f43fe0935bc0e8edbe2009be5cd7259f3a8e70bf011a00b78be10dc6556"
+    },
+    {
+      "original_path": "results/five-agent-pilot/windows-v1/generations.jsonl",
+      "original_absolute_path": "D:\\ML1-project\\results\\five-agent-pilot\\windows-v1\\generations.jsonl",
+      "archive_path": "results/five-agent-pilot/windows-v1/generations.jsonl",
+      "operation": "copy",
+      "bytes": 1746769,
+      "sha256": "d000639b7ed004fd14220f6e163f4a88db6beb3d11615149919c019bc1b6d833"
+    },
+    {
+      "original_path": "results/five-agent-pilot/windows-v1/per_question.csv",
+      "original_absolute_path": "D:\\ML1-project\\results\\five-agent-pilot\\windows-v1\\per_question.csv",
+      "archive_path": "results/five-agent-pilot/windows-v1/per_question.csv",
+      "operation": "copy",
+      "bytes": 82274,
+      "sha256": "0edab4a5a23677835c6a715e4b9f8810c846fd9dcbc86546ccc82b141e2bcbf2"
+    },
+    {
+      "original_path": "results/five-agent-pilot/windows-v1/run-manifest.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\five-agent-pilot\\windows-v1\\run-manifest.json",
+      "archive_path": "results/five-agent-pilot/windows-v1/run-manifest.json",
+      "operation": "copy",
+      "bytes": 235577,
+      "sha256": "650d243e1c6fc784b97a3ad246debdb56f6c78bce482d7459ea407000925bb4a"
+    },
+    {
+      "original_path": "results/five-agent-pilot/windows-v1/summary.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\five-agent-pilot\\windows-v1\\summary.json",
+      "archive_path": "results/five-agent-pilot/windows-v1/summary.json",
+      "operation": "copy",
+      "bytes": 418349,
+      "sha256": "d45aa498d9ff5a4e20c7a5253be6e320e21cce996e237a1370f6105616e175fd"
+    },
+    {
+      "original_path": "results/sparse-peer-pilot/windows-v1/answers.jsonl",
+      "original_absolute_path": "D:\\ML1-project\\results\\sparse-peer-pilot\\windows-v1\\answers.jsonl",
+      "archive_path": "results/sparse-peer-pilot/windows-v1/answers.jsonl",
+      "operation": "copy",
+      "bytes": 3867588,
+      "sha256": "60015859765719259eea5703dda81340b482207d80edf93ba3b6b4a025f6aa37"
+    },
+    {
+      "original_path": "results/sparse-peer-pilot/windows-v1/comparisons.csv",
+      "original_absolute_path": "D:\\ML1-project\\results\\sparse-peer-pilot\\windows-v1\\comparisons.csv",
+      "archive_path": "results/sparse-peer-pilot/windows-v1/comparisons.csv",
+      "operation": "copy",
+      "bytes": 94653,
+      "sha256": "5e973e96147c3ca8efd2a06dd9fa40ed61060d75bb16585c6dece6866d969049"
+    },
+    {
+      "original_path": "results/sparse-peer-pilot/windows-v1/generations.jsonl",
+      "original_absolute_path": "D:\\ML1-project\\results\\sparse-peer-pilot\\windows-v1\\generations.jsonl",
+      "archive_path": "results/sparse-peer-pilot/windows-v1/generations.jsonl",
+      "operation": "copy",
+      "bytes": 3208221,
+      "sha256": "b25fb0849d924e75cf91ec818dae07c452d6cbde040abae2d3283079c3fca225"
+    },
+    {
+      "original_path": "results/sparse-peer-pilot/windows-v1/per_question.csv",
+      "original_absolute_path": "D:\\ML1-project\\results\\sparse-peer-pilot\\windows-v1\\per_question.csv",
+      "archive_path": "results/sparse-peer-pilot/windows-v1/per_question.csv",
+      "operation": "copy",
+      "bytes": 93297,
+      "sha256": "31e56c22415aff67b7d9e95f5f006ff9e7aa4b9c2fb0e76a0bc40ca392747377"
+    },
+    {
+      "original_path": "results/sparse-peer-pilot/windows-v1/run-manifest.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\sparse-peer-pilot\\windows-v1\\run-manifest.json",
+      "archive_path": "results/sparse-peer-pilot/windows-v1/run-manifest.json",
+      "operation": "copy",
+      "bytes": 421055,
+      "sha256": "47cbf7c4ced1cee8c6f4a0621cd78ee18852f0cb3f5316434ace322c30c8e553"
+    },
+    {
+      "original_path": "results/sparse-peer-pilot/windows-v1/summary.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\sparse-peer-pilot\\windows-v1\\summary.json",
+      "archive_path": "results/sparse-peer-pilot/windows-v1/summary.json",
+      "operation": "copy",
+      "bytes": 440897,
+      "sha256": "46e52cdc42e05ecdcfda71fd7c8063a8557f34eb243f29ee324f2b9627f6845e"
+    },
+    {
+      "original_path": "run_five_agent_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_five_agent_pilot.ps1",
+      "archive_path": "run_five_agent_pilot.ps1",
+      "operation": "copy",
+      "bytes": 3089,
+      "sha256": "b1f363a0e2a338eed9b218004591ed531cd76649ff7cc57098fc6149fdfff186"
+    },
+    {
+      "original_path": "run_five_agent_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_five_agent_pilot.py",
+      "archive_path": "run_five_agent_pilot.py",
+      "operation": "copy",
+      "bytes": 242,
+      "sha256": "6c9cd07f52ca8b327cd6ef8d1168649b49372cf8baa144a3870f1b5154782c59"
+    },
+    {
+      "original_path": "run_sparse_peer_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_sparse_peer_pilot.ps1",
+      "archive_path": "run_sparse_peer_pilot.ps1",
+      "operation": "copy",
+      "bytes": 3091,
+      "sha256": "e0dda3af7d040b0f02728125591524947a62dc0ec763948a3063ce723fd5e018"
+    },
+    {
+      "original_path": "run_sparse_peer_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_sparse_peer_pilot.py",
+      "archive_path": "run_sparse_peer_pilot.py",
+      "operation": "copy",
+      "bytes": 240,
+      "sha256": "ce429966728c6d2cb3f6acbb7c63554945fa7bccbeb9d64172b08c8a24cee60d"
+    }
+  ],
+  "frozen_source_input_count": 52,
+  "source_inputs": [
+    {
+      "original_path": "build_format_followup_tasks.py",
+      "original_absolute_path": "D:\\ML1-project\\build_format_followup_tasks.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/build_format_followup_tasks.py",
+      "bytes": 8481,
+      "sha256": "014f66897e0d33ef853c46571416ec3cd9eb491a8c067dfa5d59e5f47fba0f0c",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "build_full_benchmark.py",
+      "original_absolute_path": "D:\\ML1-project\\build_full_benchmark.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/build_full_benchmark.py",
+      "bytes": 35873,
+      "sha256": "082ce45d53d450ca4938ed274f8366086ca5e2c1ddb2ca27a87f03adb527f13b",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "calculator.py",
+      "original_absolute_path": "D:\\ML1-project\\calculator.py",
+      "workspace_archive_path": "archive/2026-11-09-pilots/calculator.py",
+      "bytes": 3498,
+      "sha256": "15005e5e1863d9d7675b628b4e3db51161b09c8b0486e637343951f817362846",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "calculator_protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\calculator_protocol.py",
+      "workspace_archive_path": "archive/2026-11-09-pilots/calculator_protocol.py",
+      "bytes": 6695,
+      "sha256": "fc5c8d42e0cec258f9f3ce416277de6bcee2ec5208a173df998860e3bd2fd611",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/communication_pilot.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\communication_pilot.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/communication_pilot.json",
+      "bytes": 3443,
+      "sha256": "33a8cef42deea83230936bd20ec05f00d2cdec327c16e3b2f088b83fcaf3b1dd",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/communication_recovery.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\communication_recovery.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/config/communication_recovery.json",
+      "bytes": 3898,
+      "sha256": "89c41997c851fbe07972c51a074655ce7397a209a766c865347ec69213e626b6",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/confirmation_environment.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\confirmation_environment.json",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/config/confirmation_environment.json",
+      "bytes": 1116,
+      "sha256": "7198d5f5e77b5692adf11f5448b1ce359ff918515f5a6b7079d423f956e39844",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/five_agent_pilot.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\five_agent_pilot.json",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/config/five_agent_pilot.json",
+      "bytes": 7007,
+      "sha256": "183a8eb458b8262b0416f77f9c13a666894cf75aca4fb1ec87586261e9e58054",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "config/format_followup.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\format_followup.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/format_followup.json",
+      "bytes": 5151,
+      "sha256": "ffe9d40dbc4d09e1cc0083ad3142fd0ad994772f941f95386add24b1118236e1",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/format_followup_tasks.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\format_followup_tasks.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/format_followup_tasks.json",
+      "bytes": 17271,
+      "sha256": "9f0b7971a55dc3e87510a311752dd36e6720f64591237c6b6e32a1beaa5557de",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/full_benchmark.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\full_benchmark.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/full_benchmark.json",
+      "bytes": 116656,
+      "sha256": "96933a962d4ea778ddbe22b66dd740a4dd1d46c2a82daa14395adc8c8b3ecb62",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/offline_policy_comparison.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\offline_policy_comparison.json",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/config/offline_policy_comparison.json",
+      "bytes": 2867,
+      "sha256": "946327f70ca376f3059ec8797550b1891f466fe1c37df6b662eda992923bf785",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "config/sparse_peer_pilot.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\sparse_peer_pilot.json",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/config/sparse_peer_pilot.json",
+      "bytes": 7045,
+      "sha256": "6d0763e9a4944e2503752adc7d8e43a4d37ee395a2c489748b01d6dfc3e249de",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "experiment_config.py",
+      "original_absolute_path": "D:\\ML1-project\\experiment_config.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiment_config.py",
+      "bytes": 2343,
+      "sha256": "b00d818c61f80b567c7591638bdeb3aa44a6e4d16b37f1bf32c63019cfa74ffb",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiment_runtime.py",
+      "original_absolute_path": "D:\\ML1-project\\experiment_runtime.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiment_runtime.py",
+      "bytes": 4825,
+      "sha256": "cb7b4c4edafe25f62a4e963061ecf60aca16476c2fd0cd216434b396141b937e",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\__init__.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/__init__.py",
+      "bytes": 51,
+      "sha256": "2476bd8f2fbd7d07740884df717e3bdcbd0d18df5a6eec71d42d5cd2abb5abf3",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\__init__.py",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/experiments/architecture_pilots/__init__.py",
+      "bytes": 63,
+      "sha256": "5cd60caf05ca6ccb3faba61b116b9f1d6c7a713bb4fe69e9b16b161f6cef0e59",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\analysis.py",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/experiments/architecture_pilots/analysis.py",
+      "bytes": 24047,
+      "sha256": "33db4b82e292a464aa62f2465c123f0ccabb8ebb74cc873be96c8463b09fd2a2",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\protocol.py",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/experiments/architecture_pilots/protocol.py",
+      "bytes": 11102,
+      "sha256": "e4d6b8b17c2ca9bd79462df9193bf140bfea0bd3994dee5198882dad5cfd4615",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "experiments/architecture_pilots/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\architecture_pilots\\runner.py",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/experiments/architecture_pilots/runner.py",
+      "bytes": 20904,
+      "sha256": "38460fb8c19521273a5d6e696cf93034a716904cfd4881d37c061f66a4684add",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\__init__.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/__init__.py",
+      "bytes": 74,
+      "sha256": "33514e329bf56bd216aa6f28fe87595894100d36c1cb5b8b9dc1fb75b8e47b0b",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\analysis.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/analysis.py",
+      "bytes": 14043,
+      "sha256": "0f0129c952e7dd5a4fd902cd4438ab11ec6ed37dd2d5cfa3478559b6b37506b9",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\protocol.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/protocol.py",
+      "bytes": 7020,
+      "sha256": "c4ffd0dc9fb86667430c8fb6a20cfbb31af282a98feadfa125c23bff4df45780",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/recovery.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\recovery.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/experiments/communication_pilot/recovery.py",
+      "bytes": 28936,
+      "sha256": "de36debfe099f650673b63006a5d1364e6648ebb0939277203dc804f920f96d2",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/recovery_analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\recovery_analysis.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/experiments/communication_pilot/recovery_analysis.py",
+      "bytes": 4877,
+      "sha256": "a26b388f7d1b0e5d351a363f4d70438f9f63ddd0e97388d785082cb8e1930de5",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\runner.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/runner.py",
+      "bytes": 25235,
+      "sha256": "c514390513b1556b44d25faa09fd70c08eb6dc7344034c63fbcdb0a94cfcdcc2",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\__init__.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/__init__.py",
+      "bytes": 70,
+      "sha256": "5540c7576d247d9ab0eb2d2ad20ee9e03cf3264dc5bcb0581bba508912525d3e",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\analysis.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/analysis.py",
+      "bytes": 25407,
+      "sha256": "ab1d2f018122657bcf88d20452efb5815a159601756210aadce4135e224f754e",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/environment.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\environment.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/environment.py",
+      "bytes": 4693,
+      "sha256": "ed1d60c8e1771ed3e7e4650180e78808871d7234addc383e1f3e624125d25ec0",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\protocol.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/protocol.py",
+      "bytes": 8882,
+      "sha256": "274572e806317b111f5464121b9e7a8ce2959ab94f7a6da16557fd330686778d",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\runner.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/runner.py",
+      "bytes": 24080,
+      "sha256": "d2a435dbfabedbc5c06fbb93b2faf7ec6e8e78db806b5112e4939dd6631a1194",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/offline_policies/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\offline_policies\\analysis.py",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/experiments/offline_policies/analysis.py",
+      "bytes": 19104,
+      "sha256": "115692d1fe8e962b44663d5a965c63dfcfec1d24ceb369a369a55b8b4c8ae675",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/offline_policies/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\offline_policies\\protocol.py",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/experiments/offline_policies/protocol.py",
+      "bytes": 8884,
+      "sha256": "79a1d7cabc18631945b6dba17c204b2dcf08ab030d4a614bd4a5c7834f6b42cb",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "experiments/offline_policies/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\offline_policies\\runner.py",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/experiments/offline_policies/runner.py",
+      "bytes": 16008,
+      "sha256": "1affcf90acd4221284f66c70fa4049b6c1cb35ef3f164b8131c45352f3947ef0",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "local_llm.py",
+      "original_absolute_path": "D:\\ML1-project\\local_llm.py",
+      "workspace_archive_path": "archive/2026-11-09-pilots/local_llm.py",
+      "bytes": 6404,
+      "sha256": "ef356d9eb3875dc5393aaabc9c7e2110ed06fe6d3093b9807356ff8464ec6188",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "multi_agent_analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\multi_agent_analysis.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/multi_agent_analysis.py",
+      "bytes": 23286,
+      "sha256": "796052ba93847b08adee4853b29b95875e16e5b69770745fac803c5b14b947e6",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "multi_agent_protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\multi_agent_protocol.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/multi_agent_protocol.py",
+      "bytes": 13569,
+      "sha256": "510e8695c95e08ddc7157f4a81082167e27930cfc445c6900e007d7bf555d167",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "results/communication-pilot/windows-v2/run-manifest.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\communication-pilot\\windows-v2\\run-manifest.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/results/communication-pilot/windows-v2/run-manifest.json",
+      "bytes": 511844,
+      "sha256": "31f6907be8508bb75cf38f1c915ec886b9948a63735ef00b554b3e1cab4f7c9c",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "results/communication-pilot/windows-v2/summary.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\communication-pilot\\windows-v2\\summary.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/results/communication-pilot/windows-v2/summary.json",
+      "bytes": 273508,
+      "sha256": "c005ebad18f551523744cd9757a7941e85d1a5d2f03ee10f195a23107805a400",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_communication_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_pilot.ps1",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_communication_pilot.ps1",
+      "bytes": 3029,
+      "sha256": "2abde82ca412e17e2967943823c413220e0702d51e4c7ae9f473e14f0db3004f",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_communication_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_pilot.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_communication_pilot.py",
+      "bytes": 193,
+      "sha256": "df18fec6e41a7f4f5d5c07d6b3178eb61faa0582912469e11950f7c7525c90e5",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_communication_recovery.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_recovery.ps1",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/run_communication_recovery.ps1",
+      "bytes": 3032,
+      "sha256": "98d9ac11a0a92b73ebf36a623d4abdfb84b6abada1438e126cf45f656b963bda",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_communication_recovery.py",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_recovery.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/run_communication_recovery.py",
+      "bytes": 198,
+      "sha256": "1dd576f37381fd62cb243be626839e118329145f59a96cf50137566938348e44",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_confirmation_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_confirmation_pilot.ps1",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/run_confirmation_pilot.ps1",
+      "bytes": 3093,
+      "sha256": "c54d34884a6b135d3fd088283e82ebd77fc7937f3e45eea4184121e08f601857",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_confirmation_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_confirmation_pilot.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/run_confirmation_pilot.py",
+      "bytes": 237,
+      "sha256": "c65e54188015ef8745dbe1ece4af1046796c8c30e18eb8c88bfb2f02cf85c53c",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_five_agent_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_five_agent_pilot.ps1",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/run_five_agent_pilot.ps1",
+      "bytes": 3089,
+      "sha256": "b1f363a0e2a338eed9b218004591ed531cd76649ff7cc57098fc6149fdfff186",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "run_five_agent_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_five_agent_pilot.py",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/run_five_agent_pilot.py",
+      "bytes": 242,
+      "sha256": "6c9cd07f52ca8b327cd6ef8d1168649b49372cf8baa144a3870f1b5154782c59",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "run_format_followup.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_format_followup.ps1",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_format_followup.ps1",
+      "bytes": 2910,
+      "sha256": "46c540f2fd58ecd230a0bfa2819fedee5762522ec4902f5fe8c22b9ea28f27d2",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_format_followup.py",
+      "original_absolute_path": "D:\\ML1-project\\run_format_followup.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_format_followup.py",
+      "bytes": 36239,
+      "sha256": "17eabc29347a5934dedc589e5967ee81301b18d01f3c484b28bb1bbff15e8c59",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_multi_agent.py",
+      "original_absolute_path": "D:\\ML1-project\\run_multi_agent.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_multi_agent.py",
+      "bytes": 32801,
+      "sha256": "5cf2c89b7110df579df3b28bf65a41f80237b4621ac45f4b824f43fda4050dec",
+      "operation": "reference_existing_archive",
+      "preservation": "existing_archive"
+    },
+    {
+      "original_path": "run_sparse_peer_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_sparse_peer_pilot.ps1",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/run_sparse_peer_pilot.ps1",
+      "bytes": 3091,
+      "sha256": "e0dda3af7d040b0f02728125591524947a62dc0ec763948a3063ce723fd5e018",
+      "operation": "copy",
+      "preservation": "new_archive"
+    },
+    {
+      "original_path": "run_sparse_peer_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_sparse_peer_pilot.py",
+      "workspace_archive_path": "archive/2026-11-18-architecture-pilots-v1/run_sparse_peer_pilot.py",
+      "bytes": 240,
+      "sha256": "ce429966728c6d2cb3f6acbb7c63554945fa7bccbeb9d64172b08c8a24cee60d",
+      "operation": "copy",
+      "preservation": "new_archive"
+    }
+  ],
+  "referenced_sources": [
+    {
+      "original_path": "build_format_followup_tasks.py",
+      "original_absolute_path": "D:\\ML1-project\\build_format_followup_tasks.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/build_format_followup_tasks.py",
+      "bytes": 8481,
+      "sha256": "014f66897e0d33ef853c46571416ec3cd9eb491a8c067dfa5d59e5f47fba0f0c",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "build_full_benchmark.py",
+      "original_absolute_path": "D:\\ML1-project\\build_full_benchmark.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/build_full_benchmark.py",
+      "bytes": 35873,
+      "sha256": "082ce45d53d450ca4938ed274f8366086ca5e2c1ddb2ca27a87f03adb527f13b",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "calculator.py",
+      "original_absolute_path": "D:\\ML1-project\\calculator.py",
+      "workspace_archive_path": "archive/2026-11-09-pilots/calculator.py",
+      "bytes": 3498,
+      "sha256": "15005e5e1863d9d7675b628b4e3db51161b09c8b0486e637343951f817362846",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "calculator_protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\calculator_protocol.py",
+      "workspace_archive_path": "archive/2026-11-09-pilots/calculator_protocol.py",
+      "bytes": 6695,
+      "sha256": "fc5c8d42e0cec258f9f3ce416277de6bcee2ec5208a173df998860e3bd2fd611",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "config/communication_pilot.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\communication_pilot.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/communication_pilot.json",
+      "bytes": 3443,
+      "sha256": "33a8cef42deea83230936bd20ec05f00d2cdec327c16e3b2f088b83fcaf3b1dd",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "config/communication_recovery.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\communication_recovery.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/config/communication_recovery.json",
+      "bytes": 3898,
+      "sha256": "89c41997c851fbe07972c51a074655ce7397a209a766c865347ec69213e626b6",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "config/confirmation_environment.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\confirmation_environment.json",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/config/confirmation_environment.json",
+      "bytes": 1116,
+      "sha256": "7198d5f5e77b5692adf11f5448b1ce359ff918515f5a6b7079d423f956e39844",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "config/format_followup.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\format_followup.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/format_followup.json",
+      "bytes": 5151,
+      "sha256": "ffe9d40dbc4d09e1cc0083ad3142fd0ad994772f941f95386add24b1118236e1",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "config/format_followup_tasks.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\format_followup_tasks.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/format_followup_tasks.json",
+      "bytes": 17271,
+      "sha256": "9f0b7971a55dc3e87510a311752dd36e6720f64591237c6b6e32a1beaa5557de",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "config/full_benchmark.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\full_benchmark.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/config/full_benchmark.json",
+      "bytes": 116656,
+      "sha256": "96933a962d4ea778ddbe22b66dd740a4dd1d46c2a82daa14395adc8c8b3ecb62",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "config/offline_policy_comparison.json",
+      "original_absolute_path": "D:\\ML1-project\\config\\offline_policy_comparison.json",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/config/offline_policy_comparison.json",
+      "bytes": 2867,
+      "sha256": "946327f70ca376f3059ec8797550b1891f466fe1c37df6b662eda992923bf785",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiment_config.py",
+      "original_absolute_path": "D:\\ML1-project\\experiment_config.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiment_config.py",
+      "bytes": 2343,
+      "sha256": "b00d818c61f80b567c7591638bdeb3aa44a6e4d16b37f1bf32c63019cfa74ffb",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiment_runtime.py",
+      "original_absolute_path": "D:\\ML1-project\\experiment_runtime.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiment_runtime.py",
+      "bytes": 4825,
+      "sha256": "cb7b4c4edafe25f62a4e963061ecf60aca16476c2fd0cd216434b396141b937e",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\__init__.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/__init__.py",
+      "bytes": 51,
+      "sha256": "2476bd8f2fbd7d07740884df717e3bdcbd0d18df5a6eec71d42d5cd2abb5abf3",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\__init__.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/__init__.py",
+      "bytes": 74,
+      "sha256": "33514e329bf56bd216aa6f28fe87595894100d36c1cb5b8b9dc1fb75b8e47b0b",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\analysis.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/analysis.py",
+      "bytes": 14043,
+      "sha256": "0f0129c952e7dd5a4fd902cd4438ab11ec6ed37dd2d5cfa3478559b6b37506b9",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\protocol.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/protocol.py",
+      "bytes": 7020,
+      "sha256": "c4ffd0dc9fb86667430c8fb6a20cfbb31af282a98feadfa125c23bff4df45780",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/recovery.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\recovery.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/experiments/communication_pilot/recovery.py",
+      "bytes": 28936,
+      "sha256": "de36debfe099f650673b63006a5d1364e6648ebb0939277203dc804f920f96d2",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/recovery_analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\recovery_analysis.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/experiments/communication_pilot/recovery_analysis.py",
+      "bytes": 4877,
+      "sha256": "a26b388f7d1b0e5d351a363f4d70438f9f63ddd0e97388d785082cb8e1930de5",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/communication_pilot/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\communication_pilot\\runner.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/experiments/communication_pilot/runner.py",
+      "bytes": 25235,
+      "sha256": "c514390513b1556b44d25faa09fd70c08eb6dc7344034c63fbcdb0a94cfcdcc2",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/__init__.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\__init__.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/__init__.py",
+      "bytes": 70,
+      "sha256": "5540c7576d247d9ab0eb2d2ad20ee9e03cf3264dc5bcb0581bba508912525d3e",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\analysis.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/analysis.py",
+      "bytes": 25407,
+      "sha256": "ab1d2f018122657bcf88d20452efb5815a159601756210aadce4135e224f754e",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/environment.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\environment.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/environment.py",
+      "bytes": 4693,
+      "sha256": "ed1d60c8e1771ed3e7e4650180e78808871d7234addc383e1f3e624125d25ec0",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\protocol.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/protocol.py",
+      "bytes": 8882,
+      "sha256": "274572e806317b111f5464121b9e7a8ce2959ab94f7a6da16557fd330686778d",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/confirmation_pilot/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\confirmation_pilot\\runner.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/experiments/confirmation_pilot/runner.py",
+      "bytes": 24080,
+      "sha256": "d2a435dbfabedbc5c06fbb93b2faf7ec6e8e78db806b5112e4939dd6631a1194",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/offline_policies/analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\offline_policies\\analysis.py",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/experiments/offline_policies/analysis.py",
+      "bytes": 19104,
+      "sha256": "115692d1fe8e962b44663d5a965c63dfcfec1d24ceb369a369a55b8b4c8ae675",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/offline_policies/protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\offline_policies\\protocol.py",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/experiments/offline_policies/protocol.py",
+      "bytes": 8884,
+      "sha256": "79a1d7cabc18631945b6dba17c204b2dcf08ab030d4a614bd4a5c7834f6b42cb",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "experiments/offline_policies/runner.py",
+      "original_absolute_path": "D:\\ML1-project\\experiments\\offline_policies\\runner.py",
+      "workspace_archive_path": "archive/2026-11-18-offline-policies-v1/experiments/offline_policies/runner.py",
+      "bytes": 16008,
+      "sha256": "1affcf90acd4221284f66c70fa4049b6c1cb35ef3f164b8131c45352f3947ef0",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "local_llm.py",
+      "original_absolute_path": "D:\\ML1-project\\local_llm.py",
+      "workspace_archive_path": "archive/2026-11-09-pilots/local_llm.py",
+      "bytes": 6404,
+      "sha256": "ef356d9eb3875dc5393aaabc9c7e2110ed06fe6d3093b9807356ff8464ec6188",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "multi_agent_analysis.py",
+      "original_absolute_path": "D:\\ML1-project\\multi_agent_analysis.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/multi_agent_analysis.py",
+      "bytes": 23286,
+      "sha256": "796052ba93847b08adee4853b29b95875e16e5b69770745fac803c5b14b947e6",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "multi_agent_protocol.py",
+      "original_absolute_path": "D:\\ML1-project\\multi_agent_protocol.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/multi_agent_protocol.py",
+      "bytes": 13569,
+      "sha256": "510e8695c95e08ddc7157f4a81082167e27930cfc445c6900e007d7bf555d167",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "results/communication-pilot/windows-v2/run-manifest.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\communication-pilot\\windows-v2\\run-manifest.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/results/communication-pilot/windows-v2/run-manifest.json",
+      "bytes": 511844,
+      "sha256": "31f6907be8508bb75cf38f1c915ec886b9948a63735ef00b554b3e1cab4f7c9c",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "results/communication-pilot/windows-v2/summary.json",
+      "original_absolute_path": "D:\\ML1-project\\results\\communication-pilot\\windows-v2\\summary.json",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/results/communication-pilot/windows-v2/summary.json",
+      "bytes": 273508,
+      "sha256": "c005ebad18f551523744cd9757a7941e85d1a5d2f03ee10f195a23107805a400",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_communication_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_pilot.ps1",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_communication_pilot.ps1",
+      "bytes": 3029,
+      "sha256": "2abde82ca412e17e2967943823c413220e0702d51e4c7ae9f473e14f0db3004f",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_communication_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_pilot.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_communication_pilot.py",
+      "bytes": 193,
+      "sha256": "df18fec6e41a7f4f5d5c07d6b3178eb61faa0582912469e11950f7c7525c90e5",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_communication_recovery.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_recovery.ps1",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/run_communication_recovery.ps1",
+      "bytes": 3032,
+      "sha256": "98d9ac11a0a92b73ebf36a623d4abdfb84b6abada1438e126cf45f656b963bda",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_communication_recovery.py",
+      "original_absolute_path": "D:\\ML1-project\\run_communication_recovery.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-recovery-v2/run_communication_recovery.py",
+      "bytes": 198,
+      "sha256": "1dd576f37381fd62cb243be626839e118329145f59a96cf50137566938348e44",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_confirmation_pilot.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_confirmation_pilot.ps1",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/run_confirmation_pilot.ps1",
+      "bytes": 3093,
+      "sha256": "c54d34884a6b135d3fd088283e82ebd77fc7937f3e45eea4184121e08f601857",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_confirmation_pilot.py",
+      "original_absolute_path": "D:\\ML1-project\\run_confirmation_pilot.py",
+      "workspace_archive_path": "archive/2026-11-18-confirmation-pilot-v1/run_confirmation_pilot.py",
+      "bytes": 237,
+      "sha256": "c65e54188015ef8745dbe1ece4af1046796c8c30e18eb8c88bfb2f02cf85c53c",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_format_followup.ps1",
+      "original_absolute_path": "D:\\ML1-project\\run_format_followup.ps1",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_format_followup.ps1",
+      "bytes": 2910,
+      "sha256": "46c540f2fd58ecd230a0bfa2819fedee5762522ec4902f5fe8c22b9ea28f27d2",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_format_followup.py",
+      "original_absolute_path": "D:\\ML1-project\\run_format_followup.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_format_followup.py",
+      "bytes": 36239,
+      "sha256": "17eabc29347a5934dedc589e5967ee81301b18d01f3c484b28bb1bbff15e8c59",
+      "operation": "reference_existing_archive"
+    },
+    {
+      "original_path": "run_multi_agent.py",
+      "original_absolute_path": "D:\\ML1-project\\run_multi_agent.py",
+      "workspace_archive_path": "archive/2026-11-17-communication-pilot-v1-failed/run_multi_agent.py",
+      "bytes": 32801,
+      "sha256": "5cf2c89b7110df579df3b28bf65a41f80237b4621ac45f4b824f43fda4050dec",
+      "operation": "reference_existing_archive"
+    }
+  ]
+}

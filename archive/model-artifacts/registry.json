@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-17",
+  "scope": "Tested model identities evidenced by preserved generation records; prompt profiles are not model checkpoints.",
+  "models": [
+    {
+      "tag": "llama3.2:3b",
+      "status": "retained_selected",
+      "tested": true,
+      "model_metadata": {
+        "name": "llama3.2:3b",
+        "model": "llama3.2:3b",
+        "modified_at": "2026-11-17T10:32:48.6852245-05:00",
+        "size": 2019393189,
+        "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "llama",
+          "families": [
+            "llama"
+          ],
+          "parameter_size": "3.2B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 131072,
+          "embedding_length": 3072,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      },
+      "recorded_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "recorded_runtimes": [
+        "0.40.4",
+        "0.40.16"
+      ],
+      "evidence": "archive/2026-11-17-development-pilots/results/format-followup/windows-v2/run-manifest.json",
+      "selected_profile": "original_calculator_prompt_plus_strict_schema",
+      "physical_backup": {
+        "available": true,
+        "directory": "archive/model-artifacts/llama3.2-3b-a80c4f17",
+        "inventory": "archive/model-artifacts/llama3.2-3b-a80c4f17/SHA256_INVENTORY.json",
+        "bytes": 2019395363,
+        "files": 8,
+        "large_blobs_versioned": false,
+        "installed_original_unchanged": true
+      }
+    },
+    {
+      "tag": "qwen2.5:3b",
+      "status": "previously_tested_superseded",
+      "tested": true,
+      "model_metadata": {
+        "name": "qwen2.5:3b",
+        "model": "qwen2.5:3b",
+        "modified_at": "2026-10-14T00:02:34.759198235-04:00",
+        "size": 1929912432,
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      },
+      "recorded_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+      "recorded_runtimes": [
+        "0.40.4"
+      ],
+      "evidence": "archive/2026-10-24-legacy/results/experiment1-qwen-seed42.summary.json",
+      "physical_backup": {
+        "available": false,
+        "reason": "Neither Qwen manifest nor weights is present in the current Windows Ollama model store; historical metadata/raw responses remain preserved. No weights were downloaded.",
+        "large_blobs_versioned": false
+      }
+    }
+  ],
+  "observed_local_model_manifests": [
+    {
+      "tag": "llama3.2:3b",
+      "path": "C:\\Users\\Gavin Huang\\.ollama\\models\\manifests\\registry.ollama.ai\\library\\llama3.2\\3b",
+      "archived_manifest": "archive/model-artifacts/llama3.2-3b-a80c4f17/ollama-manifest.json",
+      "manifest_sha256": "a52a4a87c5affc63e344f4974f75bcc5b478b40e641df57d0f40941dfc406c94"
+    }
+  ],
+  "not_new_models": [
+    "bounded_template",
+    "syntax_clear",
+    "multiple_choice",
+    "baseline_json",
+    "strict_schema",
+    "complete_expression"
+  ],
+  "limitations": [
+    "Qwen weights cannot be reconstructed byte-for-byte from historical metadata alone.",
+    "The current Llama installed manifest wraps its original recorded manifest; both identities are retained.",
+    "Model blob copies remain local and ignored by Git, so an ordinary clone does not contain weight backups.",
+    "No evidence of another tested model family was found in available records."
+  ]
+}

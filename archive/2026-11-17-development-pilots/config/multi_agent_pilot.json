@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "manifest_id": "multi-agent-pilot-v1",
+  "source": {
+    "path": "config/baseline.json",
+    "sha256": "eaccc0c5259c9734a1335e122fd76ad01022114f064e34a92a0703f8b90b4c92",
+    "task_ids": [
+      "baseline-01",
+      "baseline-03",
+      "baseline-05",
+      "baseline-07"
+    ],
+    "purpose": "Four previously inspected development/regression questions, one per family. Feasibility pilot only; not validation or held-out accuracy evidence.",
+    "preservation": "Task prompts, references, split and source metadata are copied unchanged from the frozen baseline bank. Multi-agent generation seeds are separately derived from base_seed, task id, round and agent."
+  },
+  "tasks": [
+    {
+      "id": "baseline-01",
+      "family": "reasoning",
+      "variant": "unconditional",
+      "probability": true,
+      "parameters": {
+        "red": 6,
+        "blue": 9,
+        "conditioned_on_at_least_one_red": false
+      },
+      "prompt": "An urn has 6 red and 9 blue balls. Draw two uniformly without replacement. What is the probability that both balls are red?",
+      "gold_fraction": "1/7",
+      "gold_probability": 0.14285714285714285,
+      "split": "inspected_development",
+      "seed": 9101,
+      "answer_kind": "expression",
+      "source_task_id": "fresh-urn-unconditional",
+      "cohort": "syntax_reuse"
+    },
+    {
+      "id": "baseline-03",
+      "family": "evidence",
+      "probability": true,
+      "clues": [
+        {
+          "id": "S1",
+          "value": 1,
+          "reliability": 0.75
+        },
+        {
+          "id": "S2",
+          "value": 0,
+          "reliability": 0.6
+        },
+        {
+          "id": "S3",
+          "value": 1,
+          "reliability": 0.9
+        }
+      ],
+      "prompt": "A hidden state Y is 0 or 1, each with prior probability 0.5. Each UNIQUE sensor observation is conditionally independent given Y. Reliability r means P(observation = Y | Y) = r for either state. A repeated source ID is the SAME observation, not a new independent clue. Compute P(Y=1 | these observations).\nS1: observation=1, reliability=0.75\nS2: observation=0, reliability=0.6\nS3: observation=1, reliability=0.9",
+      "gold_fraction": "18/19",
+      "gold_probability": 0.9473684210526315,
+      "split": "inspected_development",
+      "seed": 9103,
+      "answer_kind": "expression",
+      "source_task_id": "fresh-sensor-01",
+      "cohort": "syntax_reuse"
+    },
+    {
+      "id": "baseline-05",
+      "family": "algebra",
+      "probability": false,
+      "parameters": {
+        "left_x_coefficient": 5,
+        "left_constant": 7,
+        "right_x_coefficient": 0,
+        "right_constant": 42
+      },
+      "prompt": "Solve 5*x + 7 = 42 for x. Return an unevaluated arithmetic expression for x in expression.",
+      "gold_fraction": "7",
+      "split": "inspected_development",
+      "seed": 9105,
+      "answer_kind": "expression",
+      "source_task_id": "fresh-algebra-01",
+      "cohort": "syntax_reuse"
+    },
+    {
+      "id": "baseline-07",
+      "family": "units",
+      "probability": false,
+      "parameters": {
+        "kilometres_per_hour": 90,
+        "minutes": 14
+      },
+      "prompt": "A vehicle travels at a constant speed of 90 kilometres per hour for 14 minutes. How many kilometres does it travel? Return an unevaluated arithmetic expression for the distance in kilometres in expression.",
+      "gold_fraction": "21",
+      "split": "inspected_development",
+      "seed": 9107,
+      "answer_kind": "expression",
+      "source_task_id": "fresh-units-01",
+      "cohort": "syntax_reuse"
+    }
+  ]
+}

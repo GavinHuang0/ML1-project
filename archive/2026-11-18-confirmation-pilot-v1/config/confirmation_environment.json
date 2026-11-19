@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "environment_id": "confirmation-driver-baseline-621.24-v1",
+  "reference_hardware_sha256": "4ff62393b5e173f181127384959b60c57a47b391e050889b09bdfd1d5658aba5",
+  "hardware_snapshot": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "architecture": "AMD64",
+    "cpu_count": 16,
+    "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "memory_bytes": 33514393600,
+    "hostname_sha256": "05923234c2ba44a773036d74cefb6f4b01c6daa0186e82d6d0403796207c232d",
+    "nvidia_gpu_and_driver": "NVIDIA GeForce RTX 4070 SUPER, 12282 MiB, 621.24"
+  },
+  "reference_differences": {
+    "nvidia_gpu_and_driver": {
+      "reference": "NVIDIA GeForce RTX 4070 SUPER, 12282 MiB, 617.42",
+      "confirmation": "NVIDIA GeForce RTX 4070 SUPER, 12282 MiB, 621.24"
+    }
+  },
+  "amendment": {
+    "declared_before_confirmation_inference": true,
+    "existing_confirmation_generations": 0,
+    "reason": "NVIDIA driver updated from 617.42 to 621.24 on the same PC and GPU before any confirmation calls; record an independent environment baseline and retain strict within-run identity checks."
+  }
+}

@@ -1,5 +1,9 @@
 # Keep active Python source consistent across checkouts.
 *.py text eol=lf
+*.ps1 text eol=lf
+*.md text eol=lf
+# Preserve the superseded design guide exactly as copied from its v1 archive.
+docs/FULL_EXPERIMENT_V1.md -text whitespace=cr-at-eol
 # Deterministic benchmark checks compare the committed configuration bytes.
 config/*.json text eol=lf
 results/*.jsonl -text
@@ -7,5 +11,14 @@ results/*.json text eol=lf
 results/**/*.jsonl -text
 results/**/*.json text eol=lf
 # Frozen sources, reports, and raw artifacts must retain their exact bytes.
+archive/** whitespace=cr-at-eol
 archive/2026-10-24-legacy/** -text
 archive/2026-11-09-pilots/** -text
+# Preserve the new completed-run snapshot and model manifests byte for byte.
+archive/2026-11-17-development-pilots/** -text
+archive/2026-11-17-communication-pilot-v1-failed/** -text
+archive/2026-11-17-communication-recovery-v2/** -text
+archive/2026-11-18-offline-policies-v1/** -text
+archive/2026-11-18-confirmation-pilot-v1/** -text
+archive/2026-11-18-architecture-pilots-v1/** -text
+archive/model-artifacts/** -text

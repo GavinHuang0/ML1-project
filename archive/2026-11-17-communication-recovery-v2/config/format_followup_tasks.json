@@ -1,0 +1,396 @@
+{
+  "schema_version": 1,
+  "manifest_id": "targeted-format-development-tasks-v2",
+  "source": {
+    "generator": "build_format_followup_tasks.py",
+    "generator_version": "targeted-format-development-tasks-v2",
+    "seed": 20261118,
+    "benchmark": "config/full_benchmark.json",
+    "benchmark_sha256": "96933a962d4ea778ddbe22b66dd740a4dd1d46c2a82daa14395adc8c8b3ecb62",
+    "kind": "Eight inspected regression tasks and eight new deterministic numerical variants; no model inference.",
+    "selection_policy": "Keep the same eight development structures, two per family, selected before v2 inference; generate fresh numbers with seed 20261118 and reject reused prompts/parameters.",
+    "split_policy": "All sixteen tasks are development data. Validation/test questions and structural groups are excluded.",
+    "semantic_group_policy": "Each screening variant retains its regression case's group_id; these are fresh numbers on inspected structures, not a structural holdout.",
+    "reference_policy": "Exact rational references independently audited by enumeration, affine substitution or dimensional conservation; no references enter model prompts.",
+    "screening_policy": "Only the eight screening_task_ids determine the v2 acceptance screen; regression results remain descriptive.",
+    "uncertainty_unit": "Eight semantic groups across both sets; numerical variants and ten agents per question are correlated development observations."
+  },
+  "regression_task_ids": [
+    "full-v1-reasoning-development-01",
+    "full-v1-reasoning-development-02",
+    "full-v1-evidence-development-01",
+    "full-v1-evidence-development-02",
+    "full-v1-algebra-development-01",
+    "full-v1-algebra-development-02",
+    "full-v1-units-development-01",
+    "full-v1-units-development-02"
+  ],
+  "screening_task_ids": [
+    "format-v2-reasoning-development-01",
+    "format-v2-reasoning-development-02",
+    "format-v2-evidence-development-01",
+    "format-v2-evidence-development-02",
+    "format-v2-algebra-development-01",
+    "format-v2-algebra-development-02",
+    "format-v2-units-development-01",
+    "format-v2-units-development-02"
+  ],
+  "tasks": [
+    {
+      "id": "full-v1-reasoning-development-01",
+      "group_id": "full-v1-reasoning-two_red",
+      "template_id": "two_red",
+      "template_index": 0,
+      "split": "development",
+      "family": "reasoning",
+      "prompt": "An urn contains 4 red and 3 blue balls. Draw 2 balls uniformly in order without replacement. What is the probability that both drawn balls are red?",
+      "probability": true,
+      "gold_fraction": "2/7",
+      "parameters": {
+        "red": 4,
+        "blue": 3,
+        "green": 0,
+        "draws": 2,
+        "reference_expression": "((4-0)*(4-1)/2)/((7-0)*(7-1)/2)"
+      },
+      "difficulty": "easy",
+      "reference_method": "Combinatorial/conditional formula, audited by exhaustive ordered draws of individually labeled balls."
+    },
+    {
+      "id": "full-v1-reasoning-development-02",
+      "group_id": "full-v1-reasoning-red_given_any_red",
+      "template_id": "red_given_any_red",
+      "template_index": 5,
+      "split": "development",
+      "family": "reasoning",
+      "prompt": "An urn contains 4 red and 4 blue balls. Draw 3 balls uniformly in order without replacement. Given that at least one drawn ball is red, what is the probability that all three are red?",
+      "probability": true,
+      "gold_fraction": "1/13",
+      "parameters": {
+        "red": 4,
+        "blue": 4,
+        "green": 0,
+        "draws": 3,
+        "reference_expression": "((4-0)*(4-1)*(4-2)/6)/(((8-0)*(8-1)*(8-2)/6)-((4-0)*(4-1)*(4-2)/6))"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Combinatorial/conditional formula, audited by exhaustive ordered draws of individually labeled balls."
+    },
+    {
+      "id": "full-v1-evidence-development-01",
+      "group_id": "full-v1-evidence-one_positive",
+      "template_id": "one_positive",
+      "template_index": 0,
+      "split": "development",
+      "family": "evidence",
+      "prompt": "A hidden state Y is either 0 or 1. The prior probability P(Y=1) is 3/5; P(Y=0) is its complement. Distinct sensor source IDs are conditionally independent given Y. Reliability r means P(observation=Y | Y)=r for either state. A repeated source ID repeats the SAME observation and must be counted only once.\nS1: observation=1, reliability=3/4\nWhat is P(Y=1 | all the listed observations)?",
+      "probability": true,
+      "gold_fraction": "9/11",
+      "parameters": {
+        "prior_y1": "3/5",
+        "query_state": 1,
+        "observations": [
+          {
+            "source_id": "S1",
+            "observation": 1,
+            "reliability": "3/4"
+          }
+        ],
+        "prior_representation": "probability",
+        "reference_expression": "((3/5)*(3/4))/(((1-(3/5))*(1-(3/4)))+((3/5)*(3/4)))"
+      },
+      "difficulty": "easy",
+      "reference_method": "Exact likelihood normalization over unique sources, audited by exhaustive joint state/observation enumeration."
+    },
+    {
+      "id": "full-v1-evidence-development-02",
+      "group_id": "full-v1-evidence-three_majority_positive",
+      "template_id": "three_majority_positive",
+      "template_index": 5,
+      "split": "development",
+      "family": "evidence",
+      "prompt": "A hidden state Y is either 0 or 1. The prior probability P(Y=1) is 3/10; P(Y=0) is its complement. Distinct sensor source IDs are conditionally independent given Y. Reliability r means P(observation=Y | Y)=r for either state. A repeated source ID repeats the SAME observation and must be counted only once.\nS1: observation=1, reliability=4/5\nS2: observation=0, reliability=3/4\nS3: observation=1, reliability=4/5\nWhat is P(Y=1 | all the listed observations)?",
+      "probability": true,
+      "gold_fraction": "16/23",
+      "parameters": {
+        "prior_y1": "3/10",
+        "query_state": 1,
+        "observations": [
+          {
+            "source_id": "S1",
+            "observation": 1,
+            "reliability": "4/5"
+          },
+          {
+            "source_id": "S2",
+            "observation": 0,
+            "reliability": "3/4"
+          },
+          {
+            "source_id": "S3",
+            "observation": 1,
+            "reliability": "4/5"
+          }
+        ],
+        "prior_representation": "probability",
+        "reference_expression": "((3/10)*(4/5)*(1-(3/4))*(4/5))/(((1-(3/10))*(1-(4/5))*(3/4)*(1-(4/5)))+((3/10)*(4/5)*(1-(3/4))*(4/5)))"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Exact likelihood normalization over unique sources, audited by exhaustive joint state/observation enumeration."
+    },
+    {
+      "id": "full-v1-algebra-development-01",
+      "group_id": "full-v1-algebra-affine",
+      "template_id": "affine",
+      "template_index": 0,
+      "split": "development",
+      "family": "algebra",
+      "prompt": "Solve 4*x+7 = (-13) for x. Return an unevaluated arithmetic expression for x in expression.",
+      "probability": false,
+      "gold_fraction": "-5",
+      "parameters": {
+        "equation_left": "4*x+7",
+        "equation_right": "(-13)",
+        "equation_visible": true,
+        "reference_expression": "((-13)-7)/4"
+      },
+      "difficulty": "easy",
+      "reference_method": "Exact construction/closed-form inverse, audited by independent affine AST reduction and substitution."
+    },
+    {
+      "id": "full-v1-algebra-development-02",
+      "group_id": "full-v1-algebra-rectangle_perimeter",
+      "template_id": "rectangle_perimeter",
+      "template_index": 5,
+      "split": "development",
+      "family": "algebra",
+      "prompt": "A rectangle has width x metres and length x+6 metres. Its perimeter is 24 metres. Find x. Return an unevaluated arithmetic expression for x in expression.",
+      "probability": false,
+      "gold_fraction": "3",
+      "parameters": {
+        "equation_left": "2*(x+(x+6))",
+        "equation_right": "(24)",
+        "equation_visible": false,
+        "reference_expression": "((24)-2*6)/4"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Exact construction/closed-form inverse, audited by independent affine AST reduction and substitution."
+    },
+    {
+      "id": "full-v1-units-development-01",
+      "group_id": "full-v1-units-speed_minutes",
+      "template_id": "speed_minutes",
+      "template_index": 0,
+      "split": "development",
+      "family": "units",
+      "prompt": "A cyclist maintains 71 kilometres/hour for 38 minutes. What distance in kilometres is covered?",
+      "probability": false,
+      "gold_fraction": "1349/30",
+      "parameters": {
+        "km_per_hour": 71,
+        "minutes": 38,
+        "reference_expression": "71*38/60"
+      },
+      "difficulty": "easy",
+      "reference_method": "Exact dimensional conversion, audited by conservation equations in consistent base units."
+    },
+    {
+      "id": "full-v1-units-development-02",
+      "group_id": "full-v1-units-two_inflows_and_drain",
+      "template_id": "two_inflows_and_drain",
+      "template_index": 5,
+      "split": "development",
+      "family": "units",
+      "prompt": "An empty 128-litre tank has two constant inflows of 10 and 7 litres/minute and a simultaneous drain of 2 litres/minute. How many minutes until full?",
+      "probability": false,
+      "gold_fraction": "128/15",
+      "parameters": {
+        "capacity_litres": 128,
+        "inflow1_lpm": 10,
+        "inflow2_lpm": 7,
+        "drain_lpm": 2,
+        "reference_expression": "128/(10+7-2)"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Exact dimensional conversion, audited by conservation equations in consistent base units."
+    },
+    {
+      "id": "format-v2-reasoning-development-01",
+      "group_id": "full-v1-reasoning-two_red",
+      "template_id": "two_red",
+      "template_index": 0,
+      "split": "development",
+      "family": "reasoning",
+      "prompt": "An urn contains 4 red and 5 blue balls. Draw 2 balls uniformly in order without replacement. What is the probability that both drawn balls are red?",
+      "probability": true,
+      "gold_fraction": "1/6",
+      "parameters": {
+        "red": 4,
+        "blue": 5,
+        "green": 0,
+        "draws": 2,
+        "reference_expression": "((4-0)*(4-1)/2)/((9-0)*(9-1)/2)"
+      },
+      "difficulty": "easy",
+      "reference_method": "Combinatorial/conditional formula, audited by exhaustive ordered draws of individually labeled balls."
+    },
+    {
+      "id": "format-v2-reasoning-development-02",
+      "group_id": "full-v1-reasoning-red_given_any_red",
+      "template_id": "red_given_any_red",
+      "template_index": 5,
+      "split": "development",
+      "family": "reasoning",
+      "prompt": "An urn contains 3 red and 3 blue balls. Draw 3 balls uniformly in order without replacement. Given that at least one drawn ball is red, what is the probability that all three are red?",
+      "probability": true,
+      "gold_fraction": "1/19",
+      "parameters": {
+        "red": 3,
+        "blue": 3,
+        "green": 0,
+        "draws": 3,
+        "reference_expression": "((3-0)*(3-1)*(3-2)/6)/(((6-0)*(6-1)*(6-2)/6)-((3-0)*(3-1)*(3-2)/6))"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Combinatorial/conditional formula, audited by exhaustive ordered draws of individually labeled balls."
+    },
+    {
+      "id": "format-v2-evidence-development-01",
+      "group_id": "full-v1-evidence-one_positive",
+      "template_id": "one_positive",
+      "template_index": 0,
+      "split": "development",
+      "family": "evidence",
+      "prompt": "A hidden state Y is either 0 or 1. The prior probability P(Y=1) is 1/5; P(Y=0) is its complement. Distinct sensor source IDs are conditionally independent given Y. Reliability r means P(observation=Y | Y)=r for either state. A repeated source ID repeats the SAME observation and must be counted only once.\nS1: observation=1, reliability=7/10\nWhat is P(Y=1 | all the listed observations)?",
+      "probability": true,
+      "gold_fraction": "7/19",
+      "parameters": {
+        "prior_y1": "1/5",
+        "query_state": 1,
+        "observations": [
+          {
+            "source_id": "S1",
+            "observation": 1,
+            "reliability": "7/10"
+          }
+        ],
+        "prior_representation": "probability",
+        "reference_expression": "((1/5)*(7/10))/(((1-(1/5))*(1-(7/10)))+((1/5)*(7/10)))"
+      },
+      "difficulty": "easy",
+      "reference_method": "Exact likelihood normalization over unique sources, audited by exhaustive joint state/observation enumeration."
+    },
+    {
+      "id": "format-v2-evidence-development-02",
+      "group_id": "full-v1-evidence-three_majority_positive",
+      "template_id": "three_majority_positive",
+      "template_index": 5,
+      "split": "development",
+      "family": "evidence",
+      "prompt": "A hidden state Y is either 0 or 1. The prior probability P(Y=1) is 3/5; P(Y=0) is its complement. Distinct sensor source IDs are conditionally independent given Y. Reliability r means P(observation=Y | Y)=r for either state. A repeated source ID repeats the SAME observation and must be counted only once.\nS1: observation=1, reliability=3/4\nS2: observation=0, reliability=4/5\nS3: observation=1, reliability=4/5\nWhat is P(Y=1 | all the listed observations)?",
+      "probability": true,
+      "gold_fraction": "9/11",
+      "parameters": {
+        "prior_y1": "3/5",
+        "query_state": 1,
+        "observations": [
+          {
+            "source_id": "S1",
+            "observation": 1,
+            "reliability": "3/4"
+          },
+          {
+            "source_id": "S2",
+            "observation": 0,
+            "reliability": "4/5"
+          },
+          {
+            "source_id": "S3",
+            "observation": 1,
+            "reliability": "4/5"
+          }
+        ],
+        "prior_representation": "probability",
+        "reference_expression": "((3/5)*(3/4)*(1-(4/5))*(4/5))/(((1-(3/5))*(1-(3/4))*(4/5)*(1-(4/5)))+((3/5)*(3/4)*(1-(4/5))*(4/5)))"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Exact likelihood normalization over unique sources, audited by exhaustive joint state/observation enumeration."
+    },
+    {
+      "id": "format-v2-algebra-development-01",
+      "group_id": "full-v1-algebra-affine",
+      "template_id": "affine",
+      "template_index": 0,
+      "split": "development",
+      "family": "algebra",
+      "prompt": "Solve 3*x+1 = (52) for x. Return an unevaluated arithmetic expression for x in expression.",
+      "probability": false,
+      "gold_fraction": "17",
+      "parameters": {
+        "equation_left": "3*x+1",
+        "equation_right": "(52)",
+        "equation_visible": true,
+        "reference_expression": "((52)-1)/3"
+      },
+      "difficulty": "easy",
+      "reference_method": "Exact construction/closed-form inverse, audited by independent affine AST reduction and substitution."
+    },
+    {
+      "id": "format-v2-algebra-development-02",
+      "group_id": "full-v1-algebra-rectangle_perimeter",
+      "template_id": "rectangle_perimeter",
+      "template_index": 5,
+      "split": "development",
+      "family": "algebra",
+      "prompt": "A rectangle has width x metres and length x+3 metres. Its perimeter is 14 metres. Find x. Return an unevaluated arithmetic expression for x in expression.",
+      "probability": false,
+      "gold_fraction": "2",
+      "parameters": {
+        "equation_left": "2*(x+(x+3))",
+        "equation_right": "(14)",
+        "equation_visible": false,
+        "reference_expression": "((14)-2*3)/4"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Exact construction/closed-form inverse, audited by independent affine AST reduction and substitution."
+    },
+    {
+      "id": "format-v2-units-development-01",
+      "group_id": "full-v1-units-speed_minutes",
+      "template_id": "speed_minutes",
+      "template_index": 0,
+      "split": "development",
+      "family": "units",
+      "prompt": "A cyclist maintains 70 kilometres/hour for 29 minutes. What distance in kilometres is covered?",
+      "probability": false,
+      "gold_fraction": "203/6",
+      "parameters": {
+        "km_per_hour": 70,
+        "minutes": 29,
+        "reference_expression": "70*29/60"
+      },
+      "difficulty": "easy",
+      "reference_method": "Exact dimensional conversion, audited by conservation equations in consistent base units."
+    },
+    {
+      "id": "format-v2-units-development-02",
+      "group_id": "full-v1-units-two_inflows_and_drain",
+      "template_id": "two_inflows_and_drain",
+      "template_index": 5,
+      "split": "development",
+      "family": "units",
+      "prompt": "An empty 290-litre tank has two constant inflows of 8 and 9 litres/minute and a simultaneous drain of 2 litres/minute. How many minutes until full?",
+      "probability": false,
+      "gold_fraction": "58/3",
+      "parameters": {
+        "capacity_litres": 290,
+        "inflow1_lpm": 8,
+        "inflow2_lpm": 9,
+        "drain_lpm": 2,
+        "reference_expression": "290/(8+9-2)"
+      },
+      "difficulty": "moderate",
+      "reference_method": "Exact dimensional conversion, audited by conservation equations in consistent base units."
+    }
+  ]
+}

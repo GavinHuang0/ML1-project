@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "archive": "archive/model-artifacts/llama3.2-3b-a80c4f17",
+  "archived_at": "2026-11-17T22:04:21.705832+00:00",
+  "model": "llama3.2:3b",
+  "recorded_model_digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+  "manifest_sha256": "a52a4a87c5affc63e344f4974f75bcc5b478b40e641df57d0f40941dfc406c94",
+  "source_store": "C:\\Users\\Gavin Huang\\.ollama\\models",
+  "weight_backup": "Independent byte copies; original installed model unchanged; blob files remain local and ignored by Git.",
+  "files": [
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\blobs\\sha256-34bb5ab01051a11372a91f95f3fbbc51173eed8e7f13ec395b9ae9b8bd0e242b",
+      "archive_path": "blobs/sha256-34bb5ab01051a11372a91f95f3fbbc51173eed8e7f13ec395b9ae9b8bd0e242b",
+      "operation": "copy",
+      "bytes": 561,
+      "sha256": "34bb5ab01051a11372a91f95f3fbbc51173eed8e7f13ec395b9ae9b8bd0e242b",
+      "media_type": "application/vnd.docker.container.image.v1+json"
+    },
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\blobs\\sha256-dde5aa3fc5ffc17176b5e8bdc82f587b24b2678c6c66101bf7da77af9f7ccdff",
+      "archive_path": "blobs/sha256-dde5aa3fc5ffc17176b5e8bdc82f587b24b2678c6c66101bf7da77af9f7ccdff",
+      "operation": "copy",
+      "bytes": 2019377376,
+      "sha256": "dde5aa3fc5ffc17176b5e8bdc82f587b24b2678c6c66101bf7da77af9f7ccdff",
+      "media_type": "application/vnd.ollama.image.model"
+    },
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\blobs\\sha256-966de95ca8a62200913e3f8bfbf84c8494536f1b94b49166851e76644e966396",
+      "archive_path": "blobs/sha256-966de95ca8a62200913e3f8bfbf84c8494536f1b94b49166851e76644e966396",
+      "operation": "copy",
+      "bytes": 1429,
+      "sha256": "966de95ca8a62200913e3f8bfbf84c8494536f1b94b49166851e76644e966396",
+      "media_type": "application/vnd.ollama.image.template"
+    },
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\blobs\\sha256-fcc5a6bec9daf9b561a68827b67ab6088e1dba9d1fa2a50d7bbcc8384e0a265d",
+      "archive_path": "blobs/sha256-fcc5a6bec9daf9b561a68827b67ab6088e1dba9d1fa2a50d7bbcc8384e0a265d",
+      "operation": "copy",
+      "bytes": 7711,
+      "sha256": "fcc5a6bec9daf9b561a68827b67ab6088e1dba9d1fa2a50d7bbcc8384e0a265d",
+      "media_type": "application/vnd.ollama.image.license"
+    },
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\blobs\\sha256-a70ff7e570d97baaf4e62ac6e6ad9975e04caa6d900d3742d37698494479e0cd",
+      "archive_path": "blobs/sha256-a70ff7e570d97baaf4e62ac6e6ad9975e04caa6d900d3742d37698494479e0cd",
+      "operation": "copy",
+      "bytes": 6016,
+      "sha256": "a70ff7e570d97baaf4e62ac6e6ad9975e04caa6d900d3742d37698494479e0cd",
+      "media_type": "application/vnd.ollama.image.license"
+    },
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\blobs\\sha256-56bb8bd477a519ffa694fc449c2413c6f0e1d3b1c88fa7e3c9d88d3ae49d4dcb",
+      "archive_path": "blobs/sha256-56bb8bd477a519ffa694fc449c2413c6f0e1d3b1c88fa7e3c9d88d3ae49d4dcb",
+      "operation": "copy",
+      "bytes": 96,
+      "sha256": "56bb8bd477a519ffa694fc449c2413c6f0e1d3b1c88fa7e3c9d88d3ae49d4dcb",
+      "media_type": "application/vnd.ollama.image.params"
+    },
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\blobs\\sha256-a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "archive_path": "blobs/sha256-a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "operation": "copy",
+      "bytes": 1005,
+      "sha256": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "media_type": "application/vnd.docker.distribution.manifest.v2+json"
+    },
+    {
+      "original_path": "C:\\Users\\Gavin Huang\\.ollama\\models\\manifests\\registry.ollama.ai\\library\\llama3.2\\3b",
+      "archive_path": "ollama-manifest.json",
+      "operation": "copy",
+      "bytes": 1169,
+      "sha256": "a52a4a87c5affc63e344f4974f75bcc5b478b40e641df57d0f40941dfc406c94"
+    }
+  ],
+  "file_count": 8,
+  "total_bytes": 2019395363
+}

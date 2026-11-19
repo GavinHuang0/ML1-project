@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 from experiment_runtime import PauseController
 
-import run_full_experiment as study
+from experiments.full_study_v1 import runner as study
 import run_multi_agent as primary
 import run_self_revision as control
 import study_trajectory

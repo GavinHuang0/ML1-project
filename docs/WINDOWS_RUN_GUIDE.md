@@ -1,6 +1,6 @@
 # Windows 11 setup, transfer, pause, and resume
 
-Start with the **160-call follow-up development pilot**, not the prepared 7,000-call full study. The Mac pilot exposed substantial expression-format failures and an incorrect sensor consensus. [Pilot plan and decision rules](FOLLOWUP_PILOT.md)
+Both Windows format pilots are complete. Communication v1 stopped at an output-truncated response. The current [explicit recovery amendment](COMMUNICATION_RECOVERY.md) reuses its 146 responses and the selected 80 initial answers, leaving **334 new calls**. Launch `.\run_communication_recovery.ps1`; resume with `.\run_communication_recovery.ps1 -Resume`. The setup and GPU guidance below still applies. Later `run_followup_pilot.py` commands document the original Stage-A experiment, whose evidence remains preserved.
 
 ## Transfer the project and install the local model
 

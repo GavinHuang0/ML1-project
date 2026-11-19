@@ -1,13 +1,29 @@
-# Experiment results
+# Operational experiment evidence
 
-The next development pilot uses `run_followup_pilot.py` and `results/followup-pilot/<run>/`. It compares JSON versus constrained schema on eight questions (160 calls), writes a screening `summary.json`, and supports pause/resume without repeating durable completed calls. [Windows guide](../docs/WINDOWS_RUN_GUIDE.md) · [Pilot design](../docs/FOLLOWUP_PILOT.md)
+The active full-study v2 writes to `results/full-experiment/study-v2`: 100 questions, 3,500 fresh generations, five-agent all-to-all versus matched self-revision, development calibration, validation selection and locked test evaluation. Phase progress bars estimate remaining request time. It is prepared, not run by this setup. [Commands, ETA and audit](../docs/FULL_EXPERIMENT.md) · [All questions](../docs/FULL_STUDY_QUESTIONS.md)
 
-The prepared full study uses `run_full_experiment.py` and `results/full-experiment/<study>/`. Its study manifest indexes question/condition journals, shared initial evidence, development calibration, validation selection, and per-phase reports. Explicit `--resume` audits saved prefixes and continues at the pending model call; returned raw responses can be recovered without inference. Human pause time is excluded and uncertain failed-call costs remain explicitly recorded. Launch this study only after reviewing the development pilots. See the [full design](../docs/FULL_EXPERIMENT.md).
+The completed and audited architecture runs are `results/five-agent-pilot/windows-v1` (five agents/all four peers, 420 calls) and `results/sparse-peer-pilot/windows-v1` (ten agents/two sampled peers, 840 calls). Each includes a matched self-revision control on the twelve inspected development cases. Five-agent R3 gives 3/12 versus 3/12; sparse R3 gives 2/12 versus 3/12. [Results and full-study decision](../docs/ARCHITECTURE_RESULTS_V1.md) · [Frozen procedures and audit commands](../docs/ARCHITECTURE_PILOTS.md)
 
-New multi-agent runs use `run_multi_agent.py` and unique directories under `results/multi-agent/`. The default four-question inspected development pilot requires 160 calls. Raw generations, evaluated answers, round summaries, manifests, and complete-run analysis/calibration artifacts stay local and ignored until deliberately selected for versioning. See the [frozen protocol](../docs/MULTI_AGENT_PROTOCOL.md) for the schema and development → validation → test workflow.
+The completed and audited confirmation is in `results/confirmation-pilot/windows-v1`: twelve development questions, 840 unique calls with shared initialization, then all three voters and both stopping rules plus fixed-round controls. [Results and full-study decision](../docs/CONFIRMATION_RESULTS_V1.md) · [Frozen procedure and audit command](../docs/CONFIRMATION_PILOT.md)
 
-Single-agent control runs belong under [baseline/](baseline/README.md), using the original `calculator-baseline-v1` entry point. See the [README](../README.md) for its procedure.
+The completed and audited offline voting/stopping comparison is in `results/offline-comparison/pilot-v1`, with a [byte-preserved archive](../archive/2026-11-18-offline-policies-v1/README.md). It replays the completed recovery traces with zero model calls. [Results and next-stage recommendation](../docs/OFFLINE_POLICY_RESULTS_V1.md) · [Command and candidate definitions](../docs/OFFLINE_POLICY_COMPARISON.md)
 
-The [historical reference selection](baseline/HISTORICAL_REFERENCE.json) reports the preserved original-prompt condition: 7/16 correct and 11/16 executable. It is explicitly not a new inference run. No real-model run of the reorganized wrapper has been made during the November 9 consolidation.
+The current explicit recovery writes to `results/communication-pilot/windows-v2` by default. It preserves and audits failed v1's 146 raw responses, records its truncated response as ineligible without retry, and makes 334 more calls under the same generation settings. [Current commands and procedure](../docs/COMMUNICATION_RECOVERY.md)
 
-All previous raw runs, manifests, summaries, checks, and interpretations are preserved in [the November 9 archive](../archive/2026-11-09-pilots/README.md). Earlier Qwen/Llama artifacts remain in [the October 24 archive](../archive/2026-10-24-legacy/README.md). Their original bytes, protocols, paths inside provenance metadata, and scores are unchanged.
+| Location | Status |
+| --- | --- |
+| `five-agent-pilot/windows-v1/` | Completed and audited: 420 calls, R3 communication 3/12 and self-revision 3/12; eight round summaries, 96 question rows |
+| `sparse-peer-pilot/windows-v1/` | Completed and audited: 840 calls, R3 communication 2/12 and self-revision 3/12; eight round summaries, 96 question rows |
+| `confirmation-pilot/windows-v1/` | Completed and audited: 840 calls, 36 comparisons, 432 decisions; plurality R3 communication 1/12 versus self-revision 4/12; no policy selected |
+| `offline-comparison/pilot-v1/` | Completed and audited exploratory replay: 36 policy/branch rows, 288 question decisions, zero new calls; no winner selected |
+| `communication-pilot/windows-v1/` | Failed original pilot: 146 raw responses, 145 evaluated; original evidence remains unchanged |
+| `communication-pilot/windows-v2/` | Current explicit recovery: all 146 existing revisions plus 334 new calls, shared initial panel, amended manifest and summary |
+| `format-followup/windows-v2/` | Completed 320-call format follow-up; selected parent for the current pilot |
+| `followup-pilot/windows-v1/` | Completed 160-call baseline-JSON versus schema comparison |
+| [baseline/](baseline/README.md) | Preserved single-agent historical reference, not a newly generated result |
+| `windows-checkout-backup-*/` | Original configuration-byte backups from checkout normalization |
+| `full-experiment/study-v2/` | Prepared, not run: root study manifest, phase journals/reports, frozen calibration and validation selection; 3,500 fresh calls |
+
+Completed Windows runs have immutable copies under [the November 17 archive](../archive/2026-11-17-development-pilots/README.md). Operational originals remain in place because the audit/import manifests retain absolute paths. Do not move, edit, or overwrite parent evidence. Earlier experiments are indexed in [the archive catalog](../archive/README.md); original archives remain unchanged.
+
+New runs remain local and ignored by Git until deliberately archived. Preserve the entire run folder, including raw responses, evaluated records, shared initial evidence, configuration/provenance snapshots, checkpoints, and summaries. Cooperative pause/resume skips durable calls and excludes pause hours. Offline analysis rechecks prompts, hashes, calculator evaluation, and scores without contacting Ollama.

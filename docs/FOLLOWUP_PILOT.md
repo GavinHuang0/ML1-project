@@ -1,5 +1,7 @@
 # Follow-up development pilot
 
+The Windows Stage-A run is complete: strict-schema eligibility was 71/80 with five calculator failures, and both profiles answered the same 3/8 questions correctly. Neither passed this document's frozen screen. The next prepared experiment is the [targeted expression-instruction follow-up](FORMAT_FOLLOWUP.md); the Stage-A protocol and original runner below remain preserved.
+
 Run this short diagnostic experiment before the full study. The completed Mac pilot had 46 calculator execution failures among 160 outputs; algebra's apparent improvement was a change in formatting eligibility, and sensors reached an incorrect consensus. Preserve those observations and the v1 protocol. The next pilot tests whether one explicit output constraint reduces delivery failures without obscuring mathematical errors.
 
 ## Stage A: paired format comparison, 160 calls

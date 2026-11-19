@@ -1,0 +1,193 @@
+{
+  "record_type": "historical_reference_selection",
+  "baseline_protocol": "calculator-baseline-v1",
+  "execution_protocol": "planner-calculator-v1",
+  "established_on": "2026-11-09",
+  "model_inference_performed_for_consolidation": false,
+  "configuration_sha256": "eaccc0c5259c9734a1335e122fd76ad01022114f064e34a92a0703f8b90b4c92",
+  "source": {
+    "raw": "archive/2026-11-09-pilots/results/runs/calculator-syntax-20261106T211825622487Z/answers.jsonl",
+    "raw_sha256": "3ad3c2f25d36a361603a1eefaafd59ad06fae70e99f8ae07e73e5a5ab2b9497e",
+    "condition": "baseline",
+    "original_experiment_id": "calculator-syntax-v1",
+    "generation_date": "2026-11-06"
+  },
+  "overall": {
+    "items": 16,
+    "calculator_success": 11,
+    "correct": 7
+  },
+  "families": {
+    "reasoning": {
+      "items": 4,
+      "calculator_success": 4,
+      "correct": 3
+    },
+    "evidence": {
+      "items": 4,
+      "calculator_success": 3,
+      "correct": 0
+    },
+    "algebra": {
+      "items": 4,
+      "calculator_success": 0,
+      "correct": 0
+    },
+    "units": {
+      "items": 4,
+      "calculator_success": 4,
+      "correct": 4
+    }
+  },
+  "cases": [
+    {
+      "baseline_task_id": "baseline-01",
+      "source_task_id": "fresh-urn-unconditional",
+      "seed": 9101,
+      "expression": "(6/15) * (5/14)",
+      "computed_fraction": "1/7",
+      "calculator_success": true,
+      "correct": true
+    },
+    {
+      "baseline_task_id": "baseline-02",
+      "source_task_id": "fresh-urn-conditional",
+      "seed": 9102,
+      "expression": "21/49",
+      "computed_fraction": "3/7",
+      "calculator_success": true,
+      "correct": true
+    },
+    {
+      "baseline_task_id": "baseline-03",
+      "source_task_id": "fresh-sensor-01",
+      "seed": 9103,
+      "expression": "(0.5)*(0.75) + (0.5)*(0.6)",
+      "computed_fraction": "27/40",
+      "calculator_success": true,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-04",
+      "source_task_id": "fresh-sensor-02",
+      "seed": 9104,
+      "expression": "(0.5 * 0.75 + 0.5 * 0.6) / (0.5 * 0.75 + 0.5 * 0.6 + 0.5 * 0.6 + 0.5 * 0.6)",
+      "computed_fraction": "9/17",
+      "calculator_success": true,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-05",
+      "source_task_id": "fresh-algebra-01",
+      "seed": 9105,
+      "expression": "x = (42 - 7) / 5",
+      "computed_fraction": null,
+      "calculator_success": false,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-06",
+      "source_task_id": "fresh-algebra-02",
+      "seed": 9106,
+      "expression": "x = (24 / 4) + 4",
+      "computed_fraction": null,
+      "calculator_success": false,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-07",
+      "source_task_id": "fresh-units-01",
+      "seed": 9107,
+      "expression": "90 * (14 / 60)",
+      "computed_fraction": "21",
+      "calculator_success": true,
+      "correct": true
+    },
+    {
+      "baseline_task_id": "baseline-08",
+      "source_task_id": "fresh-units-02",
+      "seed": 9108,
+      "expression": "66 * (45/60)",
+      "computed_fraction": "99/2",
+      "calculator_success": true,
+      "correct": true
+    },
+    {
+      "baseline_task_id": "baseline-09",
+      "source_task_id": "regression-calculator-pilot-42-0000",
+      "seed": 8201,
+      "expression": "(12/15) * (11/14)",
+      "computed_fraction": "22/35",
+      "calculator_success": true,
+      "correct": true
+    },
+    {
+      "baseline_task_id": "baseline-10",
+      "source_task_id": "regression-calculator-pilot-42-0001",
+      "seed": 8202,
+      "expression": "(0.5 * 0.9 * (1-0.9) + 0.5 * 0.6 * (1-0.6)) / (0.5 * 0.9 * (1-0.9) + 0.5 * 0.6 * (1-0.6) + 0.5 * 0.6 * (1-0.6) + 0.5 * 0.9 * (1-0.9))",
+      "computed_fraction": "1/2",
+      "calculator_success": true,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-11",
+      "source_task_id": "regression-calculator-pilot-42-0002",
+      "seed": 8203,
+      "expression": "(8/10) * (7/9) / ((8/10) + (7/9))",
+      "computed_fraction": "28/71",
+      "calculator_success": true,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-12",
+      "source_task_id": "regression-calculator-pilot-42-0003",
+      "seed": 8204,
+      "expression": "0.5 \u2217 (1-0.6) \u2217 (1-0.9) \u2217 (1-0.9) \u2217 (1-0.9) \u2217 (1-0.6)(1-0.9)",
+      "computed_fraction": null,
+      "calculator_success": false,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-13",
+      "source_task_id": "regression-calculator-algebra-01",
+      "seed": 8205,
+      "expression": "x = (21 + 11) / 4",
+      "computed_fraction": null,
+      "calculator_success": false,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-14",
+      "source_task_id": "regression-calculator-algebra-02",
+      "seed": 8206,
+      "expression": "3*x + 5 - 2*x - 5",
+      "computed_fraction": null,
+      "calculator_success": false,
+      "correct": false
+    },
+    {
+      "baseline_task_id": "baseline-15",
+      "source_task_id": "regression-calculator-units-01",
+      "seed": 8207,
+      "expression": "(35/60) * 84",
+      "computed_fraction": "49",
+      "calculator_success": true,
+      "correct": true
+    },
+    {
+      "baseline_task_id": "baseline-16",
+      "source_task_id": "regression-calculator-units-02",
+      "seed": 8208,
+      "expression": "(96 * 18) / 60",
+      "computed_fraction": "144/5",
+      "calculator_success": true,
+      "correct": true
+    }
+  ],
+  "limitations": [
+    "This selects historical records; it is not a run of the reorganized entry point.",
+    "All sixteen questions and earlier outputs were inspected; this is not held-out accuracy.",
+    "The original scorer and 0.001 tolerance are retained, including the tiny-posterior limitation."
+  ]
+}

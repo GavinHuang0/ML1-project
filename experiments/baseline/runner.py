@@ -17,12 +17,12 @@ from experiment_config import MAX_TOKENS, MODEL, PROBABILITY_TOLERANCE, protocol
 from local_llm import OllamaClient, OllamaError
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = ROOT / "config" / "baseline.json"
 EXPERIMENT_ID = "calculator-baseline-v1"
 EXECUTION_PROTOCOL = "planner-calculator-v1"
-SOURCE_FILES = ("run_baseline.py", "calculator.py", "calculator_protocol.py",
-                "local_llm.py", "experiment_config.py", "setup_models.py", "config/models.json")
+SOURCE_FILES = ("experiments/baseline/runner.py", "calculator.py", "calculator_protocol.py",
+                "local_llm.py", "experiment_config.py", "tools/setup_models.py", "config/models.json")
 COHORTS = {"syntax_reuse", "pilot_reuse"}
 FAMILIES = {"reasoning", "evidence", "algebra", "units"}
 FLAGS = ("json_valid", "required_fields_valid", "method_format_valid", "calculator_attempted",
@@ -166,7 +166,7 @@ def installed_model(client):
     model = next((entry for entry in health["models"]
                   if entry.get("name") == MODEL or entry.get("model") == MODEL), None)
     if model is None:
-        raise OllamaError(f"Model {MODEL} is missing. Run: python3 setup_models.py")
+        raise OllamaError(f"Model {MODEL} is missing. Run: python -m tools.setup_models")
     if not isinstance(model.get("digest"), str) or not model["digest"]:
         raise OllamaError("Ollama did not return the model digest")
     return health, model

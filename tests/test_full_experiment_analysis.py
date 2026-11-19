@@ -3,7 +3,7 @@
 import copy
 import unittest
 
-from full_experiment_analysis import summarize_study
+from experiments.full_study_v1.full_experiment_analysis import summarize_study
 from multi_agent_analysis import summarize_round
 
 

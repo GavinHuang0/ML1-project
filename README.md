@@ -6,6 +6,8 @@ The latest completed experiment is the **100-question five-agent full study**, c
 
 **Completed result:** validation selected **R0, no revision**, under the frozen accuracy/cost objective. That policy solves **12/40 held-out test questions (30%)**. Its two branch labels are identical by shared initialization. Secondary R3 gives communication 14/40 versus self-revision 10/40, an uncertain +10-point difference with interval [−2.5, +22.5]. The result does not establish that communication is always better or worse. [Full verification and interpretation](docs/FULL_STUDY_RESULTS_V2.md)
 
+[Original-design comparison, completed work and follow-up priorities](docs/DESIGN_RECONCILIATION.md) · [Repository layout and relocated commands](docs/REPOSITORY_LAYOUT.md)
+
 ## Verify the completed five-agent full study
 
 All **3,500 calls** are saved and audited: 700 development, 1,400 validation and 1,400 test. Canonical prompts, raw evaluations, source identities, frozen phase dependencies and report bytes reproduce. No recovery is pending. The complete run took about 2h42m elapsed and used 2,638,253 tokens.
@@ -109,6 +111,8 @@ The extra instruction helped inspected regression cases but did not transfer rel
 | [experiments/full_study_v2/](experiments/full_study_v2/) | Selected-profile protocol, durable three-phase runner, cost selection and paired analysis |
 | [docs/FULL_STUDY_QUESTIONS.md](docs/FULL_STUDY_QUESTIONS.md) | All 100 exact question prompts for inspection, without reference answers |
 | [experiments/full_study_v1/](experiments/full_study_v1/) | Historical ten-agent runner compatibility; original configuration remains preserved |
+| [experiments/baseline/](experiments/baseline/) | Historical single-agent baseline runner, now invoked as `python -m experiments.baseline.runner` |
+| [tools/](tools/README.md) | Archive verification, model setup and Windows checkout maintenance; invoke with `python -m tools.<name>` |
 | `run_five_agent_pilot.ps1`, `run_sparse_peer_pilot.ps1` | Completed architecture experiments and read-only analyzers |
 | [experiments/architecture_pilots/](experiments/architecture_pilots/) | New versioned routing, variable-panel protocol, durable runner and analysis |
 | `run_confirmation_pilot.ps1`, `run_confirmation_pilot.py` | Completed twelve-question confirmation and read-only analyzer; 840 calls, all voting/stopping rules replayed offline |
@@ -122,10 +126,12 @@ The extra instruction helped inspected regression cases but did not transfer rel
 | [archive/](archive/README.md) | Immutable historical source/configuration/result snapshots and model artifact inventory |
 | [results/](results/README.md) | Operational evidence and new runs; raw active results remain local until deliberately archived |
 | `calculator.py`, `calculator_protocol.py`, `multi_agent_*.py`, `local_llm.py` | Shared exact calculator, scoring, prompt, and transport dependencies |
-| Other root runners/configs | Provenance-pinned baseline, completed-pilot compatibility, and prepared full-study code; use catalog links for their status |
+| Other root Python files | Frozen completed-pilot entry points and their import dependencies; their original paths are required by recorded audits |
 | [tests/](tests/) | Offline protocol, analysis, archive, and durable-checkpoint tests |
 
 The October and November historical archives retain their original bytes. The November 17 archive preserves both Windows pilots, their raw evidence and exact source snapshots. Some older raw Mac artifacts are unavailable on this PC; their portable metrics and recorded evidence hashes are preserved and cataloged. Completed-run source/configuration files and operational parent results remain in their original paths because historical audits and panel imports depend on those paths. The fresh full-study runner reads its selected-profile identity from the versioned archive, without following ignored operational parent paths.
+
+Maintenance and unfrozen legacy modules have moved out of the root. The remaining root modules retain their bytes and paths for historical replay; new implementation belongs under `experiments/` or `tools/`. See the [layout guide](docs/REPOSITORY_LAYOUT.md) for all moved commands and the compatibility boundary.
 
 The locally available Llama weights are backed up with verified content hashes under `archive/model-artifacts/`; large blob backups are ignored by Git, while manifests and inventories can be versioned. Qwen's historical experiments remain archived; its weights are not installed here. [Archive index and verification](archive/README.md)
 
@@ -135,7 +141,7 @@ The project uses the Python standard library. With a working Python command:
 
 ```powershell
 py -3 -B -m unittest discover -s tests -q
-py -3 archive_project_history.py --check
+py -3 -m tools.archive_project_history --check
 ```
 
 The suite uses mocked model responses and a temporary localhost server, without real inference. Environments that block local sockets must allow the existing client tests to access their temporary loopback server. The PowerShell pilot launcher also accepts `-Python C:\path\to\python.exe`.

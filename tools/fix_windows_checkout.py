@@ -15,7 +15,7 @@ import tempfile
 from build_full_benchmark import generate_manifest, manifest_bytes
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def plan_repairs(root):
@@ -40,7 +40,7 @@ def plan_repairs(root):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--root", type=Path, default=ROOT, help="Project directory; defaults to this script's directory")
+    parser.add_argument("--root", type=Path, default=ROOT, help="Project directory; defaults to the repository root")
     parser.add_argument("--check", action="store_true", help="Check without writing files")
     args = parser.parse_args(argv)
     backup = None

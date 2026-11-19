@@ -6,7 +6,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-import fix_windows_checkout as repair
+from tools import fix_windows_checkout as repair
 
 
 ROOT = Path(__file__).resolve().parents[1]

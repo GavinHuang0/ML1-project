@@ -12,7 +12,7 @@ import sys
 import run_multi_agent as primary
 from multi_agent_protocol import read_config, read_tasks
 from experiment_runtime import FileLock, PauseController, hardware_identity
-import study_trajectory
+from experiments.full_study_v1 import study_trajectory
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -36,8 +36,9 @@ FROZEN_DESIGN = {
     "hardware_policy": "same_machine_os_cpu_memory_model_digest_and_ollama_version",
     "matching": "equal_generation_counts_shared_round_zero_not_equal_token_budgets",
 }
-EXTRA_SOURCES = ("run_full_experiment.py", "run_self_revision.py", "full_experiment_analysis.py",
-                 "build_full_benchmark.py", "experiment_runtime.py", "study_trajectory.py")
+EXTRA_SOURCES = ("experiments/full_study_v1/runner.py", "experiments/full_study_v1/run_self_revision.py",
+                 "experiments/full_study_v1/full_experiment_analysis.py", "build_full_benchmark.py",
+                 "experiment_runtime.py", "experiments/full_study_v1/study_trajectory.py")
 
 
 class StudyPaused(Exception):
@@ -137,7 +138,7 @@ def check_runtime(manifest, timeout):
 
 
 def load_control():
-    import run_self_revision
+    from experiments.full_study_v1 import run_self_revision
     return run_self_revision
 
 
@@ -312,7 +313,7 @@ def freeze_artifact(path, value):
 
 
 def finalize_phase(root, manifest, tasks, split, calibration_path, selection_path):
-    from full_experiment_analysis import summarize_study
+    from experiments.full_study_v1.full_experiment_analysis import summarize_study
     chosen = [task for task in tasks if task["split"] == split]
     data = collect_phase(manifest, tasks, split)
     references = primary.read_calibration(calibration_path)[0]["references"] if calibration_path else None

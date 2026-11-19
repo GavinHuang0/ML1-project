@@ -11,7 +11,7 @@ from unittest.mock import patch
 
 from local_llm import OllamaError
 import run_multi_agent as primary
-import study_trajectory as engine
+from experiments.full_study_v1 import study_trajectory as engine
 
 
 class FixtureClient:

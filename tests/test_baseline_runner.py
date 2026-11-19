@@ -12,7 +12,7 @@ from unittest.mock import patch
 from calculator import evaluate_expression
 from calculator_protocol import SYSTEM
 from local_llm import OllamaError
-import run_baseline as runner
+from experiments.baseline import runner
 
 
 class FixtureClient:

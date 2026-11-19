@@ -193,7 +193,7 @@ class BaselineBankTests(unittest.TestCase):
 class ActiveSeparationTests(unittest.TestCase):
     def test_only_declared_current_and_provenance_pinned_commands_and_banks_exist(self):
         self.assertEqual({path.name for path in ROOT.glob("run_*.py")},
-                         {"run_baseline.py", "run_multi_agent.py", "run_self_revision.py", "run_full_experiment.py",
+                         {"run_multi_agent.py", "run_full_experiment.py",
                           "run_followup_pilot.py", "run_format_followup.py", "run_communication_pilot.py",
                           "run_communication_recovery.py", "run_offline_comparison.py",
                           "run_confirmation_pilot.py", "run_five_agent_pilot.py", "run_sparse_peer_pilot.py"})
@@ -206,11 +206,13 @@ class ActiveSeparationTests(unittest.TestCase):
                           "five_agent_pilot.json", "sparse_peer_pilot.json", "full_study_v2.json"})
 
     def test_active_modules_do_not_import_archived_or_retired_approaches(self):
-        active = {path.stem for path in ROOT.glob("*.py")}
+        active_paths = [*ROOT.glob("*.py"), *(ROOT / "experiments").rglob("*.py"),
+                        *(ROOT / "tools").rglob("*.py")]
+        active = {path.stem for path in active_paths}
         retired = {path.stem for path in ARCHIVE.glob("*.py")} - active
-        self.assertIn("run_baseline", active)
+        self.assertTrue((ROOT / "experiments/baseline/runner.py").is_file())
         self.assertTrue(retired)
-        for path in [*ROOT.glob("*.py"), *(ROOT / "experiments").rglob("*.py")]:
+        for path in active_paths:
             tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
             imports = []
             for node in ast.walk(tree):

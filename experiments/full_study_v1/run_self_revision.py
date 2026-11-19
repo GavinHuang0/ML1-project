@@ -18,7 +18,7 @@ from multi_agent_analysis import summarize_experiment, summarize_round, validate
 import run_multi_agent as primary
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 EXPERIMENT_ID = "self-revision-calculator-v1"
 REVISION_SYSTEM = SYSTEM + (
     " Reconsider your mathematical setup using your own response from the immediately preceding round. "
@@ -38,7 +38,7 @@ PROTOCOL = {
     "revision_system": REVISION_SYSTEM,
     "round_selection": "none_control_does_not_select_primary_operating_round",
 }
-SOURCE_FILES = (*primary.SOURCE_FILES, "run_self_revision.py")
+SOURCE_FILES = (*primary.SOURCE_FILES, "experiments/full_study_v1/run_self_revision.py")
 EVIDENCE_FILES = ("generations.jsonl", "answers.jsonl", "rounds.jsonl")
 PARENT_FILES = ("run-manifest.json", *EVIDENCE_FILES)
 ERRORS = (OllamaError, OSError, ValueError, KeyError, TypeError, ZeroDivisionError,

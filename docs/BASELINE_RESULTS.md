@@ -1,6 +1,6 @@
 # Baseline selection and historical results
 
-The calculator procedure was selected as the active baseline on **November 9, 2026**. This is a consolidation of the existing procedure, not a new accuracy experiment. The active entry point is `run_baseline.py`, identified as `calculator-baseline-v1`; the planning/calculation contract remains `planner-calculator-v1`. The original system prompt and the bytes of `calculator.py` and `calculator_protocol.py` are unchanged.
+The calculator procedure was selected as the active baseline on **November 9, 2026**. This is a consolidation of the existing procedure, not a new accuracy experiment. After repository organization, the entry point is `python -m experiments.baseline.runner`, identified as `calculator-baseline-v1`; the planning/calculation contract remains `planner-calculator-v1`. The original system prompt and the bytes of `calculator.py` and `calculator_protocol.py` are unchanged. Historical source snapshots keep the original `run_baseline.py` path.
 
 ## Why this procedure
 

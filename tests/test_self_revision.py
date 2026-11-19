@@ -11,7 +11,7 @@ from unittest.mock import patch
 
 from local_llm import OllamaError
 import run_multi_agent as primary
-import run_self_revision as control
+from experiments.full_study_v1 import run_self_revision as control
 
 
 class FixtureClient:

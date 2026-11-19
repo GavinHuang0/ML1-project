@@ -13,7 +13,7 @@ git rev-parse HEAD
 py -3 --version
 ollama pull llama3.2:3b
 ollama --version
-py -3 setup_models.py --check
+py -3 -m tools.setup_models --check
 py -3 build_full_benchmark.py --check
 py -3 -m unittest discover -s tests -q
 ```
@@ -26,12 +26,12 @@ For an existing copy with that error, update the code and run the included helpe
 
 ```powershell
 git pull --ff-only origin main
-py -3 .\fix_windows_checkout.py
+py -3 -m tools.fix_windows_checkout
 py -3 build_full_benchmark.py --check
 py -3 -m unittest discover -s tests -q
 ```
 
-Use `py -3 .\fix_windows_checkout.py --check` for a read-only diagnosis. The helper restores only line endings and does not run a model. The test command's `-q` mode stays quiet until completion, which can take a few minutes on Windows.
+Use `py -3 -m tools.fix_windows_checkout --check` for a read-only diagnosis. The helper restores only line endings and does not run a model. The test command's `-q` mode stays quiet until completion, which can take a few minutes on Windows.
 
 The updated tests compare recorded repository paths using `/` on every operating system. The symlink-only protection test skips when Windows reports missing symlink privileges (`WinError 1314`); direct historical-output protections are tested separately and always run. Administrator access is not required for the suite.
 

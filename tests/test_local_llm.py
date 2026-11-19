@@ -13,7 +13,7 @@ from urllib.error import URLError
 
 from experiment_config import MAX_TOKENS, MODEL
 from local_llm import OllamaClient, OllamaError, parse_prediction
-import setup_models
+from tools import setup_models
 
 
 class FakeOllama(BaseHTTPRequestHandler):
@@ -166,12 +166,12 @@ class InstallerTests(unittest.TestCase):
                 setup_models.validate_models(models)
 
     def test_missing_binary_gives_official_install_url(self):
-        with patch("setup_models.shutil.which", return_value=None):
+        with patch("tools.setup_models.shutil.which", return_value=None):
             self.assertEqual(setup_models.main([]), 1)
         self.assertIn("https://ollama.com/download", self.error.getvalue())
 
     def test_other_models_are_rejected_before_runtime_or_download(self):
-        with patch("setup_models.OllamaClient") as client, patch("setup_models.subprocess.run") as run:
+        with patch("tools.setup_models.OllamaClient") as client, patch("tools.setup_models.subprocess.run") as run:
             self.assertEqual(setup_models.main(["--models", "qwen2.5:3b"]), 1)
             self.assertEqual(setup_models.main(["--models", MODEL, "llama3.2:1b"]), 1)
             client.assert_not_called()
@@ -179,13 +179,13 @@ class InstallerTests(unittest.TestCase):
         self.assertIn(MODEL, self.error.getvalue())
 
     def test_cloud_tags_cannot_be_pulled(self):
-        with patch("setup_models.subprocess.run") as run:
+        with patch("tools.setup_models.subprocess.run") as run:
             self.assertEqual(setup_models.main(["--models", "model:3b-cloud"]), 1)
             run.assert_not_called()
         self.assertIn("choose a downloaded local model", self.error.getvalue())
 
     def test_check_only_does_not_pull(self):
-        with patch("setup_models.OllamaClient") as client, patch("setup_models.subprocess.run") as run:
+        with patch("tools.setup_models.OllamaClient") as client, patch("tools.setup_models.subprocess.run") as run:
             client.return_value.health.return_value = {
                 "version": "test", "models": [{"name": MODEL}],
             }
@@ -195,9 +195,9 @@ class InstallerTests(unittest.TestCase):
     def test_default_and_duplicate_models_pull_only_llama_with_local_host(self):
         for arguments in [[], ["--models", MODEL, MODEL]]:
             with self.subTest(arguments=arguments), \
-                    patch("setup_models.OllamaClient") as client, \
-                    patch("setup_models.shutil.which", return_value="/test/ollama"), \
-                    patch("setup_models.subprocess.run") as run:
+                    patch("tools.setup_models.OllamaClient") as client, \
+                    patch("tools.setup_models.shutil.which", return_value="/test/ollama"), \
+                    patch("tools.setup_models.subprocess.run") as run:
                 client.return_value.health.return_value = {
                     "version": "test", "models": [{"name": MODEL}],
                 }
@@ -209,7 +209,7 @@ class InstallerTests(unittest.TestCase):
                 self.assertEqual(call.kwargs["env"]["OLLAMA_HOST"], "http://127.0.0.1:11434")
 
     def test_smoke_uses_baseline_prompt_and_calculator(self):
-        with patch("setup_models.OllamaClient") as client:
+        with patch("tools.setup_models.OllamaClient") as client:
             client.return_value.health.return_value = {
                 "version": "test", "models": [{"name": MODEL}],
             }
@@ -225,7 +225,7 @@ class InstallerTests(unittest.TestCase):
         self.assertIn('"computed_fraction": "4"', self.output.getvalue())
 
     def test_smoke_records_unsupported_expression_without_repair_or_retry(self):
-        with patch("setup_models.OllamaClient") as client:
+        with patch("tools.setup_models.OllamaClient") as client:
             client.return_value.health.return_value = {"version": "test", "models": [{"name": MODEL}]}
             client.return_value.chat.return_value = {
                 "message": {"content": '{"expression":"x = 2+2","explanation":"Addition."}'}}

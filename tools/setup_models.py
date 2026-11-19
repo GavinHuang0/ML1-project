@@ -13,7 +13,7 @@ from local_llm import BASE_URL, OllamaClient, OllamaError, validate_model_tag
 from experiment_config import MAX_TOKENS, MODEL, TEMPERATURE
 
 
-DEFAULT_CONFIG = Path(__file__).resolve().parent / "config" / "models.json"
+DEFAULT_CONFIG = Path(__file__).resolve().parents[1] / "config" / "models.json"
 
 
 def load_models(path=DEFAULT_CONFIG):
@@ -69,7 +69,7 @@ def main(argv=None):
                    and (":" in model.rsplit("/", 1)[-1] or model + ":latest" not in installed)]
         if missing:
             raise OllamaError("Missing models: " + ", ".join(missing)
-                              + ". Run python setup_models.py to download " + MODEL + ".")
+                              + ". Run python -m tools.setup_models to download " + MODEL + ".")
         print("All requested models are installed locally: " + ", ".join(models))
         if args.smoke:
             for model in models:

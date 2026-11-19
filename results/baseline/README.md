@@ -1,10 +1,10 @@
 # Calculator-baseline records
 
-This is the sole active result namespace. From the repository root:
+This namespace preserves the single-agent baseline and any separately requested baseline runs. From the repository root:
 
 ```sh
-python3 run_baseline.py --dry-run
-python3 run_baseline.py
+python3 -m experiments.baseline.runner --dry-run
+python3 -m experiments.baseline.runner
 ```
 
 Each real execution creates a new `<UTC>-calculator-baseline-v1/` directory with `answers.jsonl`, `summary.json`, and `run-manifest.json`. A complete run has sixteen answers, a completion marker, and manifest status `complete`; partial data remains available after failures or interruptions. New run directories stay local until reviewed and deliberately selected for versioning.

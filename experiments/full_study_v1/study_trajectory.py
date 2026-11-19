@@ -16,7 +16,7 @@ import time
 from local_llm import OllamaError
 from multi_agent_protocol import FROZEN_PROTOCOL, agent_seed
 import run_multi_agent as primary
-import run_self_revision as control
+from experiments.full_study_v1 import run_self_revision as control
 
 
 SCHEDULER_PROFILE = "durable-call-checkpoint-v1"

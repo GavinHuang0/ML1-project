@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-import archive_project_history as history
+from tools import archive_project_history as history
 
 
 class ProjectArchiveTests(unittest.TestCase):

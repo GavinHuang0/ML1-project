@@ -12,8 +12,7 @@ from experiment_runtime import PauseController
 
 from experiments.full_study_v1 import runner as study
 import run_multi_agent as primary
-import run_self_revision as control
-import study_trajectory
+from experiments.full_study_v1 import run_self_revision as control, study_trajectory
 
 
 class FixtureClient:

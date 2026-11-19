@@ -11,7 +11,7 @@ from pathlib import Path, PurePosixPath
 import sys
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENT_ARCHIVES = (
     "archive/2026-10-24-legacy",
     "archive/2026-11-09-pilots",

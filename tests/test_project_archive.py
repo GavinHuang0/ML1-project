@@ -15,7 +15,75 @@ import archive_project_history as history
 class ProjectArchiveTests(unittest.TestCase):
     def test_experiment_snapshots_match_every_recorded_byte(self):
         reports = [history.check_inventory(history.ROOT / name) for name in history.EXPERIMENT_ARCHIVES]
-        self.assertEqual([item["files_verified"] for item in reports], [39, 74, 69, 27, 33, 12, 15, 22])
+        self.assertEqual([item["files_verified"] for item in reports], [39, 74, 69, 27, 33, 12, 15, 22, 29])
+
+    def test_completed_full_study_preserves_phases_selection_and_every_frozen_input(self):
+        archive = history.ROOT / "archive/2026-11-19-full-study-v2"
+        run = archive / "results/full-experiment/study-v2"
+        inventory = json.loads((archive / "SHA256_INVENTORY.json").read_text(encoding="utf-8"))
+        study = json.loads((run / "study-manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual((inventory["file_count"], inventory["total_bytes"]), (29, 36486082))
+        self.assertEqual((inventory["unique_generations"], inventory["shared_initial_generations"],
+                          inventory["revision_generations"]), (3500, 500, 3000))
+        self.assertEqual(study["status"], "complete")
+        self.assertEqual((study["calls_completed"], study["generations_saved"]), (3500, 3500))
+        self.assertEqual((len(inventory["source_inputs"]), len(inventory["referenced_sources"])), (49, 41))
+        inputs = {entry["original_absolute_path"]: entry for entry in inventory["source_inputs"]}
+        self.assertEqual(set(inputs), set(study["source_sha256"]))
+        for original, digest in study["source_sha256"].items():
+            self.assertEqual(inputs[original]["sha256"], digest)
+            preserved = history.safe_member(history.ROOT, inputs[original]["workspace_archive_path"])
+            self.assertEqual(history.sha256(preserved), digest)
+        calibration_path = run / "artifacts/calibration.json"
+        selection_path = run / "artifacts/selection.json"
+        calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
+        selection = json.loads(selection_path.read_text(encoding="utf-8"))
+        self.assertEqual(selection["primary_round"], 0)
+        self.assertEqual(selection["self_revision_primary_round"], 0)
+        self.assertFalse(selection["test_feedback_used"])
+        self.assertEqual(study["artifact_sha256"]["calibration.json"], history.sha256(calibration_path))
+        self.assertEqual(study["artifact_sha256"]["selection.json"], history.sha256(selection_path))
+        self.assertEqual(min(selection["candidates"], key=lambda row: (row["objective"], row["round"]))["round"], 0)
+        phase_groups = []
+        total_initial = total_revisions = 0
+        for phase, questions, calls in (("development", 20, 700), ("validation", 40, 1400), ("test", 40, 1400)):
+            directory = run / "phases" / phase
+            path = directory / "run-manifest.json"
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(manifest["status"], "complete")
+            self.assertEqual((manifest["calls_completed"], manifest["generations_saved"]), (calls, calls))
+            self.assertEqual(len(manifest["tasks_snapshot"]), questions)
+            self.assertTrue(all(task["split"] == phase for task in manifest["tasks_snapshot"]))
+            phase_groups.append({task["group_id"] for task in manifest["tasks_snapshot"]})
+            self.assertEqual(manifest["source_sha256"], study["source_sha256"])
+            self.assertEqual(study["phases"][phase]["manifest_sha256"], history.sha256(path))
+            for filename, checkpoint in manifest["evidence_checkpoint"].items():
+                self.assertEqual(history.sha256(directory / filename), checkpoint["sha256"])
+                self.assertEqual(len((directory / filename).read_bytes().splitlines()), checkpoint["records"])
+            answers = [json.loads(line) for line in (directory / "answers.jsonl").read_text(encoding="utf-8").splitlines()]
+            initial = sum(row["round"] == 0 and row["arm"] == "shared_initial" for row in answers)
+            self.assertEqual(initial, questions * 5)
+            total_initial += initial
+            total_revisions += sum(row["round"] > 0 for row in answers)
+            for filename, digest in manifest["output_sha256"].items():
+                self.assertEqual(history.sha256(directory / filename), digest)
+            summary = json.loads((directory / "summary.json").read_text(encoding="utf-8"))
+            self.assertEqual(summary["phase"], phase)
+            self.assertEqual(summary["source_generation_cost_including_initial_once"]["unique_calls"], calls)
+            self.assertFalse(summary["test_round_selection_performed"])
+            self.assertEqual(summary["comparison_rows"], 8)
+            self.assertEqual(summary["per_question_rows"], questions * 8)
+            if phase != "development":
+                self.assertEqual(manifest["calibration_snapshot"], calibration)
+                self.assertEqual(manifest["artifact_dependencies"]["calibration.json"]["sha256"], history.sha256(calibration_path))
+            if phase == "test":
+                self.assertEqual(manifest["selection_snapshot"], selection)
+                self.assertEqual(manifest["artifact_dependencies"]["selection.json"]["sha256"], history.sha256(selection_path))
+                self.assertEqual(summary["primary_round"], 0)
+                self.assertEqual(summary["primary_comparison"]["round"], 0)
+        self.assertEqual((total_initial, total_revisions), (500, 3000))
+        for index, groups in enumerate(phase_groups):
+            self.assertTrue(all(not groups & other for other in phase_groups[index + 1:]))
 
     def test_completed_architecture_runs_preserve_every_call_route_and_frozen_input(self):
         archive = history.ROOT / "archive/2026-11-18-architecture-pilots-v1"

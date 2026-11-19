@@ -1,6 +1,6 @@
 # Full study: all 100 questions for inspection
 
-These are the exact prompts from the existing full benchmark. Metadata appears outside each prompt. Reference answers and generator parameters are omitted. The new five-agent study regenerates all trajectories; development questions have already been inspected in earlier pilots, while validation/test model inference has not been performed.
+These are the exact prompts used by the completed five-agent full study. Metadata appears outside each prompt. Reference answers and generator parameters are omitted. Development questions had been inspected in earlier pilots; validation and test outcomes were generated only in their scheduled phases. Question text is unchanged. [Completed-study results](FULL_STUDY_RESULTS_V2.md)
 
 | Partition | Questions | Structural groups |
 | --- | ---: | ---: |

@@ -21,6 +21,7 @@ EXPERIMENT_ARCHIVES = (
     "archive/2026-11-18-offline-policies-v1",
     "archive/2026-11-18-confirmation-pilot-v1",
     "archive/2026-11-18-architecture-pilots-v1",
+    "archive/2026-11-19-full-study-v2",
 )
 MODEL_ARCHIVE = "archive/model-artifacts/llama3.2-3b-a80c4f17"
 

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "artifact_id": "five-agent-full-study-v2-development-calibration",
+  "study_id": "ml1-five-agent-full-study-v2",
+  "source_phase": "development",
+  "source_summary_sha256": "292deb6e1921fd06a25f4b67f22bf07bb297eef2f7e6fbad8ed97801daac6b42",
+  "source_question_ids": [
+    "full-v1-reasoning-development-01",
+    "full-v1-reasoning-development-02",
+    "full-v1-reasoning-development-03",
+    "full-v1-reasoning-development-04",
+    "full-v1-reasoning-development-05",
+    "full-v1-evidence-development-01",
+    "full-v1-evidence-development-02",
+    "full-v1-evidence-development-03",
+    "full-v1-evidence-development-04",
+    "full-v1-evidence-development-05",
+    "full-v1-algebra-development-01",
+    "full-v1-algebra-development-02",
+    "full-v1-algebra-development-03",
+    "full-v1-algebra-development-04",
+    "full-v1-algebra-development-05",
+    "full-v1-units-development-01",
+    "full-v1-units-development-02",
+    "full-v1-units-development-03",
+    "full-v1-units-development-04",
+    "full-v1-units-development-05"
+  ],
+  "source_group_ids": [
+    "full-v1-algebra-affine",
+    "full-v1-algebra-mixture",
+    "full-v1-algebra-rectangle_perimeter",
+    "full-v1-evidence-four_majority_positive_query_zero",
+    "full-v1-evidence-one_positive",
+    "full-v1-evidence-three_majority_positive",
+    "full-v1-reasoning-one_of_each",
+    "full-v1-reasoning-red_given_any_red",
+    "full-v1-reasoning-two_red",
+    "full-v1-units-average_with_pause",
+    "full-v1-units-speed_minutes",
+    "full-v1-units-two_inflows_and_drain"
+  ],
+  "cost_scope": "communication_revisions_only_excluding_initial",
+  "time_metric": "summed_model_request_seconds",
+  "reference_definition": "family_balanced_mean_per_question_communication_round_1_revision_cost",
+  "references": {
+    "token_reference": 5425.15,
+    "request_seconds_reference": 13.565324275015154
+  },
+  "objective": {
+    "cost_weight": 0.02,
+    "token_weight": 0.5,
+    "request_time_weight": 0.5,
+    "error": "one_minus_family_balanced_communication_accuracy",
+    "tie_rule": "fewer_rounds"
+  }
+}

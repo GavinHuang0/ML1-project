@@ -1,6 +1,6 @@
 # Operational experiment evidence
 
-The active full-study v2 writes to `results/full-experiment/study-v2`: 100 questions, 3,500 fresh generations, five-agent all-to-all versus matched self-revision, development calibration, validation selection and locked test evaluation. Phase progress bars estimate remaining request time. It is prepared, not run by this setup. [Commands, ETA and audit](../docs/FULL_EXPERIMENT.md) · [All questions](../docs/FULL_STUDY_QUESTIONS.md)
+The completed full-study v2 is in `results/full-experiment/study-v2`: 100 questions, 3,500 audited generations and all three phase reports reproduced. Validation selected R0 before test; its held-out accuracy is 12/40 in both shared-initial branches. Secondary R3 gives communication 14/40 versus self-revision 10/40. [Results and interpretation](../docs/FULL_STUDY_RESULTS_V2.md) · [Frozen procedure and audit](../docs/FULL_EXPERIMENT.md) · [Archive](../archive/2026-11-19-full-study-v2/README.md)
 
 The completed and audited architecture runs are `results/five-agent-pilot/windows-v1` (five agents/all four peers, 420 calls) and `results/sparse-peer-pilot/windows-v1` (ten agents/two sampled peers, 840 calls). Each includes a matched self-revision control on the twelve inspected development cases. Five-agent R3 gives 3/12 versus 3/12; sparse R3 gives 2/12 versus 3/12. [Results and full-study decision](../docs/ARCHITECTURE_RESULTS_V1.md) · [Frozen procedures and audit commands](../docs/ARCHITECTURE_PILOTS.md)
 
@@ -22,7 +22,7 @@ The current explicit recovery writes to `results/communication-pilot/windows-v2`
 | `followup-pilot/windows-v1/` | Completed 160-call baseline-JSON versus schema comparison |
 | [baseline/](baseline/README.md) | Preserved single-agent historical reference, not a newly generated result |
 | `windows-checkout-backup-*/` | Original configuration-byte backups from checkout normalization |
-| `full-experiment/study-v2/` | Prepared, not run: root study manifest, phase journals/reports, frozen calibration and validation selection; 3,500 fresh calls |
+| `full-experiment/study-v2/` | Complete and audited: root study manifest, phase journals/reports, frozen calibration and validation selection; all 3,500 fresh calls saved |
 
 Completed Windows runs have immutable copies under [the November 17 archive](../archive/2026-11-17-development-pilots/README.md). Operational originals remain in place because the audit/import manifests retain absolute paths. Do not move, edit, or overwrite parent evidence. Earlier experiments are indexed in [the archive catalog](../archive/README.md); original archives remain unchanged.
 

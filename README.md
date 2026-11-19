@@ -2,22 +2,22 @@
 
 Does access to peers improve a multi-agent LLM system beyond giving each agent another attempt, and enough to justify the extra tokens and time?
 
-The latest completed experiments compare **five agents with all four peers** and **ten agents with two sampled peers**, each against matched self-revision on the same twelve inspected development questions. Both use the selected **original calculator instruction + strict JSON schema**, shared initial panels and three synchronous revision rounds. The underlying model is `llama3.2:3b`; no weights are trained or changed.
+The latest completed experiment is the **100-question five-agent full study**, comparing communication with all four peers against matched self-revision. It uses the selected **original calculator instruction + strict JSON schema**, shared initial panels and full round-0-through-3 trajectories. The underlying model is `llama3.2:3b`; no weights are trained or changed.
 
-**Completed result:** five-agent communication and self-revision solve the same **3/12** final questions; sparse ten-agent communication solves **2/12** versus its control's **3/12**. Recommend five agents for the primary full research comparison because full-trajectory calls halve, not because it is a validated accuracy winner. Sparse R1 reaches 3/12 at lower prefix token cost than five-agent communication R3. Keep validation-based round selection. [Audited results and configuration decision](docs/ARCHITECTURE_RESULTS_V1.md)
+**Completed result:** validation selected **R0, no revision**, under the frozen accuracy/cost objective. That policy solves **12/40 held-out test questions (30%)**. Its two branch labels are identical by shared initialization. Secondary R3 gives communication 14/40 versus self-revision 10/40, an uncertain +10-point difference with interval [−2.5, +22.5]. The result does not establish that communication is always better or worse. [Full verification and interpretation](docs/FULL_STUDY_RESULTS_V2.md)
 
-## Run the five-agent full study
+## Verify the completed five-agent full study
 
-The active full-study command now implements the selected strict-schema profile: five agents with all four peers versus matched five-agent self-revision, full rounds 0–3, development calibration, validation-selected global round and locked test evaluation. It generates **3,500 fresh calls**, split 700/1,400/1,400 across development/validation/test, with a progress bar and an estimated remaining time based on returned call durations.
+All **3,500 calls** are saved and audited: 700 development, 1,400 validation and 1,400 test. Canonical prompts, raw evaluations, source identities, frozen phase dependencies and report bytes reproduce. No recovery is pending. The complete run took about 2h42m elapsed and used 2,638,253 tokens.
 
 ```powershell
 Set-Location D:\ML1-project
-.\run_full_experiment.ps1 -Phase all
+.\run_full_experiment.ps1 -AnalyzeRun results/full-experiment/study-v2
 ```
 
-Default output: `results/full-experiment/study-v2`. Inspect [all 100 questions](docs/FULL_STUDY_QUESTIONS.md) or the [question-only JSON](docs/FULL_STUDY_QUESTIONS.json) before running. The default launcher without `-Phase all` runs development only; later phases use `-Phase validation -Resume` and `-Phase test -Resume`. Press Ctrl+C once and wait for `paused`, then resume with the same phase and `-Resume`. [Frozen study, cost objective, ETA and audit commands](docs/FULL_EXPERIMENT.md)
+The audit is read-only and needs no Ollama service. The evidence remains in `results/full-experiment/study-v2` with an [immutable archive](archive/2026-11-19-full-study-v2/README.md). [All 100 questions](docs/FULL_STUDY_QUESTIONS.md), [question-only JSON](docs/FULL_STUDY_QUESTIONS.json), and the [frozen procedure](docs/FULL_EXPERIMENT.md) remain available. The experiment needs no further inference; test outcomes must not retune its selected endpoint.
 
-Version 2 explicitly calibrates revision cost using summed model-request seconds instead of the old full-round wall-time scope. It does not import pilot calls. The original ten-agent runner/configuration are preserved as [v1 compatibility code](experiments/full_study_v1/runner.py) and [historical design](docs/FULL_EXPERIMENT_V1.md); completed results and their archives are unchanged. No full-study inference has been launched by this setup.
+Version 2 calibrated revision cost using summed model-request seconds instead of the old full-round wall-time scope. It imported no pilot answers. The original ten-agent runner/configuration are preserved as [v1 compatibility code](experiments/full_study_v1/runner.py) and [historical design](docs/FULL_EXPERIMENT_V1.md); earlier results and their archives remain unchanged.
 
 ## Inspect the completed architecture pilots
 

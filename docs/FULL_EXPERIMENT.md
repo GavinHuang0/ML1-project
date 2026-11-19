@@ -1,6 +1,8 @@
 # Five-agent full study: selected profile, validation selection and ETA
 
-The active full-study runner is **ml1-five-agent-full-study-v2**. It compares five agents with all four peers against matched five-agent self-revision, using the selected original calculator instruction and strict JSON schema. This newly versioned implementation replaces the root command's older plain-JSON study. It is prepared for execution; no full-study inference has been launched by this setup.
+**Completed and independently audited on November 19, 2026:** all 3,500 calls and phase reports reproduce, with no pending recovery. Validation selected R0 before test; the locked initial-panel policy scores 12/40 (30%). Later-round comparisons are secondary. Read the [results and interpretation](FULL_STUDY_RESULTS_V2.md). Use the audit command at the end for the completed default directory; the creation commands below document the frozen procedure.
+
+The full-study runner is **ml1-five-agent-full-study-v2**. It compares five agents with all four peers against matched five-agent self-revision, using the selected original calculator instruction and strict JSON schema. This version replaced the root command's older plain-JSON study and has now completed all phases. Its code, configuration and saved evidence remain frozen.
 
 The previous implementation remains available in [experiments/full_study_v1/runner.py](../experiments/full_study_v1/runner.py), with its original [configuration](../config/full_experiment.json), [design guide](FULL_EXPERIMENT_V1.md), historical tests and byte-preserved source in the existing archives. Completed pilots, their scores and immutable evidence remain unchanged. [Why five agents were chosen](ARCHITECTURE_RESULTS_V1.md)
 
